@@ -296,7 +296,7 @@ async function showData(type){
    if(!d.available){wrap.innerHTML=badge+'<p>Questa categoria non prevede classifica.</p>';return}
    if(!d.standings.length){wrap.innerHTML=badge+'<p>Classifica non disponibile dal collegamento CSI.</p>';return}
    const rows=d.standings.map(x=>`<tr class="${(x.team||"").toUpperCase().includes("USSA")?"us":""}">
-    <td><b>${x.position??""}</b></td><td>${x.logo?`<img src="/api/logo?url=${encodeURIComponent(x.logo)}" style="width:38px;height:38px;object-fit:contain">`:""}</td>
+    <td><b>${x.position??""}</b></td><td>${x.logo?`<img src="${x.logo.startsWith('/')?x.logo:'/api/logo?url='+encodeURIComponent(x.logo)}" style="width:38px;height:38px;object-fit:contain" alt="">`:""}</td>
     <td><b>${x.team||""}</b></td><td>${x.played??""}</td><td><b style="font-size:21px">${x.points??""}</b></td></tr>`).join("");
    wrap.innerHTML=badge+`<table><thead><tr><th>POS</th><th></th><th>SQUADRA</th><th>G</th><th>PT</th></tr></thead><tbody>${rows}</tbody></table>`;
   }else if(type==="scorers"){

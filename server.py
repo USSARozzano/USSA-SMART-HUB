@@ -68,6 +68,10 @@ def view(t,v): return resolve(t)+"?v="+v
 def home():
     return FileResponse(ROOT/"index.html")
 
+@app.get("/assets/ussa-logo.png")
+def ussa_logo():
+    return FileResponse(ROOT/"ussa-logo.png", media_type="image/png")
+
 def extract_stats(u):
     """
     CSI does NOT print the values immediately after 'POSIZIONE ATTUALE':
@@ -130,21 +134,16 @@ def extract_stats(u):
     if "wins" in d and "losses" in d:
         d["played"]=d["wins"]+d.get("draws",0)+d["losses"]
 
-    # Team crest/photo actually exposed by CSI with the team name as alt.
+    # Use ONLY an image explicitly associated with the team name.
+    # Never fall back to generic page images (App Store, Google Play, banners, social icons).
     h1=s.find("h1")
     team_name=cl(h1.get_text(" ",strip=True)).split(" (")[0] if h1 else ""
-    imgs=[]
     for img in s.find_all("img",src=True):
         src=urljoin(BASE,img["src"])
         alt=cl(img.get("alt",""))
-        if team_name and team_name.upper() in alt.upper():
+        if team_name and alt and team_name.upper() in alt.upper():
             d["logo"]=src
             break
-        if "apple" not in src.lower() and "google" not in src.lower() and "csi" not in alt.lower():
-            imgs.append(src)
-    if "logo" not in d and imgs:
-        # Best-effort fallback; if CSI has no crest/photo, UI simply leaves logo blank.
-        d["logo"]=imgs[0]
     return d
 
 def parse_score(text):
@@ -278,6 +277,8 @@ def standings(key:str):
             if "position" not in d:
                 continue
             d["team"]=nm
+            if "USSA ROZZANO" in (nm or "").upper():
+                d["logo"]="/assets/ussa-logo.png"
             pts=team_points(u,t["sport"],d)
             if pts is not None:
                 d["points"]=pts
@@ -298,25 +299,40 @@ def players(key:str):
     if not t: raise HTTPException(404)
     if not t.get("marcatori"):
         return {"available":False,"players":[]}
+
+    # CSI publishes Cognome, Nome and Gol directly in the Giocatori table.
     s=sp(view(t,"giocatori"))
-    urls={}
-    for a in s.find_all("a",href=True):
-        if "/albo/giocatori/" in a["href"]:
-            urls[urljoin(BASE,a["href"])]=cl(a.get_text(" ",strip=True))
     arr=[]
-    for u,fallback in urls.items():
-        try:
-            ps=sp(u)
-            body=cl(ps.get_text(" ",strip=True))
-            m=re.search(r"Goals\s*:?\s*(\d+)",body,re.I)
-            if not m: continue
-            g=int(m.group(1))
-            if g<=0: continue
-            h1=ps.find("h1")
-            name=cl(h1.get_text(" ",strip=True)) if h1 else fallback
-            arr.append({"name":name,"goals":g})
-        except:
-            pass
+    for tr in s.find_all("tr"):
+        cells=[cl(x.get_text(" ",strip=True)) for x in tr.find_all(["td","th"])]
+        if not cells:
+            continue
+        joined=" ".join(cells).upper()
+        if "COGNOME" in joined and "NOME" in joined and "GOL" in joined:
+            continue
+        names=[]
+        for a in tr.find_all("a",href=True):
+            if "/albo/giocatori/" in a["href"]:
+                txt=cl(a.get_text(" ",strip=True))
+                if txt and (not names or names[-1] != txt):
+                    names.append(txt)
+        if len(names) < 2:
+            continue
+        nums=[]
+        for c in cells:
+            if re.fullmatch(r"\d+",c):
+                nums.append(int(c))
+        if not nums:
+            continue
+        goals=nums[-1]
+        if goals <= 0:
+            continue
+        arr.append({"name":f"{names[0]} {names[1]}","goals":goals})
+
+    dedup={}
+    for p in arr:
+        dedup[p["name"]]=max(p["goals"],dedup.get(p["name"],0))
+    arr=[{"name":n,"goals":g} for n,g in dedup.items()]
     arr.sort(key=lambda x:(-x["goals"],x["name"]))
     return {"available":True,"players":arr,"source":view(t,"giocatori")}
 
