@@ -5,7 +5,12 @@
     "sport": "CALCIO A 11",
     "classifica": true,
     "marcatori": true,
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-calcio-under-13-a-11-primav-4747.html"
+    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-calcio-under-13-a-11-primav-4747.html",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0502/",
+    "visible": true
   },
   {
     "key": "ragazzi_blue",
@@ -15,7 +20,12 @@
     "marcatori": true,
     "seed": "https://www.csi.milano.it/albo/campigara/comunale-ussa-stadium-via-della-cooperazione-rozzano-mi-3854.html",
     "match_text": "USSA ROZZANO BLUE CALCIO RAGAZZI A 11 - PRIMAV",
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-blue-ca-ragazzi-a-11-primav-4750.html"
+    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-blue-ca-ragazzi-a-11-primav-4750.html",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "",
+    "visible": true
   },
   {
     "key": "ragazzi_yellow",
@@ -25,7 +35,12 @@
     "marcatori": true,
     "seed": "https://www.csi.milano.it/albo/campigara/comunale-ussa-stadium-via-della-cooperazione-rozzano-mi-3854.html",
     "match_text": "USSA ROZZANO YELLOW CALCIO RAGAZZI A 11 - PRIMAV",
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-yellow-ca-ragazzi-a-11-primav-4751.html"
+    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-yellow-ca-ragazzi-a-11-primav-4751.html",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "",
+    "visible": true
   },
   {
     "key": "allievi",
@@ -35,7 +50,12 @@
     "marcatori": true,
     "seed": "https://www.csi.milano.it/albo/campigara/comunale-ussa-stadium-via-della-cooperazione-rozzano-mi-3854.html",
     "match_text": "USSA ROZZANO CALCIO ALLIEVI A 11 - PRIMAV",
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-ca-allievi-a-11-primav-4748.html"
+    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-ca-allievi-a-11-primav-4748.html",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "",
+    "visible": true
   },
   {
     "key": "u19",
@@ -43,7 +63,12 @@
     "sport": "CALCIO A 11",
     "classifica": true,
     "marcatori": true,
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-calcio-under-19-a-11-primav-4749.html"
+    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-calcio-under-19-a-11-primav-4749.html",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "",
+    "visible": true
   },
   {
     "key": "open11",
@@ -53,14 +78,24 @@
     "marcatori": true,
     "seed": "https://www.csi.milano.it/albo/campigara/comunale-ussa-stadium-via-della-cooperazione-rozzano-mi-3854.html",
     "match_text": "USSA ROZZANO CALCIO OPEN - A 11 - PRIMAV",
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-ca-open-a-11-primav-4752.html"
+    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-ca-open-a-11-primav-4752.html",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "",
+    "visible": true
   },
   {
     "key": "primi_calci",
     "label": "PRIMI CALCI",
     "sport": "CALCIO A 7",
     "classifica": false,
-    "marcatori": false
+    "marcatori": false,
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "",
+    "visible": false
   },
   {
     "key": "big_small",
@@ -69,7 +104,12 @@
     "classifica": false,
     "marcatori": false,
     "seed": "https://www.csi.milano.it/albo/squadre/coc-calcio-big-small-primav-2934.html?v=partite",
-    "match_text": "USSA ROZZANO"
+    "match_text": "USSA ROZZANO",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-7/Lombardia/Milano/P2025233HA0903/",
+    "visible": true
   },
   {
     "key": "u9",
@@ -78,7 +118,12 @@
     "classifica": false,
     "marcatori": false,
     "seed": "https://www.csi.milano.it/albo/campigara/oratorio-s-luigi-via-madonna-di-caravaggio-21-peschiera-borromeo-mi-0502.html",
-    "match_text": "USSA ROZZANO"
+    "match_text": "USSA ROZZANO",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "",
+    "visible": true
   },
   {
     "key": "u10",
@@ -87,7 +132,12 @@
     "classifica": true,
     "marcatori": true,
     "seed": "https://www.csi.milano.it/albo/squadre/s-spirito-u10-ca-under-10-a-7-primav-2897.html?v=partite",
-    "match_text": "USSA ROZZANO"
+    "match_text": "USSA ROZZANO",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-7/Lombardia/Milano/C225/",
+    "visible": true
   },
   {
     "key": "u11",
@@ -96,7 +146,12 @@
     "classifica": true,
     "marcatori": true,
     "seed": "https://www.csi.milano.it/albo/squadre/tnt-prato-calcio-ragazzi-a-7-primav-3651.html?v=partite",
-    "match_text": "USSA ROZZANO"
+    "match_text": "USSA ROZZANO",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "",
+    "visible": true
   },
   {
     "key": "u13a7",
@@ -105,7 +160,12 @@
     "classifica": true,
     "marcatori": true,
     "seed": "https://www.csi.milano.it/albo/squadre/g-xxiii-milano-ca-under-13-a-7-primav-4640.html?v=partite",
-    "match_text": "USSA ROZZANO"
+    "match_text": "USSA ROZZANO",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "",
+    "visible": true
   },
   {
     "key": "volley_u12",
@@ -114,7 +174,12 @@
     "classifica": true,
     "marcatori": false,
     "seed": "https://www.csi.milano.it/albo/squadre/n-c-atletico-barona-pv-under-12-primav-4141.html?v=partite",
-    "match_text": "USSA ROZZANO"
+    "match_text": "USSA ROZZANO",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Pallavolo/Lombardia/Milano/C408/",
+    "visible": true
   },
   {
     "key": "volley_u13",
@@ -124,7 +189,12 @@
     "marcatori": false,
     "seed": "https://www.csi.milano.it/albo/partite/pallavolo-under-13-primav-ussa-rozzano-viscontini-u13-2025434CA0802.html",
     "match_text": "USSA ROZZANO",
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-13-primav-4124.html"
+    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-13-primav-4124.html",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Pallavolo/Lombardia/Milano/P2025434CA0901/",
+    "visible": true
   },
   {
     "key": "volley_juniores",
@@ -133,7 +203,12 @@
     "classifica": true,
     "marcatori": false,
     "seed": "https://www.csi.milano.it/albo/squadre/paderno-dugnano-fc-calcio-under-9-a-7-primav-3897.html?v=partite",
-    "match_text": "USSA ROZZANO"
+    "match_text": "USSA ROZZANO",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Pallavolo/Lombardia/Milano/P2025405BA0603/",
+    "visible": true
   },
   {
     "key": "basket_open",
@@ -142,6 +217,11 @@
     "classifica": true,
     "marcatori": false,
     "seed": "https://www.csi.milano.it/albo/squadre/n-c-atletico-barona-pc-open-primav-4154.html?v=partite",
-    "match_text": "USSA ROZZANO"
+    "match_text": "USSA ROZZANO",
+    "training": [],
+    "staff": [],
+    "roster": [],
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Pallacanestro/Lombardia/Milano/S5209/",
+    "visible": true
   }
 ]

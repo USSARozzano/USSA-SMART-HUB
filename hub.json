@@ -1,0 +1,6 @@
+{
+  "stadium": {"name":"USSA Stadium","address":"Via della Cooperazione, 20089 Rozzano MI"},
+  "secretariat": {"days":[2,5],"label":"Martedì e venerdì","open":"18:00","close":"19:30"},
+  "contacts": {"email":"","phone":"","website":"","instagram":"","facebook":""},
+  "idle_seconds": 90
+}

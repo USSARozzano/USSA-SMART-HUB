@@ -72,6 +72,68 @@ def home():
 def ussa_logo():
     return FileResponse(ROOT/"ussa-logo.png", media_type="image/png")
 
+def load_json(name, default):
+    try:
+        return json.loads((ROOT/name).read_text(encoding="utf-8"))
+    except:
+        return default
+
+@app.get("/api/teams")
+def api_teams():
+    return list(TEAMS.values())
+
+@app.get("/api/hub")
+def api_hub():
+    return load_json("hub.json", {})
+
+def parse_hm(v):
+    h,m=map(int,v.split(":")); return h*60+m
+
+@app.get("/api/home/now")
+def home_now():
+    now=datetime.now(); weekday=now.isoweekday(); minute=now.hour*60+now.minute
+    items=[]
+    for t in TEAMS.values():
+        for x in t.get("training",[]):
+            days=x.get("weekday")
+            if days is None:
+                names={"LUNEDI":1,"LUNEDÌ":1,"MARTEDI":2,"MARTEDÌ":2,"MERCOLEDI":3,"MERCOLEDÌ":3,"GIOVEDI":4,"GIOVEDÌ":4,"VENERDI":5,"VENERDÌ":5,"SABATO":6,"DOMENICA":7}
+                days=names.get(str(x.get("day","")).upper())
+            try:
+                if days==weekday and parse_hm(x["start"]) <= minute < parse_hm(x["end"]):
+                    items.append({"title":t["label"],"meta":f"Allenamento · {x['start']}–{x['end']}" + (f" · {x.get('place')}" if x.get('place') else "")})
+            except: pass
+    return {"items":items}
+
+@app.get("/api/home/upcoming")
+def home_upcoming():
+    items=[]
+    # Manual USSA events are mixed with future official matches.
+    for e in load_json("events.json",[]):
+        try:
+            d=datetime.fromisoformat(e["date"] + "T" + e.get("time","00:00"))
+            if d >= datetime.now():
+                items.append({**e,"kind":"EVENTO","_sort":d.isoformat(),"day":d.strftime("%d/%m")})
+        except: pass
+    # Current V1 match parser remains a fallback while CSI LIVE IDs are mapped team by team.
+    for t in TEAMS.values():
+        if t.get("visible") is False or not (t.get("url") or t.get("seed")): continue
+        try:
+            for m in match_rows(t):
+                if m.get("result"): continue
+                d=datetime.strptime(m["date"]+" "+(m.get("time") or "00:00"),"%d/%m/%Y %H:%M")
+                if d < datetime.now(): continue
+                items.append({"kind":"PARTITA","date":m["date"],"day":m["date"][:5],"time":m.get("time",""),"title":f"{m.get('home','')} – {m.get('away','')}","meta":t["label"],"field":m.get("field","") ,"team_key":t["key"],"_sort":d.isoformat()})
+        except: pass
+    # de-duplicate same match discovered through more than one path
+    dedup={}
+    for x in items:
+        key=(x.get("date"),x.get("time"),x.get("title"))
+        dedup[key]=x
+    out=sorted(dedup.values(),key=lambda x:x.get("_sort",""))
+    for x in out: x.pop("_sort",None)
+    return {"items":out[:80]}
+
 def extract_stats(u):
     """
     CSI does NOT print the values immediately after 'POSIZIONE ATTUALE':

@@ -1,13 +1,23 @@
-# USSA SMART HUB
+# USSA SMART HUB · V2 portrait
 
-Versione CSI consolidata.
+V2 parte dalla V1 e introduce il layout kiosk verticale.
 
-- Home con calendario USSA.
-- 16 squadre.
-- Classifica completa: posizione, logo (se CSI lo pubblica), squadra, gare, punti.
-- Marcatori solo per calcio e solo se CSI pubblica i dati.
-- Risultati e prossime partite da CSI.
-- Nessun dato sportivo inventato nella parte destra.
-- Le categorie per cui CSI non espone una scheda Primaverile univoca restano senza dati invece di usare il campionato sbagliato.
+## Home
+- Header compatto con logo ufficiale USSA, titolo, data/ora.
+- Blocco alto: prossimi appuntamenti (solo gare future + eventi USSA), scroll manuale verso il futuro.
+- Blocco centrale: ORA IN CAMPO + INFO; la segreteria viene evidenziata solo durante l'orario di apertura.
+- Blocco basso: griglia squadre.
+- Messaggi di attesa neutri: nessun riferimento alla sorgente CSI.
 
-Gli URL Primaverili diretti sono fissati per le 6 squadre di Calcio a 11 e Volley U13; le altre categorie usano discovery da pagine CSI Primaverili verificate.
+## Scheda squadra
+Predisposta per allenamenti, staff, rosa, classifica completa, marcatori, gare disputate e prossime partite.
+
+## Dati
+- `teams.json`: anagrafica squadra + collegamenti sorgenti + training/staff/roster.
+- `events.json`: eventi USSA extra-CSI.
+- `hub.json`: Stadium, segreteria, contatti e impostazioni generali.
+- Il parser V1 resta come fallback durante la migrazione progressiva a CSI LIVE; i campi `csi_live_url` già verificati sono salvati in `teams.json`.
+
+## Avvio
+`pip install -r requirements.txt`
+`uvicorn server:app --host 0.0.0.0 --port 8000`
