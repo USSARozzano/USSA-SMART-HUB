@@ -279,58 +279,36 @@ function backDetail(){
  document.getElementById("rightSub").textContent=currentTeam.sport;
 }
 
-function showData(type){
+async function showData(type){
  document.getElementById("teamDetail").classList.remove("show");
  document.getElementById("dataView").classList.add("show");
  const wrap=document.getElementById("tableWrap");
- const isU13A11 = currentTeam.sport==="CALCIO A 11" && currentTeam.name==="UNDER 13 A 11";
- const isU19 = currentTeam.sport==="CALCIO A 11" && currentTeam.name==="UNDER 19";
- const isBasket = currentTeam.sport==="BASKET" && currentTeam.name==="OPEN";
-
- if(type==="results" && isU13A11){
-   document.getElementById("viewTitle").textContent="UNDER 13 A 11 · RISULTATI";
-   wrap.innerHTML=`<div class="badge">CSI MILANO · PRIMAVERILE 2025/26</div>
-   <table><thead><tr><th>DATA</th><th>PARTITA</th><th>RIS.</th></tr></thead><tbody>
-   <tr><td>28/03/2026</td><td>POLISPORTIVA OMR – USSA ROZZANO</td><td>7–4</td></tr>
-   <tr><td>11/04/2026</td><td>USSA ROZZANO – S.GIULIANO COLOGNO OSGD</td><td>4–2</td></tr>
-   <tr><td>18/04/2026</td><td>ASO CERNUSCO 2013 BLU – USSA ROZZANO</td><td>0–5</td></tr>
-   </tbody></table>
-   <p class="panel-sub" style="margin-top:14px">Dati mostrati esclusivamente da record CSI verificati nella demo.</p>`;
- } else if(type==="standings" && isU19){
-   document.getElementById("viewTitle").textContent="UNDER 19 · DATI CLASSIFICA";
-   wrap.innerHTML=`<div class="badge">CSI MILANO · PRIMAVERILE 2025/26</div>
-   <table><thead><tr><th>POS.</th><th>V</th><th>N</th><th>P</th><th>GF</th><th>GS</th></tr></thead><tbody>
-   <tr class="us"><td>2ª</td><td>3</td><td>4</td><td>0</td><td>16</td><td>9</td></tr>
-   </tbody></table>
-   <p class="panel-sub" style="margin-top:14px">La tabella completa del girone verrà popolata dal connettore CSI; qui non vengono aggiunte squadre o punti non verificati.</p>`;
- } else if(type==="scorers" && isU19){
-   document.getElementById("viewTitle").textContent="UNDER 19 · MARCATORI";
-   wrap.innerHTML=`<div class="badge">CSI MILANO · PRIMAVERILE 2025/26</div>
-   <table><thead><tr><th>GIOCATORE</th><th>GOL</th></tr></thead><tbody>
-   <tr><td>DIEGO MELINA</td><td>7</td></tr>
-   <tr><td>ANDREA GIBELLI</td><td>1</td></tr>
-   </tbody></table>
-   <p class="panel-sub" style="margin-top:14px">Sono riportati solo i realizzatori esplicitamente verificati nella pagina CSI della squadra.</p>`;
- } else if(type==="results" && isBasket){
-   document.getElementById("viewTitle").textContent="OPEN BASKET · RISULTATI";
-   wrap.innerHTML=`<div class="badge">CSI MILANO · PRIMAVERILE 2025/26</div>
-   <table><thead><tr><th>DATA</th><th>PARTITA</th><th>RIS.</th></tr></thead><tbody>
-   <tr><td>17/05/2026</td><td>PRIMAVERA 2005 – USSA ROZZANO</td><td>51–62</td></tr>
-   </tbody></table>`;
- } else if(type==="next"){
-   document.getElementById("viewTitle").textContent=currentTeam.name+" · PROSSIME PARTITE";
-   wrap.innerHTML=`<div class="badge">CSI MILANO</div>
-   <div style="padding:28px 8px;font-size:18px;font-weight:850">Nessuna partita futura verificata nella demo.</div>
-   <p class="panel-sub">Quando CSI pubblicherà i calendari 2026/27, questa sezione sarà alimentata automaticamente.</p>`;
- } else {
-   const label = type==="standings" ? "CLASSIFICA" : type==="scorers" ? "MARCATORI" : "RISULTATI";
-   document.getElementById("viewTitle").textContent=currentTeam.name+" · "+label;
-   wrap.innerHTML=`<div class="badge">CSI MILANO</div>
-   <div style="padding:28px 8px;font-size:18px;font-weight:850">Dati CSI non ancora collegati in questa versione statica.</div>
-   <p class="panel-sub">Nessun dato fittizio viene mostrato nella parte destra. La versione online userà il connettore CSI per popolare automaticamente questa schermata.</p>`;
- }
+ const labels={standings:"CLASSIFICA",scorers:"MARCATORI",results:"RISULTATI",next:"PROSSIME PARTITE"};
+ document.getElementById("viewTitle").textContent=currentTeam.name+" · "+labels[type];
+ const keys={"CALCIO A 11|UNDER 13 A 11":"u13a11","CALCIO A 11|RAGAZZI BLUE":"ragazzi_blue","CALCIO A 11|RAGAZZI YELLOW":"ragazzi_yellow","CALCIO A 11|ALLIEVI":"allievi","CALCIO A 11|UNDER 19":"u19","CALCIO A 11|OPEN":"open11","CALCIO A 7|PRIMI CALCI":"primi_calci","CALCIO A 7|BIG SMALL":"big_small","CALCIO A 7|UNDER 9":"u9","CALCIO A 7|UNDER 10":"u10","CALCIO A 7|UNDER 11":"u11","CALCIO A 7|UNDER 13":"u13a7","VOLLEY|UNDER 12":"volley_u12","VOLLEY|UNDER 13":"volley_u13","VOLLEY|JUNIORES":"volley_juniores","BASKET|OPEN":"basket_open"};
+ const ep=type==="standings"?"standings":type==="scorers"?"players":type==="results"?"matches":"next";
+ wrap.innerHTML='<div style="padding:28px;font-weight:900">Caricamento dal CSI Milano…</div>';
+ try{
+  const r=await fetch(`/api/team/${keys[currentTeam.sport+"|"+currentTeam.name]}/${ep}`,{cache:"no-store"});
+  const d=await r.json(); if(!r.ok)throw new Error(d.detail||"Dati non disponibili");
+  const badge='<div class="badge">CSI MILANO · DATI UFFICIALI</div>';
+  if(type==="standings"){
+   if(!d.available){wrap.innerHTML=badge+'<p>Questa categoria non prevede classifica.</p>';return}
+   if(!d.standings.length){wrap.innerHTML=badge+'<p>Classifica non pubblicata.</p>';return}
+   const rows=d.standings.map(x=>`<tr class="${(x.team||"").toUpperCase().includes("USSA")?"us":""}">
+    <td><b>${x.position??""}</b></td><td>${x.logo?`<img src="/api/logo?url=${encodeURIComponent(x.logo)}" style="width:38px;height:38px;object-fit:contain">`:""}</td>
+    <td><b>${x.team||""}</b></td><td>${x.played??""}</td><td><b style="font-size:21px">${x.points??""}</b></td></tr>`).join("");
+   wrap.innerHTML=badge+`<table><thead><tr><th>POS</th><th></th><th>SQUADRA</th><th>G</th><th>PT</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }else if(type==="scorers"){
+   if(!d.available){wrap.innerHTML=badge+'<p>Marcatori non previsti.</p>';return}
+   if(!d.players.length){wrap.innerHTML=badge+'<p>Nessun marcatore pubblicato dal CSI.</p>';return}
+   wrap.innerHTML=badge+`<table><thead><tr><th>POS</th><th>GIOCATORE</th><th>GOL</th></tr></thead><tbody>${d.players.map((x,i)=>`<tr><td>${i+1}</td><td><b>${x.name}</b></td><td><b>${x.goals}</b></td></tr>`).join("")}</tbody></table>`;
+  }else{
+   const a=d.matches||[]; if(!a.length){wrap.innerHTML=badge+'<p>Nessuna partita disponibile.</p>';return}
+   wrap.innerHTML=badge+`<table><thead><tr><th>DATA</th><th>PARTITA</th><th>RIS.</th></tr></thead><tbody>${a.map(x=>`<tr><td>${x.date||""}<br>${x.time||""}</td><td><b>${x.home||""}</b><br>${x.away||""}<small style="display:block">${x.field||""}</small></td><td><b>${x.result||""}</b></td></tr>`).join("")}</tbody></table>`;
+  }
+ }catch(e){wrap.innerHTML=`<div class="badge">CSI MILANO</div><div style="padding:25px 8px;font-weight:900">Dati Primaverile non ancora identificati con certezza.</div><p class="panel-sub">Nessun dato alternativo o inventato viene mostrato.</p>`}
 }
-
 
 // ===== USSA SMART HUB · LIVE API =====
 // Se la pagina è servita dal backend incluso nel pacchetto, prova a caricare
