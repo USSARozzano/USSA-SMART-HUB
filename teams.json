@@ -1,0 +1,130 @@
+[
+  {
+    "key": "u13a11",
+    "label": "UNDER 13 A 11",
+    "sport": "CALCIO A 11",
+    "classifica": true,
+    "marcatori": true,
+    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-calcio-under-13-a-11-primav-4747.html"
+  },
+  {
+    "key": "ragazzi_blue",
+    "label": "RAGAZZI BLUE",
+    "sport": "CALCIO A 11",
+    "classifica": true,
+    "marcatori": true,
+    "url": null
+  },
+  {
+    "key": "ragazzi_yellow",
+    "label": "RAGAZZI YELLOW",
+    "sport": "CALCIO A 11",
+    "classifica": true,
+    "marcatori": true,
+    "url": null
+  },
+  {
+    "key": "allievi",
+    "label": "ALLIEVI",
+    "sport": "CALCIO A 11",
+    "classifica": true,
+    "marcatori": true,
+    "url": null
+  },
+  {
+    "key": "u19",
+    "label": "UNDER 19",
+    "sport": "CALCIO A 11",
+    "classifica": true,
+    "marcatori": true,
+    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-calcio-under-19-a-11-primav-4749.html"
+  },
+  {
+    "key": "open11",
+    "label": "OPEN",
+    "sport": "CALCIO A 11",
+    "classifica": true,
+    "marcatori": true,
+    "url": null
+  },
+  {
+    "key": "primi_calci",
+    "label": "PRIMI CALCI",
+    "sport": "CALCIO A 7",
+    "classifica": false,
+    "marcatori": false,
+    "url": null
+  },
+  {
+    "key": "big_small",
+    "label": "BIG SMALL",
+    "sport": "CALCIO A 7",
+    "classifica": false,
+    "marcatori": false,
+    "url": null
+  },
+  {
+    "key": "u9",
+    "label": "UNDER 9",
+    "sport": "CALCIO A 7",
+    "classifica": false,
+    "marcatori": false,
+    "url": null
+  },
+  {
+    "key": "u10",
+    "label": "UNDER 10",
+    "sport": "CALCIO A 7",
+    "classifica": true,
+    "marcatori": true,
+    "url": null
+  },
+  {
+    "key": "u11",
+    "label": "UNDER 11",
+    "sport": "CALCIO A 7",
+    "classifica": true,
+    "marcatori": true,
+    "url": null
+  },
+  {
+    "key": "u13a7",
+    "label": "UNDER 13",
+    "sport": "CALCIO A 7",
+    "classifica": true,
+    "marcatori": true,
+    "url": null
+  },
+  {
+    "key": "volley_u12",
+    "label": "UNDER 12",
+    "sport": "VOLLEY",
+    "classifica": true,
+    "marcatori": false,
+    "url": null
+  },
+  {
+    "key": "volley_u13",
+    "label": "UNDER 13",
+    "sport": "VOLLEY",
+    "classifica": true,
+    "marcatori": false,
+    "url": null
+  },
+  {
+    "key": "volley_juniores",
+    "label": "JUNIORES",
+    "sport": "VOLLEY",
+    "classifica": true,
+    "marcatori": false,
+    "url": null
+  },
+  {
+    "key": "basket_open",
+    "label": "OPEN",
+    "sport": "BASKET",
+    "classifica": true,
+    "marcatori": false,
+    "url": null
+  }
+]
