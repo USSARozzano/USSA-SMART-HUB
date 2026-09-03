@@ -1,23 +1,31 @@
-# USSA SMART HUB · V2 portrait
+# USSA SMART HUB V2 — verticale
 
-V2 parte dalla V1 e introduce il layout kiosk verticale.
+Questa versione mantiene intatta la V1 sul branch `main` e sviluppa la nuova V2 sul branch `V2`.
 
 ## Home
-- Header compatto con logo ufficiale USSA, titolo, data/ora.
-- Blocco alto: prossimi appuntamenti (solo gare future + eventi USSA), scroll manuale verso il futuro.
-- Blocco centrale: ORA IN CAMPO + INFO; la segreteria viene evidenziata solo durante l'orario di apertura.
-- Blocco basso: griglia squadre.
-- Messaggi di attesa neutri: nessun riferimento alla sorgente CSI.
+- header compatto
+- calendario futuro scrollabile: partite + eventi USSA
+- Ora in campo
+- INFO con segreteria evidenziata solo quando aperta
+- griglia predisposta per 20 squadre (4 x 5 su kiosk verticale)
 
-## Scheda squadra
-Predisposta per allenamenti, staff, rosa, classifica completa, marcatori, gare disputate e prossime partite.
+## Squadre
+- allenamenti
+- staff
+- classifica CSI LIVE: POS / SQUADRA / G / V / N / P / PT
+- marcatori
+- gare disputate + dettaglio gara
+- prossime gare + campo / mappa / distanza e tempo da USSA Stadium
+- rosa e foto da vecchio Albo CSI quando disponibili
 
-## Dati
-- `teams.json`: anagrafica squadra + collegamenti sorgenti + training/staff/roster.
-- `events.json`: eventi USSA extra-CSI.
-- `hub.json`: Stadium, segreteria, contatti e impostazioni generali.
-- Il parser V1 resta come fallback durante la migrazione progressiva a CSI LIVE; i campi `csi_live_url` già verificati sono salvati in `teams.json`.
+## Info
+- segreteria e contatti
+- social
+- dirigenza
+- partner e sponsor
 
-## Avvio
-`pip install -r requirements.txt`
-`uvicorn server:app --host 0.0.0.0 --port 8000`
+## Fonti
+CSI LIVE è la sorgente principale dei dati agonistici. Il vecchio Albo CSI resta fallback per rosa/foto e marcatori se necessario.
+
+## Nota
+Gli identificativi delle competizioni 2026/27 andranno sostituiti quando il CSI pubblicherà i nuovi calendari.

@@ -1,1 +1,122 @@
-[]
+[
+  {
+    "id": "m-0509-u17",
+    "kind": "PARTITA",
+    "date": "2026-09-05",
+    "time": "18:30",
+    "title": "USSA ROZZANO – INTER",
+    "meta": "UNDER 17",
+    "field": "USSA Stadium",
+    "address": "Via della Cooperazione, 20089 Rozzano MI"
+  },
+  {
+    "id": "m-0809-ey",
+    "kind": "PARTITA",
+    "date": "2026-09-08",
+    "time": "21:00",
+    "title": "USSA ROZZANO – MILAN",
+    "meta": "ECCELLENZA YELLOW",
+    "field": "USSA Stadium",
+    "address": "Via della Cooperazione, 20089 Rozzano MI"
+  },
+  {
+    "id": "m-1209-u17",
+    "kind": "PARTITA",
+    "date": "2026-09-12",
+    "time": "16:00",
+    "title": "USSA ROZZANO – ATALANTA",
+    "meta": "UNDER 17",
+    "field": "USSA Stadium",
+    "address": "Via della Cooperazione, 20089 Rozzano MI"
+  },
+  {
+    "id": "m-1209-derby",
+    "kind": "PARTITA",
+    "date": "2026-09-12",
+    "time": "19:00",
+    "title": "ECCELLENZA YELLOW – ECCELLENZA BLUE",
+    "meta": "ECCELLENZA",
+    "field": "USSA Stadium",
+    "address": "Via della Cooperazione, 20089 Rozzano MI"
+  },
+  {
+    "id": "m-1309-u14",
+    "kind": "PARTITA",
+    "date": "2026-09-13",
+    "time": "16:00",
+    "title": "USSA ROZZANO – JUVENTUS",
+    "meta": "UNDER 14",
+    "field": "USSA Stadium",
+    "address": "Via della Cooperazione, 20089 Rozzano MI"
+  },
+  {
+    "id": "m-1309-u15b",
+    "kind": "PARTITA",
+    "date": "2026-09-13",
+    "time": "18:30",
+    "title": "USSA ROZZANO – MONZA",
+    "meta": "UNDER 15 BLUE",
+    "field": "USSA Stadium",
+    "address": "Via della Cooperazione, 20089 Rozzano MI"
+  },
+  {
+    "id": "m-1909-ey",
+    "kind": "PARTITA",
+    "date": "2026-09-19",
+    "time": "19:00",
+    "title": "USSA ROZZANO – TORINO",
+    "meta": "ECCELLENZA YELLOW",
+    "field": "USSA Stadium",
+    "address": "Via della Cooperazione, 20089 Rozzano MI"
+  },
+  {
+    "id": "m-2009-u15b",
+    "kind": "PARTITA",
+    "date": "2026-09-20",
+    "time": "15:00",
+    "title": "USSA ROZZANO – BOLOGNA",
+    "meta": "UNDER 15 BLUE",
+    "field": "USSA Stadium",
+    "address": "Via della Cooperazione, 20089 Rozzano MI"
+  },
+  {
+    "id": "m-2009-u15y",
+    "kind": "PARTITA",
+    "date": "2026-09-20",
+    "time": "17:30",
+    "title": "USSA ROZZANO – PARMA",
+    "meta": "UNDER 15 YELLOW",
+    "field": "USSA Stadium",
+    "address": "Via della Cooperazione, 20089 Rozzano MI"
+  },
+  {
+    "id": "m-2609-ey",
+    "kind": "PARTITA",
+    "date": "2026-09-26",
+    "time": "19:00",
+    "title": "USSA ROZZANO – LAZIO",
+    "meta": "ECCELLENZA YELLOW",
+    "field": "USSA Stadium",
+    "address": "Via della Cooperazione, 20089 Rozzano MI"
+  },
+  {
+    "id": "m-2709-u15b",
+    "kind": "PARTITA",
+    "date": "2026-09-27",
+    "time": "15:00",
+    "title": "USSA ROZZANO – FIORENTINA",
+    "meta": "UNDER 15 BLUE",
+    "field": "USSA Stadium",
+    "address": "Via della Cooperazione, 20089 Rozzano MI"
+  },
+  {
+    "id": "m-2709-u15y",
+    "kind": "PARTITA",
+    "date": "2026-09-27",
+    "time": "17:00",
+    "title": "USSA ROZZANO – ROMA",
+    "meta": "UNDER 15 YELLOW",
+    "field": "USSA Stadium",
+    "address": "Via della Cooperazione, 20089 Rozzano MI"
+  }
+]

@@ -9,8 +9,10 @@
     "training": [],
     "staff": [],
     "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0502/",
-    "visible": true
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0101/",
+    "visible": true,
+    "notes": "",
+    "display_name": "UNDER 13 A 11"
   },
   {
     "key": "ragazzi_blue",
@@ -24,8 +26,10 @@
     "training": [],
     "staff": [],
     "roster": [],
-    "csi_live_url": "",
-    "visible": true
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025206AA0502/",
+    "visible": true,
+    "notes": "",
+    "display_name": "RAGAZZI BLUE"
   },
   {
     "key": "ragazzi_yellow",
@@ -39,8 +43,10 @@
     "training": [],
     "staff": [],
     "roster": [],
-    "csi_live_url": "",
-    "visible": true
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025206BA0104/",
+    "visible": true,
+    "notes": "",
+    "display_name": "RAGAZZI YELLOW"
   },
   {
     "key": "allievi",
@@ -54,8 +60,10 @@
     "training": [],
     "staff": [],
     "roster": [],
-    "csi_live_url": "",
-    "visible": true
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025205AA0102/",
+    "visible": true,
+    "notes": "",
+    "display_name": "ALLIEVI"
   },
   {
     "key": "u19",
@@ -68,7 +76,9 @@
     "staff": [],
     "roster": [],
     "csi_live_url": "",
-    "visible": true
+    "visible": true,
+    "notes": "",
+    "display_name": "UNDER 19"
   },
   {
     "key": "open11",
@@ -82,8 +92,10 @@
     "training": [],
     "staff": [],
     "roster": [],
-    "csi_live_url": "",
-    "visible": true
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025202BA0103/",
+    "visible": true,
+    "notes": "",
+    "display_name": "OPEN"
   },
   {
     "key": "primi_calci",
@@ -95,7 +107,9 @@
     "staff": [],
     "roster": [],
     "csi_live_url": "",
-    "visible": false
+    "visible": false,
+    "notes": "",
+    "display_name": "PRIMI CALCI"
   },
   {
     "key": "big_small",
@@ -109,7 +123,9 @@
     "staff": [],
     "roster": [],
     "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-7/Lombardia/Milano/P2025233HA0903/",
-    "visible": true
+    "visible": true,
+    "notes": "",
+    "display_name": "BIG SMALL"
   },
   {
     "key": "u9",
@@ -122,8 +138,10 @@
     "training": [],
     "staff": [],
     "roster": [],
-    "csi_live_url": "",
-    "visible": true
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-7/Lombardia/C232/",
+    "visible": true,
+    "notes": "",
+    "display_name": "UNDER 9"
   },
   {
     "key": "u10",
@@ -137,7 +155,9 @@
     "staff": [],
     "roster": [],
     "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-7/Lombardia/Milano/C225/",
-    "visible": true
+    "visible": true,
+    "notes": "",
+    "display_name": "UNDER 10"
   },
   {
     "key": "u11",
@@ -150,8 +170,10 @@
     "training": [],
     "staff": [],
     "roster": [],
-    "csi_live_url": "",
-    "visible": true
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-7/Lombardia/C244/",
+    "visible": true,
+    "notes": "",
+    "display_name": "UNDER 11"
   },
   {
     "key": "u13a7",
@@ -164,8 +186,10 @@
     "training": [],
     "staff": [],
     "roster": [],
-    "csi_live_url": "",
-    "visible": true
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-7/Campania/Caserta/C243/",
+    "visible": true,
+    "notes": "",
+    "display_name": "UNDER 13"
   },
   {
     "key": "volley_u12",
@@ -179,7 +203,9 @@
     "staff": [],
     "roster": [],
     "csi_live_url": "https://live.centrosportivoitaliano.it/25/Pallavolo/Lombardia/Milano/C408/",
-    "visible": true
+    "visible": true,
+    "notes": "",
+    "display_name": "UNDER 12"
   },
   {
     "key": "volley_u13",
@@ -194,7 +220,9 @@
     "staff": [],
     "roster": [],
     "csi_live_url": "https://live.centrosportivoitaliano.it/25/Pallavolo/Lombardia/Milano/P2025434CA0901/",
-    "visible": true
+    "visible": true,
+    "notes": "",
+    "display_name": "UNDER 13"
   },
   {
     "key": "volley_juniores",
@@ -208,7 +236,9 @@
     "staff": [],
     "roster": [],
     "csi_live_url": "https://live.centrosportivoitaliano.it/25/Pallavolo/Lombardia/Milano/P2025405BA0603/",
-    "visible": true
+    "visible": true,
+    "notes": "",
+    "display_name": "JUNIORES"
   },
   {
     "key": "basket_open",
@@ -222,6 +252,8 @@
     "staff": [],
     "roster": [],
     "csi_live_url": "https://live.centrosportivoitaliano.it/25/Pallacanestro/Lombardia/Milano/S5209/",
-    "visible": true
+    "visible": true,
+    "notes": "",
+    "display_name": "OPEN"
   }
 ]

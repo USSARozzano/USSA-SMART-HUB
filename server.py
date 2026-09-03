@@ -1,423 +1,312 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse, Response
 from pathlib import Path
-from datetime import date,timedelta,datetime
-from urllib.parse import urljoin
-import requests,re,json
+from datetime import datetime, date
+from urllib.parse import urljoin, quote_plus, urlparse
+import requests, re, json, math
 from bs4 import BeautifulSoup
 
 ROOT=Path(__file__).parent
-app=FastAPI(title="USSA SMART HUB")
-TEAMS={x["key"]:x for x in json.loads((ROOT/"teams.json").read_text(encoding="utf-8"))}
-BASE="https://www.csi.milano.it"
-H={"User-Agent":"Mozilla/5.0 (USSA SMART HUB)","Accept-Language":"it-IT,it;q=0.9"}
+app=FastAPI(title="USSA SMART HUB V2")
+CSI_OLD="https://www.csi.milano.it"
+CSI_LIVE="https://live.centrosportivoitaliano.it"
+HEADERS={"User-Agent":"USSA-SMART-HUB/2.0 (+https://ussa-smart-hub-v2.onrender.com)","Accept-Language":"it-IT,it;q=0.9"}
 CACHE={}
 
-def fetch(u):
-    r=requests.get(u,headers=H,timeout=25)
+def clean(s): return re.sub(r"\s+"," ",s or "").strip()
+def load_json(name,default):
+    try:return json.loads((ROOT/name).read_text(encoding="utf-8"))
+    except:return default
+def teams_dict(): return {x["key"]:x for x in load_json("teams.json",[])}
+def fetch(url):
+    r=requests.get(url,headers=HEADERS,timeout=25)
     r.raise_for_status()
     return r.text
-
-def sp(u): return BeautifulSoup(fetch(u),"html.parser")
-def cl(x): return re.sub(r"\s+"," ",x or "").strip()
-def baseurl(u): return u.split("?")[0]
-
-def page_title(u):
-    s=sp(u)
-    h1=s.find("h1")
-    return cl(h1.get_text(" ",strip=True)) if h1 else cl(s.title.get_text(" ",strip=True) if s.title else "")
-
-def resolve(t):
-    if t.get("url"):
-        return baseurl(t["url"])
-    if t["key"] in CACHE:
-        return CACHE[t["key"]]
-    seed=t.get("seed")
-    if not seed:
-        raise HTTPException(404,"Scheda CSI non ancora identificata")
-    s=sp(seed)
-    wanted=cl(t.get("match_text","USSA ROZZANO")).upper()
-    candidates=[]
-    for a in s.find_all("a",href=True):
-        href=urljoin(BASE,a["href"])
-        text=cl(a.get_text(" ",strip=True))
-        if "/albo/squadre/" in href and "USSA ROZZANO" in text.upper():
-            candidates.append((text.upper(),baseurl(href)))
-    for text,u in candidates:
-        if wanted == text:
-            CACHE[t["key"]]=u
-            return u
-    # Prefer a USSA candidate whose page is explicitly PRIMAV.
-    for text,u in candidates:
-        try:
-            if "PRIMAV" in page_title(u).upper():
-                CACHE[t["key"]]=u
-                return u
-        except:
-            pass
-    # For categories without standings (small children), a plain USSA team page is still
-    # useful for Results/Next if the seed itself is known to be the correct Primaverile group.
-    if candidates:
-        CACHE[t["key"]]=candidates[0][1]
-        return candidates[0][1]
-    raise HTTPException(404,"Scheda CSI non identificata")
-
-def view(t,v): return resolve(t)+"?v="+v
+def soup(url): return BeautifulSoup(fetch(url),"html.parser")
+def iso_dt(d,t="00:00"):
+    return datetime.fromisoformat(f"{d}T{t or '00:00'}")
+def parse_hm(v):
+    h,m=map(int,v.split(":"));return h*60+m
 
 @app.get("/")
-def home():
-    return FileResponse(ROOT/"index.html")
-
+def home(): return FileResponse(ROOT/"index.html")
 @app.get("/assets/ussa-logo.png")
-def ussa_logo():
-    return FileResponse(ROOT/"ussa-logo.png", media_type="image/png")
-
-def load_json(name, default):
-    try:
-        return json.loads((ROOT/name).read_text(encoding="utf-8"))
-    except:
-        return default
-
+def logo(): return FileResponse(ROOT/"ussa-logo.png",media_type="image/png")
 @app.get("/api/teams")
-def api_teams():
-    return list(TEAMS.values())
-
+def api_teams(): return load_json("teams.json",[])
 @app.get("/api/hub")
-def api_hub():
-    return load_json("hub.json", {})
+def api_hub(): return load_json("hub.json",{})
 
-def parse_hm(v):
-    h,m=map(int,v.split(":")); return h*60+m
-
+# ---------- HOME ----------
 @app.get("/api/home/now")
 def home_now():
-    now=datetime.now(); weekday=now.isoweekday(); minute=now.hour*60+now.minute
-    items=[]
-    for t in TEAMS.values():
+    td=teams_dict();now=datetime.now();wd=now.isoweekday();minute=now.hour*60+now.minute;items=[]
+    for t in td.values():
         for x in t.get("training",[]):
-            days=x.get("weekday")
-            if days is None:
-                names={"LUNEDI":1,"LUNEDÌ":1,"MARTEDI":2,"MARTEDÌ":2,"MERCOLEDI":3,"MERCOLEDÌ":3,"GIOVEDI":4,"GIOVEDÌ":4,"VENERDI":5,"VENERDÌ":5,"SABATO":6,"DOMENICA":7}
-                days=names.get(str(x.get("day","")).upper())
             try:
-                if days==weekday and parse_hm(x["start"]) <= minute < parse_hm(x["end"]):
-                    items.append({"title":t["label"],"meta":f"Allenamento · {x['start']}–{x['end']}" + (f" · {x.get('place')}" if x.get('place') else "")})
-            except: pass
+                if int(x.get("weekday",0))==wd and parse_hm(x["start"])<=minute<parse_hm(x["end"]):
+                    items.append({"kind":"ALLENAMENTO","team_key":t["key"],"title":t["label"],"meta":f"{x['start']}–{x['end']}","place":x.get("place","")})
+            except:pass
+    # Manual home games in progress are also "Ora in campo".
+    for e in load_json("events.json",[]):
+        try:
+            dt=iso_dt(e["date"],e.get("time","00:00"))
+            # demo/default duration 120 minutes for a match
+            if e.get("kind")=="PARTITA" and 0 <= (now-dt).total_seconds() < 120*60:
+                items.append({"kind":"PARTITA","title":e.get("meta","PARTITA"),"meta":e.get("title",""),"place":e.get("field","")})
+        except:pass
     return {"items":items}
+
+def live_schedule_for_team(t):
+    """Best effort parser for CSI LIVE fixture rows. Returns only rows containing Ussa Rozzano."""
+    url=t.get("csi_live_url")
+    if not url:return []
+    s=soup(url);out=[];seen=set()
+    # Most CSI LIVE schedules are rendered as table rows.
+    for tr in s.find_all("tr"):
+        txt=clean(tr.get_text(" ",strip=True))
+        if "USSA ROZZANO" not in txt.upper():continue
+        md=re.search(r"\b(\d{2}/\d{2}/\d{2})\b",txt)
+        mt=re.search(r"\b([0-2]\d:[0-5]\d)\b",txt)
+        score=re.search(r"\b(\d+)\s+(\d+)\b\s*$",txt)
+        links=[a for a in tr.find_all("a",href=True)]
+        game_url=""
+        for a in links:
+            href=urljoin(url,a["href"])
+            if re.search(r"/P20\d{6,}[A-Z0-9]+/?",urlparse(href).path,re.I):
+                game_url=href;break
+        cells=[clean(x.get_text(" ",strip=True)) for x in tr.find_all(["td","th"])]
+        # try to identify team names by removing date/time/numbers
+        names=[]
+        for c in cells:
+            if not c or re.fullmatch(r"\d{2}/\d{2}/\d{2}",c) or re.fullmatch(r"[0-2]\d:[0-5]\d",c) or re.fullmatch(r"\d+",c):continue
+            if c.upper() in {"ANDATA","RITORNO"}:continue
+            names.append(c)
+        if not md:continue
+        try:dt=datetime.strptime(md.group(1)+(mt.group(1) if mt else "00:00"),"%d/%m/%y%H:%M")
+        except:continue
+        key=(md.group(1),mt.group(1) if mt else "",txt)
+        if key in seen:continue
+        seen.add(key)
+        out.append({"date":dt.date().isoformat(),"time":mt.group(1) if mt else "","raw":txt,"names":names,"result":score.group(0) if score else "","detail_url":game_url,"team_key":t["key"],"meta":t["label"]})
+    return out
 
 @app.get("/api/home/upcoming")
 def home_upcoming():
-    items=[]
-    # Manual USSA events are mixed with future official matches.
+    now=datetime.now();items=[]
+    # manual events / preseason matches
     for e in load_json("events.json",[]):
         try:
-            d=datetime.fromisoformat(e["date"] + "T" + e.get("time","00:00"))
-            if d >= datetime.now():
-                items.append({**e,"kind":"EVENTO","_sort":d.isoformat(),"day":d.strftime("%d/%m")})
-        except: pass
-    # Current V1 match parser remains a fallback while CSI LIVE IDs are mapped team by team.
-    for t in TEAMS.values():
-        if t.get("visible") is False or not (t.get("url") or t.get("seed")): continue
+            dt=iso_dt(e["date"],e.get("time","00:00"))
+            if dt>=now:
+                items.append({**e,"_sort":dt.isoformat(),"source":"USSA"})
+        except:pass
+    # CSI LIVE future games: once the 26/27 schedules are published these become primary.
+    for t in teams_dict().values():
+        if t.get("visible") is False or not t.get("csi_live_url"):continue
         try:
-            for m in match_rows(t):
-                if m.get("result"): continue
-                d=datetime.strptime(m["date"]+" "+(m.get("time") or "00:00"),"%d/%m/%Y %H:%M")
-                if d < datetime.now(): continue
-                items.append({"kind":"PARTITA","date":m["date"],"day":m["date"][:5],"time":m.get("time",""),"title":f"{m.get('home','')} – {m.get('away','')}","meta":t["label"],"field":m.get("field","") ,"team_key":t["key"],"_sort":d.isoformat()})
-        except: pass
-    # de-duplicate same match discovered through more than one path
+            for m in live_schedule_for_team(t):
+                dt=iso_dt(m["date"],m.get("time","00:00"))
+                if dt<now or m.get("result"):continue
+                title="Partita USSA"
+                if m.get("names"): title=" – ".join(m["names"][-2:])
+                items.append({"kind":"PARTITA","date":m["date"],"time":m.get("time",""),"title":title,"meta":t["label"],"field":"","team_key":t["key"],"detail_url":m.get("detail_url",""),"_sort":dt.isoformat(),"source":"CSI LIVE"})
+        except:pass
     dedup={}
     for x in items:
-        key=(x.get("date"),x.get("time"),x.get("title"))
+        key=(x.get("date"),x.get("time"),x.get("title"),x.get("meta"))
         dedup[key]=x
-    out=sorted(dedup.values(),key=lambda x:x.get("_sort",""))
-    for x in out: x.pop("_sort",None)
-    return {"items":out[:80]}
+    out=sorted(dedup.values(),key=lambda x:x["_sort"])
+    for x in out:x.pop("_sort",None)
+    return {"items":out[:100]}
 
-def extract_stats(u):
-    """
-    CSI does NOT print the values immediately after 'POSIZIONE ATTUALE':
-    it prints the whole header row first, then the values row.
-    The previous parser therefore returned an empty object.
-    This version reads the actual table structure.
-    """
-    s=sp(u)
-    d={}
+# ---------- CSI LIVE ----------
+def live_standings(t):
+    url=t.get("csi_live_url")
+    if not url:raise HTTPException(404,"Competizione CSI LIVE non ancora collegata")
+    s=soup(url)
     for table in s.find_all("table"):
         rows=table.find_all("tr")
-        if len(rows) < 2:
-            continue
-        headers=[cl(x.get_text(" ",strip=True)).upper() for x in rows[0].find_all(["th","td"])]
-        if not any("POSIZIONE ATTUALE" in x for x in headers):
-            continue
-        vals=[cl(x.get_text(" ",strip=True)) for x in rows[1].find_all(["th","td"])]
-        if len(vals) < 3:
-            continue
-        mapping={}
-        for i,h in enumerate(headers):
-            if i >= len(vals): break
-            mapping[h]=vals[i]
-        def num_for(keys):
-            for h,v in mapping.items():
-                if any(k in h for k in keys):
-                    m=re.search(r"-?\d+",v)
-                    if m: return int(m.group())
-            return None
-        pos=num_for(["POSIZIONE"])
-        wins=num_for(["VITTORIE"])
-        draws=num_for(["PAREGGI"])
-        losses=num_for(["SCONFITTE"])
-        gf=num_for(["GOAL FATTI","GOL FATTI","CANESTRI FATTI"])
-        ga=num_for(["GOAL SUBITI","GOL SUBITI","CANESTRI SUBITI"])
-        if pos is not None: d["position"]=pos
-        if wins is not None: d["wins"]=wins
-        if draws is not None: d["draws"]=draws
-        if losses is not None: d["losses"]=losses
-        if gf is not None: d["gf"]=gf
-        if ga is not None: d["ga"]=ga
-        break
+        if not rows:continue
+        hdr=[clean(x.get_text(" ",strip=True)).upper() for x in rows[0].find_all(["th","td"])]
+        if not ("SQUADRA" in " ".join(hdr) and ("PT" in hdr or any(x=="PT" for x in hdr))):continue
+        result=[]
+        for tr in rows[1:]:
+            vals=[clean(x.get_text(" ",strip=True)) for x in tr.find_all(["th","td"])]
+            if len(vals)<4:continue
+            # normalize expected CSI LIVE: #, squadra, pt, pg, v, n, p...
+            nums=[]
+            for v in vals:
+                try: nums.append(int(v))
+                except: pass
+            teamname=next((v for v in vals if re.search(r"[A-Za-zÀ-ÿ]",v) and v.upper() not in {"PLAYOFF","PLAYOUT"}),"")
+            if not teamname:continue
+            pos=next((int(v) for v in vals if re.fullmatch(r"\d+",v)),len(result)+1)
+            # positional extraction is more reliable for current CSI LIVE tables
+            try:
+                result.append({"position":int(vals[0]),"team":vals[1],"points":int(vals[2]),"played":int(vals[3]),"wins":int(vals[4]) if len(vals)>4 and vals[4].isdigit() else None,"draws":int(vals[5]) if len(vals)>5 and vals[5].isdigit() else None,"losses":int(vals[6]) if len(vals)>6 and vals[6].isdigit() else None})
+            except:
+                continue
+        if result:return result
+    return []
 
-    # Fallback for pages rendered without a semantic <table>.
-    if "position" not in d:
-        body=cl(s.get_text(" ",strip=True))
-        m=re.search(
-            r"POSIZIONE ATTUALE\s+VITTORIE(?:\s+PAREGGI)?\s+SCONFITTE(?:\s+Goal fatti\s+Goal subiti)?\s+"
-            r"(\d+)\s+(\d+)(?:\s+(\d+))?\s+(\d+)(?:\s+(\d+)\s+(\d+))?",
-            body,re.I
-        )
-        if m:
-            d["position"]=int(m.group(1))
-            d["wins"]=int(m.group(2))
-            if m.group(3) is not None: d["draws"]=int(m.group(3))
-            d["losses"]=int(m.group(4))
-            if m.group(5) is not None: d["gf"]=int(m.group(5))
-            if m.group(6) is not None: d["ga"]=int(m.group(6))
+def live_matches(t):
+    url=t.get("csi_live_url")
+    if not url:raise HTTPException(404,"Competizione CSI LIVE non ancora collegata")
+    # Parse every schedule row and return USSA only.
+    return live_schedule_for_team(t)
 
-    if "wins" in d and "losses" in d:
-        d["played"]=d["wins"]+d.get("draws",0)+d["losses"]
-
-    # Use ONLY an image explicitly associated with the team name.
-    # Never fall back to generic page images (App Store, Google Play, banners, social icons).
-    h1=s.find("h1")
-    team_name=cl(h1.get_text(" ",strip=True)).split(" (")[0] if h1 else ""
-    for img in s.find_all("img",src=True):
-        src=urljoin(BASE,img["src"])
-        alt=cl(img.get("alt",""))
-        if team_name and alt and team_name.upper() in alt.upper():
-            d["logo"]=src
-            break
-    return d
-
-def parse_score(text):
-    m=re.search(r"\b(\d+)\s*-\s*(\d+)\b",text or "")
-    return (int(m.group(1)),int(m.group(2))) if m else None
-
-def team_points(team_url,sport,stats):
-    # Soccer CSI: 3 for win, 1 for draw.
-    if sport.startswith("CALCIO"):
-        return stats.get("wins",0)*3 + stats.get("draws",0)
-    # Basketball: 2 points for a win in the standings.
-    if sport=="BASKET":
-        return stats.get("wins",0)*2
-    # Volleyball: calculate official match points from set scores.
-    if sport=="VOLLEY":
-        try:
-            s=sp(team_url+"?v=partite")
-            total=0
-            own_name=page_title(team_url).split(" (")[0].upper()
-            for tr in s.find_all("tr"):
-                links=[]
-                for a in tr.find_all("a",href=True):
-                    if "/albo/squadre/" in a["href"]:
-                        nm=cl(a.get_text(" ",strip=True))
-                        if nm and nm not in links:
-                            links.append(nm)
-                if len(links)<2:
-                    continue
-                cells=" ".join(cl(td.get_text(" ",strip=True)) for td in tr.find_all("td"))
-                sc=parse_score(cells)
-                if not sc: continue
-                home,away=links[0],links[1]
-                hs,as_=sc
-                if own_name not in (home.upper(),away.upper()):
-                    continue
-                own=hs if own_name==home.upper() else as_
-                opp=as_ if own_name==home.upper() else hs
-                if own>opp:
-                    total += 2 if (own,opp)==(3,2) else 3
-                else:
-                    total += 1 if (own,opp)==(2,3) else 0
-            return total
-        except:
-            return None
-    return None
-
-@app.get("/api/logo")
-def logo(url:str):
-    if not url.startswith(BASE):
-        raise HTTPException(400)
-    r=requests.get(url,headers=H,timeout=20)
-    r.raise_for_status()
-    return Response(r.content,media_type=r.headers.get("content-type","image/png"))
-
-def match_rows(t):
-    s=sp(view(t,"partite"))
+def live_scorers(t):
+    url=t.get("csi_live_url")
+    if not url:return []
+    s=soup(url)
     out=[]
-    for tr in s.find_all("tr"):
-        cells=[cl(x.get_text(" ",strip=True)) for x in tr.find_all("td")]
-        line=" ".join(cells)
-        if "USSA ROZZANO" not in line.upper():
-            continue
-        md=re.search(r"\b\d{1,2}/\d{1,2}/\d{4}\b",line)
-        mt=re.search(r"\b[0-2]?\d:[0-5]\d\b",line)
-        score=re.search(r"\b\d+\s*-\s*\d+(?:\s*(?:V\.D\.|DTR|DTS|\*))?",line,re.I)
-        links=[]
-        for a in tr.find_all("a",href=True):
-            if "/albo/squadre/" in a["href"]:
-                nm=cl(a.get_text(" ",strip=True))
-                if nm and nm not in [x[0] for x in links]:
-                    links.append((nm,urljoin(BASE,a["href"])))
-        home=links[0][0] if len(links)>0 else ""
-        away=links[1][0] if len(links)>1 else ""
-        field=""
-        for c in cells:
-            if any(z in c.upper() for z in ["VIA ","COMUNALE","ORATORIO","PALESTRA","SCUOLA ","CENTRO "]):
-                field=c
-                break
-        out.append({
-            "date":md.group(0) if md else "",
-            "time":mt.group(0) if mt else "",
-            "home":home,
-            "away":away,
-            "result":score.group(0) if score else "",
-            "field":field
-        })
+    for table in s.find_all("table"):
+        rows=table.find_all("tr")
+        if not rows:continue
+        hdr=[clean(x.get_text(" ",strip=True)).upper() for x in rows[0].find_all(["th","td"])]
+        joined=" ".join(hdr)
+        if not ("GOL" in joined or "RETI" in joined) or not ("GIOCAT" in joined or "ATLETA" in joined):continue
+        for tr in rows[1:]:
+            vals=[clean(x.get_text(" ",strip=True)) for x in tr.find_all(["th","td"])]
+            line=" | ".join(vals)
+            if "USSA" not in line.upper():continue
+            goal=next((int(v) for v in reversed(vals) if re.fullmatch(r"\d+",v)),0)
+            name=next((v for v in vals if re.search(r"[A-Za-zÀ-ÿ]{2,}\s+[A-Za-zÀ-ÿ]{2,}",v) and "USSA" not in v.upper()),"")
+            if name and goal:out.append({"name":name,"goals":goal})
+        if out:break
+    out.sort(key=lambda x:(-x["goals"],x["name"]))
     return out
-
-@app.get("/api/team/{key}/matches")
-def matches(key:str):
-    t=TEAMS.get(key)
-    if not t: raise HTTPException(404)
-    return {"team":t["label"],"source":view(t,"partite"),"matches":match_rows(t)}
-
-@app.get("/api/team/{key}/next")
-def nxt(key:str):
-    t=TEAMS.get(key)
-    if not t: raise HTTPException(404)
-    today=datetime.now().date()
-    arr=[]
-    for m in match_rows(t):
-        try: d=datetime.strptime(m["date"],"%d/%m/%Y").date()
-        except: continue
-        if d>=today and not m["result"]:
-            arr.append(m)
-    return {"team":t["label"],"matches":arr}
 
 @app.get("/api/team/{key}/standings")
 def standings(key:str):
-    t=TEAMS.get(key)
-    if not t: raise HTTPException(404)
-    if not t.get("classifica"):
-        return {"available":False,"standings":[]}
-    own=resolve(t)
-    s=sp(view(t,"partite"))
+    t=teams_dict().get(key)
+    if not t:raise HTTPException(404)
+    if not t.get("classifica"):return {"available":False,"standings":[]}
+    rows=live_standings(t)
+    return {"available":True,"standings":rows,"source":"CSI LIVE"}
 
-    # Every team link in the official fixture list belongs to the same CSI group.
-    links={}
-    for a in s.find_all("a",href=True):
-        if "/albo/squadre/" in a["href"]:
-            nm=cl(a.get_text(" ",strip=True))
-            u=baseurl(urljoin(BASE,a["href"]))
-            if nm:
-                links[u]=nm
-    links[own]="USSA ROZZANO"
+@app.get("/api/team/{key}/matches")
+def matches(key:str):
+    t=teams_dict().get(key)
+    if not t:raise HTTPException(404)
+    arr=live_matches(t)
+    return {"matches":[x for x in arr if x.get("result")],"source":"CSI LIVE"}
 
-    rows=[]
-    for u,nm in links.items():
-        try:
-            d=extract_stats(u+"?v=squadra")
-            if "position" not in d:
-                continue
-            d["team"]=nm
-            if "USSA ROZZANO" in (nm or "").upper():
-                d["logo"]="/assets/ussa-logo.png"
-            pts=team_points(u,t["sport"],d)
-            if pts is not None:
-                d["points"]=pts
-            rows.append(d)
-        except:
-            pass
-
-    rows.sort(key=lambda x:x.get("position",999))
-    return {
-        "available":True,
-        "standings":rows,
-        "source":view(t,"squadra")
-    }
+@app.get("/api/team/{key}/next")
+def next_matches(key:str):
+    t=teams_dict().get(key)
+    if not t:raise HTTPException(404)
+    today=datetime.now()
+    arr=[]
+    for x in live_matches(t):
+        try:dt=iso_dt(x["date"],x.get("time","00:00"))
+        except:continue
+        if dt>=today and not x.get("result"):arr.append(x)
+    return {"matches":arr,"source":"CSI LIVE"}
 
 @app.get("/api/team/{key}/players")
 def players(key:str):
-    t=TEAMS.get(key)
-    if not t: raise HTTPException(404)
-    if not t.get("marcatori"):
-        return {"available":False,"players":[]}
-
-    # CSI publishes Cognome, Nome and Gol directly in the Giocatori table.
-    s=sp(view(t,"giocatori"))
-    arr=[]
-    for tr in s.find_all("tr"):
-        cells=[cl(x.get_text(" ",strip=True)) for x in tr.find_all(["td","th"])]
-        if not cells:
-            continue
-        joined=" ".join(cells).upper()
-        if "COGNOME" in joined and "NOME" in joined and "GOL" in joined:
-            continue
-        names=[]
-        for a in tr.find_all("a",href=True):
-            if "/albo/giocatori/" in a["href"]:
-                txt=cl(a.get_text(" ",strip=True))
-                if txt and (not names or names[-1] != txt):
-                    names.append(txt)
-        if len(names) < 2:
-            continue
-        nums=[]
-        for c in cells:
-            if re.fullmatch(r"\d+",c):
-                nums.append(int(c))
-        if not nums:
-            continue
-        goals=nums[-1]
-        if goals <= 0:
-            continue
-        arr.append({"name":f"{names[0]} {names[1]}","goals":goals})
-
-    dedup={}
-    for p in arr:
-        dedup[p["name"]]=max(p["goals"],dedup.get(p["name"],0))
-    arr=[{"name":n,"goals":g} for n,g in dedup.items()]
-    arr.sort(key=lambda x:(-x["goals"],x["name"]))
-    return {"available":True,"players":arr,"source":view(t,"giocatori")}
-
-@app.get("/api/upcoming")
-def upcoming():
-    a=date.today()
-    b=a+timedelta(days=30)
-    u=f"{BASE}/partite-del-giorno.html?societa=USSA+ROZZANO&sport=&data={a.isoformat()}&data_a={b.isoformat()}&filtro_sub=Filtra"
-    s=sp(u)
-    rows=[]
-    for tr in s.find_all("tr"):
-        cells=[cl(x.get_text(" ",strip=True)) for x in tr.find_all("td")]
-        if "USSA ROZZANO" not in " ".join(cells).upper():
-            continue
-        rows.append({"cells":cells})
-    return {"source":u,"games":rows}
-
-@app.get("/api/status")
-def status():
-    out={}
-    for k,t in TEAMS.items():
+    t=teams_dict().get(key)
+    if not t:raise HTTPException(404)
+    if not t.get("marcatori"):return {"available":False,"players":[]}
+    arr=live_scorers(t)
+    # Fallback: old CSI Milano "Giocatori" table, useful where LIVE scorer table is incomplete.
+    if not arr and t.get("url"):
         try:
-            out[k]={"ok":True,"url":resolve(t)}
-        except:
-            out[k]={"ok":False}
-    return out
+            s=soup(t["url"].split("?")[0]+"?v=giocatori")
+            for tr in s.find_all("tr"):
+                vals=[clean(x.get_text(" ",strip=True)) for x in tr.find_all(["td","th"])]
+                if len(vals)<2:continue
+                line=" ".join(vals)
+                m=re.search(r"\b(\d+)\s*$",line)
+                if not m:continue
+                g=int(m.group(1))
+                if g<=0:continue
+                name=" ".join(vals[:-1]).strip()
+                if name:arr.append({"name":name,"goals":g})
+            arr.sort(key=lambda x:(-x["goals"],x["name"]))
+        except:pass
+    return {"available":True,"players":arr,"source":"CSI LIVE"}
+
+# ---------- OLD CSI ROSTER / PHOTOS ----------
+@app.get("/api/team/{key}/roster")
+def roster(key:str):
+    t=teams_dict().get(key)
+    if not t:raise HTTPException(404)
+    manual=t.get("roster") or []
+    if manual:return {"players":manual,"source":"USSA"}
+    if not t.get("url"):return {"players":[]}
+    try:
+        s=soup(t["url"].split("?")[0]+"?v=giocatori");out=[];seen=set()
+        for tr in s.find_all("tr"):
+            txt=clean(tr.get_text(" ",strip=True))
+            if not txt or txt.upper().startswith("GIOCAT"):continue
+            anchors=tr.find_all("a",href=True)
+            name=""
+            photo=""
+            for a in anchors:
+                if "/albo/giocatori/" in a["href"]:
+                    name=clean(a.get_text(" ",strip=True))
+                    img=a.find("img",src=True)
+                    if img:photo=urljoin(CSI_OLD,img["src"])
+                    break
+            if name and name not in seen:
+                seen.add(name);out.append({"name":name,"photo":photo})
+        return {"players":out,"source":"CSI Milano"}
+    except:return {"players":[]}
+
+@app.get("/api/image")
+def proxy_image(url:str=Query(...)):
+    if not (url.startswith(CSI_OLD) or url.startswith(CSI_LIVE)):raise HTTPException(400)
+    r=requests.get(url,headers=HEADERS,timeout=20);r.raise_for_status()
+    return Response(r.content,media_type=r.headers.get("content-type","image/jpeg"))
+
+# ---------- MATCH DETAIL ----------
+@app.get("/api/game-detail")
+def game_detail(url:str):
+    if not url.startswith(CSI_LIVE):raise HTTPException(400,"Link gara non valido")
+    s=soup(url);body=clean(s.get_text(" ",strip=True))
+    info={"url":url,"title":"","score":"","field":"","events":[]}
+    # heading / score
+    hs=[clean(x.get_text(" ",strip=True)) for x in s.find_all(["h1","h2","h3","h4","h5"])]
+    info["title"]=" · ".join([x for x in hs[:4] if x][:2])
+    m=re.search(r"\b(\d+)\s*[-–]\s*(\d+)\b",body)
+    if m:info["score"]=m.group(0)
+    mf=re.search(r"Campo:\s*([^©]+?)(?:Codice gara:|2025/26|2026/27|Lombardia|$)",body,re.I)
+    if mf:info["field"]=clean(mf.group(1))
+    # chronology/event-like snippets
+    seen=set()
+    for el in s.find_all(["li","tr","div"]):
+        txt=clean(el.get_text(" ",strip=True))
+        if len(txt)>180 or len(txt)<4:continue
+        if re.search(r"\b\d{1,2}['’]\b|\bGol\b|\bAmmon|Sostit|Espuls|Timeout|Canestro",txt,re.I):
+            if txt not in seen:
+                seen.add(txt);info["events"].append(txt)
+        if len(info["events"])>=30:break
+    return info
+
+# ---------- EVENT DETAIL ----------
+@app.get("/api/event/{event_id}")
+def event_detail(event_id:str):
+    for e in load_json("events.json",[]):
+        if e.get("id")==event_id:return e
+    raise HTTPException(404)
+
+# ---------- ROUTING / MAP ----------
+def geocode(address):
+    r=requests.get("https://nominatim.openstreetmap.org/search",params={"q":address,"format":"json","limit":1},headers=HEADERS,timeout=15)
+    r.raise_for_status();a=r.json()
+    if not a:return None
+    return float(a[0]["lat"]),float(a[0]["lon"])
+
+@app.get("/api/route")
+def route(address:str):
+    hub=load_json("hub.json",{});origin=hub.get("stadium",{}).get("address","Via della Cooperazione, 20089 Rozzano MI")
+    a=geocode(origin);b=geocode(address)
+    if not a or not b:raise HTTPException(404,"Indirizzo non localizzato")
+    lat1,lon1=a;lat2,lon2=b
+    u=f"https://router.project-osrm.org/route/v1/driving/{lon1},{lat1};{lon2},{lat2}"
+    r=requests.get(u,params={"overview":"false"},headers=HEADERS,timeout=15);r.raise_for_status();data=r.json()
+    rr=data.get("routes",[{}])[0]
+    return {"origin":{"lat":lat1,"lon":lon1},"destination":{"lat":lat2,"lon":lon2},"km":round(rr.get("distance",0)/1000,1),"minutes":round(rr.get("duration",0)/60),"address":address}
