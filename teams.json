@@ -1,259 +1,758 @@
 [
   {
-    "key": "u13a11",
-    "label": "UNDER 13 A 11",
-    "sport": "CALCIO A 11",
-    "classifica": true,
-    "marcatori": true,
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-calcio-under-13-a-11-primav-4747.html",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0101/",
+    "key": "ecc_yellow",
+    "label": "ECCELLENZA YELLOW",
+    "sport": "CALCIO",
+    "icon": "⚽",
     "visible": true,
-    "notes": "",
-    "display_name": "UNDER 13 A 11"
+    "training": [
+      {
+        "day": "Martedì",
+        "weekday": 2,
+        "start": "20:45",
+        "end": "22:15",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Giovedì",
+        "weekday": 4,
+        "start": "20:45",
+        "end": "22:15",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "Anzaghi Patrick"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Cimbali Andrea"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Castracane Roberto"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "scorers",
+      "played",
+      "next"
+    ]
   },
   {
-    "key": "ragazzi_blue",
-    "label": "RAGAZZI BLUE",
-    "sport": "CALCIO A 11",
-    "classifica": true,
-    "marcatori": true,
-    "seed": "https://www.csi.milano.it/albo/campigara/comunale-ussa-stadium-via-della-cooperazione-rozzano-mi-3854.html",
-    "match_text": "USSA ROZZANO BLUE CALCIO RAGAZZI A 11 - PRIMAV",
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-blue-ca-ragazzi-a-11-primav-4750.html",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025206AA0502/",
+    "key": "ecc_blue",
+    "label": "ECCELLENZA BLUE",
+    "sport": "CALCIO",
+    "icon": "⚽",
     "visible": true,
-    "notes": "",
-    "display_name": "RAGAZZI BLUE"
+    "training": [
+      {
+        "day": "Mercoledì",
+        "weekday": 3,
+        "start": "20:45",
+        "end": "22:15",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Venerdì",
+        "weekday": 5,
+        "start": "20:45",
+        "end": "22:15",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "Lampugnani Marco"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Chiesa Nicolò"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Affò Riccardo"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "scorers",
+      "played",
+      "next"
+    ]
   },
   {
-    "key": "ragazzi_yellow",
-    "label": "RAGAZZI YELLOW",
-    "sport": "CALCIO A 11",
-    "classifica": true,
-    "marcatori": true,
-    "seed": "https://www.csi.milano.it/albo/campigara/comunale-ussa-stadium-via-della-cooperazione-rozzano-mi-3854.html",
-    "match_text": "USSA ROZZANO YELLOW CALCIO RAGAZZI A 11 - PRIMAV",
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-yellow-ca-ragazzi-a-11-primav-4751.html",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025206BA0104/",
+    "key": "u20",
+    "label": "UNDER 20",
+    "sport": "CALCIO",
+    "icon": "⚽",
     "visible": true,
-    "notes": "",
-    "display_name": "RAGAZZI YELLOW"
+    "training": [
+      {
+        "day": "Lunedì",
+        "weekday": 1,
+        "start": "19:15",
+        "end": "20:45",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Mercoledì",
+        "weekday": 3,
+        "start": "19:00",
+        "end": "20:30",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "Fittipaldi Marco"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Martorelli Davide"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Tengattini Roberto"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "scorers",
+      "played",
+      "next"
+    ]
   },
   {
-    "key": "allievi",
-    "label": "ALLIEVI",
-    "sport": "CALCIO A 11",
-    "classifica": true,
-    "marcatori": true,
-    "seed": "https://www.csi.milano.it/albo/campigara/comunale-ussa-stadium-via-della-cooperazione-rozzano-mi-3854.html",
-    "match_text": "USSA ROZZANO CALCIO ALLIEVI A 11 - PRIMAV",
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-ca-allievi-a-11-primav-4748.html",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025205AA0102/",
+    "key": "u17",
+    "label": "UNDER 17",
+    "sport": "CALCIO",
+    "icon": "⚽",
     "visible": true,
-    "notes": "",
-    "display_name": "ALLIEVI"
+    "training": [
+      {
+        "day": "Martedì",
+        "weekday": 2,
+        "start": "19:30",
+        "end": "21:00",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Giovedì",
+        "weekday": 4,
+        "start": "19:30",
+        "end": "21:00",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "Toffanin Paolo"
+      },
+      {
+        "role": "Vice Mister / Team Manager",
+        "name": "Favalli Lorenzo"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "scorers",
+      "played",
+      "next"
+    ]
   },
   {
-    "key": "u19",
-    "label": "UNDER 19",
-    "sport": "CALCIO A 11",
-    "classifica": true,
-    "marcatori": true,
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-calcio-under-19-a-11-primav-4749.html",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "",
+    "key": "u15_yellow",
+    "label": "UNDER 15 YELLOW",
+    "sport": "CALCIO",
+    "icon": "⚽",
     "visible": true,
-    "notes": "",
-    "display_name": "UNDER 19"
+    "training": [
+      {
+        "day": "Lunedì",
+        "weekday": 1,
+        "start": "18:30",
+        "end": "20:00",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Giovedì",
+        "weekday": 4,
+        "start": "18:30",
+        "end": "20:00",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "Ferulli Dino"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Bocci Cristian"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Bonati Giorgia"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "scorers",
+      "played",
+      "next"
+    ]
   },
   {
-    "key": "open11",
-    "label": "OPEN",
-    "sport": "CALCIO A 11",
-    "classifica": true,
-    "marcatori": true,
-    "seed": "https://www.csi.milano.it/albo/campigara/comunale-ussa-stadium-via-della-cooperazione-rozzano-mi-3854.html",
-    "match_text": "USSA ROZZANO CALCIO OPEN - A 11 - PRIMAV",
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-ca-open-a-11-primav-4752.html",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025202BA0103/",
+    "key": "u15_blue",
+    "label": "UNDER 15 BLUE",
+    "sport": "CALCIO",
+    "icon": "⚽",
     "visible": true,
-    "notes": "",
-    "display_name": "OPEN"
+    "training": [
+      {
+        "day": "Mercoledì",
+        "weekday": 3,
+        "start": "18:30",
+        "end": "20:00",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Venerdì",
+        "weekday": 5,
+        "start": "19:00",
+        "end": "20:30",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "Fava Max"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Giliberti Nicola"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Santoro Domenico"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "scorers",
+      "played",
+      "next"
+    ]
   },
   {
-    "key": "primi_calci",
-    "label": "PRIMI CALCI",
-    "sport": "CALCIO A 7",
-    "classifica": false,
-    "marcatori": false,
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "",
-    "visible": false,
-    "notes": "",
-    "display_name": "PRIMI CALCI"
+    "key": "u14",
+    "label": "UNDER 14",
+    "sport": "CALCIO",
+    "icon": "⚽",
+    "visible": true,
+    "competitions": [
+      "FIGC",
+      "CSI"
+    ],
+    "default_competition": "FIGC",
+    "training": [
+      {
+        "day": "Martedì",
+        "weekday": 2,
+        "start": "18:30",
+        "end": "20:00",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Venerdì",
+        "weekday": 5,
+        "start": "18:30",
+        "end": "20:00",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "Brambilla Mauro"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Maida Franco"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Novella Roberto"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "scorers",
+      "played",
+      "next"
+    ]
   },
   {
-    "key": "big_small",
-    "label": "BIG SMALL",
-    "sport": "CALCIO A 7",
-    "classifica": false,
-    "marcatori": false,
-    "seed": "https://www.csi.milano.it/albo/squadre/coc-calcio-big-small-primav-2934.html?v=partite",
-    "match_text": "USSA ROZZANO",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-7/Lombardia/Milano/P2025233HA0903/",
+    "key": "u12",
+    "label": "UNDER 12",
+    "sport": "CALCIO",
+    "icon": "⚽",
     "visible": true,
-    "notes": "",
-    "display_name": "BIG SMALL"
-  },
-  {
-    "key": "u9",
-    "label": "UNDER 9",
-    "sport": "CALCIO A 7",
-    "classifica": false,
-    "marcatori": false,
-    "seed": "https://www.csi.milano.it/albo/campigara/oratorio-s-luigi-via-madonna-di-caravaggio-21-peschiera-borromeo-mi-0502.html",
-    "match_text": "USSA ROZZANO",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-7/Lombardia/C232/",
-    "visible": true,
-    "notes": "",
-    "display_name": "UNDER 9"
-  },
-  {
-    "key": "u10",
-    "label": "UNDER 10",
-    "sport": "CALCIO A 7",
-    "classifica": true,
-    "marcatori": true,
-    "seed": "https://www.csi.milano.it/albo/squadre/s-spirito-u10-ca-under-10-a-7-primav-2897.html?v=partite",
-    "match_text": "USSA ROZZANO",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-7/Lombardia/Milano/C225/",
-    "visible": true,
-    "notes": "",
-    "display_name": "UNDER 10"
+    "training": [
+      {
+        "day": "Lunedì",
+        "weekday": 1,
+        "start": "17:30",
+        "end": "19:00",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Giovedì",
+        "weekday": 4,
+        "start": "17:30",
+        "end": "19:00",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "De Benedetto Raffaele"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Molari Gabriele"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Caraffini Silvio"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "scorers",
+      "played",
+      "next"
+    ]
   },
   {
     "key": "u11",
     "label": "UNDER 11",
-    "sport": "CALCIO A 7",
-    "classifica": true,
-    "marcatori": true,
-    "seed": "https://www.csi.milano.it/albo/squadre/tnt-prato-calcio-ragazzi-a-7-primav-3651.html?v=partite",
-    "match_text": "USSA ROZZANO",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-7/Lombardia/C244/",
+    "sport": "CALCIO",
+    "icon": "⚽",
     "visible": true,
-    "notes": "",
-    "display_name": "UNDER 11"
+    "training": [
+      {
+        "day": "Lunedì",
+        "weekday": 1,
+        "start": "18:00",
+        "end": "19:30",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Giovedì",
+        "weekday": 4,
+        "start": "18:00",
+        "end": "19:30",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "Saitta Luca"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Preda Roberto"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Visentino Corrado"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "scorers",
+      "played",
+      "next"
+    ]
   },
   {
-    "key": "u13a7",
-    "label": "UNDER 13",
-    "sport": "CALCIO A 7",
-    "classifica": true,
-    "marcatori": true,
-    "seed": "https://www.csi.milano.it/albo/squadre/g-xxiii-milano-ca-under-13-a-7-primav-4640.html?v=partite",
-    "match_text": "USSA ROZZANO",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-7/Campania/Caserta/C243/",
+    "key": "u10",
+    "label": "UNDER 10",
+    "sport": "CALCIO",
+    "icon": "⚽",
     "visible": true,
-    "notes": "",
-    "display_name": "UNDER 13"
+    "training": [
+      {
+        "day": "Martedì",
+        "weekday": 2,
+        "start": "17:00",
+        "end": "18:15",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Venerdì",
+        "weekday": 5,
+        "start": "17:00",
+        "end": "18:15",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "Rancati Francisco"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Marziano Mattia"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Iaccarino Giacomo"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "scorers",
+      "played",
+      "next"
+    ]
   },
   {
-    "key": "volley_u12",
-    "label": "UNDER 12",
+    "key": "u9",
+    "label": "UNDER 9",
+    "sport": "CALCIO",
+    "icon": "⚽",
+    "visible": true,
+    "training": [
+      {
+        "day": "Martedì",
+        "weekday": 2,
+        "start": "17:00",
+        "end": "18:15",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Venerdì",
+        "weekday": 5,
+        "start": "17:00",
+        "end": "18:15",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister / Team Manager",
+        "name": "Novella Roberto"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Malpasso Claudio"
+      }
+    ],
+    "planned_features": [
+      "played",
+      "next"
+    ]
+  },
+  {
+    "key": "primi_calci",
+    "label": "PRIMI CALCI",
+    "sport": "CALCIO",
+    "icon": "⚽",
+    "visible": true,
+    "training": [
+      {
+        "day": "Martedì",
+        "weekday": 2,
+        "start": "17:00",
+        "end": "18:15",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Venerdì",
+        "weekday": 5,
+        "start": "17:00",
+        "end": "18:15",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister / Team Manager",
+        "name": "Fichera Ivan"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Pollio Simone"
+      }
+    ],
+    "planned_features": [
+      "played",
+      "next"
+    ]
+  },
+  {
+    "key": "volley_open_ecc",
+    "label": "OPEN ECCELLENZA",
     "sport": "VOLLEY",
-    "classifica": true,
-    "marcatori": false,
-    "seed": "https://www.csi.milano.it/albo/squadre/n-c-atletico-barona-pv-under-12-primav-4141.html?v=partite",
-    "match_text": "USSA ROZZANO",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Pallavolo/Lombardia/Milano/C408/",
+    "icon": "🏐",
     "visible": true,
-    "notes": "",
-    "display_name": "UNDER 12"
+    "training": [
+      {
+        "day": "Martedì",
+        "weekday": 2,
+        "start": "21:00",
+        "end": "23:00",
+        "place": "Palestra Oratorio S. Ambrogio"
+      },
+      {
+        "day": "Giovedì",
+        "weekday": 4,
+        "start": "21:00",
+        "end": "23:00",
+        "place": "Palestra Comunale Orchidee"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "Gianfranco Serenità"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Sara Pajesi"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "played",
+      "next"
+    ]
+  },
+  {
+    "key": "volley_u19",
+    "label": "UNDER 19",
+    "sport": "VOLLEY",
+    "icon": "🏐",
+    "visible": true,
+    "training": [
+      {
+        "day": "Martedì",
+        "weekday": 2,
+        "start": "19:00",
+        "end": "21:00",
+        "place": "Palestra Comunale Luini"
+      },
+      {
+        "day": "Giovedì",
+        "weekday": 4,
+        "start": "19:00",
+        "end": "21:00",
+        "place": "Palestra Oratorio S. Ambrogio"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister / Team Manager",
+        "name": "Laura Repanati"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Stefano Rizzo"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "played",
+      "next"
+    ]
+  },
+  {
+    "key": "volley_u14",
+    "label": "UNDER 14",
+    "sport": "VOLLEY",
+    "icon": "🏐",
+    "visible": true,
+    "training": [
+      {
+        "day": "Martedì",
+        "weekday": 2,
+        "start": "18:00",
+        "end": "20:00",
+        "place": "Palestra Oratorio S. Ambrogio"
+      },
+      {
+        "day": "Giovedì",
+        "weekday": 4,
+        "start": "17:30",
+        "end": "19:00",
+        "place": "Palestra Oratorio S. Ambrogio"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "Elena Monticelli"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Simona Pajesi"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "played",
+      "next"
+    ]
   },
   {
     "key": "volley_u13",
     "label": "UNDER 13",
     "sport": "VOLLEY",
-    "classifica": true,
-    "marcatori": false,
-    "seed": "https://www.csi.milano.it/albo/partite/pallavolo-under-13-primav-ussa-rozzano-viscontini-u13-2025434CA0802.html",
-    "match_text": "USSA ROZZANO",
-    "url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-13-primav-4124.html",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Pallavolo/Lombardia/Milano/P2025434CA0901/",
+    "icon": "🏐",
     "visible": true,
-    "notes": "",
-    "display_name": "UNDER 13"
+    "training": [],
+    "staff": [
+      {
+        "role": "Mister",
+        "name": "Alessia Messineo"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "played",
+      "next"
+    ]
   },
   {
-    "key": "volley_juniores",
-    "label": "JUNIORES",
-    "sport": "VOLLEY",
-    "classifica": true,
-    "marcatori": false,
-    "seed": "https://www.csi.milano.it/albo/squadre/paderno-dugnano-fc-calcio-under-9-a-7-primav-3897.html?v=partite",
-    "match_text": "USSA ROZZANO",
-    "training": [],
-    "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Pallavolo/Lombardia/Milano/P2025405BA0603/",
-    "visible": true,
-    "notes": "",
-    "display_name": "JUNIORES"
-  },
-  {
-    "key": "basket_open",
-    "label": "OPEN",
+    "key": "basket_open_a",
+    "label": "OPEN A",
     "sport": "BASKET",
-    "classifica": true,
-    "marcatori": false,
-    "seed": "https://www.csi.milano.it/albo/squadre/n-c-atletico-barona-pc-open-primav-4154.html?v=partite",
-    "match_text": "USSA ROZZANO",
+    "icon": "🏀",
+    "visible": true,
+    "training": [
+      {
+        "day": "Martedì",
+        "weekday": 2,
+        "start": "21:00",
+        "end": "23:00",
+        "place": "Palestra Comunale Luini"
+      },
+      {
+        "day": "Venerdì",
+        "weekday": 5,
+        "start": "21:00",
+        "end": "23:00",
+        "place": "Palestra Comunale Luini"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Coach",
+        "name": "Francesco Caciagli"
+      },
+      {
+        "role": "Vice Coach",
+        "name": "Marco Ienaro"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Davide Storelli"
+      }
+    ],
+    "planned_features": [
+      "standings",
+      "played",
+      "next"
+    ]
+  },
+  {
+    "key": "baskin",
+    "label": "BASKIN",
+    "sport": "BASKIN",
+    "icon": "🏀",
+    "visible": true,
+    "training": [
+      {
+        "day": "Mercoledì",
+        "weekday": 3,
+        "start": "20:00",
+        "end": "21:30",
+        "place": "Palestra Oratorio S. Ambrogio"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Coach",
+        "name": "Claudio Spinelli"
+      },
+      {
+        "role": "Vice Coach",
+        "name": "Giovanni Muschio Schiavone"
+      },
+      {
+        "role": "Team Manager",
+        "name": "Maria Mazzara"
+      }
+    ],
+    "planned_features": []
+  },
+  {
+    "key": "u13a11_test",
+    "label": "UNDER 13 A 11 · TEST CSI",
+    "sport": "CALCIO",
+    "icon": "⚽",
+    "visible": true,
+    "test_only": true,
     "training": [],
     "staff": [],
-    "roster": [],
-    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Pallacanestro/Lombardia/Milano/S5209/",
-    "visible": true,
-    "notes": "",
-    "display_name": "OPEN"
+    "planned_features": [
+      "standings",
+      "scorers",
+      "played",
+      "next"
+    ],
+    "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/C235/",
+    "csi_old_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-calcio-under-13-a-11-primav-4747.html"
+  },
+  {
+    "key": "primi_calci_2",
+    "label": "PRIMI CALCI 2",
+    "sport": "CALCIO",
+    "icon": "⚽",
+    "visible": false,
+    "training": [],
+    "staff": [],
+    "planned_features": [
+      "played",
+      "next"
+    ]
+  },
+  {
+    "key": "volley_u10",
+    "label": "UNDER 10",
+    "sport": "VOLLEY",
+    "icon": "🏐",
+    "visible": false,
+    "training": [],
+    "staff": [],
+    "planned_features": [
+      "standings",
+      "played",
+      "next"
+    ]
   }
 ]

@@ -1,7 +1,8 @@
 {
   "stadium": {
     "name": "USSA Stadium",
-    "address": "Via della Cooperazione, 20089 Rozzano MI"
+    "address": "Via Cooperazione, Rozzano",
+    "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI"
   },
   "secretariat": {
     "days": [
@@ -23,6 +24,7 @@
   "leadership": [],
   "sponsors": [],
   "idle_seconds": 90,
+  "calendar_duration_minutes": 120,
   "home": {
     "max_team_slots": 20
   }

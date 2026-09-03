@@ -1,0 +1,87 @@
+{
+  "AL 2 SPORT": {
+    "field": "C.S. Comunale - Campo N°1 - Assago",
+    "address": "Via Di Vittorio 6, Assago MI",
+    "time": "16:00",
+    "day": "Sabato"
+  },
+  "FATIMATRACCIA": {
+    "field": "Comunale Fatimatraccia (E.A.) - Milano",
+    "address": "Via Chopin 81, Milano",
+    "time": "10:30",
+    "day": "Domenica"
+  },
+  "FIVE TO SEVEN": {
+    "field": "C.S. L. Carraro N°1 - Milano",
+    "address": "Via dei Missaglia 146, Milano",
+    "time": "17:15",
+    "day": "Sabato"
+  },
+  "FOOTBALL C. MILANESE": {
+    "field": "C.S. Comunale G.P. Squeri - San Donato Milanese",
+    "address": "Via Maritano, San Donato Milanese MI",
+    "time": "14:30",
+    "day": "Sabato"
+  },
+  "FORZA E CORAGGIO": {
+    "field": "C.S. Forza e Coraggio - Milano",
+    "address": "Via Gallura 8, Milano",
+    "time": "14:00",
+    "day": "Domenica"
+  },
+  "FROG MILANO": {
+    "field": "C.S. Comunale - Campo N°1 - Milano",
+    "address": "Via Teresa Noce 5, Milano",
+    "time": "16:30",
+    "day": "Sabato"
+  },
+  "MILANO F. ACADEMY": {
+    "field": "C.S. L. Carraro N°1 - Milano",
+    "address": "Via dei Missaglia 146, Milano",
+    "time": "17:15",
+    "day": "Sabato"
+  },
+  "REAL BASIGLIO": {
+    "field": "C.S. Comunale Campo N°1 - Basiglio Milano 3",
+    "address": "Via Salvo D'Acquisto 7, Basiglio MI",
+    "time": "15:00",
+    "day": "Sabato"
+  },
+  "SANGIULIANO CVS": {
+    "field": "C.S. Comunale N°2 - Sesto Ulteriano",
+    "address": "Via Toscana 1, Sesto Ulteriano, San Giuliano Milanese MI",
+    "time": "16:30",
+    "day": "Sabato"
+  },
+  "SIZIANO LANTERNA": {
+    "field": "Campo San Siro - Vidigulfo",
+    "address": "Via Manenti 31, Vidigulfo PV",
+    "time": "10:30",
+    "day": "Domenica"
+  },
+  "TRIAL ROZZANO": {
+    "field": "C.S. Comunale - Campo N°2 - Rozzano",
+    "address": "Via Monte Amiata 34, Rozzano MI",
+    "time": "09:30",
+    "day": "Domenica"
+  },
+  "USSA ROZZANO": {
+    "field": "USSA Stadium",
+    "address": "Via Cooperazione, Rozzano",
+    "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
+    "time": "15:00",
+    "day": "Sabato"
+  },
+  "VIGE MILANO": {
+    "field": "C.S. Carrassi Campo 2 - Milano",
+    "address": "Via Sabbiondo 4, Milano",
+    "time": "16:00",
+    "day": "Sabato"
+  },
+  "ZIBIDO S. GIACOMO": {
+    "field": "C.S. Comunale (E.A.) - Zibido San Giacomo",
+    "address": "Via Lenin 3 / ang. Risorgimento, Zibido San Giacomo MI",
+    "time": "17:00",
+    "day": "Sabato"
+  }
+}
