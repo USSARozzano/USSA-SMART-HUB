@@ -241,7 +241,7 @@ body{background:var(--navy)}
 /* Header volutamente NON responsive: il kiosk ufficiale è 1080×1920 al 100%. */
 
 
-/* V2.4.7 — rifiniture squadra U14 / CSI / ORA IN CAMPO */
+/* V2.4.8 — preview temporale unificata per ORA IN CAMPO + SEGRETERIA */
 .home-logo-btn{-webkit-tap-highlight-color:transparent!important;outline:none!important;box-shadow:none!important;user-select:none!important}
 .home-logo-btn:focus,.home-logo-btn:focus-visible,.home-logo-btn:active{outline:none!important;box-shadow:none!important;border-color:transparent!important}
 /* Tabelle: intestazione sempre nel flusso, mai sovrapposta ai dati */
@@ -272,16 +272,34 @@ body{background:var(--navy)}
 <section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowPreview" class="preview-chip" style="display:none"></div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryOpen" class="open">● SEGRETERIA APERTA ORA</div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4.7 · U14 + CSI + ORA IN CAMPO</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.8 · PREVIEW HOME FIX</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
 let navStack=[],currentView={type:'home'};
 let currentTeam=null,currentCompetition='CSI',teamTab=null,activeMap=null;
 const PREVIEW=new URLSearchParams(location.search);
-const previewWeekday=PREVIEW.get('previewWeekday');
-const previewTime=PREVIEW.get('previewTime');
-const isNowPreview=!!(previewWeekday&&previewTime);
+const previewWeekdayRaw=PREVIEW.get('previewWeekday');
+const previewTimeRaw=PREVIEW.get('previewTime');
+function validPreview(){
+  const wd=Number(previewWeekdayRaw);
+  const okDay=Number.isInteger(wd)&&wd>=1&&wd<=7;
+  const okTime=/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(previewTimeRaw||'');
+  return okDay&&okTime;
+}
+const isNowPreview=validPreview();
+const previewWeekday=isNowPreview?Number(previewWeekdayRaw):null;
+const previewTime=isNowPreview?previewTimeRaw:null;
+function hubTime(){
+  const d=new Date();
+  if(isNowPreview){
+    const [h,m]=previewTime.split(':').map(Number);
+    return {preview:true,weekday:previewWeekday,minutes:h*60+m,hour:h,minute:m,date:d};
+  }
+  const js=d.getDay();
+  return {preview:false,weekday:js===0?7:js,minutes:d.getHours()*60+d.getMinutes(),hour:d.getHours(),minute:d.getMinutes(),date:d};
+}
+function hmToMinutes(v){const [h,m]=String(v||'00:00').split(':').map(Number);return h*60+m;}
 const CLUBS={
  'USSA ROZZANO':{logo:'/assets/ussa-logo.png'},
  'FROG MILANO':{logo:'https://cdn.footballkitarchive.com/2024/11/14/awfvunH2qFLVDEa.jpg',crop:true},
@@ -302,15 +320,36 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&
 async function getJSON(url){let r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('Dati non disponibili');return r.json()}
 function loading(v){$('loading').classList.toggle('show',v)}
 function fmtDate(iso){let d=new Date(iso+'T12:00');return {day:d.toLocaleDateString('it-IT',{weekday:'short'}).replace('.','').toUpperCase(),date:d.toLocaleDateString('it-IT',{day:'2-digit',month:'short'}).replace('.','').toUpperCase(),long:d.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}}
-function clock(){let d=new Date(),tm=d.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'}),dt=d.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'});$('clock').textContent=tm;$('date').textContent=dt;if($('clockOverlay'))$('clockOverlay').textContent=tm;if($('dateOverlay'))$('dateOverlay').textContent=dt;let sec=hub.secretariat||{},m=d.getHours()*60+d.getMinutes(),o=(sec.open||'00:00').split(':').map(Number),c=(sec.close||'00:00').split(':').map(Number),open=(sec.days||[]).includes(d.getDay()===0?7:d.getDay())&&m>=o[0]*60+o[1]&&m<c[0]*60+c[1];$('secretaryOpen').classList.toggle('show',open)}
+function clock(){
+  const d=new Date(),tm=d.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'}),dt=d.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'});
+  $('clock').textContent=tm;$('date').textContent=dt;if($('clockOverlay'))$('clockOverlay').textContent=tm;if($('dateOverlay'))$('dateOverlay').textContent=dt;
+  const ht=hubTime(),sec=hub.secretariat||{},openMin=hmToMinutes(sec.open||'00:00'),closeMin=hmToMinutes(sec.close||'00:00');
+  const open=(sec.days||[]).map(Number).includes(ht.weekday)&&ht.minutes>=openMin&&ht.minutes<closeMin;
+  $('secretaryOpen').classList.toggle('show',open);
+}
 async function boot(){[teams,hub]=await Promise.all([getJSON('/api/teams'),getJSON('/api/hub')]);renderTeams();await Promise.all([loadSchedule(),loadNow()]);clock();setInterval(clock,1000);resetIdle()}
 function renderTeams(){$('teamGrid').innerHTML=teams.filter(t=>t.visible!==false).slice(0,20).map(t=>`<button class="team ${t.test_only?'test':''}" onclick="openTeam('${t.key}')"><span class="icon">${t.icon||'●'}</span><span class="name">${esc(t.label)}</span></button>`).join('')}
 async function loadSchedule(){let d=await getJSON('/api/home/upcoming'),a=d.items||[];$('schedule').innerHTML=a.length?a.map(x=>{let f=fmtDate(x.date),away=x.home_away==='TRASFERTA';return `<button class="appointment" onclick='openAppointment(${JSON.stringify(x).replace(/'/g,"&#39;")})'><div><div class="a-day">${f.day}</div><div class="a-date">${f.date}</div></div><div class="a-time">${esc(x.time||'--:--')}</div><div><div class="a-kind">${esc(x.meta||x.kind||'APPUNTAMENTO')}${x.competition?' · '+esc(x.competition):''}</div><div class="a-title">${esc(x.title||'')}</div><div class="a-venue">${esc(x.field||'')}</div></div>${x.home_away?`<div class="badge ${away?'awaygame':'homegame'}">${esc(x.home_away)}</div>`:'<div></div>'}<div class="chev">›</div></button>`}).join(''):'<div class="empty">Nessun appuntamento futuro pubblicato.</div>'}
 async function loadNow(){
-  let qs='';
-  if(isNowPreview)qs=`?weekday=${encodeURIComponent(previewWeekday)}&time=${encodeURIComponent(previewTime)}`;
-  let d=await getJSON('/api/home/now'+qs);nowItems=d.items||[];nowIdx=0;renderNow();clearInterval(nowTimer);
-  if(nowItems.length>1)nowTimer=setInterval(()=>{nowIdx=(nowIdx+1)%nowItems.length;renderNow()},6000)
+  if(isNowPreview){
+    // Preview completamente locale: non dipende dal backend/Render e usa gli stessi teams.json già caricati dalla Home.
+    const ht=hubTime();
+    nowItems=[];
+    for(const t of teams){
+      if(t.visible===false)continue;
+      for(const x of (t.training||[])){
+        const wd=Number(x.weekday||0),start=hmToMinutes(x.start),end=hmToMinutes(x.end);
+        if(wd===ht.weekday&&start<=ht.minutes&&ht.minutes<end){
+          nowItems.push({kind:'ALLENAMENTO',team_key:t.key,title:t.label,meta:`${x.start}–${x.end}`,place:x.place||'',icon:t.icon||'●',sport:t.sport||''});
+        }
+      }
+    }
+  }else{
+    const d=await getJSON('/api/home/now');
+    nowItems=d.items||[];
+  }
+  nowIdx=0;renderNow();clearInterval(nowTimer);
+  if(nowItems.length>1)nowTimer=setInterval(()=>{nowIdx=(nowIdx+1)%nowItems.length;renderNow()},6000);
 }
 function renderNow(){
   let x=nowItems[nowIdx],box=$('now'),sport=$('nowSport'),chip=$('nowPreview');
