@@ -18,39 +18,40 @@
         45.381
       ],
       [
-        9.148853,
-        45.393807
+        9.153,
+        45.39
       ],
       [
-        9.14009,
-        45.406795
+        9.147,
+        45.4
       ],
       [
-        9.132037,
-        45.420119
+        9.14,
+        45.412
       ],
       [
-        9.12491,
-        45.433882
+        9.132,
+        45.426
       ],
       [
-        9.118787,
-        45.448119
+        9.124,
+        45.442
       ],
       [
-        9.11359,
-        45.462795
+        9.117,
+        45.458
       ],
       [
-        9.109103,
-        45.477807
+        9.11,
+        45.474
       ],
       [
         9.105,
         45.493
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   },
   "SANGIULIANO CVS": {
     "origin": {
@@ -71,39 +72,40 @@
         45.381
       ],
       [
-        9.1728,
-        45.384502
+        9.171,
+        45.381
       ],
       [
-        9.18763,
-        45.3877
+        9.185,
+        45.382
       ],
       [
-        9.202517,
-        45.390334
+        9.201,
+        45.384
       ],
       [
-        9.217477,
-        45.392233
+        9.217,
+        45.387
       ],
       [
-        9.232517,
-        45.393334
+        9.233,
+        45.39
       ],
       [
-        9.24763,
-        45.3937
+        9.249,
+        45.392
       ],
       [
-        9.2628,
-        45.393502
+        9.264,
+        45.393
       ],
       [
         9.278,
         45.393
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   },
   "SIZIANO LANTERNA": {
     "origin": {
@@ -124,39 +126,40 @@
         45.381
       ],
       [
-        9.169366,
-        45.371469
+        9.164,
+        45.372
       ],
       [
-        9.180448,
-        45.361694
+        9.171,
+        45.362
       ],
       [
-        9.191005,
-        45.351472
+        9.18,
+        45.352
       ],
       [
-        9.200876,
-        45.340664
+        9.19,
+        45.341
       ],
       [
-        9.210005,
-        45.329222
+        9.201,
+        45.329
       ],
       [
-        9.218448,
-        45.317194
+        9.212,
+        45.316
       ],
       [
-        9.226366,
-        45.304719
+        9.223,
+        45.303
       ],
       [
         9.234,
         45.292
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   },
   "TRIAL ROZZANO": {
     "origin": {
@@ -177,39 +180,24 @@
         45.381
       ],
       [
-        9.157136,
-        45.382278
+        9.1584,
+        45.383
       ],
       [
-        9.156442,
-        45.383514
+        9.1588,
+        45.385
       ],
       [
-        9.156061,
-        45.384672
-      ],
-      [
-        9.15609,
-        45.385728
-      ],
-      [
-        9.156561,
-        45.386672
-      ],
-      [
-        9.157442,
-        45.387514
-      ],
-      [
-        9.158636,
-        45.388278
+        9.1593,
+        45.387
       ],
       [
         9.16,
         45.389
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   },
   "VIGE MILANO": {
     "origin": {
@@ -230,39 +218,36 @@
         45.381
       ],
       [
-        9.158414,
-        45.387803
+        9.159,
+        45.388
       ],
       [
-        9.159013,
-        45.394559
+        9.16,
+        45.395
       ],
       [
-        9.159952,
-        45.401231
+        9.162,
+        45.402
       ],
       [
-        9.161336,
-        45.407791
+        9.164,
+        45.41
       ],
       [
-        9.163202,
-        45.414231
+        9.166,
+        45.418
       ],
       [
-        9.165513,
-        45.420559
-      ],
-      [
-        9.168164,
-        45.426803
+        9.168,
+        45.426
       ],
       [
         9.171,
         45.433
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   },
   "REAL BASIGLIO": {
     "origin": {
@@ -283,39 +268,28 @@
         45.381
       ],
       [
-        9.159022,
-        45.377583
+        9.158,
+        45.375
       ],
       [
-        9.15987,
-        45.374171
+        9.158,
+        45.369
       ],
       [
-        9.160395,
-        45.370772
+        9.1575,
+        45.363
       ],
       [
-        9.160498,
-        45.367389
-      ],
-      [
-        9.160145,
-        45.364022
-      ],
-      [
-        9.15937,
-        45.360671
-      ],
-      [
-        9.158272,
-        45.357333
+        9.157,
+        45.358
       ],
       [
         9.157,
         45.354
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   },
   "FIVE TO SEVEN": {
     "origin": {
@@ -336,39 +310,36 @@
         45.381
       ],
       [
-        9.159242,
-        45.385675
+        9.159,
+        45.386
       ],
       [
-        9.160638,
-        45.390266
+        9.16,
+        45.392
       ],
       [
-        9.162317,
-        45.394702
+        9.162,
+        45.398
       ],
       [
-        9.164366,
-        45.398937
+        9.165,
+        45.404
       ],
       [
-        9.166817,
-        45.402952
+        9.169,
+        45.409
       ],
       [
-        9.169638,
-        45.406766
-      ],
-      [
-        9.172742,
-        45.410425
+        9.173,
+        45.412
       ],
       [
         9.176,
         45.414
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   },
   "AL 2 SPORT": {
     "origin": {
@@ -389,39 +360,36 @@
         45.381
       ],
       [
-        9.153735,
-        45.383269
+        9.154,
+        45.385
       ],
       [
-        9.149587,
-        45.385668
+        9.15,
+        45.389
       ],
       [
-        9.145654,
-        45.388308
+        9.146,
+        45.393
       ],
       [
-        9.142002,
-        45.391262
+        9.142,
+        45.397
       ],
       [
-        9.138654,
-        45.394558
+        9.138,
+        45.401
       ],
       [
-        9.135587,
-        45.398168
-      ],
-      [
-        9.132735,
-        45.402019
+        9.134,
+        45.404
       ],
       [
         9.13,
         45.406
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   },
   "FOOTBALL C. MILANESE": {
     "origin": {
@@ -442,39 +410,40 @@
         45.381
       ],
       [
-        9.172487,
-        45.386801
+        9.171,
+        45.381
       ],
       [
-        9.187052,
-        45.39229
+        9.186,
+        45.383
       ],
       [
-        9.201762,
-        45.397202
+        9.202,
+        45.386
       ],
       [
-        9.21666,
-        45.401361
+        9.218,
+        45.39
       ],
       [
-        9.231762,
-        45.404702
+        9.234,
+        45.395
       ],
       [
-        9.247052,
-        45.40729
+        9.25,
+        45.401
       ],
       [
-        9.262487,
-        45.409301
+        9.265,
+        45.407
       ],
       [
         9.278,
         45.411
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   },
   "ZIBIDO S. GIACOMO": {
     "origin": {
@@ -495,39 +464,36 @@
         45.381
       ],
       [
-        9.152263,
-        45.376848
+        9.151,
+        45.377
       ],
       [
-        9.146449,
-        45.372853
+        9.144,
+        45.374
       ],
       [
-        9.14049,
-        45.369146
+        9.136,
+        45.37
       ],
       [
-        9.134342,
-        45.365817
+        9.128,
+        45.366
       ],
       [
-        9.12799,
-        45.362896
+        9.12,
+        45.362
       ],
       [
-        9.121449,
-        45.360353
-      ],
-      [
-        9.114763,
-        45.358098
+        9.113,
+        45.359
       ],
       [
         9.108,
         45.356
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   },
   "FORZA E CORAGGIO": {
     "origin": {
@@ -548,39 +514,36 @@
         45.381
       ],
       [
-        9.160207,
-        45.387452
+        9.16,
+        45.388
       ],
       [
-        9.162573,
-        45.393816
+        9.163,
+        45.395
       ],
       [
-        9.165232,
-        45.400018
+        9.166,
+        45.402
       ],
       [
-        9.168275,
-        45.406008
+        9.17,
+        45.409
       ],
       [
-        9.171732,
-        45.411768
+        9.174,
+        45.416
       ],
       [
-        9.175573,
-        45.417316
-      ],
-      [
-        9.179707,
-        45.422702
+        9.179,
+        45.422
       ],
       [
         9.184,
         45.428
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   },
   "FATIMATRACCIA": {
     "origin": {
@@ -601,39 +564,36 @@
         45.381
       ],
       [
-        9.15919,
-        45.388584
+        9.16,
+        45.389
       ],
       [
-        9.16058,
-        45.396099
+        9.162,
+        45.397
       ],
       [
-        9.162339,
-        45.403484
+        9.165,
+        45.405
       ],
       [
-        9.164578,
-        45.410701
+        9.168,
+        45.413
       ],
       [
-        9.167339,
-        45.417734
+        9.171,
+        45.421
       ],
       [
-        9.17058,
-        45.424599
-      ],
-      [
-        9.17419,
-        45.431334
+        9.175,
+        45.43
       ],
       [
         9.178,
         45.438
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   },
   "MILANO F. ACADEMY": {
     "origin": {
@@ -654,38 +614,35 @@
         45.381
       ],
       [
-        9.159242,
-        45.385675
+        9.159,
+        45.386
       ],
       [
-        9.160638,
-        45.390266
+        9.16,
+        45.392
       ],
       [
-        9.162317,
-        45.394702
+        9.162,
+        45.398
       ],
       [
-        9.164366,
-        45.398937
+        9.165,
+        45.404
       ],
       [
-        9.166817,
-        45.402952
+        9.169,
+        45.409
       ],
       [
-        9.169638,
-        45.406766
-      ],
-      [
-        9.172742,
-        45.410425
+        9.173,
+        45.412
       ],
       [
         9.176,
         45.414
       ]
     ],
-    "mode": "static_indicative"
+    "mode": "static_indicative_road_waypoints",
+    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
   }
 }

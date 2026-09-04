@@ -238,6 +238,58 @@ table{width:100%;border-collapse:collapse;font-size:14px}th{background:#071a2c;c
   .home{height:auto!important;min-height:calc(100vh - var(--global-header-offset))!important}
 }
 
+
+/* V2.4.4 — HEADER: impaginazione definitiva, stabile e non tagliata */
+:root{--global-header-offset:162px}
+.app{padding:18px!important}
+.header.universal-header{
+  height:132px!important;min-height:132px!important;max-height:132px!important;
+  margin:0 0 12px 0!important;
+  padding:0 20px!important;
+  grid-template-columns:minmax(0,1fr) 126px minmax(0,1fr)!important;
+  column-gap:24px!important;
+  overflow:visible!important;
+}
+.universal-header .brand{
+  font-size:34px!important;font-weight:950!important;letter-spacing:.15px!important;
+  line-height:1!important;white-space:nowrap!important;
+  align-self:center!important;justify-self:start!important;
+}
+.universal-header .brand{color:var(--yellow)!important}
+.universal-header .brand .smart{color:var(--white)!important}
+.universal-header .home-logo-btn{
+  width:120px!important;height:120px!important;padding:4px!important;
+  align-self:center!important;justify-self:center!important;
+}
+.universal-header .home-logo-btn .logo{width:110px!important;height:110px!important;display:block!important}
+.universal-header .datetime{
+  width:250px!important;min-width:250px!important;
+  align-self:center!important;justify-self:end!important;text-align:right!important;
+}
+.universal-header .clock{font-size:38px!important;line-height:1!important;margin:0!important}
+.universal-header .date{font-size:13px!important;line-height:1.15!important;margin-top:8px!important;white-space:nowrap!important}
+.overlay{top:var(--global-header-offset)!important}
+.overlay .screen{height:calc(100vh - var(--global-header-offset))!important}
+.home{height:calc(100vh - var(--global-header-offset) - 8px)!important}
+@media(max-width:760px){
+  :root{--global-header-offset:126px}
+  .app{padding:10px!important}
+  .header.universal-header{
+    height:106px!important;min-height:106px!important;max-height:106px!important;
+    margin-bottom:10px!important;padding:0 8px!important;
+    grid-template-columns:minmax(0,1fr) 96px minmax(0,1fr)!important;
+    column-gap:8px!important;
+  }
+  .universal-header .brand{font-size:20px!important;letter-spacing:0!important}
+  .universal-header .home-logo-btn{width:92px!important;height:92px!important;padding:2px!important}
+  .universal-header .home-logo-btn .logo{width:86px!important;height:86px!important}
+  .universal-header .datetime{width:118px!important;min-width:118px!important}
+  .universal-header .clock{font-size:26px!important}
+  .universal-header .date{font-size:8.5px!important;margin-top:5px!important}
+  .overlay .screen{height:calc(100vh - var(--global-header-offset))!important}
+  .home{min-height:calc(100vh - var(--global-header-offset))!important}
+}
+
 </style></head><body>
 <div class="app"><header class="header universal-header"><div class="brand">USSA <span class="smart">SMART HUB</span></div><button class="home-logo-btn" onclick="goHome()" aria-label="Torna alla Home"><img class="logo" src="/assets/ussa-logo.png" alt="USSA Rozzano"></button><div class="datetime"><div id="clock" class="clock">--:--</div><div id="date" class="date"></div></div></header>
 <main class="home"><section class="card"><div class="head"><h2>PROSSIMI APPUNTAMENTI</h2></div><div id="schedule" class="schedule"><div class="empty">Caricamento…</div></div></section>
