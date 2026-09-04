@@ -326,6 +326,13 @@ def haversine_km(a,b):
     h=math.sin(dp/2)**2+math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
     return 2*R*math.asin(math.sqrt(h))
 
+
+@app.get('/api/geocode')
+def geocode_api(address:str):
+    p=geocode(address)
+    if not p: raise HTTPException(404,'Indirizzo non localizzato')
+    return {'lat':p[0],'lon':p[1],'address':address}
+
 @app.get('/api/route')
 def route(address:str):
     hub=load_json('hub.json',{});origin=hub.get('stadium',{}).get('route_address') or hub.get('stadium',{}).get('address')
