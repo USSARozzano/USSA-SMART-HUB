@@ -327,6 +327,62 @@ def haversine_km(a,b):
     return 2*R*math.asin(math.sqrt(h))
 
 
+
+
+def fixture_stats_rows(competition='FIGC'):
+    clubs={}
+    for f in fixtures():
+        if f.get('competition') != competition: continue
+        for n in (f.get('home'), f.get('away')):
+            if n and n not in clubs:
+                clubs[n]={'team':n,'played':0,'wins':0,'draws':0,'losses':0,'gf':0,'ga':0,'points':0,'form':[]}
+        # A result can later be stored as "3-1", "3 – 1" or result_home/result_away.
+        hg=f.get('result_home'); ag=f.get('result_away')
+        if hg is None or ag is None:
+            rv=str(f.get('result') or '')
+            m=re.search(r'(\d+)\s*[-–]\s*(\d+)',rv)
+            if m: hg,ag=int(m.group(1)),int(m.group(2))
+        try: hg=int(hg); ag=int(ag)
+        except: continue
+        h,a=f.get('home'),f.get('away')
+        if not h or not a: continue
+        H,A=clubs[h],clubs[a]
+        H['played']+=1;A['played']+=1;H['gf']+=hg;H['ga']+=ag;A['gf']+=ag;A['ga']+=hg
+        if hg>ag:
+            H['wins']+=1;A['losses']+=1;H['points']+=3;H['form'].append('V');A['form'].append('P')
+        elif hg<ag:
+            A['wins']+=1;H['losses']+=1;A['points']+=3;H['form'].append('P');A['form'].append('V')
+        else:
+            H['draws']+=1;A['draws']+=1;H['points']+=1;A['points']+=1;H['form'].append('N');A['form'].append('N')
+    rows=list(clubs.values())
+    rows.sort(key=lambda r:(-r['points'],-(r['gf']-r['ga']),-r['gf'],r['team']))
+    # Position is meaningful only once at least one result exists.
+    any_played=any(r['played'] for r in rows)
+    for i,r in enumerate(rows,1):
+        r['position']=i if any_played else None
+        r['form']=r['form'][-5:]
+    return rows
+
+@app.get('/api/fixture/{fixture_id}/stats')
+def fixture_stats(fixture_id:str):
+    x=fixture_by_id(fixture_id)
+    if not x: raise HTTPException(404)
+    rows=fixture_stats_rows(x.get('competition','FIGC'))
+    d={r['team']:r for r in rows}
+    blank=lambda n:{'team':n,'position':None,'played':0,'wins':0,'draws':0,'losses':0,'gf':0,'ga':0,'points':0,'form':[]}
+    return {'home':d.get(x.get('home')) or blank(x.get('home')),'away':d.get(x.get('away')) or blank(x.get('away')),'competition':x.get('competition')}
+
+@app.get('/api/static-route/{fixture_id}')
+def static_route(fixture_id:str):
+    x=fixture_by_id(fixture_id)
+    if not x: raise HTTPException(404)
+    if x.get('home_away')=='CASA': raise HTTPException(404,'Percorso non necessario')
+    routes=load_json('routes.json',{})
+    opponent=x.get('home') if 'USSA' in str(x.get('away','')).upper() else x.get('away')
+    r=routes.get(opponent)
+    if not r: raise HTTPException(404,'Percorso non predisposto')
+    return r
+
 @app.get('/api/geocode')
 def geocode_api(address:str):
     p=geocode(address)

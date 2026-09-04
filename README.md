@@ -1,15 +1,17 @@
-# USSA SMART HUB V2.3 — Calendario / Partita / Mappa
+# USSA SMART HUB V2.4 — MEGA FIX
 
-Pacchetto cumulativo per branch `V2`. Non usare su `main`.
+Aggiornamento V2 per kiosk 1080×1920.
 
-Aggiornamenti di questa build:
-- correzione layout righe gare casalinghe nella dashboard (stessa geometria delle trasferte, nessun contenitore ereditato dalla Home);
-- schermata PARTITA riorganizzata: data + ora in un unico blocco, rimosse etichette Trasferta/Andata;
-- campo + indirizzo + distanza/tempo (solo trasferta) in un unico pannello;
-- gara in casa: nessun percorso, nessun QR percorso, nessuna anteprima mappa, nessun pulsante mappa; resta QR calendario;
-- gara in trasferta: una sola anteprima del tragitto USSA Stadium → campo, più pulsante per vista grande;
-- mappe: corretto endpoint percorso con geometria stradale OSRM; renderer interno senza dipendenza da librerie mappe CDN; tile OpenStreetMap servite tramite backend;
-- navigazione: MAPPA → indietro → PARTITA; PARTITA → indietro → provenienza (Home o scheda squadra);
-- QR calendario e percorso mantenuti secondo il contesto.
+Principali interventi:
+- header universale sempre visibile; logo USSA centrale = Home immediata;
+- tasto indietro mantiene la navigazione locale;
+- dettaglio partita riproporzionato e data/ora perfettamente unificati;
+- nuovo blocco STATS comparativo, già pronto anche con pochi/zero risultati;
+- gare in casa compatte: niente mappa/percorso/QR percorso;
+- trasferte: percorso indicativo locale e istantaneo, senza routing live;
+- una sola mappa nella scheda, ingrandibile nella pagina MAPPA;
+- QR calendario sempre; QR percorso solo trasferta;
+- righe Home con geometria identica per CASA/TRASFERTA;
+- routes.json locale: nessuna chiamata di routing necessaria all'apertura.
 
-Caricare tutti i file nel branch `V2`, sostituendo gli omonimi.
+Caricare tutti i file nel branch V2 sostituendo gli omonimi. Non modificare main/V1.
