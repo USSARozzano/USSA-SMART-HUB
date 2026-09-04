@@ -12,46 +12,9 @@
     },
     "km": 16.8,
     "minutes": 30,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.153,
-        45.39
-      ],
-      [
-        9.147,
-        45.4
-      ],
-      [
-        9.14,
-        45.412
-      ],
-      [
-        9.132,
-        45.426
-      ],
-      [
-        9.124,
-        45.442
-      ],
-      [
-        9.117,
-        45.458
-      ],
-      [
-        9.11,
-        45.474
-      ],
-      [
-        9.105,
-        45.493
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   },
   "SANGIULIANO CVS": {
     "origin": {
@@ -66,46 +29,9 @@
     },
     "km": 12.1,
     "minutes": 21,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.171,
-        45.381
-      ],
-      [
-        9.185,
-        45.382
-      ],
-      [
-        9.201,
-        45.384
-      ],
-      [
-        9.217,
-        45.387
-      ],
-      [
-        9.233,
-        45.39
-      ],
-      [
-        9.249,
-        45.392
-      ],
-      [
-        9.264,
-        45.393
-      ],
-      [
-        9.278,
-        45.393
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   },
   "SIZIANO LANTERNA": {
     "origin": {
@@ -120,46 +46,9 @@
     },
     "km": 14.8,
     "minutes": 26,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.164,
-        45.372
-      ],
-      [
-        9.171,
-        45.362
-      ],
-      [
-        9.18,
-        45.352
-      ],
-      [
-        9.19,
-        45.341
-      ],
-      [
-        9.201,
-        45.329
-      ],
-      [
-        9.212,
-        45.316
-      ],
-      [
-        9.223,
-        45.303
-      ],
-      [
-        9.234,
-        45.292
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   },
   "TRIAL ROZZANO": {
     "origin": {
@@ -174,30 +63,9 @@
     },
     "km": 2.0,
     "minutes": 5,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.1584,
-        45.383
-      ],
-      [
-        9.1588,
-        45.385
-      ],
-      [
-        9.1593,
-        45.387
-      ],
-      [
-        9.16,
-        45.389
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   },
   "VIGE MILANO": {
     "origin": {
@@ -212,42 +80,9 @@
     },
     "km": 7.5,
     "minutes": 13,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.159,
-        45.388
-      ],
-      [
-        9.16,
-        45.395
-      ],
-      [
-        9.162,
-        45.402
-      ],
-      [
-        9.164,
-        45.41
-      ],
-      [
-        9.166,
-        45.418
-      ],
-      [
-        9.168,
-        45.426
-      ],
-      [
-        9.171,
-        45.433
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   },
   "REAL BASIGLIO": {
     "origin": {
@@ -262,34 +97,9 @@
     },
     "km": 3.8,
     "minutes": 7,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.158,
-        45.375
-      ],
-      [
-        9.158,
-        45.369
-      ],
-      [
-        9.1575,
-        45.363
-      ],
-      [
-        9.157,
-        45.358
-      ],
-      [
-        9.157,
-        45.354
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   },
   "FIVE TO SEVEN": {
     "origin": {
@@ -304,42 +114,9 @@
     },
     "km": 5.0,
     "minutes": 9,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.159,
-        45.386
-      ],
-      [
-        9.16,
-        45.392
-      ],
-      [
-        9.162,
-        45.398
-      ],
-      [
-        9.165,
-        45.404
-      ],
-      [
-        9.169,
-        45.409
-      ],
-      [
-        9.173,
-        45.412
-      ],
-      [
-        9.176,
-        45.414
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   },
   "AL 2 SPORT": {
     "origin": {
@@ -354,42 +131,9 @@
     },
     "km": 4.5,
     "minutes": 8,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.154,
-        45.385
-      ],
-      [
-        9.15,
-        45.389
-      ],
-      [
-        9.146,
-        45.393
-      ],
-      [
-        9.142,
-        45.397
-      ],
-      [
-        9.138,
-        45.401
-      ],
-      [
-        9.134,
-        45.404
-      ],
-      [
-        9.13,
-        45.406
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   },
   "FOOTBALL C. MILANESE": {
     "origin": {
@@ -404,46 +148,9 @@
     },
     "km": 12.7,
     "minutes": 22,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.171,
-        45.381
-      ],
-      [
-        9.186,
-        45.383
-      ],
-      [
-        9.202,
-        45.386
-      ],
-      [
-        9.218,
-        45.39
-      ],
-      [
-        9.234,
-        45.395
-      ],
-      [
-        9.25,
-        45.401
-      ],
-      [
-        9.265,
-        45.407
-      ],
-      [
-        9.278,
-        45.411
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   },
   "ZIBIDO S. GIACOMO": {
     "origin": {
@@ -458,42 +165,9 @@
     },
     "km": 6.1,
     "minutes": 11,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.151,
-        45.377
-      ],
-      [
-        9.144,
-        45.374
-      ],
-      [
-        9.136,
-        45.37
-      ],
-      [
-        9.128,
-        45.366
-      ],
-      [
-        9.12,
-        45.362
-      ],
-      [
-        9.113,
-        45.359
-      ],
-      [
-        9.108,
-        45.356
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   },
   "FORZA E CORAGGIO": {
     "origin": {
@@ -508,42 +182,9 @@
     },
     "km": 7.2,
     "minutes": 13,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.16,
-        45.388
-      ],
-      [
-        9.163,
-        45.395
-      ],
-      [
-        9.166,
-        45.402
-      ],
-      [
-        9.17,
-        45.409
-      ],
-      [
-        9.174,
-        45.416
-      ],
-      [
-        9.179,
-        45.422
-      ],
-      [
-        9.184,
-        45.428
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   },
   "FATIMATRACCIA": {
     "origin": {
@@ -558,42 +199,9 @@
     },
     "km": 8.4,
     "minutes": 15,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.16,
-        45.389
-      ],
-      [
-        9.162,
-        45.397
-      ],
-      [
-        9.165,
-        45.405
-      ],
-      [
-        9.168,
-        45.413
-      ],
-      [
-        9.171,
-        45.421
-      ],
-      [
-        9.175,
-        45.43
-      ],
-      [
-        9.178,
-        45.438
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   },
   "MILANO F. ACADEMY": {
     "origin": {
@@ -608,41 +216,8 @@
     },
     "km": 5.0,
     "minutes": 9,
-    "geometry": [
-      [
-        9.158,
-        45.381
-      ],
-      [
-        9.159,
-        45.386
-      ],
-      [
-        9.16,
-        45.392
-      ],
-      [
-        9.162,
-        45.398
-      ],
-      [
-        9.165,
-        45.404
-      ],
-      [
-        9.169,
-        45.409
-      ],
-      [
-        9.173,
-        45.412
-      ],
-      [
-        9.176,
-        45.414
-      ]
-    ],
-    "mode": "static_indicative_road_waypoints",
-    "note": "Percorso indicativo preimpostato; non considera traffico, chiusure o variazioni temporanee."
+    "geometry": [],
+    "mode": "pending_build_osrm_road_route",
+    "note": "Percorso stradale indicativo generato in fase di deploy; non considera traffico o chiusure temporanee."
   }
 }

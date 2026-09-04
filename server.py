@@ -380,7 +380,8 @@ def static_route(fixture_id:str):
     routes=load_json('routes.json',{})
     opponent=x.get('home') if 'USSA' in str(x.get('away','')).upper() else x.get('away')
     r=routes.get(opponent)
-    if not r: raise HTTPException(404,'Percorso non predisposto')
+    if not r or r.get('mode') != 'static_osrm_road_route' or len(r.get('geometry') or []) < 3:
+        raise HTTPException(404,'Percorso stradale non predisposto')
     return r
 
 @app.get('/api/geocode')
