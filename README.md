@@ -1,17 +1,11 @@
-# USSA SMART HUB V2.4.8 — PREVIEW HOME FIX
+# USSA SMART HUB V2.4.10 — U14 FIGC PROSSIME PARTITE
 
-Fix cumulativo basato sulla V2.4.7.
+Fix mirata della scheda UNDER 14 > FIGC:
+- PROSSIME PARTITE carica le fixture FIGC reali già usate dal calendario Home.
+- Le card gara sono cliccabili con listener JS affidabile (niente onclick inline annidati).
+- Toccando una gara si apre la stessa scheda PARTITA usata dal calendario generale Home.
+- Il tasto indietro torna alla scheda UNDER 14 FIGC con PROSSIME PARTITE selezionato.
+- GARE DISPUTATE usa la stessa infrastruttura quando esisteranno gare passate.
+- Fallback su /api/home/upcoming se l'endpoint squadra non restituisce dati.
 
-## Correzione anteprima temporale
-La modalità preview ora è gestita direttamente dal frontend e non dipende dall'endpoint Render per gli allenamenti.
-
-Esempio venerdì ore 18:15:
-`?previewWeekday=5&previewTime=18:15`
-
-Con questi parametri vengono simulati insieme:
-- ORA IN CAMPO (allenamenti, con rotazione)
-- stato SEGRETERIA APERTA ORA
-
-Rimuovendo completamente i parametri dall'URL, entrambe le funzioni tornano automaticamente a giorno e ora reali.
-
-Il calendario generale continua volutamente a usare le date reali.
+Include anche tutte le modifiche della V2.4.9 perché parte dal pacchetto completo V2.4.8 con index V2.4.9.

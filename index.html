@@ -266,13 +266,39 @@ body{background:var(--navy)}
 .competition-choice-intro{text-align:center;padding:26px 18px}
 .competition-choice-intro h1{font-size:36px!important;text-align:center}
 .competition-choice-intro p{text-align:center}
+
+
+/* V2.4.9 — HOME LIVE / INFO STATUS */
+.info{position:relative!important;padding:12px 14px!important;gap:2px!important;overflow:hidden!important}
+.info-icon{font-size:44px!important;line-height:1!important;color:#fff!important;font-weight:400!important}
+.info-label{font-size:19px!important;line-height:1!important;color:var(--yellow)!important;font-weight:950!important;margin-top:5px!important;letter-spacing:.2px!important}
+.secretary-status{display:none;margin-top:8px;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:950;text-align:center;line-height:1.1;letter-spacing:.15px;white-space:nowrap}
+.secretary-status.show{display:block}
+.secretary-status.soon{color:#ffe88a;background:rgba(255,232,138,.08);border:1px solid rgba(255,232,138,.26)}
+.secretary-status.open-now{color:#42e590;background:rgba(66,229,144,.07);border:1px solid rgba(66,229,144,.22);animation:secretarySoftPulse 2.8s ease-in-out infinite}
+.secretary-status.closing{color:#ff6868;background:rgba(255,104,104,.08);border:1px solid rgba(255,104,104,.26);animation:secretaryClosingPulse 1.35s ease-in-out infinite}
+@keyframes secretarySoftPulse{0%,100%{opacity:.68;transform:scale(1)}50%{opacity:1;transform:scale(1.015)}}
+@keyframes secretaryClosingPulse{0%,100%{opacity:.62}50%{opacity:1}}
+
+/* ORA IN CAMPO: riempimento più equilibrato anche quando vuoto */
+.now.is-empty{position:relative!important;display:grid!important;grid-template-columns:1fr auto!important;grid-template-rows:auto 1fr!important;align-items:center!important;padding:14px 18px!important}
+.now.is-empty .eyebrow{grid-column:1/-1!important;grid-row:1!important;font-size:20px!important;color:var(--yellow)!important;margin:0!important;align-self:start!important}
+.now.is-empty .now-title{grid-column:1!important;grid-row:2!important;font-size:16px!important;line-height:1.15!important;color:#fff!important;font-weight:800!important;align-self:center!important}
+.now-empty-icons{display:none}
+.now.is-empty .now-empty-icons{display:flex;grid-column:2!important;grid-row:2!important;gap:7px;align-items:center;justify-content:flex-end;opacity:.34;font-size:26px;padding-left:12px}
+.now:not(.is-empty) .now-empty-icons{display:none!important}
+.preview-chip{display:none!important}
+
+/* V2.4.10 — U14 FIGC upcoming fixtures: cards reali e click affidabile */
+button.matchcard{width:100%;text-align:left;color:inherit;font:inherit;appearance:none;-webkit-appearance:none;cursor:pointer}
+.team-match-list{display:grid;gap:10px}
 </style></head><body>
 <div class="app"><header class="header universal-header"><div class="brand">USSA <span class="smart">SMART HUB</span></div><button class="home-logo-btn" onclick="goHome()" aria-label="Torna alla Home"><img class="logo" src="/assets/ussa-logo.png" alt="USSA Rozzano"></button><div class="datetime"><div id="clock" class="clock">--:--</div><div id="date" class="date"></div></div></header>
 <main class="home"><section class="card"><div class="head"><h2>PROSSIMI APPUNTAMENTI</h2></div><div id="schedule" class="schedule"><div class="empty">Caricamento…</div></div></section>
-<section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowPreview" class="preview-chip" style="display:none"></div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryOpen" class="open">● SEGRETERIA APERTA ORA</div></button></section>
+<section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div class="now-empty-icons" aria-hidden="true"><span>⚽</span><span>🏐</span><span>🏀</span></div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryStatus" class="secretary-status"></div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4.8 · PREVIEW HOME FIX</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.9 · HOME LIVE + INFO</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
@@ -323,18 +349,31 @@ function fmtDate(iso){let d=new Date(iso+'T12:00');return {day:d.toLocaleDateStr
 function clock(){
   const d=new Date(),tm=d.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'}),dt=d.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'});
   $('clock').textContent=tm;$('date').textContent=dt;if($('clockOverlay'))$('clockOverlay').textContent=tm;if($('dateOverlay'))$('dateOverlay').textContent=dt;
-  const ht=hubTime(),sec=hub.secretariat||{},openMin=hmToMinutes(sec.open||'00:00'),closeMin=hmToMinutes(sec.close||'00:00');
-  const open=(sec.days||[]).map(Number).includes(ht.weekday)&&ht.minutes>=openMin&&ht.minutes<closeMin;
-  $('secretaryOpen').classList.toggle('show',open);
+  const ht=hubTime(),sec=hub.secretariat||{},days=(sec.days||[]).map(Number),openMin=hmToMinutes(sec.open||'00:00'),closeMin=hmToMinutes(sec.close||'00:00');
+  const status=$('secretaryStatus');
+  status.className='secretary-status';status.textContent='';
+  if(days.includes(ht.weekday)){
+    const beforeOpen=openMin-ht.minutes;
+    const toClose=closeMin-ht.minutes;
+    if(ht.minutes<openMin && beforeOpen>0 && beforeOpen<=30){
+      status.textContent='SEGRETERIA APRE TRA POCO';status.classList.add('show','soon');
+    }else if(ht.minutes>=openMin && ht.minutes<closeMin && toClose<=20){
+      status.textContent='SEGRETERIA IN CHIUSURA';status.classList.add('show','closing');
+    }else if(ht.minutes>=openMin && ht.minutes<closeMin){
+      status.textContent='SEGRETERIA APERTA ORA';status.classList.add('show','open-now');
+    }
+  }
 }
 async function boot(){[teams,hub]=await Promise.all([getJSON('/api/teams'),getJSON('/api/hub')]);renderTeams();await Promise.all([loadSchedule(),loadNow()]);clock();setInterval(clock,1000);resetIdle()}
 function renderTeams(){$('teamGrid').innerHTML=teams.filter(t=>t.visible!==false).slice(0,20).map(t=>`<button class="team ${t.test_only?'test':''}" onclick="openTeam('${t.key}')"><span class="icon">${t.icon||'●'}</span><span class="name">${esc(t.label)}</span></button>`).join('')}
 async function loadSchedule(){let d=await getJSON('/api/home/upcoming'),a=d.items||[];$('schedule').innerHTML=a.length?a.map(x=>{let f=fmtDate(x.date),away=x.home_away==='TRASFERTA';return `<button class="appointment" onclick='openAppointment(${JSON.stringify(x).replace(/'/g,"&#39;")})'><div><div class="a-day">${f.day}</div><div class="a-date">${f.date}</div></div><div class="a-time">${esc(x.time||'--:--')}</div><div><div class="a-kind">${esc(x.meta||x.kind||'APPUNTAMENTO')}${x.competition?' · '+esc(x.competition):''}</div><div class="a-title">${esc(x.title||'')}</div><div class="a-venue">${esc(x.field||'')}</div></div>${x.home_away?`<div class="badge ${away?'awaygame':'homegame'}">${esc(x.home_away)}</div>`:'<div></div>'}<div class="chev">›</div></button>`}).join(''):'<div class="empty">Nessun appuntamento futuro pubblicato.</div>'}
 async function loadNow(){
-  if(isNowPreview){
-    // Preview completamente locale: non dipende dal backend/Render e usa gli stessi teams.json già caricati dalla Home.
-    const ht=hubTime();
-    nowItems=[];
+  const url=isNowPreview?`/api/home/now?weekday=${encodeURIComponent(previewWeekday)}&time=${encodeURIComponent(previewTime)}`:'/api/home/now';
+  try{
+    const d=await getJSON(url);nowItems=d.items||[];
+  }catch(e){
+    // fallback locale: la preview deve restare utilizzabile anche se il fetch fallisce
+    const ht=hubTime();nowItems=[];
     for(const t of teams){
       if(t.visible===false)continue;
       for(const x of (t.training||[])){
@@ -344,16 +383,12 @@ async function loadNow(){
         }
       }
     }
-  }else{
-    const d=await getJSON('/api/home/now');
-    nowItems=d.items||[];
   }
   nowIdx=0;renderNow();clearInterval(nowTimer);
   if(nowItems.length>1)nowTimer=setInterval(()=>{nowIdx=(nowIdx+1)%nowItems.length;renderNow()},6000);
 }
 function renderNow(){
-  let x=nowItems[nowIdx],box=$('now'),sport=$('nowSport'),chip=$('nowPreview');
-  if(isNowPreview){chip.style.display='block';chip.textContent=`ANTEPRIMA · ${previewTime}`;}else chip.style.display='none';
+  let x=nowItems[nowIdx],box=$('now'),sport=$('nowSport');
   if(!x){box.classList.add('is-empty');sport.style.display='none';$('nowTitle').textContent='Nessuna attività in corso';$('nowMeta').textContent='';$('dots').textContent='';return}
   box.classList.remove('is-empty');sport.style.display='flex';sport.textContent=x.icon||'●';
   $('nowTitle').textContent=x.title;$('nowMeta').textContent=`${x.kind} · ${x.meta||''}${x.place?' · '+x.place:''}`;
@@ -392,10 +427,56 @@ async function refreshAvailability(){
   /* U14 è l'unica squadra sdoppiata: CSI oggi mostra solo Staff; FIGC espone sempre gare/prossime perché il calendario esiste già. */
   if(currentTeam.key==='u14'&&currentCompetition==='CSI'){a={staff:true}}
   if(currentTeam.key==='u14'&&currentCompetition==='FIGC'){a.played=true;a.next=true}
-  $('teamActions').innerHTML=`<button class="action ${teamTab==='staff'?'active':''}" onclick="selectTeamTab('staff')">STAFF</button>`+order.filter(k=>a[k]).map(k=>`<button class="action ${teamTab===k?'active':''}" onclick="selectTeamTab('${k}')">${labels[k]}</button>`).join('')
+  const actions=$('teamActions');
+  actions.innerHTML=`<button class="action ${teamTab==='staff'?'active':''}" data-team-tab="staff">STAFF</button>`+order.filter(k=>a[k]).map(k=>`<button class="action ${teamTab===k?'active':''}" data-team-tab="${k}">${labels[k]}</button>`).join('');
+  actions.querySelectorAll('[data-team-tab]').forEach(btn=>btn.addEventListener('click',()=>selectTeamTab(btn.dataset.teamTab)));
 }
-async function selectTeamTab(tab,restoring=false){teamTab=tab;currentView={type:'team',key:currentTeam.key,comp:currentCompetition,tab};await refreshAvailability();let box=$('dynamic');if(tab==='staff'){box.innerHTML=`<div class="section"><h3>STAFF</h3>${staffHTML(currentTeam)}</div>`;return}loading(true);try{if(tab==='standings'){let d=await getJSON(`/api/team/${currentTeam.key}/standings?competition=${currentCompetition}`);box.innerHTML=`<div class="section"><h3>CLASSIFICA · ${currentCompetition}</h3><table><thead><tr><th>POS</th><th>SQUADRA</th><th>G</th><th>V</th><th>N</th><th>P</th><th>PT</th></tr></thead><tbody>${(d.standings||[]).map(x=>`<tr class="${String(x.team).toUpperCase().includes('USSA')?'us':''}"><td>${x.position??''}</td><td><b>${esc(x.team)}</b></td><td>${x.played??''}</td><td>${x.wins??''}</td><td>${x.draws??''}</td><td>${x.losses??''}</td><td><b>${x.points??''}</b></td></tr>`).join('')}</tbody></table></div>`}else if(tab==='scorers'){let d=await getJSON(`/api/team/${currentTeam.key}/players?competition=${currentCompetition}`);box.innerHTML=`<div class="section"><h3>MARCATORI · ${currentCompetition}</h3><table><thead><tr><th>POS</th><th>GIOCATORE</th><th>GOL</th></tr></thead><tbody>${(d.players||[]).map((x,i)=>`<tr><td>${i+1}</td><td><b>${esc(x.name)}</b></td><td><b>${x.goals}</b></td></tr>`).join('')}</tbody></table></div>`}else{let ep=tab==='played'?'matches':'next',d=await getJSON(`/api/team/${currentTeam.key}/${ep}?competition=${encodeURIComponent(currentCompetition)}`),played=tab==='played';box.innerHTML=(d.matches||[]).map(x=>matchCard(x,played)).join('')||`<div class="section"><div class="empty">${played?'Nessuna gara disputata.':'Nessuna prossima partita disponibile.'}</div></div>`}}catch(e){box.innerHTML='<div class="section"><div class="empty">Dati momentaneamente non disponibili.</div></div>'}finally{loading(false)}}
-function matchCard(x,played){let title=x.home&&x.away?`${x.home} – ${x.away}`:(x.names?.length?x.names.slice(-2).join(' – '):x.raw||'Partita USSA');let click=x.id?`openFixtureDetail('${x.id}')`:(x.detail_url?`openCsiDetail(${JSON.stringify(x.detail_url)})`:``);return `<div class="matchcard" ${click?`onclick='${click}'`:''}><div class="matchhead"><div><div class="matchdate">${fmtDate(x.date).long.toUpperCase()} · ${esc(x.time||'')}</div><div class="matchtitle">${esc(title)}</div><div class="small">${esc(x.field||x.competition||currentCompetition)}${x.address?' · '+esc(x.address):''}</div></div>${x.home_away?`<div class="pill">${esc(x.home_away)}</div>`:''}</div>${click?`<div class="detailhint">${played?'DETTAGLIO GARA':'INFO PARTITA'} ›</div>`:''}</div>`}
+async function loadTeamMatches(tab){
+  const played=tab==='played',ep=played?'matches':'next';
+  let rows=[];
+  try{
+    const d=await getJSON(`/api/team/${currentTeam.key}/${ep}?competition=${encodeURIComponent(currentCompetition)}`);
+    rows=d.matches||[];
+  }catch{}
+  /* Fallback U14 FIGC: le stesse fixture reali che alimentano il calendario Home. */
+  if(!rows.length && currentTeam.key==='u14' && currentCompetition==='FIGC' && !played){
+    try{
+      const h=await getJSON('/api/home/upcoming');
+      rows=(h.items||[]).filter(x=>x.team_key==='u14' && x.competition==='FIGC' && x.kind==='PARTITA');
+    }catch{}
+  }
+  return rows;
+}
+function bindMatchCards(box){
+  box.querySelectorAll('[data-fixture-id]').forEach(card=>card.addEventListener('click',()=>openFixtureDetail(card.dataset.fixtureId)));
+  box.querySelectorAll('[data-csi-detail]').forEach(card=>card.addEventListener('click',()=>openCsiDetail(card.dataset.csiDetail)));
+}
+async function selectTeamTab(tab,restoring=false){
+  teamTab=tab;currentView={type:'team',key:currentTeam.key,comp:currentCompetition,tab};await refreshAvailability();
+  let box=$('dynamic');
+  if(tab==='staff'){box.innerHTML=`<div class="section"><h3>STAFF</h3>${staffHTML(currentTeam)}</div>`;return}
+  loading(true);
+  try{
+    if(tab==='standings'){
+      let d=await getJSON(`/api/team/${currentTeam.key}/standings?competition=${encodeURIComponent(currentCompetition)}`);
+      box.innerHTML=`<div class="section"><h3>CLASSIFICA · ${currentCompetition}</h3><table><thead><tr><th>POS</th><th>SQUADRA</th><th>G</th><th>V</th><th>N</th><th>P</th><th>PT</th></tr></thead><tbody>${(d.standings||[]).map(x=>`<tr class="${String(x.team).toUpperCase().includes('USSA')?'us':''}"><td>${x.position??''}</td><td><b>${esc(x.team)}</b></td><td>${x.played??''}</td><td>${x.wins??''}</td><td>${x.draws??''}</td><td>${x.losses??''}</td><td><b>${x.points??''}</b></td></tr>`).join('')}</tbody></table></div>`;
+    }else if(tab==='scorers'){
+      let d=await getJSON(`/api/team/${currentTeam.key}/players?competition=${encodeURIComponent(currentCompetition)}`);
+      box.innerHTML=`<div class="section"><h3>MARCATORI · ${currentCompetition}</h3><table><thead><tr><th>POS</th><th>GIOCATORE</th><th>GOL</th></tr></thead><tbody>${(d.players||[]).map((x,i)=>`<tr><td>${i+1}</td><td><b>${esc(x.name)}</b></td><td><b>${x.goals}</b></td></tr>`).join('')}</tbody></table></div>`;
+    }else{
+      const played=tab==='played',rows=await loadTeamMatches(tab);
+      box.innerHTML=rows.length?`<div class="section"><h3>${played?'GARE DISPUTATE':'PROSSIME PARTITE'} · ${esc(currentCompetition)}</h3><div class="team-match-list">${rows.map(x=>matchCard(x,played)).join('')}</div></div>`:`<div class="section"><div class="empty">${played?'Nessuna gara disputata.':'Nessuna prossima partita disponibile.'}</div></div>`;
+      bindMatchCards(box);
+    }
+  }catch(e){
+    box.innerHTML='<div class="section"><div class="empty">Dati momentaneamente non disponibili.</div></div>';
+  }finally{loading(false)}
+}
+function matchCard(x,played){
+  let title=x.home&&x.away?`${x.home} – ${x.away}`:(x.names?.length?x.names.slice(-2).join(' – '):x.raw||'Partita USSA');
+  const attr=x.id?`data-fixture-id="${esc(x.id)}"`:(x.detail_url?`data-csi-detail="${esc(x.detail_url)}"`:``);
+  return `<button type="button" class="matchcard" ${attr}><div class="matchhead"><div><div class="matchdate">${fmtDate(x.date).long.toUpperCase()} · ${esc(x.time||'')}</div><div class="matchtitle">${esc(title)}</div><div class="small">${esc(x.field||x.competition||currentCompetition)}${x.address?' · '+esc(x.address):''}</div></div>${x.home_away?`<div class="pill">${esc(x.home_away)}</div>`:''}</div>${attr?`<div class="detailhint">${played?'DETTAGLIO GARA':'INFO PARTITA'} ›</div>`:''}</button>`
+}
 function openAppointment(x){if(x.kind==='EVENTO')navigate({type:'event',item:x});else if(x.id)navigate({type:'fixture',id:x.id})}
 function openFixtureDetail(id){navigate({type:'fixture',id})}
 function clubVisual(name){let c=CLUBS[String(name).toUpperCase()]||{};let isUSSA=String(name).toUpperCase().includes('USSA');if(c.logo){let sty=c.crop?'object-fit:cover;object-position:74% 23%;transform:scale(2.55);':'';return `<div class="club-logo-wrap"><img class="club-logo" src="${c.logo}" alt="${esc(name)}" style="${sty}" onerror="this.parentElement.innerHTML='<div class=&quot;club-fallback&quot;>${esc(c.abbr||initials(name))}</div>'"></div>`}return `<div class="club-logo-wrap"><div class="club-fallback">${esc(c.abbr||initials(name))}</div></div>`}
