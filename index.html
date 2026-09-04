@@ -292,13 +292,133 @@ body{background:var(--navy)}
 /* V2.4.10 — U14 FIGC upcoming fixtures: cards reali e click affidabile */
 button.matchcard{width:100%;text-align:left;color:inherit;font:inherit;appearance:none;-webkit-appearance:none;cursor:pointer}
 .team-match-list{display:grid;gap:10px}
+
+
+/* V2.4.11 — fascia HOME ORA IN CAMPO + INFO riequilibrata */
+.middle{
+  grid-template-columns:minmax(0,2.55fr) minmax(245px,.95fr)!important;
+  gap:14px!important;
+}
+.now,.info{
+  min-height:0!important;
+}
+.now{
+  grid-template-columns:82px minmax(0,1fr)!important;
+  grid-template-rows:auto 1fr!important;
+  column-gap:18px!important;
+  row-gap:5px!important;
+  align-items:center!important;
+  align-content:stretch!important;
+  padding:15px 20px 14px!important;
+}
+.now .eyebrow{
+  grid-column:1/-1!important;
+  grid-row:1!important;
+  align-self:start!important;
+  margin:0!important;
+  font-size:21px!important;
+  line-height:1!important;
+  letter-spacing:.15px!important;
+}
+.now-sport{
+  grid-column:1!important;
+  grid-row:2!important;
+  width:70px!important;
+  height:70px!important;
+  font-size:40px!important;
+  align-self:center!important;
+}
+.now-title{
+  grid-column:2!important;
+  grid-row:2!important;
+  align-self:center!important;
+  font-size:26px!important;
+  line-height:1.02!important;
+  margin:-15px 0 0!important;
+  max-width:100%!important;
+}
+.now-meta{
+  grid-column:2!important;
+  grid-row:2!important;
+  align-self:center!important;
+  margin:42px 0 0!important;
+  font-size:13px!important;
+  line-height:1.25!important;
+  color:#d4e0e9!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.dots{
+  right:20px!important;
+  bottom:13px!important;
+  font-size:12px!important;
+  letter-spacing:5px!important;
+  color:#d2dce4!important;
+  opacity:.72!important;
+}
+/* Stato vuoto: pieno ma sobrio, senza falsi contenuti */
+.now.is-empty{
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-rows:auto 1fr!important;
+  padding:15px 20px 14px!important;
+}
+.now.is-empty .eyebrow{
+  font-size:21px!important;
+}
+.now.is-empty .now-title{
+  grid-column:1!important;
+  grid-row:2!important;
+  align-self:center!important;
+  font-size:18px!important;
+  line-height:1.1!important;
+  font-weight:800!important;
+  margin:0!important;
+}
+.now.is-empty .now-empty-icons{
+  grid-column:2!important;
+  grid-row:2!important;
+  gap:10px!important;
+  padding-left:20px!important;
+  font-size:31px!important;
+  opacity:.25!important;
+}
+/* INFO: più leggibile e con stato segreteria davvero protagonista */
+.info{
+  padding:12px 16px!important;
+  justify-content:center!important;
+  gap:0!important;
+}
+.info-icon{
+  font-size:49px!important;
+  line-height:.95!important;
+  margin:0!important;
+}
+.info-label{
+  font-size:22px!important;
+  line-height:1!important;
+  margin-top:7px!important;
+  letter-spacing:.25px!important;
+}
+.secretary-status{
+  width:calc(100% - 12px)!important;
+  max-width:225px!important;
+  box-sizing:border-box!important;
+  margin-top:10px!important;
+  padding:6px 8px!important;
+  border-radius:10px!important;
+  font-size:11px!important;
+  line-height:1.08!important;
+  letter-spacing:.1px!important;
+  white-space:normal!important;
+}
 </style></head><body>
 <div class="app"><header class="header universal-header"><div class="brand">USSA <span class="smart">SMART HUB</span></div><button class="home-logo-btn" onclick="goHome()" aria-label="Torna alla Home"><img class="logo" src="/assets/ussa-logo.png" alt="USSA Rozzano"></button><div class="datetime"><div id="clock" class="clock">--:--</div><div id="date" class="date"></div></div></header>
 <main class="home"><section class="card"><div class="head"><h2>PROSSIMI APPUNTAMENTI</h2></div><div id="schedule" class="schedule"><div class="empty">Caricamento…</div></div></section>
 <section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div class="now-empty-icons" aria-hidden="true"><span>⚽</span><span>🏐</span><span>🏀</span></div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryStatus" class="secretary-status"></div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4.9 · HOME LIVE + INFO</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.11 · HOME STRIP LAYOUT</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
