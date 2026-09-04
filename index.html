@@ -650,3 +650,42 @@ function openInfo(){navigate({type:'info'})}function renderInfoView(){let sec=hu
 function renderEventView(x){showOverlay('EVENTO',`<div class="hero"><h1>${esc(x.title)}</h1><p>${fmtDate(x.date).long} · ${esc(x.time||'')}</p></div><div class="section">${esc(x.description||'Evento USSA')}</div>`)}
 function resetIdle(){clearTimeout(idleTimer);$('idle').classList.remove('show');idleTimer=setTimeout(()=>$('idle').classList.add('show'),(hub.idle_seconds||90)*1000)}function wake(){$('idle').classList.remove('show');resetIdle()}['click','touchstart','mousemove','keydown'].forEach(e=>document.addEventListener(e,resetIdle,{passive:true}));boot().catch(console.error);
 </script></body></html>
+<!-- V2.4.12 HOME TITLES + INFO spacing fix -->
+<style>
+/* Titoli dei 4 box Home: stessa gerarchia visiva */
+.head h2,
+.now .eyebrow,
+.info-label{
+  font-size:21px!important;
+  line-height:1!important;
+  font-weight:950!important;
+  letter-spacing:.15px!important;
+}
+
+/* ORA IN CAMPO: più respiro rispetto ai bordi */
+.now{
+  padding:20px 22px 16px!important;
+}
+.now .eyebrow{
+  margin:0 0 7px!important;
+}
+.now.is-empty{
+  padding:20px 22px 16px!important;
+}
+
+/* INFO: icona più grande e separazione netta dal titolo */
+.info{
+  padding:15px 18px!important;
+}
+.info-icon{
+  font-size:58px!important;
+  line-height:1!important;
+  margin:0 0 12px!important;
+}
+.info-label{
+  margin:0!important;
+}
+.secretary-status{
+  margin-top:12px!important;
+}
+</style>
