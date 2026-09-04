@@ -110,13 +110,56 @@ table{width:100%;border-collapse:collapse;font-size:14px}th{background:#071a2c;c
 .home-fixture .home-tools .qrpanel p{font-size:11px!important}
 @media(max-width:760px){.home-fixture .home-tools .qrpanel{grid-template-columns:92px 1fr!important}.home-fixture .home-tools .qrpanel img{width:92px!important;height:92px!important}.home-fixture .fixture-stage{padding:12px!important}}
 
+
+/* V2.4.2 PATCH — header immobile + brand colors + real cartographic route map */
+.header.universal-header{
+  position:relative!important;display:block!important;height:104px!important;margin-bottom:10px!important;
+  contain:layout paint;flex:0 0 104px!important;
+}
+.universal-header .brand{
+  position:absolute!important;left:0!important;top:50%!important;transform:translateY(-50%)!important;
+  margin:0!important;text-align:left!important;color:var(--yellow)!important;font-size:35px!important;font-weight:950!important;
+  line-height:1!important;white-space:nowrap!important;
+}
+.universal-header .brand .smart{color:var(--white)!important}
+.home-logo-btn{
+  position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;
+  margin:0!important;width:96px!important;height:96px!important;display:flex!important;align-items:center!important;justify-content:center!important;
+}
+.home-logo-btn .logo{width:88px!important;height:88px!important}
+.universal-header .datetime{
+  position:absolute!important;right:0!important;top:50%!important;transform:translateY(-50%)!important;
+  margin:0!important;text-align:right!important;min-width:220px!important;
+}
+.overlay .screen{scrollbar-width:none!important;-ms-overflow-style:none!important}
+.overlay .screen::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+.overlay-header{position:sticky!important;top:-18px!important;z-index:30!important;background:#071c30!important}
+
+.route-map,.fullroute-map{position:relative!important;overflow:hidden!important;background:#d9e1e8!important}
+.osm-map{position:absolute;inset:0;overflow:hidden;background:#dfe7ec}
+.osm-tile-layer{position:absolute;inset:0;overflow:hidden}
+.osm-tile{position:absolute;width:256px;height:256px;max-width:none!important;user-select:none;pointer-events:none}
+.osm-route-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.osm-route-shadow{fill:none;stroke:#061827;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;opacity:.82}
+.osm-route-line{fill:none;stroke:var(--yellow);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.osm-marker{position:absolute;width:20px;height:20px;border-radius:50%;transform:translate(-50%,-50%);border:4px solid #061827;box-shadow:0 2px 8px rgba(0,0,0,.32);z-index:4}
+.osm-marker.start{background:#fff}.osm-marker.end{background:var(--yellow)}
+.osm-label{position:absolute;transform:translate(10px,-50%);z-index:5;background:#061827e8;color:#fff;border:1px solid #3d617c;border-radius:9px;padding:6px 9px;font-size:10px;font-weight:900;line-height:1.15;max-width:230px;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.osm-attrib{position:absolute;right:6px;bottom:4px;z-index:6;background:rgba(255,255,255,.88);color:#23323d;border-radius:4px;padding:2px 5px;font-size:8px;line-height:1.1}
+.osm-map-note{position:absolute;left:7px;bottom:5px;z-index:6;background:#061827db;color:#fff;border-radius:6px;padding:4px 7px;font-size:9px;font-weight:900}
+@media(max-width:760px){
+ .header.universal-header{height:90px!important;flex-basis:90px!important}.universal-header .brand{font-size:26px!important}
+ .home-logo-btn{width:82px!important;height:82px!important}.home-logo-btn .logo{width:76px!important;height:76px!important}
+ .universal-header .datetime{min-width:0!important}.universal-header .clock{font-size:28px!important}.universal-header .date{font-size:10px!important}
+}
+
 </style></head><body>
 <div class="app"><header class="header universal-header"><div class="brand">USSA <span class="smart">SMART HUB</span></div><button class="home-logo-btn" onclick="goHome()" aria-label="Torna alla Home"><img class="logo" src="/assets/ussa-logo.png" alt="USSA Rozzano"></button><div class="datetime"><div id="clock" class="clock">--:--</div><div id="date" class="date"></div></div></header>
 <main class="home"><section class="card"><div class="head"><h2>PROSSIMI APPUNTAMENTI</h2></div><div id="schedule" class="schedule"><div class="empty">Caricamento…</div></div></section>
 <section class="middle"><button id="now" class="now" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryOpen" class="open">● SEGRETERIA APERTA ORA</div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><header class="header universal-header overlay-header"><div class="brand">USSA <span class="smart">SMART HUB</span></div><button class="home-logo-btn" onclick="goHome()" aria-label="Torna alla Home"><img class="logo" src="/assets/ussa-logo.png" alt="USSA Rozzano"></button><div class="datetime"><div id="clockOverlay" class="clock">--:--</div><div id="dateOverlay" class="date"></div></div></header><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4 · MEGA FIX</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.2 · HEADER + MAPPA</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
@@ -185,17 +228,31 @@ async function renderFixtureView(v){
       `<section class="fixture-tools"><div class="qrpanel"><img alt="QR percorso" src="/api/qr/route/${x.id}.svg"><div><h3>PERCORSO SUL TELEFONO</h3><p>Scansiona per aprire la navigazione reale sul telefono.</p></div></div><div class="qrpanel"><img alt="QR calendario" src="/api/qr/calendar/${x.id}.svg"><div><h3>AGGIUNGI AL CALENDARIO</h3><p>Scansiona per salvare partita, data, ora, campo e indirizzo.</p></div></div></section>`;
     const mapAction=home?'':`<section class="map-action-panel"><div><h3>MAPPA E PERCORSO</h3><p>Ingrandisci la stessa mappa indicativa.</p></div><button class="map-cta" onclick="openFixtureMap('${x.id}')">APRI MAPPA</button></section>`;
     showOverlay('PARTITA',`<div class="fixture-layout2 ${home?'home-fixture':'away-fixture'}"><section class="fixture-stage"><div class="fixture-stage-top"><span>UNDER 14</span><span>·</span><span>${esc(x.competition)}</span><span>·</span><span>GIORNATA ${x.round}</span></div><div class="fixture-clubs"><div class="club-side ${String(x.home).includes('USSA')?'club-us':''}">${clubVisual(x.home)}<div class="club-name">${esc(x.home)}</div></div><div class="vsmark">VS</div><div class="club-side ${String(x.away).includes('USSA')?'club-us':''}">${clubVisual(x.away)}<div class="club-name">${esc(x.away)}</div></div></div><div class="fixture-when3"><span class="datepart">${f.long}</span><span class="dot"></span><span class="timepart">${esc(x.time)}</span></div></section>${statsHTML(st)}${place}${awayMap}${mapAction}${tools}</div>`);
-    if(!home && route) buildSchematicRouteMap($('routeMap'),route,x);
+    if(!home && route) requestAnimationFrame(()=>buildCartographicRouteMap($('routeMap'),route,x));
   }catch(e){showOverlay('PARTITA','<div class="section"><div class="empty">Partita momentaneamente non disponibile.</div></div>')}finally{loading(false)}
 }
-function buildSchematicRouteMap(el,r,x){
+function mercatorWorld(lon,lat,z){
+  const scale=256*Math.pow(2,z),x=(lon+180)/360*scale,s=Math.sin(lat*Math.PI/180),y=(.5-Math.log((1+s)/(1-s))/(4*Math.PI))*scale;return [x,y]
+}
+function buildCartographicRouteMap(el,r,x){
   if(!el||!r)return;const g=r.geometry||[];if(g.length<2){el.innerHTML='<div class="map-status">Percorso non predisposto.</div>';return}
-  let xs=g.map(p=>p[0]),ys=g.map(p=>p[1]),minx=Math.min(...xs),maxx=Math.max(...xs),miny=Math.min(...ys),maxy=Math.max(...ys),dx=Math.max(.01,maxx-minx),dy=Math.max(.01,maxy-miny),pad=11;
-  const pt=p=>[pad+(p[0]-minx)/dx*(100-2*pad),100-pad-(p[1]-miny)/dy*(100-2*pad)];let points=g.map(p=>pt(p).map(v=>v.toFixed(2)).join(',')).join(' '),a=pt(g[0]),b=pt(g[g.length-1]);
-  el.innerHTML=`<div class="schematic-map"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><polyline class="schematic-route-shadow" points="${points}"></polyline><polyline class="schematic-route" points="${points}"></polyline><circle class="schematic-start" cx="${a[0]}" cy="${a[1]}" r="2.5"></circle><circle class="schematic-end" cx="${b[0]}" cy="${b[1]}" r="2.8"></circle></svg><div class="schematic-label" style="left:${Math.min(74,Math.max(2,a[0]+2))}%;top:${Math.min(78,Math.max(2,a[1]-7))}%">USSA Stadium</div><div class="schematic-label" style="left:${Math.min(70,Math.max(2,b[0]+2))}%;top:${Math.min(78,Math.max(2,b[1]-7))}%">${esc(x.field)}</div><div class="schematic-note">${r.km} km · circa ${r.minutes} min</div><div class="schematic-credit">mappa schematica · percorso indicativo</div></div>`;
+  const W=Math.max(320,el.clientWidth||900),H=Math.max(220,el.clientHeight||360),xs=g.map(p=>p[0]),ys=g.map(p=>p[1]);
+  const minLon=Math.min(...xs),maxLon=Math.max(...xs),minLat=Math.min(...ys),maxLat=Math.max(...ys);
+  let z=15,chosen=null;
+  for(;z>=9;z--){const a=mercatorWorld(minLon,maxLat,z),b=mercatorWorld(maxLon,minLat,z),bw=Math.abs(b[0]-a[0]),bh=Math.abs(b[1]-a[1]);if(bw<=W*.72&&bh<=H*.68){chosen={z,a,b};break}}
+  if(!chosen){z=9;chosen={z,a:mercatorWorld(minLon,maxLat,z),b:mercatorWorld(maxLon,minLat,z)}}
+  const centerLon=(minLon+maxLon)/2,centerLat=(minLat+maxLat)/2,center=mercatorWorld(centerLon,centerLat,z),left=center[0]-W/2,top=center[1]-H/2;
+  el.innerHTML='<div class="osm-map"><div class="osm-tile-layer"></div><svg class="osm-route-svg"></svg><div class="osm-map-note"></div><div class="osm-attrib">© OpenStreetMap contributors</div></div>';
+  const map=el.querySelector('.osm-map'),layer=map.querySelector('.osm-tile-layer'),svg=map.querySelector('.osm-route-svg'),note=map.querySelector('.osm-map-note');note.textContent=`${r.km} km · circa ${r.minutes} min · percorso indicativo`;
+  const n=Math.pow(2,z),tx0=Math.floor(left/256)-1,tx1=Math.floor((left+W)/256)+1,ty0=Math.floor(top/256)-1,ty1=Math.floor((top+H)/256)+1;
+  for(let tx=tx0;tx<=tx1;tx++)for(let ty=ty0;ty<=ty1;ty++){if(ty<0||ty>=n)continue;const xx=((tx%n)+n)%n,img=document.createElement('img');img.className='osm-tile';img.alt='';img.loading='eager';img.decoding='async';img.referrerPolicy='no-referrer';img.src=`https://tile.openstreetmap.org/${z}/${xx}/${ty}.png`;img.style.left=(tx*256-left)+'px';img.style.top=(ty*256-top)+'px';layer.appendChild(img)}
+  const pts=g.map(p=>{const w=mercatorWorld(p[0],p[1],z);return [w[0]-left,w[1]-top]}),points=pts.map(p=>p.map(v=>v.toFixed(1)).join(',')).join(' ');
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML=`<polyline class="osm-route-shadow" points="${points}"></polyline><polyline class="osm-route-line" points="${points}"></polyline>`;
+  const addMarker=(p,label,kind)=>{const m=document.createElement('div');m.className='osm-marker '+kind;m.style.left=p[0]+'px';m.style.top=p[1]+'px';map.appendChild(m);const l=document.createElement('div');l.className='osm-label';l.textContent=label;l.style.left=p[0]+'px';l.style.top=p[1]+'px';map.appendChild(l)};
+  addMarker(pts[0],'USSA Stadium','start');addMarker(pts[pts.length-1],x.field,'end');
 }
 function openFixtureMap(id){navigate({type:'map',id})}
-async function renderMapView(v){loading(true);try{let x=await getJSON(`/api/fixture/${v.id}`);if(x.home_away==='CASA'){goBack();return}let r=await getJSON(`/api/static-route/${x.id}`);showOverlay('MAPPA E PERCORSO',`<div class="fullmap-layout2"><div class="fullmap-info2"><h2>${esc(x.field)}</h2><p>${esc(x.address)} · ${r.km} km · circa ${r.minutes} min da USSA Stadium</p></div><div id="fullRouteMap" class="fullroute-map"></div></div>`);buildSchematicRouteMap($('fullRouteMap'),r,x)}catch{showOverlay('MAPPA E PERCORSO','<div class="section"><div class="empty">Percorso non predisposto.</div></div>')}finally{loading(false)}}
+async function renderMapView(v){loading(true);try{let x=await getJSON(`/api/fixture/${v.id}`);if(x.home_away==='CASA'){goBack();return}let r=await getJSON(`/api/static-route/${x.id}`);showOverlay('MAPPA E PERCORSO',`<div class="fullmap-layout2"><div class="fullmap-info2"><h2>${esc(x.field)}</h2><p>${esc(x.address)} · ${r.km} km · circa ${r.minutes} min da USSA Stadium</p></div><div id="fullRouteMap" class="fullroute-map"></div></div>`);requestAnimationFrame(()=>buildCartographicRouteMap($('fullRouteMap'),r,x))}catch{showOverlay('MAPPA E PERCORSO','<div class="section"><div class="empty">Percorso non predisposto.</div></div>')}finally{loading(false)}}
 function openCsiDetail(url){navigate({type:'csi',url})}
 async function renderCsiView(v){loading(true);try{let d=await getJSON(`/api/game-detail?url=${encodeURIComponent(v.url)}`);showOverlay('DETTAGLIO GARA',`<div class="hero"><h1>${esc(d.score||'PARTITA')}</h1><p>${esc(d.title||'')}</p></div>${d.field?`<div class="section"><h3>CAMPO</h3>${esc(d.field)}</div>`:''}<div class="section"><h3>CRONOLOGIA</h3>${(d.events||[]).length?d.events.map(x=>`<div class="matchcard">${esc(x)}</div>`).join(''):'<div class="empty">Nessun evento di cronaca pubblicato.</div>'}</div>`)}catch{showOverlay('DETTAGLIO GARA','<div class="section"><div class="empty">Dettaglio CSI momentaneamente non disponibile.</div></div>')}finally{loading(false)}}
 function openNowTeam(){let x=nowItems[nowIdx];if(x?.team_key)openTeam(x.team_key)}
