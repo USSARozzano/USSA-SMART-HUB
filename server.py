@@ -63,22 +63,34 @@ def api_teams(): return load_json('teams.json',[])
 def api_hub(): return load_json('hub.json',{})
 
 @app.get('/api/home/now')
-def home_now():
-    td=teams_dict();now=datetime.now();wd=now.isoweekday();minute=now.hour*60+now.minute;items=[]
+def home_now(weekday:int|None=None, time:str|None=None):
+    td=teams_dict();now=datetime.now()
+    # Preview tecnico nascosto: viene usato solo se URL client passa ENTRAMBI i parametri.
+    # Senza parametri si torna sempre, automaticamente, a giorno/ora reali.
+    if weekday is not None and time:
+        wd=max(1,min(7,int(weekday)))
+        try: minute=parse_hm(time)
+        except: minute=now.hour*60+now.minute
+    else:
+        wd=now.isoweekday();minute=now.hour*60+now.minute
+    items=[]
     for t in td.values():
         if t.get('visible') is False: continue
         for x in t.get('training',[]):
             try:
                 if int(x.get('weekday',0))==wd and parse_hm(x['start'])<=minute<parse_hm(x['end']):
-                    items.append({'kind':'ALLENAMENTO','team_key':t['key'],'title':t['label'],'meta':f"{x['start']}–{x['end']}",'place':x.get('place','')})
+                    items.append({'kind':'ALLENAMENTO','team_key':t['key'],'title':t['label'],'meta':f"{x['start']}–{x['end']}",'place':x.get('place',''),'icon':t.get('icon','●'),'sport':t.get('sport','')})
             except: pass
-    for x in fixtures():
-        try:
-            dt=iso_dt(x['date'],x['time'])
-            if 0 <= (now-dt).total_seconds() < 120*60:
-                items.append({'kind':'PARTITA','team_key':x['team_key'],'title':teams_dict().get(x['team_key'],{}).get('label','PARTITA'),'meta':f"{x['home']} – {x['away']}",'place':x.get('field','')})
-        except: pass
-    return {'items':items}
+    # Le partite reali in corso vengono considerate soltanto in modalità reale, non nella preview settimanale.
+    if weekday is None or not time:
+        for x in fixtures():
+            try:
+                dt=iso_dt(x['date'],x['time'])
+                if 0 <= (now-dt).total_seconds() < 120*60:
+                    t=td.get(x['team_key'],{})
+                    items.append({'kind':'PARTITA','team_key':x['team_key'],'title':t.get('label','PARTITA'),'meta':f"{x['home']} – {x['away']}",'place':x.get('field',''),'icon':t.get('icon','●'),'sport':t.get('sport','')})
+            except: pass
+    return {'items':items,'preview': bool(weekday is not None and time)}
 
 def live_schedule_for_team(t):
     url=t.get('csi_live_url')
