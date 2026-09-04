@@ -153,12 +153,97 @@ table{width:100%;border-collapse:collapse;font-size:14px}th{background:#071a2c;c
  .universal-header .datetime{min-width:0!important}.universal-header .clock{font-size:28px!important}.universal-header .date{font-size:10px!important}
 }
 
+
+/* V2.4.3 — HEADER GLOBALE PERSISTENTE: un solo header, mai ricreato */
+:root{--global-header-offset:132px}
+.app{position:relative!important;padding-top:18px!important}
+.header.universal-header{
+  position:relative!important;
+  top:auto!important;left:auto!important;right:auto!important;
+  z-index:80!important;
+  width:100%!important;
+  height:104px!important;
+  min-height:104px!important;
+  max-height:104px!important;
+  margin:0 0 10px 0!important;
+  padding:0!important;
+  flex:0 0 104px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 112px minmax(0,1fr)!important;
+  align-items:center!important;
+  box-sizing:border-box!important;
+  transform:none!important;
+}
+.universal-header .brand{
+  justify-self:start!important;
+  align-self:center!important;
+  margin:0!important;padding:0!important;
+  line-height:1!important;
+  transform:none!important;
+}
+.universal-header .home-logo-btn{
+  justify-self:center!important;
+  align-self:center!important;
+  margin:0!important;
+  transform:none!important;
+}
+.universal-header .datetime{
+  justify-self:end!important;
+  align-self:center!important;
+  margin:0!important;padding:0!important;
+  width:220px!important;min-width:220px!important;
+  transform:none!important;
+}
+/* Le viste interne iniziano SEMPRE sotto lo stesso header fisico della Home. */
+.overlay{
+  position:fixed!important;
+  top:var(--global-header-offset)!important;
+  left:0!important;right:0!important;bottom:0!important;
+  height:auto!important;
+  z-index:40!important;
+  overflow:hidden!important;
+  background:var(--navy)!important;
+}
+.overlay .screen{
+  width:min(100vw,1080px)!important;
+  height:calc(100vh - var(--global-header-offset))!important;
+  margin:0 auto!important;
+  padding:0 18px 18px!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  scrollbar-gutter:stable!important;
+  background:linear-gradient(180deg,#071c30,#061827)!important;
+}
+/* Nessun secondo header nelle sezioni interne. */
+.overlay-header{display:none!important}
+.screenbar{
+  top:0!important;
+  height:72px!important;
+  margin:0 0 12px!important;
+  padding-top:0!important;
+  background:#071c30!important;
+}
+/* Il contenuto Home conserva esattamente lo stesso punto di partenza. */
+.home{height:calc(100vh - var(--global-header-offset) - 18px)!important}
+@media(max-width:760px){
+  :root{--global-header-offset:110px}
+  .app{padding-top:10px!important}
+  .header.universal-header{
+    height:90px!important;min-height:90px!important;max-height:90px!important;
+    flex-basis:90px!important;
+    grid-template-columns:minmax(0,1fr) 88px minmax(0,1fr)!important;
+  }
+  .universal-header .datetime{width:100px!important;min-width:100px!important}
+  .overlay .screen{height:calc(100vh - var(--global-header-offset))!important;padding:0 10px 10px!important}
+  .home{height:auto!important;min-height:calc(100vh - var(--global-header-offset))!important}
+}
+
 </style></head><body>
 <div class="app"><header class="header universal-header"><div class="brand">USSA <span class="smart">SMART HUB</span></div><button class="home-logo-btn" onclick="goHome()" aria-label="Torna alla Home"><img class="logo" src="/assets/ussa-logo.png" alt="USSA Rozzano"></button><div class="datetime"><div id="clock" class="clock">--:--</div><div id="date" class="date"></div></div></header>
 <main class="home"><section class="card"><div class="head"><h2>PROSSIMI APPUNTAMENTI</h2></div><div id="schedule" class="schedule"><div class="empty">Caricamento…</div></div></section>
 <section class="middle"><button id="now" class="now" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryOpen" class="open">● SEGRETERIA APERTA ORA</div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
-<div id="overlay" class="overlay"><div class="screen"><header class="header universal-header overlay-header"><div class="brand">USSA <span class="smart">SMART HUB</span></div><button class="home-logo-btn" onclick="goHome()" aria-label="Torna alla Home"><img class="logo" src="/assets/ussa-logo.png" alt="USSA Rozzano"></button><div class="datetime"><div id="clockOverlay" class="clock">--:--</div><div id="dateOverlay" class="date"></div></div></header><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
+<div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
 <div class="versiontag">V2.4.2 · HEADER + MAPPA</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
@@ -185,7 +270,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&
 async function getJSON(url){let r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('Dati non disponibili');return r.json()}
 function loading(v){$('loading').classList.toggle('show',v)}
 function fmtDate(iso){let d=new Date(iso+'T12:00');return {day:d.toLocaleDateString('it-IT',{weekday:'short'}).replace('.','').toUpperCase(),date:d.toLocaleDateString('it-IT',{day:'2-digit',month:'short'}).replace('.','').toUpperCase(),long:d.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}}
-function clock(){let d=new Date(),tm=d.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'}),dt=d.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'});$('clock').textContent=tm;$('date').textContent=dt;if($('clockOverlay'))$('clockOverlay').textContent=tm;if($('dateOverlay'))$('dateOverlay').textContent=dt;let sec=hub.secretariat||{},m=d.getHours()*60+d.getMinutes(),o=(sec.open||'00:00').split(':').map(Number),c=(sec.close||'00:00').split(':').map(Number),open=(sec.days||[]).includes(d.getDay()===0?7:d.getDay())&&m>=o[0]*60+o[1]&&m<c[0]*60+c[1];$('secretaryOpen').classList.toggle('show',open)}
+function clock(){let d=new Date(),tm=d.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'}),dt=d.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'});$('clock').textContent=tm;$('date').textContent=dt;let sec=hub.secretariat||{},m=d.getHours()*60+d.getMinutes(),o=(sec.open||'00:00').split(':').map(Number),c=(sec.close||'00:00').split(':').map(Number),open=(sec.days||[]).includes(d.getDay()===0?7:d.getDay())&&m>=o[0]*60+o[1]&&m<c[0]*60+c[1];$('secretaryOpen').classList.toggle('show',open)}
 async function boot(){[teams,hub]=await Promise.all([getJSON('/api/teams'),getJSON('/api/hub')]);renderTeams();await Promise.all([loadSchedule(),loadNow()]);clock();setInterval(clock,1000);resetIdle()}
 function renderTeams(){$('teamGrid').innerHTML=teams.filter(t=>t.visible!==false).slice(0,20).map(t=>`<button class="team ${t.test_only?'test':''}" onclick="openTeam('${t.key}')"><span class="icon">${t.icon||'●'}</span><span class="name">${esc(t.label)}</span></button>`).join('')}
 async function loadSchedule(){let d=await getJSON('/api/home/upcoming'),a=d.items||[];$('schedule').innerHTML=a.length?a.map(x=>{let f=fmtDate(x.date),away=x.home_away==='TRASFERTA';return `<button class="appointment" onclick='openAppointment(${JSON.stringify(x).replace(/'/g,"&#39;")})'><div><div class="a-day">${f.day}</div><div class="a-date">${f.date}</div></div><div class="a-time">${esc(x.time||'--:--')}</div><div><div class="a-kind">${esc(x.meta||x.kind||'APPUNTAMENTO')}${x.competition?' · '+esc(x.competition):''}</div><div class="a-title">${esc(x.title||'')}</div><div class="a-venue">${esc(x.field||'')}</div></div>${x.home_away?`<div class="badge ${away?'awaygame':'homegame'}">${esc(x.home_away)}</div>`:'<div></div>'}<div class="chev">›</div></button>`}).join(''):'<div class="empty">Nessun appuntamento futuro pubblicato.</div>'}
