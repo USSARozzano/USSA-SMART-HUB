@@ -1,14 +1,15 @@
-# USSA SMART HUB V2.2 — UI/NAV/QR/ROUTE
+# USSA SMART HUB V2.3 — Calendario / Partita / Mappa
 
-Aggiornamento 04/09/2026.
+Pacchetto cumulativo per branch `V2`. Non usare su `main`.
 
-Correzioni principali:
-- navigazione a stack reale: MAPPA → PARTITA → provenienza precedente;
-- QR percorso e calendario resi visibili nella scheda partita;
-- scheda PARTITA ridisegnata con loghi/identità squadre e data/ora in forte evidenza;
-- mappa percorso USSA Stadium → campo avversario con tracciato OSRM/Leaflet quando disponibile;
-- fallback mappa campo se il routing non risponde;
-- sezioni squadra rese più curate graficamente;
-- nessuna modifica alla V1/main.
+Aggiornamenti di questa build:
+- correzione layout righe gare casalinghe nella dashboard (stessa geometria delle trasferte, nessun contenitore ereditato dalla Home);
+- schermata PARTITA riorganizzata: data + ora in un unico blocco, rimosse etichette Trasferta/Andata;
+- campo + indirizzo + distanza/tempo (solo trasferta) in un unico pannello;
+- gara in casa: nessun percorso, nessun QR percorso, nessuna anteprima mappa, nessun pulsante mappa; resta QR calendario;
+- gara in trasferta: una sola anteprima del tragitto USSA Stadium → campo, più pulsante per vista grande;
+- mappe: corretto endpoint percorso con geometria stradale OSRM; renderer interno senza dipendenza da librerie mappe CDN; tile OpenStreetMap servite tramite backend;
+- navigazione: MAPPA → indietro → PARTITA; PARTITA → indietro → provenienza (Home o scheda squadra);
+- QR calendario e percorso mantenuti secondo il contesto.
 
-Nota loghi: vengono usati stemmi pubblici verificati quando reperibili. Per società per cui non è stato possibile verificare uno stemma pubblico affidabile, l’interfaccia usa una sigla neutra invece di inventare un logo errato.
+Caricare tutti i file nel branch `V2`, sostituendo gli omonimi.

@@ -341,14 +341,24 @@ def route(address:str):
     lat1,lon1=a;lat2,lon2=b
     try:
         u=f'https://router.project-osrm.org/route/v1/driving/{lon1},{lat1};{lon2},{lat2}'
-        r=requests.get(u,params={'overview':'false'},headers=HEADERS,timeout=10);r.raise_for_status();data=r.json();routes=data.get('routes') or []
+        r=requests.get(u,params={'overview':'full','geometries':'geojson'},headers=HEADERS,timeout=10);r.raise_for_status();data=r.json();routes=data.get('routes') or []
         if routes:
             rr=routes[0];km=round(rr.get('distance',0)/1000,1);minutes=max(1,round(rr.get('duration',0)/60))
-            return {'origin':{'lat':lat1,'lon':lon1},'destination':{'lat':lat2,'lon':lon2},'km':km,'minutes':minutes,'address':address,'mode':'road'}
+            return {'origin':{'lat':lat1,'lon':lon1},'destination':{'lat':lat2,'lon':lon2},'km':km,'minutes':minutes,'address':address,'mode':'road','geometry':(rr.get('geometry') or {}).get('coordinates',[])}
     except Exception: pass
     # Fallback indicativo se il router pubblico non risponde: distanza geodetica corretta con fattore stradale.
     km=round(haversine_km(a,b)*1.28,1);minutes=max(1,round(km/32*60))
-    return {'origin':{'lat':lat1,'lon':lon1},'destination':{'lat':lat2,'lon':lon2},'km':km,'minutes':minutes,'address':address,'mode':'estimate'}
+    return {'origin':{'lat':lat1,'lon':lon1},'destination':{'lat':lat2,'lon':lon2},'km':km,'minutes':minutes,'address':address,'mode':'estimate','geometry':[[lon1,lat1],[lon2,lat2]]}
+
+@app.get('/api/tile/{z}/{x}/{y}.png')
+def map_tile(z:int,x:int,y:int):
+    if z < 0 or z > 19: raise HTTPException(404)
+    try:
+        r=requests.get(f'https://tile.openstreetmap.org/{z}/{x}/{y}.png',headers=HEADERS,timeout=8)
+        r.raise_for_status()
+        return Response(r.content,media_type='image/png',headers={'Cache-Control':'public, max-age=86400'})
+    except Exception:
+        raise HTTPException(502,'Tile non disponibile')
 
 def ics_escape(s): return str(s or '').replace('\\','\\\\').replace(';','\\;').replace(',','\\,').replace('\n','\\n')
 
