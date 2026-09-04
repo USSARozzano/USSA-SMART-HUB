@@ -1,3 +1,4 @@
+import math
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, Response, PlainTextResponse
 from pathlib import Path
@@ -297,9 +298,33 @@ def game_detail(url:str):
     return info
 
 def geocode(address):
-    r=requests.get('https://nominatim.openstreetmap.org/search',params={'q':address,'format':'json','limit':1},headers=HEADERS,timeout=15)
-    r.raise_for_status();a=r.json()
-    return (float(a[0]['lat']),float(a[0]['lon'])) if a else None
+    """Geocoding robusto: Nominatim con query progressive, poi Photon."""
+    queries=[]
+    raw=str(address or '').strip()
+    if raw:
+        queries += [raw, raw + ', Lombardia, Italia', raw.replace('USSA Stadium, ', '')]
+    seen=set()
+    for q in queries:
+        if not q or q in seen: continue
+        seen.add(q)
+        try:
+            r=requests.get('https://nominatim.openstreetmap.org/search',params={'q':q,'format':'json','limit':1,'countrycodes':'it','accept-language':'it'},headers=HEADERS,timeout=8)
+            r.raise_for_status();a=r.json()
+            if a:return (float(a[0]['lat']),float(a[0]['lon']))
+        except Exception: pass
+    try:
+        r=requests.get('https://photon.komoot.io/api/',params={'q':raw,'limit':1,'lang':'it'},headers=HEADERS,timeout=8)
+        r.raise_for_status();features=r.json().get('features') or []
+        if features:
+            lon,lat=features[0]['geometry']['coordinates'];return (float(lat),float(lon))
+    except Exception: pass
+    return None
+
+def haversine_km(a,b):
+    lat1,lon1=a;lat2,lon2=b;R=6371.0
+    p1,p2=math.radians(lat1),math.radians(lat2);dp=math.radians(lat2-lat1);dl=math.radians(lon2-lon1)
+    h=math.sin(dp/2)**2+math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
+    return 2*R*math.asin(math.sqrt(h))
 
 @app.get('/api/route')
 def route(address:str):
@@ -307,9 +332,16 @@ def route(address:str):
     a=geocode(origin);b=geocode(address)
     if not a or not b:raise HTTPException(404,'Indirizzo non localizzato')
     lat1,lon1=a;lat2,lon2=b
-    u=f'https://router.project-osrm.org/route/v1/driving/{lon1},{lat1};{lon2},{lat2}'
-    r=requests.get(u,params={'overview':'false'},headers=HEADERS,timeout=15);r.raise_for_status();data=r.json();rr=data.get('routes',[{}])[0]
-    return {'origin':{'lat':lat1,'lon':lon1},'destination':{'lat':lat2,'lon':lon2},'km':round(rr.get('distance',0)/1000,1),'minutes':round(rr.get('duration',0)/60),'address':address}
+    try:
+        u=f'https://router.project-osrm.org/route/v1/driving/{lon1},{lat1};{lon2},{lat2}'
+        r=requests.get(u,params={'overview':'false'},headers=HEADERS,timeout=10);r.raise_for_status();data=r.json();routes=data.get('routes') or []
+        if routes:
+            rr=routes[0];km=round(rr.get('distance',0)/1000,1);minutes=max(1,round(rr.get('duration',0)/60))
+            return {'origin':{'lat':lat1,'lon':lon1},'destination':{'lat':lat2,'lon':lon2},'km':km,'minutes':minutes,'address':address,'mode':'road'}
+    except Exception: pass
+    # Fallback indicativo se il router pubblico non risponde: distanza geodetica corretta con fattore stradale.
+    km=round(haversine_km(a,b)*1.28,1);minutes=max(1,round(km/32*60))
+    return {'origin':{'lat':lat1,'lon':lon1},'destination':{'lat':lat2,'lon':lon2},'km':km,'minutes':minutes,'address':address,'mode':'estimate'}
 
 def ics_escape(s): return str(s or '').replace('\\','\\\\').replace(';','\\;').replace(',','\\,').replace('\n','\\n')
 

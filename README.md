@@ -25,3 +25,12 @@ Start: `uvicorn server:app --host 0.0.0.0 --port $PORT`
 
 ## Nota dati
 Il calendario U14 FIGC usa un'unica fonte `fixtures.json`, riutilizzata da Home e scheda squadra. Le date delle trasferte domenicali sono spostate alla domenica del relativo weekend sulla base del giorno/orario campo indicato come definitivo.
+
+## V2.1 – FIX DEFINITIVO PARTITA / MAPPA
+- Dettaglio gara futura riorganizzato per sfruttare l'intera schermata 1080×1920.
+- Mappa sempre visibile direttamente nella pagina partita tramite embed per indirizzo.
+- Pulsante APRI MAPPA apre una vista mappa a pieno schermo.
+- Tasto indietro: MAPPA → PARTITA → origine (HOME oppure scheda squadra).
+- Percorso da USSA Stadium con calcolo OSRM e fallback indicativo se il router pubblico non risponde.
+- QR percorso e QR calendario mantenuti.
+- Build marker: V2.1 · MAP/NAV FIX.
