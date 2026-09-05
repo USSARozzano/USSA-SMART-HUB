@@ -1,22 +1,7 @@
-USSA SMART HUB V2.4.15 — U13 TEST CSI DETAIL REBUILD
+# USSA SMART HUB V2.4.17 — U13 TEST STATIC DETAIL
 
-Fix cumulativo sopra V2.4.14.
-
-Correzioni:
-- UNDER 13 TEST > GARE DISPUTATE > dettaglio gara completamente ridisegnato nello stesso linguaggio grafico della scheda PARTITA della dashboard.
-- Testata con squadre, visual squadra, risultato centrale, data/ora e giornata.
-- Blocco STATS comparativo con posizione, punti, giocate, V/N/P, gol fatti e subiti.
-- Campo gara in blocco coerente con il resto dell'Hub.
-- Cronologia CSI resa come timeline leggibile con minuti, gol, cambi, fasi di gioco e altri eventi quando pubblicati da CSI LIVE.
-- Cronaca CSI visualizzata quando presente.
-- Parser CSI LIVE reso più robusto per la pagina della singola gara.
-- Fallback locale ricco sulla gara Ussa Rozzano 4-2 S.Giuliano Cologno Osgd, così la gara test resta dimostrativa anche se CSI LIVE non risponde.
-- INDIETRO usa ora lo stack reale: dettaglio gara -> UNDER 13 TEST > GARE DISPUTATE.
-
-Caricare tutto il contenuto nel branch V2 sostituendo gli omonimi.
-
-
-## V2.4.16 U13 DETAIL FIX
-- Dettagli U13 storici serviti da snapshot verificati CSI LIVE, senza dipendenza runtime.
-- Back esplicito a UNDER 13 TEST > GARE DISPUTATE.
-- Pagina dettaglio coerente con PARTITA Home: risultato, info gara, stats, timeline/cronaca quando disponibili.
+- Dettaglio U13 TEST alimentato solo dagli snapshot locali già normalizzati.
+- Nessun parsing CSI LIVE durante il click.
+- Grafica allineata alla scheda PARTITA della dashboard: squadre ben visibili, risultato, data/ora, STATS, campo, cronologia e cronaca.
+- Nomi squadra sempre leggibili; usa stemmi pubblici affidabili dove disponibili e fallback identificativo dove non è stato possibile verificare uno stemma.
+- Indietro: dettaglio gara -> U13 TEST -> GARE DISPUTATE.
