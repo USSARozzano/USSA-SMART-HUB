@@ -16,15 +16,15 @@ CSI_LIVE="https://live.centrosportivoitaliano.it"
 HEADERS={"User-Agent":"USSA-SMART-HUB/2.1","Accept-Language":"it-IT,it;q=0.9"}
 
 U13_TEST_STANDINGS=[
- {"position":1,"team":"S.Giuliano Cologno Osgd","points":18,"played":8,"wins":6,"draws":0,"losses":2},
- {"position":2,"team":"Ussa Rozzano","points":17,"played":8,"wins":5,"draws":2,"losses":1},
- {"position":3,"team":"Polisportiva Omr","points":15,"played":8,"wins":5,"draws":0,"losses":3},
- {"position":4,"team":"Usom Calcio","points":15,"played":8,"wins":4,"draws":3,"losses":1},
- {"position":5,"team":"S.Fermo","points":13,"played":8,"wins":4,"draws":1,"losses":3},
- {"position":6,"team":"Osm Assago","points":11,"played":8,"wins":3,"draws":2,"losses":3},
- {"position":7,"team":"Sporting C.B. Scb","points":9,"played":8,"wins":3,"draws":0,"losses":5},
- {"position":8,"team":"Osv Milano 2013 Orange","points":6,"played":8,"wins":2,"draws":0,"losses":6},
- {"position":9,"team":"Aso Cernusco 2013 Blu","points":0,"played":8,"wins":0,"draws":0,"losses":8}
+ {"position":1,"team":"S.Giuliano Cologno Osgd","points":18,"played":8,"wins":6,"draws":0,"losses":2,"gf":18,"gs":8},
+ {"position":2,"team":"Ussa Rozzano","points":17,"played":8,"wins":5,"draws":2,"losses":1,"gf":24,"gs":13},
+ {"position":3,"team":"Polisportiva Omr","points":15,"played":8,"wins":5,"draws":0,"losses":3,"gf":21,"gs":17},
+ {"position":4,"team":"Usom Calcio","points":15,"played":8,"wins":4,"draws":3,"losses":1,"gf":25,"gs":11},
+ {"position":5,"team":"S.Fermo","points":13,"played":8,"wins":4,"draws":1,"losses":3,"gf":13,"gs":14},
+ {"position":6,"team":"Osm Assago","points":11,"played":8,"wins":3,"draws":2,"losses":3,"gf":17,"gs":7},
+ {"position":7,"team":"Sporting C.B. Scb","points":9,"played":8,"wins":3,"draws":0,"losses":5,"gf":8,"gs":15},
+ {"position":8,"team":"Osv Milano 2013 Orange","points":6,"played":8,"wins":2,"draws":0,"losses":6,"gf":7,"gs":22},
+ {"position":9,"team":"Aso Cernusco 2013 Blu","points":0,"played":8,"wins":0,"draws":0,"losses":8,"gf":3,"gs":29}
 ]
 U13_TEST_SCORERS=[
  {"name":"DI TOMA SAMUELE","goals":4},{"name":"LAURORA TOMMASO","goals":3},
@@ -311,30 +311,65 @@ def fixture_detail(fixture_id:str):
 def game_detail(url:str):
     if not url.startswith(CSI_LIVE):raise HTTPException(400,'Link gara non valido')
     static=next((x for x in U13_TEST_MATCHES if urlparse(x.get('detail_url','')).path==urlparse(url).path),None)
-    info={'url':url,'title':'','score':'','field':'','events':[]}
+    info={'url':url,'title':'','score':'','field':'','events':[],'overview':{},'report':'','source_live':False}
     if static:
         info.update({'home':static['home'],'away':static['away'],'date':static['date'],'time':static['time'],
                      'round':static.get('round'),'competition':'CSI','score':static.get('result',''),'field':static.get('field','')})
-    # I metadati della U13 TEST restano consultabili anche se CSI è temporaneamente
-    # irraggiungibile; quando CSI risponde, arricchiamo la scheda con la cronologia live.
+        # Fallback locale: il dettaglio non deve mai ridursi al solo risultato.
+        def row_for(name):
+            key=clean(name).lower()
+            return next((dict(r) for r in U13_TEST_STANDINGS if clean(r.get('team')).lower()==key),None)
+        info['overview']={'home':row_for(static['home']),'away':row_for(static['away']),'mode':'finale_girone'}
     try:
-        s=soup(url);body=clean(s.get_text(' ',strip=True))
+        s=soup(url);body=clean(s.get_text(' ',strip=True));info['source_live']=True
     except Exception:
         if static:return info
         raise HTTPException(503,'Dettaglio CSI momentaneamente non disponibile')
-    hs=[clean(x.get_text(' ',strip=True)) for x in s.find_all(['h1','h2','h3','h4','h5'])]
+
+    hs=[clean(x.get_text(' ',strip=True)) for x in s.find_all(['h1','h2','h3','h4','h5','h6'])]
     info['title']=' · '.join([x for x in hs[:4] if x][:2])
     m=re.search(r'\b(\d+)\s*[-–]\s*(\d+)\b',body)
     if m and not info.get('score'):info['score']=m.group(0)
-    mf=re.search(r'Campo:\s*([^©]+?)(?:Codice gara:|2025/26|2026/27|Lombardia|$)',body,re.I)
-    if mf and not info.get('field'):info['field']=clean(mf.group(1))
-    seen=set()
-    for el in s.find_all(['li','tr','div']):
+    mf=re.search(r'Campo:\s*([^©]+?)(?:Codice gara:|Panoramica squadre|Variazione di data|2025/26|2026/27|Lombardia|$)',body,re.I)
+    if mf:info['field']=clean(mf.group(1))
+
+    # Panoramica squadre CSI LIVE: valori a coppie casa/ospite attorno alla relativa etichetta.
+    labels={
+      'points':r'Punti','position':r'Posizione classifica','played':r'Matches giocati',
+      'wins':r'Vittorie','draws':r'Pareggi','losses':r'Sconfitte','gf':r'Gol fatti(?! a partita)',
+      'gs':r'Gol subiti(?! a partita)','gf_avg':r'Gol fatti a partita','gs_avg':r'Gol subiti a partita'
+    }
+    live_home={};live_away={}
+    for key,label in labels.items():
+        mm=re.search(r'(\d+(?:[\.,]\d+)?)\s*'+label+r'\s*(\d+(?:[\.,]\d+)?)',body,re.I)
+        if mm:
+            live_home[key]=mm.group(1);live_away[key]=mm.group(2)
+    if live_home and live_away:
+        live_home['team']=info.get('home','');live_away['team']=info.get('away','')
+        info['overview']={'home':live_home,'away':live_away,'mode':'snapshot_csi'}
+
+    # Timeline: usa solo stringhe foglia per evitare i duplicati dei contenitori HTML annidati.
+    raw=[];seen=set()
+    for txt in s.stripped_strings:
+        txt=clean(str(txt))
+        if not txt or txt in seen:continue
+        keep=(re.fullmatch(r'\d+\s*[-–]\s*\d+',txt) or
+              re.fullmatch(r"\d{1,2}(?:['’]|'')",txt) or
+              re.search(r'^(Fine primo tempo|Fine\s+\d+\s*[-–]\s*\d+|\d+\s+minut[oi]\s+di\s+recupero)',txt,re.I) or
+              re.search(r'^(Esce:|Entra:)',txt,re.I) or
+              re.search(r'\((?:Allenatore|Assistente|Dirigente|Dirigente Accompagnatore)\)',txt,re.I))
+        if keep:
+            seen.add(txt);raw.append(txt)
+        if len(raw)>=80:break
+    info['events']=raw
+
+    # Eventuale cronaca testuale pubblicata nella pagina CSI.
+    candidates=[]
+    for el in s.find_all(['p','article']):
         txt=clean(el.get_text(' ',strip=True))
-        if len(txt)>180 or len(txt)<4:continue
-        if re.search(r"\b\d{1,2}['’]\b|\bGol\b|\bAmmon|Sostit|Espuls|Timeout|Canestro",txt,re.I) and txt not in seen:
-            seen.add(txt);info['events'].append(txt)
-        if len(info['events'])>=30:break
+        if len(txt)>=180 and (clean(info.get('home')).split(' ')[0].lower() in txt.lower() or 'Ussa Rozzano' in txt):
+            candidates.append(txt)
+    if candidates:info['report']=max(candidates,key=len)[:2600]
     return info
 
 

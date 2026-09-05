@@ -1,18 +1,8 @@
-# USSA SMART HUB V2.4.13 — U13 TEST CSI COMPLETE
+# USSA SMART HUB V2.4.14 — U13 TEST DETAIL + BACK FIX
 
-Fix cumulativo sulla base V2.4.12.
+Fix cumulativa sopra V2.4.13.
 
-## UNDER 13 A 11 · TEST CSI
-- stessa grafica/sezioni delle squadre calcio complete;
-- Classifica;
-- Marcatori;
-- Gare disputate;
-- nessuna Prossima partita, perché il campionato test è concluso;
-- 8 gare storiche 2026 caricate come fallback verificato;
-- risultato visibile direttamente nella card della gara;
-- ogni gara disputata è cliccabile;
-- dettaglio gara CSI con risultato, squadre, data/ora, campo e cronologia quando CSI LIVE la rende disponibile;
-- se CSI LIVE è temporaneamente irraggiungibile, il dettaglio continua ad aprirsi con i metadati storici locali invece di mostrare una schermata vuota;
-- navigazione indietro invariata e coerente.
-
-Non modifica la logica U14 FIGC/CSI, Home, ORA IN CAMPO, INFO o gli altri layout della V2.4.12.
+- Dettaglio U13 CSI ampliato: risultato, data/ora, giornata, panorama comparativo squadre, campo, cronologia ed eventuale cronaca CSI.
+- Fallback locale: anche se CSI LIVE non risponde, il dettaglio mantiene risultato, gara, campo e dati di girone invece di diventare quasi vuoto.
+- Tasto indietro dal DETTAGLIO GARA: ritorna esplicitamente a UNDER 13 TEST → GARE DISPUTATE, non alla Home.
+- Nessuna modifica alle altre sezioni già stabilizzate.
