@@ -1,11 +1,18 @@
-# USSA SMART HUB V2.4.10 — U14 FIGC PROSSIME PARTITE
+# USSA SMART HUB V2.4.13 — U13 TEST CSI COMPLETE
 
-Fix mirata della scheda UNDER 14 > FIGC:
-- PROSSIME PARTITE carica le fixture FIGC reali già usate dal calendario Home.
-- Le card gara sono cliccabili con listener JS affidabile (niente onclick inline annidati).
-- Toccando una gara si apre la stessa scheda PARTITA usata dal calendario generale Home.
-- Il tasto indietro torna alla scheda UNDER 14 FIGC con PROSSIME PARTITE selezionato.
-- GARE DISPUTATE usa la stessa infrastruttura quando esisteranno gare passate.
-- Fallback su /api/home/upcoming se l'endpoint squadra non restituisce dati.
+Fix cumulativo sulla base V2.4.12.
 
-Include anche tutte le modifiche della V2.4.9 perché parte dal pacchetto completo V2.4.8 con index V2.4.9.
+## UNDER 13 A 11 · TEST CSI
+- stessa grafica/sezioni delle squadre calcio complete;
+- Classifica;
+- Marcatori;
+- Gare disputate;
+- nessuna Prossima partita, perché il campionato test è concluso;
+- 8 gare storiche 2026 caricate come fallback verificato;
+- risultato visibile direttamente nella card della gara;
+- ogni gara disputata è cliccabile;
+- dettaglio gara CSI con risultato, squadre, data/ora, campo e cronologia quando CSI LIVE la rende disponibile;
+- se CSI LIVE è temporaneamente irraggiungibile, il dettaglio continua ad aprirsi con i metadati storici locali invece di mostrare una schermata vuota;
+- navigazione indietro invariata e coerente.
+
+Non modifica la logica U14 FIGC/CSI, Home, ORA IN CAMPO, INFO o gli altri layout della V2.4.12.

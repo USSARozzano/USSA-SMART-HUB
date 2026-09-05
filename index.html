@@ -595,7 +595,8 @@ async function selectTeamTab(tab,restoring=false){
 function matchCard(x,played){
   let title=x.home&&x.away?`${x.home} – ${x.away}`:(x.names?.length?x.names.slice(-2).join(' – '):x.raw||'Partita USSA');
   const attr=x.id?`data-fixture-id="${esc(x.id)}"`:(x.detail_url?`data-csi-detail="${esc(x.detail_url)}"`:``);
-  return `<button type="button" class="matchcard" ${attr}><div class="matchhead"><div><div class="matchdate">${fmtDate(x.date).long.toUpperCase()} · ${esc(x.time||'')}</div><div class="matchtitle">${esc(title)}</div><div class="small">${esc(x.field||x.competition||currentCompetition)}${x.address?' · '+esc(x.address):''}</div></div>${x.home_away?`<div class="pill">${esc(x.home_away)}</div>`:''}</div>${attr?`<div class="detailhint">${played?'DETTAGLIO GARA':'INFO PARTITA'} ›</div>`:''}</button>`
+  const score=played&&x.result?`<div class="played-score">${esc(x.result)}</div>`:'';
+  return `<button type="button" class="matchcard played-card" ${attr}><div class="matchhead"><div class="match-main"><div class="matchdate">${fmtDate(x.date).long.toUpperCase()} · ${esc(x.time||'')}</div><div class="matchtitle">${esc(title)}</div><div class="small">${esc(x.field||x.competition||currentCompetition)}${x.address?' · '+esc(x.address):''}</div></div>${score|| (x.home_away?`<div class="pill">${esc(x.home_away)}</div>`:'')}</div>${attr?`<div class="detailhint">${played?'DETTAGLIO GARA':'INFO PARTITA'} ›</div>`:''}</button>`
 }
 function openAppointment(x){if(x.kind==='EVENTO')navigate({type:'event',item:x});else if(x.id)navigate({type:'fixture',id:x.id})}
 function openFixtureDetail(id){navigate({type:'fixture',id})}
@@ -644,12 +645,39 @@ function buildCartographicRouteMap(el,r,x){
 function openFixtureMap(id){navigate({type:'map',id})}
 async function renderMapView(v){loading(true);try{let x=await getJSON(`/api/fixture/${v.id}`);if(x.home_away==='CASA'){goBack();return}let r=await getJSON(`/api/static-route/${x.id}`);showOverlay('MAPPA E PERCORSO',`<div class="fullmap-layout2"><div class="fullmap-info2"><h2>${esc(x.field)}</h2><p>${esc(x.address)} · ${r.km} km · circa ${r.minutes} min da USSA Stadium</p></div><div id="fullRouteMap" class="fullroute-map"></div></div>`);requestAnimationFrame(()=>buildCartographicRouteMap($('fullRouteMap'),r,x))}catch{showOverlay('MAPPA E PERCORSO','<div class="section"><div class="empty">Percorso non predisposto.</div></div>')}finally{loading(false)}}
 function openCsiDetail(url){navigate({type:'csi',url})}
-async function renderCsiView(v){loading(true);try{let d=await getJSON(`/api/game-detail?url=${encodeURIComponent(v.url)}`);showOverlay('DETTAGLIO GARA',`<div class="hero"><h1>${esc(d.score||'PARTITA')}</h1><p>${esc(d.title||'')}</p></div>${d.field?`<div class="section"><h3>CAMPO</h3>${esc(d.field)}</div>`:''}<div class="section"><h3>CRONOLOGIA</h3>${(d.events||[]).length?d.events.map(x=>`<div class="matchcard">${esc(x)}</div>`).join(''):'<div class="empty">Nessun evento di cronaca pubblicato.</div>'}</div>`)}catch{showOverlay('DETTAGLIO GARA','<div class="section"><div class="empty">Dettaglio CSI momentaneamente non disponibile.</div></div>')}finally{loading(false)}}
+async function renderCsiView(v){
+  loading(true);
+  try{
+    let d=await getJSON(`/api/game-detail?url=${encodeURIComponent(v.url)}`);
+    const fixtureTitle=(d.home&&d.away)?`${esc(d.home)} – ${esc(d.away)}`:esc(d.title||'PARTITA');
+    const when=d.date?`${fmtDate(d.date).long.toUpperCase()}${d.time?' · '+esc(d.time):''}`:'';
+    const meta=[d.competition||'CSI',d.round?`GIORNATA ${d.round}`:''].filter(Boolean).join(' · ');
+    showOverlay('DETTAGLIO GARA',`<div class="csi-detail"><section class="csi-score-hero"><div class="csi-detail-meta">${esc(meta)}</div><h1>${fixtureTitle}</h1><div class="csi-score">${esc(d.score||'—')}</div>${when?`<div class="csi-when">${when}</div>`:''}</section>${d.field?`<section class="section csi-field"><h3>CAMPO</h3><div class="place-title">${esc(d.field)}</div></section>`:''}<section class="section"><h3>CRONOLOGIA</h3>${(d.events||[]).length?`<div class="csi-events">${d.events.map(x=>`<div class="csi-event">${esc(x)}</div>`).join('')}</div>`:'<div class="empty">Nessun evento di cronaca pubblicato.</div>'}</section></div>`);
+  }catch{showOverlay('DETTAGLIO GARA','<div class="section"><div class="empty">Dettaglio CSI momentaneamente non disponibile.</div></div>')}
+  finally{loading(false)}
+}
 function openNowTeam(){let x=nowItems[nowIdx];if(x?.team_key)openTeam(x.team_key)}
 function openInfo(){navigate({type:'info'})}function renderInfoView(){let sec=hub.secretariat||{};showOverlay('INFO',`<div class="info-menu"><div class="infocard"><h3>SEGRETERIA</h3><div class="kv"><div class="kvrow"><b>Orari</b><span>${esc(sec.label||'')} · ${esc(sec.open||'')}–${esc(sec.close||'')}</span></div></div></div><div class="infocard"><h3>SOCIAL & CONTATTI</h3><div class="empty">Area predisposta per contatti, social e QR.</div></div><div class="infocard"><h3>DIRIGENZA</h3><div class="empty">Area predisposta.</div></div><div class="infocard"><h3>PARTNER & SPONSOR</h3><div class="empty">Area predisposta.</div></div></div>`)}
 function renderEventView(x){showOverlay('EVENTO',`<div class="hero"><h1>${esc(x.title)}</h1><p>${fmtDate(x.date).long} · ${esc(x.time||'')}</p></div><div class="section">${esc(x.description||'Evento USSA')}</div>`)}
 function resetIdle(){clearTimeout(idleTimer);$('idle').classList.remove('show');idleTimer=setTimeout(()=>$('idle').classList.add('show'),(hub.idle_seconds||90)*1000)}function wake(){$('idle').classList.remove('show');resetIdle()}['click','touchstart','mousemove','keydown'].forEach(e=>document.addEventListener(e,resetIdle,{passive:true}));boot().catch(console.error);
-</script></body></html>
+</script>
+<style>
+/* V2.4.13 — U13 TEST CSI: experience completa */
+.played-card .matchhead{align-items:center}
+.match-main{min-width:0;flex:1}
+.played-score{flex:0 0 auto;min-width:105px;padding:13px 16px;border-radius:14px;background:var(--yellow);color:var(--blue);font-size:27px;line-height:1;font-weight:950;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.16)}
+.csi-detail{display:grid;gap:14px}
+.csi-score-hero{border:1px solid rgba(255,210,0,.28);border-radius:22px;background:linear-gradient(145deg,rgba(20,47,83,.98),rgba(9,25,48,.98));padding:24px;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,.22)}
+.csi-detail-meta{font-size:14px;font-weight:900;color:var(--yellow);letter-spacing:.8px;margin-bottom:8px}
+.csi-score-hero h1{font-size:28px;line-height:1.08;margin:0;color:#fff}
+.csi-score{font-size:58px;line-height:1;font-weight:950;color:var(--yellow);margin:15px 0 10px}
+.csi-when{font-size:18px;font-weight:850;color:#fff}
+.csi-field .place-title{margin-top:5px}
+.csi-events{display:grid;gap:8px;margin-top:8px}
+.csi-event{padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);font-size:15px;line-height:1.3;color:#fff}
+</style>
+<!-- V2.4.13 U13 TEST CSI COMPLETE -->
+</body></html>
 <!-- V2.4.12 HOME TITLES + INFO spacing fix -->
 <style>
 /* Titoli dei 4 box Home: stessa gerarchia visiva */
