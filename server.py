@@ -340,84 +340,32 @@ def fixture_detail(fixture_id:str):
 
 @app.get('/api/game-detail')
 def game_detail(url:str):
-    if not url.startswith(CSI_LIVE):raise HTTPException(400,'Link gara non valido')
+    if not url.startswith(CSI_LIVE): raise HTTPException(400,'Link gara non valido')
     path=urlparse(url).path
     static=next((x for x in U13_TEST_MATCHES if urlparse(x.get('detail_url','')).path==path),None)
-    seed=U13_DETAIL_FALLBACK.get(path,{})
-    info={'url':url,'title':'','score':'','field':'','events':[],'overview':{},'report':'','source_live':False}
+    snapshots=load_json('u13_match_details.json',{})
+    snap=snapshots.get(path)
+    # U13 TEST è un campionato storico: il dettaglio viene servito da snapshot
+    # verificati su CSI LIVE, così la experience non dipende dalla raggiungibilità
+    # del sito CSI durante l'uso del totem.
+    if snap:
+        out=dict(snap)
+        out['url']=url
+        out['source_live']=False
+        out['source_snapshot']=True
+        return out
     if static:
-        info.update({'home':static['home'],'away':static['away'],'date':static['date'],'time':static['time'],
-                     'round':static.get('round'),'competition':'CSI','score':static.get('result',''),'field':static.get('field','')})
         def row_for(name):
             key=clean(name).lower()
             return next((dict(r) for r in U13_TEST_STANDINGS if clean(r.get('team')).lower()==key),None)
-        info['overview']={'home':row_for(static['home']),'away':row_for(static['away']),'mode':'finale_girone'}
-    if seed:
-        for k in ('overview','events','report'):
-            if seed.get(k): info[k]=seed[k]
-    try:
-        s=soup(url);body=clean(s.get_text(' ',strip=True));info['source_live']=True
-    except Exception:
-        if static:return info
-        raise HTTPException(503,'Dettaglio CSI momentaneamente non disponibile')
-
-    strings=[clean(str(x)) for x in s.stripped_strings if clean(str(x))]
-    hs=[clean(x.get_text(' ',strip=True)) for x in s.find_all(['h1','h2','h3','h4','h5','h6'])]
-    info['title']=' · '.join([x for x in hs[:4] if x][:2])
-    m=re.search(r'\b(\d+)\s*[-–]\s*(\d+)\b',body)
-    if m:info['score']=m.group(0)
-    mf=re.search(r'Campo:\s*([^©]+?)(?:Codice gara:|Panoramica squadre|Variazione di data|2025/26|2026/27|Lombardia|$)',body,re.I)
-    if mf:info['field']=clean(mf.group(1))
-
-    labels={'points':'Punti','position':'Posizione classifica','played':'Matches giocati','wins':'Vittorie','draws':'Pareggi','losses':'Sconfitte','gf':'Gol fatti','gs':'Gol subiti','gf_avg':'Gol fatti a partita','gs_avg':'Gol subiti a partita'}
-    live_home={};live_away={}
-    for key,label in labels.items():
-        idx=next((i for i,x in enumerate(strings) if x.lower()==label.lower()),None)
-        if idx is None: continue
-        def near_num(i,step):
-            for off in range(1,5):
-                j=i+step*off
-                if 0<=j<len(strings) and re.fullmatch(r'\d+(?:[\.,]\d+)?',strings[j]):return strings[j]
-        a,b=near_num(idx,-1),near_num(idx,1)
-        if a is not None:live_home[key]=a
-        if b is not None:live_away[key]=b
-    if live_home or live_away:
-        live_home['team']=info.get('home','');live_away['team']=info.get('away','')
-        info['overview']={'home':live_home,'away':live_away,'mode':'snapshot_csi'}
-
-    # Timeline CSI: raccoglie punteggi, minuti, cambi, recuperi e altri eventi pubblicati nella pagina gara.
-    timeline_start=next((i for i,x in enumerate(strings) if re.match(r'^Fine\s+\d+\s*[-–]\s*\d+',x,re.I)),None)
-    if timeline_start is None: timeline_start=next((i for i,x in enumerate(strings) if x.lower().startswith('fine primo tempo')),None)
-    title_marker=(f"{info.get('home','')} vs {info.get('away','')}".strip()).lower()
-    timeline_end=None
-    if timeline_start is not None:
-        for i in range(timeline_start+1,len(strings)):
-            low=strings[i].lower()
-            if (title_marker and title_marker in low) or low=='classifica pdf':timeline_end=i;break
-        zone=strings[timeline_start:timeline_end or min(len(strings),timeline_start+140)]
-        ev=[];pending=''
-        for txt in zone:
-            if re.fullmatch(r"\d{1,2}(?:'{1,2}|’{1,2})",txt):pending=txt.replace("''","'");continue
-            if re.match(r'^Fine\s+\d+\s*[-–]\s*\d+',txt,re.I):ev.append({'time':'FINE','type':'phase','text':txt});continue
-            if re.match(r'^Fine primo tempo',txt,re.I):ev.append({'time':'INTERVALLO','type':'phase','text':txt});continue
-            if re.search(r'minut[oi]\s+di\s+recupero',txt,re.I):ev.append({'time':pending,'type':'phase','text':txt});pending='';continue
-            if re.fullmatch(r'\d+\s*[-–]\s*\d+',txt):ev.append({'time':pending,'type':'goal','text':'Punteggio '+txt.replace('-', '–')});pending='';continue
-            if txt.startswith('Esce:'):ev.append({'time':pending,'type':'sub','text':txt});pending='';continue
-            if pending and len(txt)<=80 and txt.lower() not in {'modifica','image'} and not re.fullmatch(r'\d+',txt):
-                ev.append({'time':pending,'type':'event','text':txt});pending=''
-        if ev:info['events']=ev[:70]
-
-    # Cronaca testuale CSI: testo dopo il titolo "Casa vs Ospiti" e prima della classifica.
-    if title_marker:
-        ridx=next((i for i,x in enumerate(strings) if title_marker in x.lower()),None)
-        if ridx is not None:
-            parts=[]
-            for txt in strings[ridx+1:]:
-                if txt.lower()=='classifica pdf':break
-                if len(txt)>=80:parts.append(txt)
-                if sum(map(len,parts))>2200:break
-            if parts:info['report']=' '.join(parts)[:2400]
-    return info
+        return {
+            'url':url,'home':static['home'],'away':static['away'],'score':static.get('result',''),
+            'date':static['date'],'time':static['time'],'round':static.get('round'),'competition':'CSI',
+            'field':static.get('field',''),'overview':{'home':row_for(static['home']),'away':row_for(static['away']),'mode':'girone_csi'},
+            'events':[],'report':'','source_live':False,'source_snapshot':True,
+            'source_url':static.get('detail_url','')
+        }
+    raise HTTPException(404,'Gara CSI non trovata')
 
 
 def geocode(address):

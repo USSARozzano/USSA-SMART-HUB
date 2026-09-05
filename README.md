@@ -14,3 +14,9 @@ Correzioni:
 - INDIETRO usa ora lo stack reale: dettaglio gara -> UNDER 13 TEST > GARE DISPUTATE.
 
 Caricare tutto il contenuto nel branch V2 sostituendo gli omonimi.
+
+
+## V2.4.16 U13 DETAIL FIX
+- Dettagli U13 storici serviti da snapshot verificati CSI LIVE, senza dipendenza runtime.
+- Back esplicito a UNDER 13 TEST > GARE DISPUTATE.
+- Pagina dettaglio coerente con PARTITA Home: risultato, info gara, stats, timeline/cronaca quando disponibili.

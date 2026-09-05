@@ -644,7 +644,7 @@ function buildCartographicRouteMap(el,r,x){
 }
 function openFixtureMap(id){navigate({type:'map',id})}
 async function renderMapView(v){loading(true);try{let x=await getJSON(`/api/fixture/${v.id}`);if(x.home_away==='CASA'){goBack();return}let r=await getJSON(`/api/static-route/${x.id}`);showOverlay('MAPPA E PERCORSO',`<div class="fullmap-layout2"><div class="fullmap-info2"><h2>${esc(x.field)}</h2><p>${esc(x.address)} · ${r.km} km · circa ${r.minutes} min da USSA Stadium</p></div><div id="fullRouteMap" class="fullroute-map"></div></div>`);requestAnimationFrame(()=>buildCartographicRouteMap($('fullRouteMap'),r,x))}catch{showOverlay('MAPPA E PERCORSO','<div class="section"><div class="empty">Percorso non predisposto.</div></div>')}finally{loading(false)}}
-function openCsiDetail(url){navigate({type:'csi',url})}
+function openCsiDetail(url){const back={type:'team',key:currentTeam?.key||'u13a11_test',comp:currentCompetition||'CSI',tab:'played'};navigate({type:'csi',url,returnView:back})}
 function csiStatRows(a,b){
   const defs=[['POSIZIONE','position'],['PUNTI','points'],['GIOCATE','played'],['VITTORIE','wins'],['PAREGGI','draws'],['SCONFITTE','losses'],['GOL FATTI','gf'],['GOL SUBITI','gs']];
   return defs.filter(([,k])=>a?.[k]!=null||b?.[k]!=null).map(([label,k])=>`<div class="csi-stat-row"><strong>${esc(a?.[k]??'—')}</strong><span>${label}</span><strong>${esc(b?.[k]??'—')}</strong></div>`).join('')
@@ -660,29 +660,28 @@ async function renderCsiView(v){
   try{
     const d=await getJSON(`/api/game-detail?url=${encodeURIComponent(v.url)}`);
     const f=d.date?fmtDate(d.date):null;
-    const meta=[d.competition||'CSI',d.round?`GIORNATA ${d.round}`:''].filter(Boolean).join(' · ');
     const ov=d.overview||{},ha=ov.home||{},aa=ov.away||{};
-    const overview=(Object.keys(ha).length||Object.keys(aa).length)?`<section class="stats-card csi-stats-card"><h3>STATS</h3><div class="csi-stat-head"><div>${esc(d.home||ha.team||'CASA')}</div><div>${esc(d.away||aa.team||'OSPITI')}</div></div>${csiStatRows(ha,aa)}${ov.mode==='finale_girone'?'<div class="csi-source-note">Dati finali del girone usati come riferimento quando lo snapshot gara non è disponibile.</div>':''}</section>`:'';
-    const events=(d.events||[]);
-    const timeline=events.length?`<div class="csi-timeline">${events.map(csiEventCard).join('')}</div>`:'<div class="empty">Per questa gara CSI non espone eventi di cronologia.</div>';
+    const overview=(Object.keys(ha).length||Object.keys(aa).length)?`<section class="stats-card csi-stats-card"><h3>STATS</h3><div class="csi-stat-head"><div>${esc(d.home||ha.team||'CASA')}</div><div>${esc(d.away||aa.team||'OSPITI')}</div></div>${csiStatRows(ha,aa)}<div class="csi-source-note">Dati della competizione CSI usati come riferimento per la gara.</div></section>`:'';
+    const events=d.events||[];
+    const timeline=events.length?`<section class="section csi-chrono"><h3>CRONOLOGIA GARA</h3><div class="csi-timeline">${events.map(csiEventCard).join('')}</div></section>`:'';
     const report=d.report?`<section class="section csi-report"><h3>CRONACA CSI</h3><p>${esc(d.report)}</p></section>`:'';
-    const liveBadge=d.source_live?'<span class="source-live">DATI CSI LIVE</span>':'<span class="source-local">DATI DISPONIBILI OFFLINE</span>';
-    showOverlay('DETTAGLIO GARA',`<div class="csi-detail csi-detail-v15">
+    const sourceBadge=d.source_snapshot?'<span class="source-live">FONTE CSI LIVE</span>':(d.source_live?'<span class="source-live">DATI CSI LIVE</span>':'');
+    const info=`<section class="csi-match-info"><div><span>COMPETIZIONE</span><strong>UNDER 13 A 11 · PRIMAV · GIRONE B</strong></div><div><span>GIORNATA</span><strong>${esc(d.round||'—')}</strong></div><div><span>DATA E ORA</span><strong>${f?f.long.toUpperCase():'—'}${d.time?' · '+esc(d.time):''}</strong></div><div><span>CAMPO</span><strong>${esc(d.field||'—')}</strong></div></section>`;
+    showOverlay('DETTAGLIO GARA',`<div class="csi-detail csi-detail-v16">
       <section class="fixture-stage csi-match-stage">
         <div class="fixture-stage-top"><span>UNDER 13 TEST</span><span>·</span><span>CSI</span>${d.round?`<span>·</span><span>GIORNATA ${esc(d.round)}</span>`:''}</div>
         <div class="fixture-clubs csi-clubs">
           <div class="club-side ${String(d.home||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.home||'CASA')}<div class="club-name">${esc(d.home||'CASA')}</div></div>
-          <div class="csi-result-center"><div class="result-label">RISULTATO</div><div class="csi-score">${esc(d.score||'—')}</div>${liveBadge}</div>
+          <div class="csi-result-center"><div class="result-label">RISULTATO</div><div class="csi-score">${esc(d.score||'—')}</div>${sourceBadge}</div>
           <div class="club-side ${String(d.away||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.away||'OSPITI')}<div class="club-name">${esc(d.away||'OSPITI')}</div></div>
         </div>
-        ${(f||d.time)?`<div class="fixture-when3 csi-whenbar"><span class="datepart">${f?f.long.toUpperCase():''}</span>${d.time?'<span class="dot"></span>':''}<span class="timepart">${esc(d.time||'')}</span></div>`:''}
       </section>
+      ${info}
       ${overview}
-      ${d.field?`<section class="fixture-place home-only csi-place"><div><h3>DOVE SI È GIOCATO</h3><div class="place-title">${esc(d.field)}</div></div></section>`:''}
-      <section class="section csi-chrono"><h3>CRONOLOGIA GARA</h3>${timeline}</section>
+      ${timeline}
       ${report}
     </div>`);
-  }catch(e){showOverlay('DETTAGLIO GARA','<div class="section"><div class="empty">Dettaglio CSI momentaneamente non disponibile.</div></div>')}
+  }catch(e){showOverlay('DETTAGLIO GARA','<div class="section"><div class="empty">Dettaglio gara non disponibile.</div></div>')}
   finally{loading(false)}
 }
 function openNowTeam(){let x=nowItems[nowIdx];if(x?.team_key)openTeam(x.team_key)}
@@ -798,4 +797,23 @@ function resetIdle(){clearTimeout(idleTimer);$('idle').classList.remove('show');
 .secretary-status{
   margin-top:12px!important;
 }
+</style>
+
+<style>
+/* V2.4.16 — U13 TEST: dettaglio storico completo e deterministico */
+.csi-detail-v16{display:grid;gap:14px;padding-bottom:24px}
+.csi-detail-v16 .csi-match-stage{padding:22px!important}
+.csi-detail-v16 .csi-clubs{grid-template-columns:minmax(0,1fr) 210px minmax(0,1fr)!important;align-items:center}
+.csi-detail-v16 .club-name{font-size:22px;line-height:1.08;margin-top:10px}
+.csi-detail-v16 .csi-score{font-size:68px;margin:8px 0}
+.csi-match-info{display:grid;grid-template-columns:1.45fr .55fr 1.25fr 1.75fr;gap:10px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#0e3555,#08263f);padding:15px 18px}
+.csi-match-info>div{min-width:0;padding:2px 10px;border-right:1px solid rgba(255,255,255,.09)}
+.csi-match-info>div:last-child{border-right:0}
+.csi-match-info span{display:block;color:var(--yellow);font-size:10px;font-weight:950;letter-spacing:.65px;margin-bottom:6px}
+.csi-match-info strong{display:block;color:#fff;font-size:14px;line-height:1.25}
+.csi-detail-v16 .csi-stats-card{margin:0}
+.csi-detail-v16 .csi-chrono,.csi-detail-v16 .csi-report{margin:0}
+.csi-detail-v16 .csi-report p{font-size:16px;line-height:1.55}
+.source-live{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,210,0,.38);border-radius:999px;padding:6px 10px;color:var(--yellow);font-size:10px;font-weight:950;letter-spacing:.45px}
+@media(max-width:700px){.csi-match-info{grid-template-columns:1fr 1fr}.csi-match-info>div:nth-child(2){border-right:0}.csi-detail-v16 .csi-clubs{grid-template-columns:1fr!important}.csi-detail-v16 .csi-score{font-size:54px}}
 </style>

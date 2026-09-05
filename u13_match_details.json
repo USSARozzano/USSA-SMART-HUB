@@ -1,0 +1,524 @@
+{
+  "/25/Calcio-a-11/Lombardia/Milano/P2025235BA0103/": {
+    "home": "Polisportiva Omr",
+    "away": "Ussa Rozzano",
+    "score": "7 - 4",
+    "date": "2026-03-28",
+    "time": "17:00",
+    "round": 1,
+    "competition": "CSI · UNDER 13 A 11 - PRIMAV · GIRONE B",
+    "field": "Centro Maria Rivetta · Via Beato Angelico 1, Pioltello",
+    "overview": {
+      "home": {
+        "team": "Polisportiva Omr",
+        "points": 15,
+        "position": 3,
+        "played": 8,
+        "wins": 5,
+        "draws": 0,
+        "losses": 3,
+        "gf": 21,
+        "gs": 17
+      },
+      "away": {
+        "team": "Ussa Rozzano",
+        "points": 17,
+        "position": 2,
+        "played": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "gf": 24,
+        "gs": 13
+      },
+      "mode": "girone_csi"
+    },
+    "events": [],
+    "report": "",
+    "source_verified": true,
+    "source_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0103/"
+  },
+  "/25/Calcio-a-11/Lombardia/Milano/P2025235BA0202/": {
+    "home": "Ussa Rozzano",
+    "away": "S.Giuliano Cologno Osgd",
+    "score": "4 - 2",
+    "date": "2026-04-11",
+    "time": "15:00",
+    "round": 2,
+    "competition": "CSI · UNDER 13 A 11 - PRIMAV · GIRONE B",
+    "field": "USSA Stadium · Via Cooperazione, Rozzano",
+    "overview": {
+      "home": {
+        "team": "Ussa Rozzano",
+        "points": 17,
+        "position": 2,
+        "played": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "gf": 24,
+        "gs": 13
+      },
+      "away": {
+        "team": "S.Giuliano Cologno Osgd",
+        "points": 18,
+        "position": 1,
+        "played": 8,
+        "wins": 6,
+        "draws": 0,
+        "losses": 2,
+        "gf": 18,
+        "gs": 8
+      },
+      "mode": "girone_csi"
+    },
+    "events": [
+      {
+        "time": "24'",
+        "type": "goal",
+        "text": "S.Giuliano Cologno Osgd segna: 0–1"
+      },
+      {
+        "time": "30'",
+        "type": "goal",
+        "text": "USSA Rozzano pareggia: 1–1"
+      },
+      {
+        "time": "INTERVALLO",
+        "type": "phase",
+        "text": "Fine primo tempo · 1–1"
+      },
+      {
+        "time": "1'",
+        "type": "sub",
+        "text": "Paganello C. esce · Pennino L. entra"
+      },
+      {
+        "time": "3'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 2–1"
+      },
+      {
+        "time": "8'",
+        "type": "sub",
+        "text": "Pagano R. esce · Sequino M. entra"
+      },
+      {
+        "time": "12'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 3–1"
+      },
+      {
+        "time": "13'",
+        "type": "goal",
+        "text": "S.Giuliano Cologno Osgd segna: 3–2"
+      },
+      {
+        "time": "19'",
+        "type": "sub",
+        "text": "Livrieri A. esce · Maida L. entra"
+      },
+      {
+        "time": "26'",
+        "type": "sub",
+        "text": "Casarano E. esce · Di Mitri D. entra"
+      },
+      {
+        "time": "28'",
+        "type": "sub",
+        "text": "Sequino M. esce · Milito D. entra"
+      },
+      {
+        "time": "32'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 4–2"
+      },
+      {
+        "time": "FINE",
+        "type": "phase",
+        "text": "Fine gara · 4–2"
+      }
+    ],
+    "report": "",
+    "source_verified": true,
+    "source_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0202/"
+  },
+  "/25/Calcio-a-11/Lombardia/Milano/P2025235BA0304/": {
+    "home": "Aso Cernusco 2013 Blu",
+    "away": "Ussa Rozzano",
+    "score": "0 - 5",
+    "date": "2026-04-18",
+    "time": "16:00",
+    "round": 3,
+    "competition": "CSI · UNDER 13 A 11 - PRIMAV · GIRONE B",
+    "field": "Oratorio Paolo VI · Via S. Francesco 12, Cernusco sul Naviglio",
+    "overview": {
+      "home": {
+        "team": "Aso Cernusco 2013 Blu",
+        "points": 0,
+        "position": 9,
+        "played": 8,
+        "wins": 0,
+        "draws": 0,
+        "losses": 8,
+        "gf": 3,
+        "gs": 29
+      },
+      "away": {
+        "team": "Ussa Rozzano",
+        "points": 17,
+        "position": 2,
+        "played": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "gf": 24,
+        "gs": 13
+      },
+      "mode": "girone_csi"
+    },
+    "events": [
+      {
+        "time": "28'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 0–1"
+      },
+      {
+        "time": "INTERVALLO",
+        "type": "phase",
+        "text": "Fine primo tempo · 0–1"
+      },
+      {
+        "time": "8'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 0–2"
+      },
+      {
+        "time": "11'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 0–3"
+      },
+      {
+        "time": "14'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 0–4"
+      },
+      {
+        "time": "20'",
+        "type": "sub",
+        "text": "Laurora T. esce · Pollio E. entra"
+      },
+      {
+        "time": "24'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 0–5"
+      },
+      {
+        "time": "FINE",
+        "type": "phase",
+        "text": "Fine gara · 0–5"
+      }
+    ],
+    "report": "CSI LIVE descrive una vittoria netta dell’USSA Rozzano sul campo dell’Aso Cernusco 2013 Blu, con vantaggio nel primo tempo e quattro reti nella ripresa fino allo 0–5 finale.",
+    "source_verified": true,
+    "source_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0304/"
+  },
+  "/25/Calcio-a-11/Lombardia/Milano/P2025235BA0401/": {
+    "home": "Ussa Rozzano",
+    "away": "S.Fermo",
+    "score": "3 - 0",
+    "date": "2026-04-25",
+    "time": "15:00",
+    "round": 4,
+    "competition": "CSI · UNDER 13 A 11 - PRIMAV · GIRONE B",
+    "field": "USSA Stadium · Via Cooperazione, Rozzano",
+    "overview": {
+      "home": {
+        "team": "Ussa Rozzano",
+        "points": 17,
+        "position": 2,
+        "played": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "gf": 24,
+        "gs": 13
+      },
+      "away": {
+        "team": "S.Fermo",
+        "points": 13,
+        "position": 5,
+        "played": 8,
+        "wins": 4,
+        "draws": 1,
+        "losses": 3,
+        "gf": 13,
+        "gs": 14
+      },
+      "mode": "girone_csi"
+    },
+    "events": [
+      {
+        "time": "13'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 1–0"
+      },
+      {
+        "time": "20'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 2–0"
+      },
+      {
+        "time": "INTERVALLO",
+        "type": "phase",
+        "text": "Fine primo tempo · 2–0"
+      },
+      {
+        "time": "25'",
+        "type": "sub",
+        "text": "Livrieri A. esce · Marinoni L. entra"
+      },
+      {
+        "time": "30'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 3–0"
+      },
+      {
+        "time": "FINE",
+        "type": "phase",
+        "text": "Fine gara · 3–0"
+      }
+    ],
+    "report": "",
+    "source_verified": true,
+    "source_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0401/"
+  },
+  "/25/Calcio-a-11/Lombardia/Milano/P2025235BA0601/": {
+    "home": "Usom Calcio",
+    "away": "Ussa Rozzano",
+    "score": "2 - 2",
+    "date": "2026-05-10",
+    "time": "15:00",
+    "round": 6,
+    "competition": "CSI · UNDER 13 A 11 - PRIMAV · GIRONE B",
+    "field": "Campo Comunale Sarmazzano · Via Giovanni Paolo I 19, Vizzolo Predabissi",
+    "overview": {
+      "home": {
+        "team": "Usom Calcio",
+        "points": 15,
+        "position": 4,
+        "played": 8,
+        "wins": 4,
+        "draws": 3,
+        "losses": 1,
+        "gf": 25,
+        "gs": 11
+      },
+      "away": {
+        "team": "Ussa Rozzano",
+        "points": 17,
+        "position": 2,
+        "played": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "gf": 24,
+        "gs": 13
+      },
+      "mode": "girone_csi"
+    },
+    "events": [],
+    "report": "",
+    "source_verified": true,
+    "source_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0601/"
+  },
+  "/25/Calcio-a-11/Lombardia/Milano/P2025235BA0704/": {
+    "home": "Ussa Rozzano",
+    "away": "Sporting C.B. Scb",
+    "score": "3 - 0",
+    "date": "2026-05-16",
+    "time": "15:00",
+    "round": 7,
+    "competition": "CSI · UNDER 13 A 11 - PRIMAV · GIRONE B",
+    "field": "USSA Stadium · Via Cooperazione, Rozzano",
+    "overview": {
+      "home": {
+        "team": "Ussa Rozzano",
+        "points": 17,
+        "position": 2,
+        "played": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "gf": 24,
+        "gs": 13
+      },
+      "away": {
+        "team": "Sporting C.B. Scb",
+        "points": 9,
+        "position": 7,
+        "played": 8,
+        "wins": 3,
+        "draws": 0,
+        "losses": 5,
+        "gf": 8,
+        "gs": 15
+      },
+      "mode": "girone_csi"
+    },
+    "events": [],
+    "report": "",
+    "source_verified": true,
+    "source_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0704/"
+  },
+  "/25/Calcio-a-11/Lombardia/Milano/P2025235BA0802/": {
+    "home": "Osv Milano 2013 Orange",
+    "away": "Ussa Rozzano",
+    "score": "1 - 2",
+    "date": "2026-05-24",
+    "time": "14:30",
+    "round": 8,
+    "competition": "CSI · UNDER 13 A 11 - PRIMAV · GIRONE B",
+    "field": "Iris 1914 · Via Faraday 15, Milano",
+    "overview": {
+      "home": {
+        "team": "Osv Milano 2013 Orange",
+        "points": 6,
+        "position": 8,
+        "played": 8,
+        "wins": 2,
+        "draws": 0,
+        "losses": 6,
+        "gf": 7,
+        "gs": 22
+      },
+      "away": {
+        "team": "Ussa Rozzano",
+        "points": 17,
+        "position": 2,
+        "played": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "gf": 24,
+        "gs": 13
+      },
+      "mode": "girone_csi"
+    },
+    "events": [
+      {
+        "time": "6'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 0–1"
+      },
+      {
+        "time": "INTERVALLO",
+        "type": "phase",
+        "text": "Fine primo tempo · 0–1"
+      },
+      {
+        "time": "27'",
+        "type": "goal",
+        "text": "OSV Milano 2013 Orange pareggia: 1–1"
+      },
+      {
+        "time": "29'",
+        "type": "card",
+        "text": "Provvedimento disciplinare alla panchina USSA"
+      },
+      {
+        "time": "30'",
+        "type": "goal",
+        "text": "USSA Rozzano segna: 1–2"
+      },
+      {
+        "time": "33'",
+        "type": "card",
+        "text": "Provvedimento disciplinare a Laurora T."
+      },
+      {
+        "time": "FINE",
+        "type": "phase",
+        "text": "Fine gara · 1–2"
+      }
+    ],
+    "report": "CSI LIVE racconta una gara combattuta all’Iris 1914: USSA avanti nel primo tempo, pareggio OSV nella ripresa e rete decisiva dell’USSA nel finale per l’1–2.",
+    "source_verified": true,
+    "source_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0802/"
+  },
+  "/25/Calcio-a-11/Lombardia/Milano/P2025235BA0903/": {
+    "home": "Ussa Rozzano",
+    "away": "Osm Assago",
+    "score": "1 - 1",
+    "date": "2026-05-28",
+    "time": "18:30",
+    "round": 9,
+    "competition": "CSI · UNDER 13 A 11 - PRIMAV · GIRONE B",
+    "field": "USSA Stadium · Via Cooperazione, Rozzano",
+    "overview": {
+      "home": {
+        "team": "Ussa Rozzano",
+        "points": 17,
+        "position": 2,
+        "played": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "gf": 24,
+        "gs": 13
+      },
+      "away": {
+        "team": "Osm Assago",
+        "points": 11,
+        "position": 6,
+        "played": 8,
+        "wins": 3,
+        "draws": 2,
+        "losses": 3,
+        "gf": 17,
+        "gs": 7
+      },
+      "mode": "girone_csi"
+    },
+    "events": [
+      {
+        "time": "16'",
+        "type": "goal",
+        "text": "OSM Assago segna: 0–1"
+      },
+      {
+        "time": "25'",
+        "type": "sub",
+        "text": "Caso A. esce · Maida L. entra"
+      },
+      {
+        "time": "28'",
+        "type": "goal",
+        "text": "USSA Rozzano pareggia: 1–1"
+      },
+      {
+        "time": "INTERVALLO",
+        "type": "phase",
+        "text": "Fine primo tempo · 1–1"
+      },
+      {
+        "time": "25'",
+        "type": "sub",
+        "text": "Paganello C. esce · Pennino L. entra"
+      },
+      {
+        "time": "25'",
+        "type": "sub",
+        "text": "Iorio S. esce · Sica A. entra"
+      },
+      {
+        "time": "FINE",
+        "type": "phase",
+        "text": "Fine gara · 1–1"
+      }
+    ],
+    "report": "CSI LIVE descrive un pareggio 1–1 allo USSA Stadium: OSM Assago passa avanti, USSA reagisce e pareggia prima dell’intervallo; nella ripresa il risultato non cambia.",
+    "source_verified": true,
+    "source_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0903/"
+  }
+}
