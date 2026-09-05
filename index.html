@@ -644,24 +644,45 @@ function buildCartographicRouteMap(el,r,x){
 }
 function openFixtureMap(id){navigate({type:'map',id})}
 async function renderMapView(v){loading(true);try{let x=await getJSON(`/api/fixture/${v.id}`);if(x.home_away==='CASA'){goBack();return}let r=await getJSON(`/api/static-route/${x.id}`);showOverlay('MAPPA E PERCORSO',`<div class="fullmap-layout2"><div class="fullmap-info2"><h2>${esc(x.field)}</h2><p>${esc(x.address)} · ${r.km} km · circa ${r.minutes} min da USSA Stadium</p></div><div id="fullRouteMap" class="fullroute-map"></div></div>`);requestAnimationFrame(()=>buildCartographicRouteMap($('fullRouteMap'),r,x))}catch{showOverlay('MAPPA E PERCORSO','<div class="section"><div class="empty">Percorso non predisposto.</div></div>')}finally{loading(false)}}
-function openCsiDetail(url){const returnView={type:'team',key:currentTeam?.key||'u13a11_test',comp:currentCompetition||'CSI',tab:'played'};navStack.push({...returnView});currentView={type:'csi',url,returnView};renderCurrent()}
+function openCsiDetail(url){navigate({type:'csi',url})}
 function csiStatRows(a,b){
   const defs=[['POSIZIONE','position'],['PUNTI','points'],['GIOCATE','played'],['VITTORIE','wins'],['PAREGGI','draws'],['SCONFITTE','losses'],['GOL FATTI','gf'],['GOL SUBITI','gs']];
   return defs.filter(([,k])=>a?.[k]!=null||b?.[k]!=null).map(([label,k])=>`<div class="csi-stat-row"><strong>${esc(a?.[k]??'—')}</strong><span>${label}</span><strong>${esc(b?.[k]??'—')}</strong></div>`).join('')
 }
+function csiEventCard(ev){
+  if(typeof ev==='string')return `<div class="csi-event"><span class="event-dot"></span><div>${esc(ev)}</div></div>`;
+  const type=ev?.type||'event',time=ev?.time||'';
+  const icon=type==='goal'?'⚽':type==='sub'?'↔':type==='card'?'▰':type==='phase'?'◆':'•';
+  return `<div class="csi-event ${esc(type)}"><div class="event-time">${esc(time)}</div><div class="event-icon">${icon}</div><div class="event-text">${esc(ev?.text||'')}</div></div>`
+}
 async function renderCsiView(v){
   loading(true);
   try{
-    let d=await getJSON(`/api/game-detail?url=${encodeURIComponent(v.url)}`);
-    const fixtureTitle=(d.home&&d.away)?`${esc(d.home)} – ${esc(d.away)}`:esc(d.title||'PARTITA');
-    const when=d.date?`${fmtDate(d.date).long.toUpperCase()}${d.time?' · '+esc(d.time):''}`:'';
+    const d=await getJSON(`/api/game-detail?url=${encodeURIComponent(v.url)}`);
+    const f=d.date?fmtDate(d.date):null;
     const meta=[d.competition||'CSI',d.round?`GIORNATA ${d.round}`:''].filter(Boolean).join(' · ');
     const ov=d.overview||{},ha=ov.home||{},aa=ov.away||{};
-    const overview=(Object.keys(ha).length||Object.keys(aa).length)?`<section class="section csi-overview"><h3>PANORAMICA SQUADRE</h3><div class="csi-stat-head"><b>${esc(d.home||ha.team||'CASA')}</b><b>${esc(d.away||aa.team||'OSPITI')}</b></div>${csiStatRows(ha,aa)}${ov.mode==='finale_girone'?'<div class="csi-source-note">Dati del girone disponibili come riferimento.</div>':''}</section>`:'';
-    const timeline=(d.events||[]).length?`<div class="csi-timeline">${d.events.map(x=>{const score=/^\d+\s*[-–]\s*\d+$/.test(x);const phase=/^Fine|recupero/i.test(x);return `<div class="csi-event ${score?'score-event':''} ${phase?'phase-event':''}">${esc(x)}</div>`}).join('')}</div>`:'<div class="empty">CSI non ha restituito eventi di cronaca per questa gara.</div>';
+    const overview=(Object.keys(ha).length||Object.keys(aa).length)?`<section class="stats-card csi-stats-card"><h3>STATS</h3><div class="csi-stat-head"><div>${esc(d.home||ha.team||'CASA')}</div><div>${esc(d.away||aa.team||'OSPITI')}</div></div>${csiStatRows(ha,aa)}${ov.mode==='finale_girone'?'<div class="csi-source-note">Dati finali del girone usati come riferimento quando lo snapshot gara non è disponibile.</div>':''}</section>`:'';
+    const events=(d.events||[]);
+    const timeline=events.length?`<div class="csi-timeline">${events.map(csiEventCard).join('')}</div>`:'<div class="empty">Per questa gara CSI non espone eventi di cronologia.</div>';
     const report=d.report?`<section class="section csi-report"><h3>CRONACA CSI</h3><p>${esc(d.report)}</p></section>`:'';
-    showOverlay('DETTAGLIO GARA',`<div class="csi-detail"><section class="csi-score-hero"><div class="csi-detail-meta">${esc(meta)}</div><h1>${fixtureTitle}</h1><div class="csi-score">${esc(d.score||'—')}</div>${when?`<div class="csi-when">${when}</div>`:''}</section>${overview}${d.field?`<section class="section csi-field"><h3>DOVE SI È GIOCATO</h3><div class="place-title">${esc(d.field)}</div></section>`:''}<section class="section csi-chrono"><h3>CRONOLOGIA GARA</h3>${timeline}</section>${report}</div>`);
-  }catch{showOverlay('DETTAGLIO GARA','<div class="section"><div class="empty">Dettaglio CSI momentaneamente non disponibile.</div></div>')}
+    const liveBadge=d.source_live?'<span class="source-live">DATI CSI LIVE</span>':'<span class="source-local">DATI DISPONIBILI OFFLINE</span>';
+    showOverlay('DETTAGLIO GARA',`<div class="csi-detail csi-detail-v15">
+      <section class="fixture-stage csi-match-stage">
+        <div class="fixture-stage-top"><span>UNDER 13 TEST</span><span>·</span><span>CSI</span>${d.round?`<span>·</span><span>GIORNATA ${esc(d.round)}</span>`:''}</div>
+        <div class="fixture-clubs csi-clubs">
+          <div class="club-side ${String(d.home||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.home||'CASA')}<div class="club-name">${esc(d.home||'CASA')}</div></div>
+          <div class="csi-result-center"><div class="result-label">RISULTATO</div><div class="csi-score">${esc(d.score||'—')}</div>${liveBadge}</div>
+          <div class="club-side ${String(d.away||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.away||'OSPITI')}<div class="club-name">${esc(d.away||'OSPITI')}</div></div>
+        </div>
+        ${(f||d.time)?`<div class="fixture-when3 csi-whenbar"><span class="datepart">${f?f.long.toUpperCase():''}</span>${d.time?'<span class="dot"></span>':''}<span class="timepart">${esc(d.time||'')}</span></div>`:''}
+      </section>
+      ${overview}
+      ${d.field?`<section class="fixture-place home-only csi-place"><div><h3>DOVE SI È GIOCATO</h3><div class="place-title">${esc(d.field)}</div></div></section>`:''}
+      <section class="section csi-chrono"><h3>CRONOLOGIA GARA</h3>${timeline}</section>
+      ${report}
+    </div>`);
+  }catch(e){showOverlay('DETTAGLIO GARA','<div class="section"><div class="empty">Dettaglio CSI momentaneamente non disponibile.</div></div>')}
   finally{loading(false)}
 }
 function openNowTeam(){let x=nowItems[nowIdx];if(x?.team_key)openTeam(x.team_key)}
@@ -702,6 +723,40 @@ function resetIdle(){clearTimeout(idleTimer);$('idle').classList.remove('show');
 .csi-event.phase-event{border-left-color:#8aa4b8!important;color:#d9e4ec!important;font-weight:900!important}
 .csi-report p{font-size:15px;line-height:1.55;color:#e7eef4;margin:0}
 .csi-detail .section h3{font-size:18px!important;margin-bottom:14px!important}
+</style>
+
+
+<style>
+/* V2.4.15 — U13 TEST: dettaglio gara coerente con PARTITA dashboard */
+.csi-detail-v15{display:grid;gap:14px}
+.csi-match-stage{padding:22px 22px 20px!important}
+.csi-clubs{grid-template-columns:1fr 220px 1fr!important;gap:20px!important;margin-top:18px!important}
+.csi-result-center{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:150px}
+.result-label{font-size:11px;font-weight:950;color:var(--muted);letter-spacing:1.3px}
+.csi-result-center .csi-score{font-size:64px;line-height:1;font-weight:950;color:var(--yellow);margin:8px 0 9px;white-space:nowrap}
+.source-live,.source-local{display:inline-flex;border-radius:999px;padding:6px 9px;font-size:9px;font-weight:950;letter-spacing:.6px}
+.source-live{background:rgba(54,207,115,.12);color:#6be19a;border:1px solid rgba(107,225,154,.26)}
+.source-local{background:rgba(255,210,0,.09);color:var(--yellow);border:1px solid rgba(255,210,0,.22)}
+.csi-whenbar{margin-top:18px!important}
+.csi-stats-card{padding:18px 20px!important}
+.csi-stats-card h3{font-size:20px!important;color:var(--yellow)!important;margin:0 0 12px!important}
+.csi-stat-head{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:0 0 10px}
+.csi-stat-head>div{font-size:17px;font-weight:950;line-height:1.1}
+.csi-stat-head>div:last-child{text-align:right}
+.csi-stat-row{display:grid;grid-template-columns:1fr 170px 1fr;align-items:center;min-height:48px;border-top:1px solid var(--line);gap:12px}
+.csi-stat-row strong{font-size:22px;color:#fff}.csi-stat-row strong:last-child{text-align:right}
+.csi-stat-row span{text-align:center;color:var(--muted);font-size:10px;font-weight:950;letter-spacing:.5px}
+.csi-source-note{text-align:center;color:var(--muted);font-size:10px;margin-top:9px}
+.csi-place{min-height:0!important;padding:17px 20px!important}
+.csi-place .place-title{font-size:21px!important}
+.csi-chrono{padding:18px 20px!important}.csi-chrono h3,.csi-report h3{font-size:20px!important;color:var(--yellow)!important;margin:0 0 14px!important}
+.csi-timeline{display:grid;gap:8px}
+.csi-event{display:grid!important;grid-template-columns:90px 34px 1fr!important;align-items:center;gap:10px;padding:10px 12px!important;border-radius:12px!important;background:rgba(255,255,255,.045)!important;border:1px solid rgba(255,255,255,.075)!important;border-left:3px solid #42617a!important;color:#fff!important;min-height:48px}
+.csi-event .event-time{font-size:13px;font-weight:950;color:var(--yellow);text-align:right}.csi-event .event-icon{text-align:center;font-size:18px}.csi-event .event-text{font-size:14px;line-height:1.3}
+.csi-event.goal{border-left-color:var(--yellow)!important;background:rgba(255,210,0,.055)!important}.csi-event.goal .event-text{font-weight:900}
+.csi-event.sub{border-left-color:#59a8e7!important}.csi-event.card{border-left-color:#ffd84b!important}.csi-event.phase{border-left-color:#8da4b6!important;background:rgba(141,164,182,.06)!important}
+.csi-report{padding:18px 20px!important}.csi-report p{font-size:14px;line-height:1.5;color:#e8eef3;margin:0}
+@media(max-width:700px){.csi-clubs{grid-template-columns:1fr!important}.csi-result-center{min-height:auto}.csi-stat-row{grid-template-columns:1fr 110px 1fr}.csi-event{grid-template-columns:62px 28px 1fr!important}}
 </style>
 
 </body></html>

@@ -44,6 +44,37 @@ U13_TEST_MATCHES=[
  {"date":"2026-05-28","time":"18:30","home":"Ussa Rozzano","away":"Osm Assago","result":"1 - 1","field":"USSA Stadium","detail_url":"https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/P2025235BA0903/","team_key":"u13a11_test","competition":"CSI","round":9}
 ]
 
+# Dettaglio locale ricco per la gara CSI usata come test di riferimento.
+# È un fallback: se CSI LIVE risponde, i dati live hanno priorità.
+U13_DETAIL_FALLBACK = {
+    '/25/Calcio-a-11/Lombardia/Milano/P2025235BA0202/': {
+        'overview': {
+            'home': {'team':'Ussa Rozzano','points':17,'position':2,'played':8,'wins':5,'draws':2,'losses':1,'gf':24,'gs':13},
+            'away': {'team':'S.Giuliano Cologno Osgd','points':18,'position':1,'played':8,'wins':6,'draws':0,'losses':2,'gf':18,'gs':8},
+            'mode':'snapshot_csi'
+        },
+        'events': [
+            {'time':"24'",'type':'goal','text':'S.Giuliano Cologno Osgd segna: 0–1'},
+            {'time':"30'",'type':'goal','text':'USSA Rozzano pareggia: 1–1'},
+            {'time':"31'",'type':'card','text':'Cartellino giallo: Paganello C. (USSA Rozzano)'},
+            {'time':'INTERVALLO','type':'phase','text':'Fine primo tempo · 1–1'},
+            {'time':"1'",'type':'sub','text':'USSA: Paganello C. esce · Pennino L. entra'},
+            {'time':"1'",'type':'sub','text':'S.Giuliano: Morandotti M. esce · Elbeltagi A. entra'},
+            {'time':"3'",'type':'goal','text':'USSA Rozzano segna: 2–1'},
+            {'time':"8'",'type':'sub','text':'S.Giuliano: Pagano R. esce · Sequino M. entra'},
+            {'time':"12'",'type':'goal','text':'USSA Rozzano segna: 3–1'},
+            {'time':"13'",'type':'goal','text':'S.Giuliano Cologno Osgd segna: 3–2'},
+            {'time':"19'",'type':'sub','text':'S.Giuliano: Milani M. esce · Caso A. entra'},
+            {'time':"19'",'type':'sub','text':'USSA: Livrieri A. esce · Maida L. entra'},
+            {'time':"26'",'type':'sub','text':'S.Giuliano: Casarano E. esce · Di Mitri D. entra'},
+            {'time':"28'",'type':'sub','text':'S.Giuliano: Sequino M. esce · Milito D. entra'},
+            {'time':"32'",'type':'goal','text':'USSA Rozzano segna: 4–2'},
+            {'time':'FINE','type':'phase','text':'Fine gara · 4–2'}
+        ],
+        'report':'USSA Rozzano ribalta una gara iniziata in svantaggio e supera S.Giuliano Cologno Osgd 4–2. Dopo l’1–1 del primo tempo, USSA allunga nella ripresa, resiste al ritorno degli ospiti e chiude la partita nel finale.'
+    }
+}
+
 def load_json(name, default):
     try:return json.loads((ROOT/name).read_text(encoding="utf-8"))
     except:return default
@@ -310,66 +341,82 @@ def fixture_detail(fixture_id:str):
 @app.get('/api/game-detail')
 def game_detail(url:str):
     if not url.startswith(CSI_LIVE):raise HTTPException(400,'Link gara non valido')
-    static=next((x for x in U13_TEST_MATCHES if urlparse(x.get('detail_url','')).path==urlparse(url).path),None)
+    path=urlparse(url).path
+    static=next((x for x in U13_TEST_MATCHES if urlparse(x.get('detail_url','')).path==path),None)
+    seed=U13_DETAIL_FALLBACK.get(path,{})
     info={'url':url,'title':'','score':'','field':'','events':[],'overview':{},'report':'','source_live':False}
     if static:
         info.update({'home':static['home'],'away':static['away'],'date':static['date'],'time':static['time'],
                      'round':static.get('round'),'competition':'CSI','score':static.get('result',''),'field':static.get('field','')})
-        # Fallback locale: il dettaglio non deve mai ridursi al solo risultato.
         def row_for(name):
             key=clean(name).lower()
             return next((dict(r) for r in U13_TEST_STANDINGS if clean(r.get('team')).lower()==key),None)
         info['overview']={'home':row_for(static['home']),'away':row_for(static['away']),'mode':'finale_girone'}
+    if seed:
+        for k in ('overview','events','report'):
+            if seed.get(k): info[k]=seed[k]
     try:
         s=soup(url);body=clean(s.get_text(' ',strip=True));info['source_live']=True
     except Exception:
         if static:return info
         raise HTTPException(503,'Dettaglio CSI momentaneamente non disponibile')
 
+    strings=[clean(str(x)) for x in s.stripped_strings if clean(str(x))]
     hs=[clean(x.get_text(' ',strip=True)) for x in s.find_all(['h1','h2','h3','h4','h5','h6'])]
     info['title']=' · '.join([x for x in hs[:4] if x][:2])
     m=re.search(r'\b(\d+)\s*[-–]\s*(\d+)\b',body)
-    if m and not info.get('score'):info['score']=m.group(0)
+    if m:info['score']=m.group(0)
     mf=re.search(r'Campo:\s*([^©]+?)(?:Codice gara:|Panoramica squadre|Variazione di data|2025/26|2026/27|Lombardia|$)',body,re.I)
     if mf:info['field']=clean(mf.group(1))
 
-    # Panoramica squadre CSI LIVE: valori a coppie casa/ospite attorno alla relativa etichetta.
-    labels={
-      'points':r'Punti','position':r'Posizione classifica','played':r'Matches giocati',
-      'wins':r'Vittorie','draws':r'Pareggi','losses':r'Sconfitte','gf':r'Gol fatti(?! a partita)',
-      'gs':r'Gol subiti(?! a partita)','gf_avg':r'Gol fatti a partita','gs_avg':r'Gol subiti a partita'
-    }
+    labels={'points':'Punti','position':'Posizione classifica','played':'Matches giocati','wins':'Vittorie','draws':'Pareggi','losses':'Sconfitte','gf':'Gol fatti','gs':'Gol subiti','gf_avg':'Gol fatti a partita','gs_avg':'Gol subiti a partita'}
     live_home={};live_away={}
     for key,label in labels.items():
-        mm=re.search(r'(\d+(?:[\.,]\d+)?)\s*'+label+r'\s*(\d+(?:[\.,]\d+)?)',body,re.I)
-        if mm:
-            live_home[key]=mm.group(1);live_away[key]=mm.group(2)
-    if live_home and live_away:
+        idx=next((i for i,x in enumerate(strings) if x.lower()==label.lower()),None)
+        if idx is None: continue
+        def near_num(i,step):
+            for off in range(1,5):
+                j=i+step*off
+                if 0<=j<len(strings) and re.fullmatch(r'\d+(?:[\.,]\d+)?',strings[j]):return strings[j]
+        a,b=near_num(idx,-1),near_num(idx,1)
+        if a is not None:live_home[key]=a
+        if b is not None:live_away[key]=b
+    if live_home or live_away:
         live_home['team']=info.get('home','');live_away['team']=info.get('away','')
         info['overview']={'home':live_home,'away':live_away,'mode':'snapshot_csi'}
 
-    # Timeline: usa solo stringhe foglia per evitare i duplicati dei contenitori HTML annidati.
-    raw=[];seen=set()
-    for txt in s.stripped_strings:
-        txt=clean(str(txt))
-        if not txt or txt in seen:continue
-        keep=(re.fullmatch(r'\d+\s*[-–]\s*\d+',txt) or
-              re.fullmatch(r"\d{1,2}(?:['’]|'')",txt) or
-              re.search(r'^(Fine primo tempo|Fine\s+\d+\s*[-–]\s*\d+|\d+\s+minut[oi]\s+di\s+recupero)',txt,re.I) or
-              re.search(r'^(Esce:|Entra:)',txt,re.I) or
-              re.search(r'\((?:Allenatore|Assistente|Dirigente|Dirigente Accompagnatore)\)',txt,re.I))
-        if keep:
-            seen.add(txt);raw.append(txt)
-        if len(raw)>=80:break
-    info['events']=raw
+    # Timeline CSI: raccoglie punteggi, minuti, cambi, recuperi e altri eventi pubblicati nella pagina gara.
+    timeline_start=next((i for i,x in enumerate(strings) if re.match(r'^Fine\s+\d+\s*[-–]\s*\d+',x,re.I)),None)
+    if timeline_start is None: timeline_start=next((i for i,x in enumerate(strings) if x.lower().startswith('fine primo tempo')),None)
+    title_marker=(f"{info.get('home','')} vs {info.get('away','')}".strip()).lower()
+    timeline_end=None
+    if timeline_start is not None:
+        for i in range(timeline_start+1,len(strings)):
+            low=strings[i].lower()
+            if (title_marker and title_marker in low) or low=='classifica pdf':timeline_end=i;break
+        zone=strings[timeline_start:timeline_end or min(len(strings),timeline_start+140)]
+        ev=[];pending=''
+        for txt in zone:
+            if re.fullmatch(r"\d{1,2}(?:'{1,2}|’{1,2})",txt):pending=txt.replace("''","'");continue
+            if re.match(r'^Fine\s+\d+\s*[-–]\s*\d+',txt,re.I):ev.append({'time':'FINE','type':'phase','text':txt});continue
+            if re.match(r'^Fine primo tempo',txt,re.I):ev.append({'time':'INTERVALLO','type':'phase','text':txt});continue
+            if re.search(r'minut[oi]\s+di\s+recupero',txt,re.I):ev.append({'time':pending,'type':'phase','text':txt});pending='';continue
+            if re.fullmatch(r'\d+\s*[-–]\s*\d+',txt):ev.append({'time':pending,'type':'goal','text':'Punteggio '+txt.replace('-', '–')});pending='';continue
+            if txt.startswith('Esce:'):ev.append({'time':pending,'type':'sub','text':txt});pending='';continue
+            if pending and len(txt)<=80 and txt.lower() not in {'modifica','image'} and not re.fullmatch(r'\d+',txt):
+                ev.append({'time':pending,'type':'event','text':txt});pending=''
+        if ev:info['events']=ev[:70]
 
-    # Eventuale cronaca testuale pubblicata nella pagina CSI.
-    candidates=[]
-    for el in s.find_all(['p','article']):
-        txt=clean(el.get_text(' ',strip=True))
-        if len(txt)>=180 and (clean(info.get('home')).split(' ')[0].lower() in txt.lower() or 'Ussa Rozzano' in txt):
-            candidates.append(txt)
-    if candidates:info['report']=max(candidates,key=len)[:2600]
+    # Cronaca testuale CSI: testo dopo il titolo "Casa vs Ospiti" e prima della classifica.
+    if title_marker:
+        ridx=next((i for i,x in enumerate(strings) if title_marker in x.lower()),None)
+        if ridx is not None:
+            parts=[]
+            for txt in strings[ridx+1:]:
+                if txt.lower()=='classifica pdf':break
+                if len(txt)>=80:parts.append(txt)
+                if sum(map(len,parts))>2200:break
+            if parts:info['report']=' '.join(parts)[:2400]
     return info
 
 
