@@ -1,7 +1,14 @@
-# USSA SMART HUB V2.4.17 — U13 TEST STATIC DETAIL
+# USSA SMART HUB V2.4.18 — MATCH DETAIL REFINEMENT
 
-- Dettaglio U13 TEST alimentato solo dagli snapshot locali già normalizzati.
-- Nessun parsing CSI LIVE durante il click.
-- Grafica allineata alla scheda PARTITA della dashboard: squadre ben visibili, risultato, data/ora, STATS, campo, cronologia e cronaca.
-- Nomi squadra sempre leggibili; usa stemmi pubblici affidabili dove disponibili e fallback identificativo dove non è stato possibile verificare uno stemma.
-- Indietro: dettaglio gara -> U13 TEST -> GARE DISPUTATE.
+Base: V2.4.17.
+
+Modifiche:
+- USSA normalizzato sempre in maiuscolo nella UI e nei dati locali.
+- risultato gara: verde vittoria USSA, rosso sconfitta, bianco pareggio.
+- data/ora delle gare disputate meno invasive.
+- STATS più compatta.
+- cronologia con scroll interno dedicato: la pagina non deve scorrere per leggere gli eventi.
+- cronaca, quando disponibile, in pannello dedicato e con scroll interno se lunga.
+- area inferiore riequilibrata e sfruttata in larghezza.
+
+Caricare tutto nel branch V2 sostituendo gli omonimi.

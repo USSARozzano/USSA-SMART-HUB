@@ -466,7 +466,8 @@ const CLUBS={
  'USOM CALCIO':{logo:'https://www.gsmontanaso.it/wp-content/uploads/2018/08/Usom64312.png'},
  'SPORTING C.B. SCB':{logo:'https://lh3.googleusercontent.com/I7mX7tGAr7WaZ1D-aoa1jWux1yXuZ6ZD1crukGSroJQ5Iv9mbB8VP9cPgrGHdoD6FhdBYHScahEjP6sHKOSzSe71s5GDLYqG2kih=s200'}
 };
-const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const normDisplay=s=>String(s??'').replace(/\bUssa\s+Rozzano\b/gi,'USSA Rozzano').replace(/\bUssa\b/g,'USSA');
+const esc=s=>normDisplay(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 async function getJSON(url){let r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('Dati non disponibili');return r.json()}
 function loading(v){$('loading').classList.toggle('show',v)}
 function fmtDate(iso){let d=new Date(iso+'T12:00');return {day:d.toLocaleDateString('it-IT',{weekday:'short'}).replace('.','').toUpperCase(),date:d.toLocaleDateString('it-IT',{day:'2-digit',month:'short'}).replace('.','').toUpperCase(),long:d.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}}
@@ -772,6 +773,88 @@ function resetIdle(){clearTimeout(idleTimer);$('idle').classList.remove('show');
 function u13EventHTML(ev){const e=(typeof ev==='string')?{text:ev}:ev||{};const t=String(e.type||'event');const icon=t==='goal'?'⚽':t==='sub'?'↔':t==='card'?'▰':t==='phase'?'◆':'•';const text=String(e.text||e.description||'').trim();if(!text)return '';return `<div class="u13-event ${esc(t)}"><div class="u13-event-time">${esc(e.time||'')}</div><div class="u13-event-icon">${icon}</div><div class="u13-event-text">${esc(text)}</div></div>`}
 async function renderCsiView(v){loading(true);try{const d=await getJSON(`/api/game-detail?url=${encodeURIComponent(v.url)}`);const f=d.date?fmtDate(d.date):null;const ov=d.overview||{},home=ov.home||{},away=ov.away||{};const stats=(Object.keys(home).length||Object.keys(away).length)?`<section class="stats-card"><h3>STATS</h3><div class="csi-stat-head"><div>${esc(d.home||home.team||'CASA')}</div><div>${esc(d.away||away.team||'OSPITI')}</div></div>${csiStatRows(home,away)}</section>`:'';const events=Array.isArray(d.events)?d.events:[];const eventCards=events.map(u13EventHTML).filter(Boolean).join('');const timeline=`<section class="u13-timeline"><h3>CRONOLOGIA GARA</h3>${eventCards?`<div class="u13-events">${eventCards}</div>`:`<div class="u13-noevents">Per questa gara CSI non ha pubblicato una cronologia dettagliata. Il risultato e i dati statistici restano comunque disponibili.</div>`}</section>`;const report=d.report?`<section class="u13-report"><h3>CRONACA</h3><p>${esc(d.report)}</p></section>`:'';const when=f?`<div class="fixture-when3"><span class="datepart">${esc(f.long)}</span>${d.time?`<span class="dot"></span><span class="timepart">${esc(d.time)}</span>`:''}</div>`:'';const placeParts=String(d.field||'').split('·').map(x=>x.trim()).filter(Boolean);const placeTitle=placeParts.shift()||'Campo non indicato';const placeSub=placeParts.join(' · ');const meta=`<div class="u13-meta"><section class="u13-meta-card"><h3>DOVE SI È GIOCATO</h3><div class="u13-place">${esc(placeTitle)}</div>${placeSub?`<div class="u13-sub">${esc(placeSub)}</div>`:''}</section><section class="u13-meta-card"><h3>COMPETIZIONE</h3><div class="u13-place">UNDER 13 A 11</div><div class="u13-sub">CSI · Primaverile · Girone B${d.round?` · Giornata ${esc(d.round)}`:''}</div></section></div>`;showOverlay('DETTAGLIO GARA',`<div class="u13-static-detail"><section class="fixture-stage"><div class="fixture-stage-top">UNDER 13 TEST · CSI${d.round?` · GIORNATA ${esc(d.round)}`:''}</div><div class="fixture-clubs"><div class="club-side ${String(d.home||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.home||'CASA')}<div class="club-name">${esc(d.home||'CASA')}</div></div><div class="u13-scorebox"><div class="u13-score-label">RISULTATO</div><div class="u13-score">${esc(d.score||'—')}</div></div><div class="club-side ${String(d.away||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.away||'OSPITI')}<div class="club-name">${esc(d.away||'OSPITI')}</div></div></div>${when}</section>${stats}${meta}${timeline}${report}</div>`)}catch(e){console.error(e);showOverlay('DETTAGLIO GARA','<div class="section"><div class="empty">Dettaglio gara non disponibile.</div></div>')}finally{loading(false)}}
 function openCsiDetail(url){const back={type:'team',key:'u13a11_test',comp:'CSI',tab:'played'};navigate({type:'csi',url,returnView:back})}
+</script>
+
+
+<style>
+/* V2.4.18 — dettaglio gare disputate: compatto, scorrevole, coerente con PARTITA */
+.u13-static-detail.v2418{display:grid;gap:10px;padding-bottom:14px}
+.u13-static-detail.v2418 .fixture-stage{padding:14px 20px 12px}
+.u13-static-detail.v2418 .fixture-stage-top{font-size:12px;margin-bottom:8px}
+.u13-static-detail.v2418 .fixture-clubs{grid-template-columns:minmax(0,1fr) 132px minmax(0,1fr);gap:16px}
+.u13-static-detail.v2418 .club-logo-wrap{width:124px;height:124px;border-radius:20px;margin-bottom:8px}
+.u13-static-detail.v2418 .club-name{font-size:23px;min-height:46px;line-height:1.05}
+.u13-static-detail.v2418 .u13-scorebox{gap:6px}
+.u13-static-detail.v2418 .u13-score-label{font-size:10px}
+.u13-static-detail.v2418 .u13-score{min-width:116px;padding:12px 14px;border-radius:16px;font-size:38px;color:#071b2d}
+.u13-static-detail.v2418 .u13-score.score-win{background:#30c777;color:#062418}
+.u13-static-detail.v2418 .u13-score.score-loss{background:#e95863;color:#fff}
+.u13-static-detail.v2418 .u13-score.score-draw{background:#fff;color:#071b2d}
+.u13-static-detail.v2418 .fixture-when3{margin-top:8px;min-height:44px;padding:6px 14px;gap:10px;background:rgba(255,255,255,.025)}
+.u13-static-detail.v2418 .fixture-when3 .datepart{font-size:15px;font-weight:900;color:#dce7ee}
+.u13-static-detail.v2418 .fixture-when3 .timepart{font-size:17px;font-weight:950;color:#fff}
+.u13-static-detail.v2418 .fixture-when3 .dot{width:5px;height:5px;background:var(--yellow)}
+.u13-static-detail.v2418 .stats-card{padding:12px 18px}
+.u13-static-detail.v2418 .stats-card h3{margin-bottom:5px}
+.u13-static-detail.v2418 .csi-stat-head{padding-bottom:4px}
+.u13-static-detail.v2418 .csi-stat-head div{font-size:14px}
+.u13-static-detail.v2418 .csi-stat-row{grid-template-columns:1fr 130px 1fr;min-height:29px}
+.u13-static-detail.v2418 .csi-stat-row strong{font-size:16px}
+.u13-static-detail.v2418 .csi-stat-row span{font-size:9px;letter-spacing:.35px}
+.u13-static-detail.v2418 .u13-meta{grid-template-columns:1.25fr .75fr;gap:10px}
+.u13-static-detail.v2418 .u13-meta-card{padding:11px 15px;min-height:70px;border-radius:15px}
+.u13-static-detail.v2418 .u13-meta-card h3{font-size:13px;margin-bottom:5px}
+.u13-static-detail.v2418 .u13-place{font-size:16px}
+.u13-static-detail.v2418 .u13-sub{font-size:11px;margin-top:3px}
+.u13-static-detail.v2418 .u13-bottom{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;min-height:0}
+.u13-static-detail.v2418 .u13-bottom.has-report{grid-template-columns:minmax(0,1.55fr) minmax(300px,.85fr)}
+.u13-static-detail.v2418 .u13-timeline,.u13-static-detail.v2418 .u13-report{padding:14px 16px;border-radius:16px;min-height:0}
+.u13-static-detail.v2418 .u13-timeline h3,.u13-static-detail.v2418 .u13-report h3{font-size:15px;margin-bottom:8px}
+.u13-static-detail.v2418 .u13-events{display:grid;gap:6px;max-height:330px;overflow-y:auto;padding-right:7px;overscroll-behavior:contain;scrollbar-width:thin}
+.u13-static-detail.v2418 .u13-events::-webkit-scrollbar,.u13-static-detail.v2418 .u13-report-scroll::-webkit-scrollbar{width:7px}
+.u13-static-detail.v2418 .u13-events::-webkit-scrollbar-thumb,.u13-static-detail.v2418 .u13-report-scroll::-webkit-scrollbar-thumb{background:#315b79;border-radius:10px}
+.u13-static-detail.v2418 .u13-event{grid-template-columns:60px 32px 1fr;gap:8px;min-height:40px;padding:6px 10px;border-radius:10px}
+.u13-static-detail.v2418 .u13-event-time{font-size:11px}
+.u13-static-detail.v2418 .u13-event-icon{font-size:16px}
+.u13-static-detail.v2418 .u13-event-text{font-size:12px;line-height:1.2}
+.u13-static-detail.v2418 .u13-report-scroll{max-height:330px;overflow-y:auto;padding-right:8px;overscroll-behavior:contain;scrollbar-width:thin}
+.u13-static-detail.v2418 .u13-report p{font-size:13px;line-height:1.48}
+.u13-static-detail.v2418 .u13-noevents{font-size:12px;padding:4px 0}
+@media(max-width:760px){
+ .u13-static-detail.v2418 .fixture-clubs{grid-template-columns:1fr 86px 1fr;gap:7px}
+ .u13-static-detail.v2418 .club-logo-wrap{width:90px;height:90px}
+ .u13-static-detail.v2418 .club-name{font-size:15px;min-height:34px}
+ .u13-static-detail.v2418 .u13-score{min-width:72px;font-size:26px;padding:9px 7px}
+ .u13-static-detail.v2418 .u13-bottom.has-report{grid-template-columns:1fr}
+ .u13-static-detail.v2418 .u13-meta{grid-template-columns:1fr}
+ .u13-static-detail.v2418 .csi-stat-row{grid-template-columns:1fr 92px 1fr}
+}
+</style>
+<script>
+function u13ResultClass(d){
+  const m=String(d?.score||'').match(/(\d+)\s*[-–]\s*(\d+)/);if(!m)return 'score-draw';
+  const hs=+m[1],as=+m[2],home=String(d?.home||'').toUpperCase().includes('USSA'),away=String(d?.away||'').toUpperCase().includes('USSA');
+  if(hs===as)return 'score-draw';
+  const ussaWon=(home&&hs>as)||(away&&as>hs);return ussaWon?'score-win':'score-loss';
+}
+async function renderCsiView(v){
+  loading(true);
+  try{
+    const d=await getJSON(`/api/game-detail?url=${encodeURIComponent(v.url)}`);
+    const f=d.date?fmtDate(d.date):null,ov=d.overview||{},home=ov.home||{},away=ov.away||{};
+    const stats=(Object.keys(home).length||Object.keys(away).length)?`<section class="stats-card"><h3>STATS</h3><div class="csi-stat-head"><div>${esc(d.home||home.team||'CASA')}</div><div>${esc(d.away||away.team||'OSPITI')}</div></div>${csiStatRows(home,away)}</section>`:'';
+    const events=Array.isArray(d.events)?d.events:[],eventCards=events.map(u13EventHTML).filter(Boolean).join('');
+    const timeline=`<section class="u13-timeline"><h3>CRONOLOGIA GARA</h3>${eventCards?`<div class="u13-events">${eventCards}</div>`:`<div class="u13-noevents">Per questa gara non è disponibile una cronologia dettagliata.</div>`}</section>`;
+    const reportText=String(d.report||'').trim();
+    const report=reportText?`<section class="u13-report"><h3>CRONACA</h3><div class="u13-report-scroll"><p>${esc(reportText)}</p></div></section>`:'';
+    const when=f?`<div class="fixture-when3"><span class="datepart">${esc(f.long)}</span>${d.time?`<span class="dot"></span><span class="timepart">${esc(d.time)}</span>`:''}</div>`:'';
+    const pp=String(d.field||'').split('·').map(x=>x.trim()).filter(Boolean),pt=pp.shift()||'Campo non indicato',ps=pp.join(' · ');
+    const meta=`<div class="u13-meta"><section class="u13-meta-card"><h3>DOVE SI È GIOCATO</h3><div class="u13-place">${esc(pt)}</div>${ps?`<div class="u13-sub">${esc(ps)}</div>`:''}</section><section class="u13-meta-card"><h3>COMPETIZIONE</h3><div class="u13-place">UNDER 13 A 11</div><div class="u13-sub">CSI · Primaverile · Girone B${d.round?` · Giornata ${esc(d.round)}`:''}</div></section></div>`;
+    const bottom=`<div class="u13-bottom ${report?'has-report':''}">${timeline}${report}</div>`;
+    showOverlay('DETTAGLIO GARA',`<div class="u13-static-detail v2418"><section class="fixture-stage"><div class="fixture-stage-top">UNDER 13 TEST · CSI${d.round?` · GIORNATA ${esc(d.round)}`:''}</div><div class="fixture-clubs"><div class="club-side ${String(d.home||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.home||'CASA')}<div class="club-name">${esc(d.home||'CASA')}</div></div><div class="u13-scorebox"><div class="u13-score-label">RISULTATO</div><div class="u13-score ${u13ResultClass(d)}">${esc(d.score||'—')}</div></div><div class="club-side ${String(d.away||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.away||'OSPITI')}<div class="club-name">${esc(d.away||'OSPITI')}</div></div></div>${when}</section>${stats}${meta}${bottom}</div>`);
+  }catch(e){console.error(e);showOverlay('DETTAGLIO GARA','<div class="section"><div class="empty">Dettaglio gara non disponibile.</div></div>')}
+  finally{loading(false)}
+}
 </script>
 
 </body></html>
