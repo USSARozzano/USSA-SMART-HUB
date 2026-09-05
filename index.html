@@ -242,7 +242,7 @@ body{background:var(--navy)}
 
 
 /* V2.4.8 — preview temporale unificata per ORA IN CAMPO + SEGRETERIA */
-.home-logo-btn{-webkit-tap-highlight-color:transparent!important;outline:none!important;box-shadow:none!important;user-select:none!important}
+.home-logo-btn{-webkit-tap-highlight-color:transparent!important;outline:none!important;box-shadow:none!important;user-select:none!important;touch-action:none!important;-webkit-touch-callout:none!important}
 .home-logo-btn:focus,.home-logo-btn:focus-visible,.home-logo-btn:active{outline:none!important;box-shadow:none!important;border-color:transparent!important}
 /* Tabelle: intestazione sempre nel flusso, mai sovrapposta ai dati */
 .dynamic table thead,.dynamic table thead tr,.dynamic table th{position:static!important;top:auto!important;z-index:auto!important}
@@ -413,7 +413,7 @@ button.matchcard{width:100%;text-align:left;color:inherit;font:inherit;appearanc
   white-space:normal!important;
 }
 </style></head><body>
-<div class="app"><header class="header universal-header"><div class="brand">USSA <span class="smart">SMART HUB</span></div><button class="home-logo-btn" onclick="homeLogoTap(event)" onpointerdown="adminHoldStart(event)" onpointerup="adminHoldCancel()" onpointerleave="adminHoldCancel()" onpointercancel="adminHoldCancel()" oncontextmenu="return false" aria-label="Torna alla Home"><img class="logo" src="/assets/ussa-logo.png" alt="USSA Rozzano"></button><div class="datetime"><div id="clock" class="clock">--:--</div><div id="date" class="date"></div></div></header>
+<div class="app"><header class="header universal-header"><div class="brand">USSA <span class="smart">SMART HUB</span></div><button class="home-logo-btn" onpointerdown="adminHoldStart(event)" onpointerup="adminHoldEnd(event)" onpointercancel="adminHoldCancel()" oncontextmenu="return false" aria-label="Torna alla Home"><img class="logo" src="/assets/ussa-logo.png" alt="USSA Rozzano"></button><div class="datetime"><div id="clock" class="clock">--:--</div><div id="date" class="date"></div></div></header>
 <main class="home"><section class="card"><div class="head"><h2>PROSSIMI APPUNTAMENTI</h2></div><div id="schedule" class="schedule"><div class="empty">Caricamento…</div></div></section>
 <section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div class="now-empty-icons" aria-hidden="true"><span>⚽</span><span>🏐</span><span>🏀</span></div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryStatus" class="secretary-status"></div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
@@ -526,9 +526,14 @@ function replaceView(view){currentView=view;renderCurrent()}
 function goBack(){if(currentView?.returnView){const target={...currentView.returnView};if(navStack.length)navStack.pop();currentView=target;renderCurrent();return}if(navStack.length){currentView=navStack.pop();renderCurrent()}else{goHome()}}
 function goHome(){navStack=[];currentView={type:'home'};hideOverlay();window.scrollTo(0,0)}
 let adminHoldTimer=null,adminHoldOpened=false;
-function adminHoldStart(e){adminHoldCancel();adminHoldOpened=false;adminHoldTimer=setTimeout(()=>{adminHoldOpened=true;location.href='/backoffice'},5000)}
+function adminHoldStart(e){
+  if(typeof e.button==='number'&&e.button!==0)return;
+  e.preventDefault();adminHoldCancel();adminHoldOpened=false;
+  try{e.currentTarget.setPointerCapture(e.pointerId)}catch{}
+  adminHoldTimer=setTimeout(()=>{adminHoldTimer=null;adminHoldOpened=true;window.location.assign('/backoffice')},5000)
+}
+function adminHoldEnd(e){e.preventDefault();const shortTap=Boolean(adminHoldTimer)&&!adminHoldOpened;adminHoldCancel();if(shortTap)goHome()}
 function adminHoldCancel(){if(adminHoldTimer){clearTimeout(adminHoldTimer);adminHoldTimer=null}}
-function homeLogoTap(e){if(adminHoldOpened){e?.preventDefault();adminHoldOpened=false;return}goHome()}
 async function renderCurrent(){if(activeMap){try{activeMap.remove()}catch{}activeMap=null}if(currentView.type==='home'){hideOverlay();return}if(currentView.type==='u14choice'){renderU14Choice();return}if(currentView.type==='team'){await renderTeamView(currentView);return}if(currentView.type==='fixture'){await renderFixtureView(currentView);return}if(currentView.type==='map'){await renderMapView(currentView);return}if(currentView.type==='csi'){await renderCsiView(currentView);return}if(currentView.type==='info'){renderInfoView();return}if(currentView.type==='event'){renderEventView(currentView.item);return}}
 function trainingHTML(t){
   const a=t.training||[];

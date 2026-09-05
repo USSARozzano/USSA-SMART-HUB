@@ -1,4 +1,9 @@
-USSA SMART HUB — V2.4.21
+USSA SMART HUB — V2.4.22
+
+Correzione V2.4.22:
+- pressione prolungata sul logo resa stabile sui touchscreen;
+- il logo trattiene il puntatore per tutti i 5 secondi senza annullarsi per piccoli movimenti;
+- il tocco breve continua a riportare alla Home.
 
 Novità V2.4.21:
 - accesso nascosto al backoffice tenendo premuto il logo USSA per 5 secondi;
