@@ -76,7 +76,7 @@
     "hash": "cc2101be9d90fcd25d0b2bb6c8b2886d787653f83229d598a4279a05c82fb4c6"
   },
   "_admin": {
-    "salt": "4a7a1d29c0df730484086e1f58164f09",
-    "hash": "4c658e73e69791d12d4c7aec3d3aaf43b3aef153bb1b0a1ca42cdc176ca95167"
+    "salt": "4c387446f3464d9c9f8d8ade09505cad",
+    "hash": "17e72f54ae43fc251964c62d32c38524b71bbea01947b3ca2180d378f1ccb8ac"
   }
 }

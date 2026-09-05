@@ -1,5 +1,51 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>USSA · Backoffice votazioni</title><style>
-:root{--navy:#061827;--card:#0b2c48;--line:#2c536f;--yellow:#ffca18;--white:#f7f9fb;--muted:#9fb3c5;--red:#ff7272}*{box-sizing:border-box}body{margin:0;background:var(--navy);color:var(--white);font-family:Inter,system-ui,sans-serif}.wrap{max-width:1100px;margin:auto;padding:24px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}.top h1{margin:0;color:var(--yellow)}.login,.panel{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:20px;margin-bottom:16px}.row{display:flex;gap:10px;flex-wrap:wrap}.inp{background:#071d31;border:1px solid var(--line);color:#fff;border-radius:10px;padding:12px;font-size:16px}.btn{border:0;border-radius:10px;background:var(--yellow);color:#071827;padding:12px 16px;font-weight:900;cursor:pointer}.muted{color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{padding:11px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--yellow)}.del{background:transparent;color:var(--red);border:1px solid #7a3842;border-radius:8px;padding:7px 9px;cursor:pointer}.bad{color:var(--red);font-weight:800}.rank{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.card{border:1px solid var(--line);border-radius:13px;padding:14px;background:#09243b}.card strong{display:block;font-size:22px;color:var(--yellow)}@media(max-width:700px){.rank{grid-template-columns:1fr}table{font-size:12px}}
-</style></head><body><div class="wrap"><div class="top"><h1>USSA · MIGLIORE IN CAMPO</h1><div class="muted">Backoffice</div></div><section class="login"><div class="row"><input id="pin" class="inp" inputmode="numeric" placeholder="PIN backoffice"><input id="month" class="inp" type="month"><button class="btn" onclick="loadData()">APRI</button></div><div id="msg" class="bad"></div></section><section id="ranking" class="panel" style="display:none"><h2>CLASSIFICA DEL MESE</h2><div id="rankCards" class="rank"></div></section><section id="detail" class="panel" style="display:none"><h2>VOTI REGISTRATI</h2><div style="overflow:auto"><table><thead><tr><th>Data</th><th>Squadra</th><th>Atleta</th><th>Gara</th><th></th></tr></thead><tbody id="votes"></tbody></table></div></section></div><script>
-const $=id=>document.getElementById(id);$('month').value=new Date().toISOString().slice(0,7);let activePin='';async function loadData(){activePin=$('pin').value.trim();$('msg').textContent='';try{const r=await fetch(`/api/backoffice/votes?pin=${encodeURIComponent(activePin)}&month=${encodeURIComponent($('month').value)}`,{cache:'no-store'});if(!r.ok)throw new Error('PIN non valido o dati non disponibili');const d=await r.json();$('ranking').style.display='block';$('detail').style.display='block';$('rankCards').innerHTML=(d.ranking||[]).map(x=>`<div class="card"><strong>${x.votes}</strong><div>${x.athlete_name}</div><div class="muted">${x.team_key}</div></div>`).join('')||'<div class="muted">Nessun voto nel mese.</div>';$('votes').innerHTML=(d.votes||[]).map(x=>`<tr><td>${x.created_at.replace('T',' ')}</td><td>${x.team_key}</td><td>${x.athlete_name}</td><td>${x.fixture_id}</td><td><button class="del" onclick="delVote(${x.id})">ELIMINA</button></td></tr>`).join('')}catch(e){$('msg').textContent=e.message;$('ranking').style.display='none';$('detail').style.display='none'}}async function delVote(id){if(!confirm('Eliminare questo voto?'))return;const r=await fetch(`/api/backoffice/votes/${id}?pin=${encodeURIComponent(activePin)}`,{method:'DELETE'});if(r.ok)loadData()}
-</script></body></html>
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#061827">
+  <title>USSA · Backoffice votazioni</title>
+  <style>
+    :root{--navy:#061827;--card:#0b2c48;--card2:#0b2e4b;--line:#2c536f;--yellow:#ffca18;--white:#f7f9fb;--muted:#9fb3c5;--red:#ff7272;--green:#42d68b}
+    *{box-sizing:border-box}body{margin:0;background:var(--navy);color:var(--white);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{max-width:1100px;margin:auto;padding:24px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}.top h1{margin:0;color:var(--yellow)}.home{border:1px solid var(--line);border-radius:11px;background:var(--card);color:#fff;padding:11px 14px;text-decoration:none;font-weight:900}.login,.panel{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:20px;margin-bottom:16px}.login{text-align:center}.login h2{margin:0;color:var(--yellow);font-size:20px}.login .subtitle{color:var(--muted);font-size:13px;margin-top:7px}.month-wrap{display:flex;justify-content:center;align-items:center;gap:10px;margin:16px 0 12px}.inp{background:#071d31;border:1px solid var(--line);color:#fff;border-radius:10px;padding:11px 12px;font-size:15px}.pin-display{width:270px;max-width:100%;height:52px;border:1px solid var(--line);border-radius:13px;background:#071d31;color:#fff;padding:12px 14px;font-size:16px;font-weight:900;letter-spacing:2px;white-space:nowrap;margin:0 auto 10px;display:flex;align-items:center;justify-content:center}.pin-display.has-value{font-size:23px;letter-spacing:9px}.pin-display.open{color:var(--green);font-size:14px;letter-spacing:0}.keypad{width:270px;max-width:100%;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.key{height:46px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:#fff;font-size:18px;font-weight:950;cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none;box-shadow:none}.key:focus,.key:focus-visible,.key:active{background:var(--card2);outline:none;box-shadow:none}.key.enter,.key.enter:focus,.key.enter:focus-visible,.key.enter:active{background:var(--yellow);color:#071827;font-size:12px}.key.erase{font-size:17px}.bad{min-height:18px;color:var(--red);font-weight:800;font-size:13px;margin-top:9px}.muted{color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{padding:11px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--yellow)}.del{background:transparent;color:var(--red);border:1px solid #7a3842;border-radius:8px;padding:7px 9px;cursor:pointer}.rank{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.card{border:1px solid var(--line);border-radius:13px;padding:14px;background:#09243b}.card strong{display:block;font-size:22px;color:var(--yellow)}
+    @media(max-width:700px){.wrap{padding:12px}.top{align-items:flex-start}.top h1{font-size:21px}.home{font-size:11px;padding:9px}.rank{grid-template-columns:1fr}table{font-size:12px}.login{padding:18px 12px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top"><h1>USSA · MIGLIORE IN CAMPO</h1><a class="home" href="/">TORNA ALLO SMART HUB</a></div>
+    <section id="login" class="login">
+      <h2>ACCESSO BACKOFFICE</h2>
+      <div class="subtitle">Inserisci il PIN amministratore</div>
+      <div class="month-wrap"><label for="month">MESE</label><input id="month" class="inp" type="month"></div>
+      <div id="pinDisplay" class="pin-display">INSERISCI PIN</div>
+      <div id="keypad" class="keypad"></div>
+      <div id="msg" class="bad"></div>
+    </section>
+    <section id="ranking" class="panel" style="display:none"><h2>CLASSIFICA DEL MESE</h2><div id="rankCards" class="rank"></div></section>
+    <section id="detail" class="panel" style="display:none"><h2>VOTI REGISTRATI</h2><div style="overflow:auto"><table><thead><tr><th>Data</th><th>Squadra</th><th>Atleta</th><th>Gara</th><th></th></tr></thead><tbody id="votes"></tbody></table></div></section>
+  </div>
+  <script>
+    const $=id=>document.getElementById(id),keys=['1','2','3','4','5','6','7','8','9','erase','0','enter'];
+    let pinValue='',activePin='',unlocked=false;
+    $('month').value=new Date().toISOString().slice(0,7);
+    $('keypad').innerHTML=keys.map(k=>`<button class="key ${k==='erase'?'erase':k==='enter'?'enter':''}" data-key="${k}">${k==='erase'?'⌫':k==='enter'?'ENTRA':k}</button>`).join('');
+    function paintPin(){const d=$('pinDisplay');d.textContent=pinValue?'*'.repeat(pinValue.length):'INSERISCI PIN';d.classList.toggle('has-value',Boolean(pinValue))}
+    $('keypad').querySelectorAll('[data-key]').forEach(b=>b.onclick=()=>{const k=b.dataset.key;if(k==='erase'){pinValue=pinValue.slice(0,-1);paintPin();$('msg').textContent='';return}if(k==='enter'){loadData();return}if(pinValue.length<6){pinValue+=k;paintPin();$('msg').textContent=''}});
+    $('month').addEventListener('change',()=>{if(unlocked)loadData()});
+    async function loadData(){
+      if(!unlocked){if(pinValue.length!==6){$('msg').textContent='Il PIN deve contenere 6 cifre.';return}activePin=pinValue}
+      $('msg').textContent='';
+      try{
+        const r=await fetch(`/api/backoffice/votes?pin=${encodeURIComponent(activePin)}&month=${encodeURIComponent($('month').value)}`,{cache:'no-store'});
+        if(!r.ok)throw new Error('PIN non valido o dati non disponibili');
+        const d=await r.json();unlocked=true;$('pinDisplay').textContent='ACCESSO SBLOCCATO';$('pinDisplay').className='pin-display open';$('keypad').style.display='none';
+        $('ranking').style.display='block';$('detail').style.display='block';
+        $('rankCards').innerHTML=(d.ranking||[]).map(x=>`<div class="card"><strong>${x.votes}</strong><div>${x.athlete_name}</div><div class="muted">${x.team_key}</div></div>`).join('')||'<div class="muted">Nessun voto nel mese.</div>';
+        $('votes').innerHTML=(d.votes||[]).map(x=>`<tr><td>${x.created_at.replace('T',' ')}</td><td>${x.team_key}</td><td>${x.athlete_name}</td><td>${x.fixture_id}</td><td><button class="del" onclick="delVote(${x.id})">ELIMINA</button></td></tr>`).join('');
+      }catch(e){unlocked=false;activePin='';pinValue='';paintPin();$('keypad').style.display='grid';$('msg').textContent=e.message;$('ranking').style.display='none';$('detail').style.display='none'}
+    }
+    async function delVote(id){if(!confirm('Eliminare questo voto?'))return;const r=await fetch(`/api/backoffice/votes/${id}?pin=${encodeURIComponent(activePin)}`,{method:'DELETE'});if(r.ok)loadData()}
+  </script>
+</body>
+</html>

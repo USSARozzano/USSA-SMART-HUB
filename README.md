@@ -1,4 +1,12 @@
-USSA SMART HUB — V2.4.20
+USSA SMART HUB — V2.4.21
+
+Novità V2.4.21:
+- accesso nascosto al backoffice tenendo premuto il logo USSA per 5 secondi;
+- nuovo PIN backoffice: 021982;
+- tastierino numerico compatto e mascherato anche nel backoffice;
+- pulsante di ritorno diretto allo SMART HUB;
+- scritte del tastierino voto riequilibrate e su una sola riga;
+- eliminata ogni illuminazione dei tasti durante la pressione.
 
 Novità V2.4.20:
 - pulsanti delle schede squadra su due righe: ATLETI + STAFF, poi le funzioni sportive disponibili;
