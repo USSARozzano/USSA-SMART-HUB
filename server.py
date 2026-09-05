@@ -588,6 +588,15 @@ def vote_status(fixture_id:str,team_key:str,test:int=0):
     con=vote_db();row=con.execute('SELECT athlete_id,athlete_name,created_at FROM votes WHERE fixture_id=? AND team_key=?',(fixture_id,team_key)).fetchone();con.close()
     return {'eligible':eligible,'unlock_at':unlock.isoformat(timespec='minutes'),'voted':bool(row),'vote':dict(row) if row else None,'test_mode':bool(test)}
 
+@app.post('/api/vote/{fixture_id}/{team_key}/unlock')
+async def unlock_vote(fixture_id:str,team_key:str,request:Request,test:int=0):
+    x=vote_fixture(fixture_id)
+    if not x or team_key not in teams_dict(): raise HTTPException(404)
+    body=await request.json();pin=str(body.get('pin') or '')
+    if not verify_pin(team_key,pin): raise HTTPException(403,'PIN non valido')
+    if not test and datetime.now()<vote_unlock_at(x): raise HTTPException(409,'Votazione non ancora disponibile')
+    return {'ok':True}
+
 @app.post('/api/vote/{fixture_id}/{team_key}')
 async def cast_vote(fixture_id:str,team_key:str,request:Request,test:int=0):
     x=vote_fixture(fixture_id)

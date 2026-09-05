@@ -1,4 +1,11 @@
-USSA SMART HUB — V2.4.19
+USSA SMART HUB — V2.4.20
+
+Novità V2.4.20:
+- pulsanti delle schede squadra su due righe: ATLETI + STAFF, poi le funzioni sportive disponibili;
+- fascia allenamenti compatta, con sede comune separata e giorni/orari affiancati;
+- tastierino PIN numerico integrato, centrale e compatto;
+- cifre del PIN sempre mascherate da asterischi;
+- scelta atleta bloccata fino alla verifica del PIN.
 
 Fix principale:
 - nuova area INFO con Segreteria, Social, Dirigenza, Partner & Sponsor;
