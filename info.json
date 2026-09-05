@@ -1,0 +1,198 @@
+{
+  "secretariat": {
+    "title": "SEGRETERIA SOCIETARIA",
+    "address": "Via XXV Aprile 4",
+    "subaddress": "presso Oratorio S. Ambrogio",
+    "days": [
+      2,
+      5
+    ],
+    "days_label": "Martedì e Venerdì",
+    "open": "18:00",
+    "close": "19:30",
+    "email": "ussarozzano1982@gmail.com"
+  },
+  "social": [
+    {
+      "name": "INSTAGRAM",
+      "handle": "@ussarozzano1982",
+      "url": "https://www.instagram.com/ussarozzano1982/"
+    },
+    {
+      "name": "FACEBOOK",
+      "handle": "USSA Rozzano 1982",
+      "url": "https://www.facebook.com/UssaRozzano1982/?locale=it_IT"
+    }
+  ],
+  "leadership": [
+    {
+      "area": "PRESIDENZA",
+      "people": [
+        {
+          "name": "Marco Paolini",
+          "role": "Presidente"
+        },
+        {
+          "name": "Sergio Ricci",
+          "role": "Vice Presidente"
+        },
+        {
+          "name": "Vincenzo Novella",
+          "role": "Direttore Generale"
+        }
+      ]
+    },
+    {
+      "area": "AREA SPORTIVA",
+      "people": [
+        {
+          "name": "Roberto Castracane",
+          "role": "Direttore Sportivo Calcio"
+        },
+        {
+          "name": "Simona Pajesi",
+          "role": "Direttore Sportivo Volley"
+        },
+        {
+          "name": "Francesco Caciagli",
+          "role": "Direttore Sportivo Basket"
+        },
+        {
+          "name": "Mauro Brambilla",
+          "role": "Responsabile tecnico calcio Under 15"
+        },
+        {
+          "name": "Marco Lampugnani",
+          "role": "Responsabile tecnico calcio Over"
+        }
+      ]
+    },
+    {
+      "area": "AREA GESTIONALE",
+      "people": [
+        {
+          "name": "Vincenzo Novella",
+          "role": "Responsabile Segreteria Sportiva"
+        },
+        {
+          "name": "Sergio Ricci",
+          "role": "Responsabile tesoreria"
+        },
+        {
+          "name": "Simona Pajesi",
+          "role": "Responsabile formazione"
+        },
+        {
+          "name": "Vittorio De Matteis",
+          "role": "Responsabile visite mediche"
+        }
+      ]
+    },
+    {
+      "area": "AREA STRUTTURA E SERVIZI",
+      "people": [
+        {
+          "name": "Andrea Farruggia",
+          "role": "Responsabile struttura USSA Stadium"
+        },
+        {
+          "name": "Raffaele De Benedetto",
+          "role": "Responsabile struttura Campo a 7 Oratorio"
+        },
+        {
+          "name": "Elena Monticelli",
+          "role": "Responsabile struttura Palestra Oratorio"
+        },
+        {
+          "name": "Nicola Giliberti",
+          "role": "Responsabile Area Hospitality"
+        },
+        {
+          "name": "Domenico Santoro",
+          "role": "Responsabile area Legale"
+        }
+      ]
+    },
+    {
+      "area": "AREA COMUNICAZIONE E RELAZIONI",
+      "people": [
+        {
+          "name": "Nicola Giliberti",
+          "role": "Responsabile commerciale e p.r."
+        },
+        {
+          "name": "Roberto Novella",
+          "role": "Responsabile social & web"
+        },
+        {
+          "name": "Pierluca Minutoli",
+          "role": "Responsabile eventi ed iniziative"
+        }
+      ]
+    }
+  ],
+  "board": [
+    "Andrea Farruggia",
+    "Domenico Santoro",
+    "Marco Paolini",
+    "Nicola Giliberti",
+    "Raffaele De Benedetto",
+    "Roberto Castracane",
+    "Roberto Novella",
+    "Sergio Ricci",
+    "Simona Pajesi",
+    "Vincenzo Novella",
+    "Vittorio De Matteis"
+  ],
+  "partners": [
+    {
+      "name": "PARMA CALCIO ACADEMY",
+      "kind": "PARTNER",
+      "role": "Partner tecnico",
+      "url": "https://www.parmacalcio1913.com/academy/",
+      "logo_mode": "text",
+      "logo_text": "PARMA CALCIO ACADEMY"
+    },
+    {
+      "name": "GOLEE",
+      "kind": "PARTNER",
+      "role": "Partner digitale · Gestionale e app di segreteria",
+      "url": "https://golee.it/",
+      "logo_mode": "text",
+      "logo_text": "GOLEE"
+    },
+    {
+      "name": "CERBA HEALTHCARE",
+      "kind": "PARTNER",
+      "role": "Partner sanitario",
+      "url": "https://www.cerbahealthcare.it/",
+      "logo_mode": "text",
+      "logo_text": "Cerba HealthCare"
+    },
+    {
+      "name": "RAREDREAMS",
+      "kind": "PARTNER",
+      "role": "Partner",
+      "url": "https://www.raredreamsmilano.com/",
+      "logo_mode": "text",
+      "logo_text": "RareDreams"
+    },
+    {
+      "name": "BAR DELLO SPORT",
+      "kind": "PARTNER",
+      "role": "Area Hospitality USSA Stadium",
+      "url": "https://www.google.com/maps/place/Campo+Sportivo+USSA+-+Unione+Sportiva+Sant'Ambrogio/@45.3730049,9.1486304,192m/data=!3m1!1e3!4m8!3m7!1s0x4786ddcd159b35e5:0xc014cae33231e4bd!8m2!3d45.3730049!4d9.1492547!9m1!1b1!16s%2Fg%2F11rxjmddt_?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+      "cta": "LASCIA UNA RECENSIONE",
+      "logo_mode": "text",
+      "logo_text": "BAR DELLO SPORT"
+    },
+    {
+      "name": "TEMPOCASA ROZZANO",
+      "kind": "SPONSOR",
+      "role": "Sponsor",
+      "url": "https://tempocasa.it/",
+      "logo_mode": "text",
+      "logo_text": "TEMPOCASA ROZZANO"
+    }
+  ]
+}

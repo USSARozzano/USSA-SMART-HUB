@@ -4,7 +4,7 @@ from fastapi.responses import FileResponse, Response, PlainTextResponse
 from pathlib import Path
 from datetime import datetime, timedelta
 from urllib.parse import urljoin, quote, urlparse
-import requests, re, json, io
+import requests, re, json, io, sqlite3, hashlib, os
 from bs4 import BeautifulSoup
 import qrcode
 import qrcode.image.svg
@@ -99,6 +99,9 @@ def local_fixture_matches(team_key, competition=None):
 def home(): return FileResponse(ROOT/'index.html')
 @app.get('/assets/ussa-logo.png')
 def logo(): return FileResponse(ROOT/'ussa-logo.png',media_type='image/png')
+
+@app.get('/assets/spikey-info.png')
+def spikey_info(): return FileResponse(ROOT/'spikey-info.png',media_type='image/png')
 @app.get('/api/teams')
 def api_teams(): return load_json('teams.json',[])
 @app.get('/api/hub')
@@ -521,3 +524,98 @@ def qr_route(fixture_id:str):
     hub=load_json('hub.json',{});origin=hub['stadium']['route_address'];dest=x.get('route_address') or x.get('address','')
     url='https://www.google.com/maps/dir/?api=1&origin='+quote(origin)+'&destination='+quote(dest)+'&travelmode=driving'
     return Response(qr_svg(url),media_type='image/svg+xml')
+
+
+# ===== V2.4.19 · INFO / ATLETI / MIGLIORE IN CAMPO =====
+VOTE_DB=Path(os.getenv('VOTES_DB_PATH', str(ROOT/'votes.db')))
+
+def vote_db():
+    VOTE_DB.parent.mkdir(parents=True,exist_ok=True)
+    con=sqlite3.connect(VOTE_DB)
+    con.row_factory=sqlite3.Row
+    con.execute("""CREATE TABLE IF NOT EXISTS votes(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        fixture_id TEXT NOT NULL,
+        team_key TEXT NOT NULL,
+        athlete_id TEXT NOT NULL,
+        athlete_name TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        UNIQUE(fixture_id,team_key)
+    )""")
+    con.commit(); return con
+
+def verify_pin(team_key,pin,admin=False):
+    cfg=load_json('vote_pins.json',{})
+    item=cfg.get('_admin' if admin else team_key)
+    if not item or not pin:return False
+    try:
+        calc=hashlib.pbkdf2_hmac('sha256',str(pin).encode(),bytes.fromhex(item['salt']),120000).hex()
+        return calc==item['hash']
+    except:return False
+
+def vote_fixture(fixture_id):
+    x=fixture_by_id(fixture_id)
+    if x:return x
+    if fixture_id.startswith('csi_'):
+        code=fixture_id[4:]
+        for m in U13_TEST_MATCHES:
+            if code in (m.get('detail_url') or ''):
+                z=dict(m);z['id']=fixture_id;return z
+    return None
+
+def vote_unlock_at(x):
+    try:return iso_dt(x['date'],x.get('time') or '00:00')+timedelta(minutes=45)
+    except:return datetime.max
+
+@app.get('/api/info')
+def api_info(): return load_json('info.json',{})
+
+@app.get('/api/team/{key}/athletes')
+def team_athletes(key:str):
+    if key not in teams_dict(): raise HTTPException(404)
+    return {'team_key':key,'athletes':load_json('athletes.json',{}).get(key,[])}
+
+@app.get('/api/qr/url.svg')
+def qr_url(url:str=Query(...,min_length=1)):
+    if not (url.startswith('https://') or url.startswith('http://') or url.startswith('mailto:')): raise HTTPException(400)
+    return Response(qr_svg(url),media_type='image/svg+xml')
+
+@app.get('/api/vote/{fixture_id}/{team_key}/status')
+def vote_status(fixture_id:str,team_key:str,test:int=0):
+    x=vote_fixture(fixture_id)
+    if not x or team_key not in teams_dict(): raise HTTPException(404)
+    unlock=vote_unlock_at(x);now=datetime.now();eligible=bool(test) or now>=unlock
+    con=vote_db();row=con.execute('SELECT athlete_id,athlete_name,created_at FROM votes WHERE fixture_id=? AND team_key=?',(fixture_id,team_key)).fetchone();con.close()
+    return {'eligible':eligible,'unlock_at':unlock.isoformat(timespec='minutes'),'voted':bool(row),'vote':dict(row) if row else None,'test_mode':bool(test)}
+
+@app.post('/api/vote/{fixture_id}/{team_key}')
+async def cast_vote(fixture_id:str,team_key:str,request:Request,test:int=0):
+    x=vote_fixture(fixture_id)
+    if not x or team_key not in teams_dict(): raise HTTPException(404)
+    body=await request.json(); pin=str(body.get('pin') or ''); athlete_id=str(body.get('athlete_id') or '')
+    if not verify_pin(team_key,pin): raise HTTPException(403,'PIN non valido')
+    if not test and datetime.now()<vote_unlock_at(x): raise HTTPException(409,'Votazione non ancora disponibile')
+    athletes=load_json('athletes.json',{}).get(team_key,[]);a=next((z for z in athletes if z.get('id')==athlete_id),None)
+    if not a: raise HTTPException(400,'Atleta non valido')
+    con=vote_db()
+    try:
+        con.execute('INSERT INTO votes(fixture_id,team_key,athlete_id,athlete_name,created_at) VALUES(?,?,?,?,?)',(fixture_id,team_key,athlete_id,a.get('name') or 'NOME E COGNOME',datetime.now().isoformat(timespec='seconds')));con.commit()
+    except sqlite3.IntegrityError:
+        con.close();raise HTTPException(409,'Voto già registrato per questa gara')
+    con.close();return {'ok':True}
+
+@app.get('/api/backoffice/votes')
+def backoffice_votes(pin:str,month:str|None=None):
+    if not verify_pin('',pin,admin=True): raise HTTPException(403,'PIN non valido')
+    month=month or datetime.now().strftime('%Y-%m')
+    con=vote_db();rows=con.execute("SELECT * FROM votes WHERE substr(created_at,1,7)=? ORDER BY created_at DESC",(month,)).fetchall()
+    ranking=con.execute("SELECT team_key,athlete_id,athlete_name,COUNT(*) votes FROM votes WHERE substr(created_at,1,7)=? GROUP BY team_key,athlete_id,athlete_name ORDER BY votes DESC,athlete_name",(month,)).fetchall();con.close()
+    return {'month':month,'votes':[dict(r) for r in rows],'ranking':[dict(r) for r in ranking]}
+
+@app.delete('/api/backoffice/votes/{vote_id}')
+def delete_vote(vote_id:int,pin:str):
+    if not verify_pin('',pin,admin=True): raise HTTPException(403,'PIN non valido')
+    con=vote_db();cur=con.execute('DELETE FROM votes WHERE id=?',(vote_id,));con.commit();con.close();return {'ok':bool(cur.rowcount)}
+
+@app.get('/backoffice')
+def backoffice_page(): return FileResponse(ROOT/'backoffice.html')

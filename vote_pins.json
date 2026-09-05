@@ -1,0 +1,82 @@
+{
+  "ecc_yellow": {
+    "salt": "9e3e98ae1a3bea9d223eb79e3d703a63",
+    "hash": "3f376a80ec2f4d603a39a6796c17fe3f9fbf30366d12aa7fb4da1bac318c59fb"
+  },
+  "ecc_blue": {
+    "salt": "0f008616e69c902f2f095b720d2bc49e",
+    "hash": "9f554b46fe276de89f0f3937e5fc390fb8b16d55b591bb6fc86738753be28ad9"
+  },
+  "u20": {
+    "salt": "75555a4526c60d904f3e30e0846ea424",
+    "hash": "678a17ae7708bcdecf3abe0e82e46c1caea632dc480bf9fbd774fdb2b1abee89"
+  },
+  "u17": {
+    "salt": "a9b2788d133418bf02b697d1b7981d40",
+    "hash": "3587db7554a6eb9cf75ec907abcc06354c64009063a2192f20d39eb1f01d12e4"
+  },
+  "u15_yellow": {
+    "salt": "660f6bb0d98400c1a7980198a7db1015",
+    "hash": "477e53aa5a397f52901bf1e25c22925b6d00ff2e8f322494d966183a103ea778"
+  },
+  "u15_blue": {
+    "salt": "6d4537a380712927171a33ba110cfb61",
+    "hash": "cfd35fba765c412f76ec686c150ce3696e14cd1b99614762ae1f99dc23e82aec"
+  },
+  "u14": {
+    "salt": "5e5dd79b52967300339f65cc6846416c",
+    "hash": "d259a28da0b60036efb976483979bf2d36558349d218b3d862e24c33613a56c1"
+  },
+  "u12": {
+    "salt": "55facaaa4a475489b96d17067c86b508",
+    "hash": "9ca2a183c1142754084827f19b34bf086bb2ed93e51b920e072301480e53d5d2"
+  },
+  "u11": {
+    "salt": "1739c26ff6b30c2d9c384843b82b5aa5",
+    "hash": "cdb5dd9261be01d1e7ff9853b291acb3a6b9039d14b69cb023d3139f4bbc428c"
+  },
+  "u10": {
+    "salt": "8d4347948c35fc3f46f5787fd2847fa1",
+    "hash": "c1fea1c584ac4ae186f46e40cb2c03f752fe84766746b15ed409fe4f8133a5a6"
+  },
+  "u9": {
+    "salt": "8320df4c54b679a7ea72b0a273a8dff5",
+    "hash": "5cebd01ab8b8182d79255785788cae21fb9fd1fc93eab5ab23003e79ab3ef9a4"
+  },
+  "primi_calci": {
+    "salt": "969e0f41349b78c5f97e01ecfbef1e16",
+    "hash": "f9a06e108287d65f00f2808a393542b350415e4c9d505680cef37d89d02340b6"
+  },
+  "volley_open_ecc": {
+    "salt": "636e1c1bff4ae65a081700d3fe46eab3",
+    "hash": "dd9cca7823567c8fe1ef51d1eb3cab18beac6cfb7531cbbdb14a25b8ebf65eab"
+  },
+  "volley_u19": {
+    "salt": "81abe53a61d8f4983834414f616018f8",
+    "hash": "f0c6b43af8ab52640c69b6ea37b12dd33b8708a168d039c35f6be12ddc8010b9"
+  },
+  "volley_u14": {
+    "salt": "153436bcd86127153fb947d476a3ea20",
+    "hash": "73b769609a8bd1e76344550f6d3eb6ccd96b031bfc65d20ba67e7fbb963afcb1"
+  },
+  "volley_u13": {
+    "salt": "0b36fde86dd1965c6fbdd452f212fa6e",
+    "hash": "08a7d8364bcb9be7843598f1ffe9316d582f4d0cfa3e81a8c465785817971644"
+  },
+  "basket_open_a": {
+    "salt": "f14587b83ee880c436632eda2446f4ed",
+    "hash": "c83223e4c8b515b4baf7e3fb64accb8ca8e28a508d5c01217ca1e893ac2bae01"
+  },
+  "baskin": {
+    "salt": "79337e53fc99e69739911426b2dadeb0",
+    "hash": "4a0542dd67d9c63ff31336a2e3c947bc64cbe660c2bdf383da9ba927049c0465"
+  },
+  "u13a11_test": {
+    "salt": "401fe81b3408fe50c332c13319d0d231",
+    "hash": "cc2101be9d90fcd25d0b2bb6c8b2886d787653f83229d598a4279a05c82fb4c6"
+  },
+  "_admin": {
+    "salt": "4a7a1d29c0df730484086e1f58164f09",
+    "hash": "4c658e73e69791d12d4c7aec3d3aaf43b3aef153bb1b0a1ca42cdc176ca95167"
+  }
+}
