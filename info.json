@@ -146,53 +146,52 @@
   ],
   "partners": [
     {
-      "name": "PARMA CALCIO ACADEMY",
-      "kind": "PARTNER",
-      "role": "Partner tecnico",
-      "url": "https://www.parmacalcio1913.com/academy/",
-      "logo_mode": "text",
-      "logo_text": "PARMA CALCIO ACADEMY"
+      "name": "TEMPOCASA ROZZANO",
+      "kind": "SPONSOR",
+      "role": "Sponsor",
+      "url": "https://www.immobiliare.it/agenzie-immobiliari/89825/tempocasa-rozzano/",
+      "logo": "/assets/partners/tempocasa-rozzano.jpg",
+      "logo_theme": "light"
     },
     {
-      "name": "GOLEE",
-      "kind": "PARTNER",
-      "role": "Partner digitale · Gestionale e app di segreteria",
-      "url": "https://golee.it/",
-      "logo_mode": "text",
-      "logo_text": "GOLEE"
+      "name": "SOUTH BARBER",
+      "kind": "SPONSOR",
+      "role": "Sponsor",
+      "url": "https://southbarber.it/",
+      "logo": "/assets/partners/south-barber.png",
+      "logo_theme": "dark"
     },
     {
       "name": "CERBA HEALTHCARE",
       "kind": "PARTNER",
       "role": "Partner sanitario",
       "url": "https://www.cerbahealthcare.it/",
-      "logo_mode": "text",
-      "logo_text": "Cerba HealthCare"
+      "logo": "/assets/partners/cerba-healthcare.png",
+      "logo_theme": "light"
     },
     {
-      "name": "RAREDREAMS",
+      "name": "GOLEE",
+      "kind": "PARTNER",
+      "role": "Partner digitale",
+      "url": "https://golee.it/",
+      "logo": "/assets/partners/golee.svg",
+      "logo_theme": "light"
+    },
+    {
+      "name": "RAREDREAMS MILANO",
       "kind": "PARTNER",
       "role": "Partner",
       "url": "https://www.raredreamsmilano.com/",
-      "logo_mode": "text",
-      "logo_text": "RareDreams"
+      "logo": "/assets/partners/raredreams.png",
+      "logo_theme": "dark"
     },
     {
-      "name": "BAR DELLO SPORT",
+      "name": "PARMA CALCIO ACADEMY",
       "kind": "PARTNER",
-      "role": "Area Hospitality USSA Stadium",
-      "url": "https://www.google.com/maps/place/Campo+Sportivo+USSA+-+Unione+Sportiva+Sant'Ambrogio/@45.3730049,9.1486304,192m/data=!3m1!1e3!4m8!3m7!1s0x4786ddcd159b35e5:0xc014cae33231e4bd!8m2!3d45.3730049!4d9.1492547!9m1!1b1!16s%2Fg%2F11rxjmddt_?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
-      "cta": "LASCIA UNA RECENSIONE",
-      "logo_mode": "text",
-      "logo_text": "BAR DELLO SPORT"
-    },
-    {
-      "name": "TEMPOCASA ROZZANO",
-      "kind": "SPONSOR",
-      "role": "Sponsor",
-      "url": "https://tempocasa.it/",
-      "logo_mode": "text",
-      "logo_text": "TEMPOCASA ROZZANO"
+      "role": "Partner tecnico",
+      "url": "https://www.parmacalcio1913.com/academy/",
+      "logo": "/assets/partners/parma-calcio.svg",
+      "logo_theme": "light"
     }
   ]
 }

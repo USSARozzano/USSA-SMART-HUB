@@ -1,4 +1,13 @@
-USSA SMART HUB — V2.4.26
+USSA SMART HUB — V2.4.27
+
+Novità V2.4.27:
+- pagina INFO riorganizzata con contenuti più ricchi e meglio distribuiti;
+- inseriti i loghi ufficiali di sponsor e partner con QR verso i rispettivi siti;
+- SPONSOR: TEMPOCASA ROZZANO e SOUTH BARBER;
+- PARTNER: CERBA HEALTHCARE, GOLEE, RAREDREAMS MILANO e PARMA CALCIO ACADEMY;
+- denominazioni aziendali testuali uniformate in maiuscolo;
+- card della Dirigenza ridisegnate con lo stesso formato verticale delle figurine Atleti;
+- card Staff e Collaboratori uniformate per dimensioni e proporzioni in tutte le squadre.
 
 Novità V2.4.26:
 - aggiunte alla dashboard 14 amichevoli interne di settembre 2026;

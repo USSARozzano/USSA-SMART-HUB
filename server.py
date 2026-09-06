@@ -102,6 +102,20 @@ def logo(): return FileResponse(ROOT/'ussa-logo.png',media_type='image/png')
 
 @app.get('/assets/spikey-info.png')
 def spikey_info(): return FileResponse(ROOT/'spikey-info.png',media_type='image/png')
+
+@app.get('/assets/partners/{filename}')
+def partner_asset(filename: str):
+    allowed = {
+        'tempocasa-rozzano.jpg',
+        'cerba-healthcare.png',
+        'golee.svg',
+        'raredreams.png',
+        'parma-calcio.svg',
+        'south-barber.png',
+    }
+    if filename not in allowed:
+        raise HTTPException(status_code=404, detail='Logo non disponibile')
+    return FileResponse(ROOT/'assets'/'partners'/filename)
 @app.get('/api/teams')
 def api_teams(): return load_json('teams.json',[])
 @app.get('/api/hub')

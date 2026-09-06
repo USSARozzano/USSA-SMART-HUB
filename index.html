@@ -418,7 +418,7 @@ button.matchcard{width:100%;text-align:left;color:inherit;font:inherit;appearanc
 <section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div class="now-empty-icons" aria-hidden="true"><span>⚽</span><span>🏐</span><span>🏀</span></div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryStatus" class="secretary-status"></div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4.26 · AMICHEVOLI SETTEMBRE</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.27 · INFO PARTNER E PERSONE</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
@@ -549,7 +549,7 @@ function trainingHTML(t){
   return `<div class="training-strip"><div class="training-summary"><strong>ALLENAMENTI</strong></div><div class="training-sessions">${a.map(x=>`<div class="training-session"><div class="training-day">${esc(x.day)}</div><div class="training-time">${esc(x.start)}–${esc(x.end)}</div><div class="training-place">${esc(x.place||'SEDE DA DEFINIRE')}</div></div>`).join('')}</div></div>`
 }
 function initials(n){return n.split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()}
-function staffHTML(t){let a=t.staff||[],coll=t.collaborators||[];let main=a.length?`<div class="staffgrid">${a.map(x=>`<div class="staffcard"><div class="staffphoto">${x.photo?`<img src="${esc(x.photo)}">`:esc(initials(x.name))}</div><div class="staffrole">${esc(x.role)}</div><div class="staffname">${esc(x.name)}</div></div>`).join('')}</div>`:'<div class="empty">Staff non disponibile.</div>';if(coll.length)main+=`<div class="collabs"><h3>COLLABORATORI</h3>${coll.map(x=>`<div class="kvrow"><b>${esc(x.name)}</b><span>${esc(x.role||'Collaboratore')}</span></div>`).join('')}</div>`;return main}
+function staffHTML(t){let a=t.staff||[],coll=t.collaborators||[];let card=x=>`<div class="staffcard person-card"><div class="staffphoto person-photo">${x.photo?`<img src="${esc(x.photo)}" alt="${esc(x.name)}">`:`<span>${esc(initials(x.name))}</span>`}</div><div class="staffname person-name">${esc(x.name)}</div><div class="staffrole person-role">${esc(x.role||'STAFF')}</div></div>`;let main=a.length?`<div class="staffgrid person-grid">${a.map(card).join('')}</div>`:'<div class="empty">Staff non disponibile.</div>';if(coll.length)main+=`<div class="collabs"><h3>COLLABORATORI</h3><div class="staffgrid person-grid">${coll.map(card).join('')}</div></div>`;return main}
 function openTeam(key){
   let t=teams.find(x=>x.key===key);if(!t)return;
   if(key==='u14'){navigate({type:'u14choice'});return}
@@ -900,12 +900,15 @@ openInfo=function(){navigate({type:'info'})}
 async function ensureInfo(){if(!infoData)infoData=await getJSON('/api/info');return infoData}
 function secretaryState(){const ht=hubTime(),sec=(infoData?.secretariat)||{},days=(sec.days||[]).map(Number),op=hmToMinutes(sec.open||'00:00'),cl=hmToMinutes(sec.close||'00:00');if(!days.includes(ht.weekday))return null;let b=op-ht.minutes,c=cl-ht.minutes;if(ht.minutes<op&&b>0&&b<=30)return {cls:'soon',txt:'SEGRETERIA APRE TRA POCO'};if(ht.minutes>=op&&ht.minutes<cl&&c<=20)return {cls:'closing',txt:'SEGRETERIA IN CHIUSURA'};if(ht.minutes>=op&&ht.minutes<cl)return {cls:'open-now',txt:'SEGRETERIA APERTA ORA'};return null}
 function secStateHTML(){const x=secretaryState();return x?`<div class="secretary-inline ${x.cls}">${x.txt}</div>`:''}
-async function renderInfoHome(){const d=await ensureInfo();showOverlay('INFO',`<div class="info19"><section class="info19-hero"><div class="info19-hero-copy"><h1>INFO</h1><p>Segreteria, contatti, dirigenza, partner e sponsor.</p></div><div class="info19-spikey"><img src="/assets/spikey-info.png" alt="Spikey"></div></section><div class="info19-grid"><button class="info19-card" onclick="navigate({type:'infoSection',section:'secretariat'})"><div><h2>SEGRETERIA SOCIETARIA</h2><p>${esc(d.secretariat.address)} · ${esc(d.secretariat.days_label)} ${esc(d.secretariat.open)}–${esc(d.secretariat.close)}</p>${secStateHTML()}</div><div class="info19-more">APRI ›</div></button><button class="info19-card" onclick="navigate({type:'infoSection',section:'social'})"><div><h2>SOCIAL</h2><p>Instagram e Facebook con accesso diretto tramite QR.</p></div><div class="info19-more">APRI ›</div></button><button class="info19-card" onclick="navigate({type:'infoSection',section:'leadership'})"><div><h2>DIRIGENZA</h2><p>Organigramma societario.</p></div><div class="info19-more">APRI ›</div></button><button class="info19-card" onclick="navigate({type:'infoSection',section:'partners'})"><div><h2>PARTNER & SPONSOR</h2><p>Le realtà che collaborano con USSA Rozzano.</p></div><div class="info19-more">APRI ›</div></button></div></div>`)}
+async function renderInfoHome(){const d=await ensureInfo(),people=d.leadership.reduce((n,a)=>n+(a.people||[]).length,0),logos=d.partners.map(x=>`<span class="info27-brand ${esc(x.logo_theme||'light')}"><img src="${esc(x.logo)}" alt="${esc(String(x.name).toUpperCase())}"></span>`).join('');showOverlay('INFO',`<div class="info19 info27-home"><section class="info19-hero info27-hero"><div class="info19-hero-copy"><div class="info27-kicker">USSA ROZZANO</div><h1>INFO</h1><p>Contatti, persone e realtà che fanno vivere ogni giorno la nostra società.</p><div class="info27-topics"><span>SEGRETERIA</span><span>SOCIAL</span><span>DIRIGENZA</span><span>PARTNER</span></div></div><div class="info19-spikey"><img src="/assets/spikey-info.png" alt="Spikey"></div></section><div class="info19-grid info27-grid"><button class="info19-card info27-card" onclick="navigate({type:'infoSection',section:'secretariat'})"><div><div class="info27-card-kicker">CONTATTI E ORARI</div><h2>SEGRETERIA SOCIETARIA</h2><p><strong>${esc(d.secretariat.days_label)} · ${esc(d.secretariat.open)}–${esc(d.secretariat.close)}</strong><br>${esc(d.secretariat.address)}</p>${secStateHTML()}</div><div class="info19-more">VEDI LA SEGRETERIA ›</div></button><button class="info19-card info27-card social-card" onclick="navigate({type:'infoSection',section:'social'})"><div><div class="info27-card-kicker">RESTA CON NOI</div><h2>SOCIAL</h2><div class="info27-social-row"><span>IG</span><b>@ussarozzano1982</b><span>FB</span><b>USSA ROZZANO 1982</b></div></div><div class="info19-more">SCANSIONA I QR ›</div></button><button class="info19-card info27-card leadership-card" onclick="navigate({type:'infoSection',section:'leadership'})"><div><div class="info27-card-kicker">ORGANIGRAMMA SOCIETARIO</div><h2>DIRIGENZA</h2><div class="info27-number">${people}</div><p>responsabili suddivisi per area</p></div><div class="info19-more">CONOSCI LA DIRIGENZA ›</div></button><button class="info19-card info27-card partners-card" onclick="navigate({type:'infoSection',section:'partners'})"><div><div class="info27-card-kicker">LA RETE USSA</div><h2>SPONSOR & PARTNER</h2><div class="info27-brand-strip">${logos}</div></div><div class="info19-more">VEDI TUTTE LE REALTÀ ›</div></button></div></div>`)}
 async function renderInfoSection(section){const d=await ensureInfo();if(section==='secretariat')return renderSecretariat(d);if(section==='social')return renderSocial(d);if(section==='leadership')return renderLeadership(d);if(section==='partners')return renderPartners(d);goBack()}
 function renderSecretariat(d){const s=d.secretariat,mail=`mailto:${s.email}`;showOverlay('SEGRETERIA SOCIETARIA',`<div class="info19-section"><div class="info19-title"><h1>SEGRETERIA SOCIETARIA</h1></div><div class="info19-columns"><section class="info19-box"><h3>SEDE</h3><div class="info19-big">${esc(s.address)}</div><div class="info19-muted">${esc(s.subaddress)}</div></section><section class="info19-box"><h3>ORARI</h3><div class="info19-big">${esc(s.days_label)}</div><div class="info19-big">${esc(s.open)}–${esc(s.close)}</div>${secStateHTML()}</section></div><section class="info19-box"><h3>CONTATTA LA SEGRETERIA</h3><div class="info19-qr"><img src="/api/qr/url.svg?url=${encodeURIComponent(mail)}" alt="QR email"><div><div class="info19-big">${esc(s.email)}</div><div class="info19-muted">Il QR apre direttamente una nuova e-mail sul telefono.</div></div></div></section></div>`)}
 function renderSocial(d){showOverlay('SOCIAL',`<div class="info19-section"><div class="info19-title"><h1>SOCIAL</h1></div><div class="social19">${d.social.map(x=>`<section class="info19-box"><div class="social19-name">${esc(x.name)}</div><div class="social19-handle">${esc(x.handle)}</div><img src="/api/qr/url.svg?url=${encodeURIComponent(x.url)}" alt="QR ${esc(x.name)}"><div><button class="info19-cta" onclick="void(0)">SEGUICI</button></div></section>`).join('')}</div></div>`)}
-function renderLeadership(d){showOverlay('DIRIGENZA',`<div class="info19-section"><div class="info19-title"><h1>DIRIGENZA</h1></div>${d.leadership.map(a=>`<section class="lead-area"><h3>${esc(a.area)}</h3><div class="lead-grid">${a.people.map(p=>`<div class="lead-card"><div class="lead-name">${esc(p.name)}</div><div class="lead-role">${esc(p.role)}</div></div>`).join('')}</div></section>`).join('')}<section class="lead-area"><h3>CONSIGLIO DIRETTIVO</h3><div class="board-grid">${d.board.map(n=>`<div class="board-name">${esc(n)}</div>`).join('')}</div></section></div>`)}
-function renderPartners(d){showOverlay('PARTNER & SPONSOR',`<div class="info19-section"><div class="info19-title"><h1>PARTNER & SPONSOR</h1></div><div class="partner-grid">${d.partners.map(x=>`<section class="partner-card"><div><div class="partner-mark">${esc(x.logo_text||x.name)}</div><div class="partner-kind">${esc(x.kind)}</div><div class="partner-role">${esc(x.role||'')}</div>${x.cta?`<div class="partner-role">${esc(x.cta)}</div>`:''}</div><img src="/api/qr/url.svg?url=${encodeURIComponent(x.url)}" alt="QR ${esc(x.name)}"></section>`).join('')}</div></div>`)}
+function leadershipPersonCard(p,role){return `<div class="lead-card person-card"><div class="staffphoto person-photo">${p.photo?`<img src="${esc(p.photo)}" alt="${esc(p.name)}">`:`<span>${esc(initials(p.name))}</span>`}</div><div class="lead-name person-name">${esc(p.name)}</div><div class="lead-role person-role">${esc(p.role||role||'DIRIGENZA')}</div></div>`}
+function renderLeadership(d){showOverlay('DIRIGENZA',`<div class="info19-section leadership27"><div class="info19-title"><h1>DIRIGENZA</h1><p>Persone, ruoli e aree della società.</p></div>${d.leadership.map(a=>`<section class="lead-area"><h3>${esc(a.area)}</h3><div class="lead-grid person-grid">${a.people.map(p=>leadershipPersonCard(p)).join('')}</div></section>`).join('')}<section class="lead-area"><h3>CONSIGLIO DIRETTIVO</h3><div class="lead-grid person-grid">${d.board.map(n=>leadershipPersonCard({name:n},'CONSIGLIO DIRETTIVO')).join('')}</div></section></div>`)}
+function partnerLogo(x){return `<div class="partner-logo-frame ${esc(x.logo_theme||'light')}"><img class="partner-logo" src="${esc(x.logo)}" alt="${esc(String(x.name).toUpperCase())}"></div>`}
+function partnerCard(x){return `<section class="partner-card partner27-card">${partnerLogo(x)}<div class="partner27-copy"><div class="partner-kind">${esc(String(x.kind).toUpperCase())}</div><div class="partner27-name">${esc(String(x.name).toUpperCase())}</div><div class="partner-role">${esc(x.role||'')}</div></div><div class="partner27-qr"><img src="/api/qr/url.svg?url=${encodeURIComponent(x.url)}" alt="QR ${esc(String(x.name).toUpperCase())}"><span>INQUADRA E SCOPRI</span></div></section>`}
+function renderPartners(d){const sponsors=d.partners.filter(x=>String(x.kind).toUpperCase()==='SPONSOR'),partners=d.partners.filter(x=>String(x.kind).toUpperCase()!=='SPONSOR'),group=(title,rows)=>`<section class="partner27-group"><div class="partner27-heading"><h2>${title}</h2><span>${rows.length}</span></div><div class="partner-grid">${rows.map(partnerCard).join('')}</div></section>`;showOverlay('SPONSOR & PARTNER',`<div class="info19-section partners27"><div class="info19-title"><h1>SPONSOR & PARTNER</h1><p>Le realtà che sostengono e accompagnano USSA Rozzano.</p></div>${group('SPONSOR',sponsors)}${group('PARTNER',partners)}</div>`)}
 function athletesHTML(rows){return `<div class="athlete-grid">${rows.map(x=>`<div class="athlete-card"><div class="athlete-placeholder">${x.photo?`<img src="${esc(x.photo)}" alt="${esc(x.name)}">`:''}</div><div class="athlete-name">${esc(x.name)}</div></div>`).join('')}</div>`}
 const _refreshAvailability2418=refreshAvailability;
 refreshAvailability=async function(){
@@ -1277,5 +1280,69 @@ async function renderVoteScreen(v){
 .appointment.static{
   cursor:default;
   user-select:none;
+}
+
+/* V2.4.27 - INFO più ricca, loghi ufficiali e card persone uniformi */
+.info27-home{gap:16px}
+.info27-hero{min-height:196px;grid-template-columns:1.55fr .45fr;background:radial-gradient(circle at 20% 20%,rgba(255,202,24,.12),transparent 34%),linear-gradient(135deg,#0e3a5d,#071f35)}
+.info27-hero .info19-hero-copy{padding:25px 30px}
+.info27-hero .info19-spikey{background:linear-gradient(145deg,#0b3555,#071f35)}
+.info27-hero .info19-spikey img{object-position:50% 22%}
+.info27-kicker,.info27-card-kicker{color:var(--yellow);font-size:11px;font-weight:950;letter-spacing:.8px}
+.info27-hero h1{font-size:40px;margin-top:7px}
+.info27-hero p{font-size:15px;margin-top:8px}
+.info27-topics{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.info27-topics span{border:1px solid rgba(255,202,24,.32);border-radius:999px;background:rgba(6,24,39,.55);padding:7px 10px;color:#fff;font-size:10px;font-weight:900}
+.info27-grid{gap:12px}
+.info27-card{min-height:225px;padding:22px;position:relative;overflow:hidden;background:radial-gradient(circle at 100% 0,rgba(255,202,24,.08),transparent 42%),linear-gradient(180deg,#0d3555,#092741)}
+.info27-card:after{content:'';position:absolute;left:22px;right:22px;top:0;height:3px;border-radius:0 0 4px 4px;background:var(--yellow);opacity:.82}
+.info27-card h2{font-size:24px;margin-top:8px;line-height:1.05}
+.info27-card p{font-size:14px;line-height:1.45}
+.info27-card p strong{color:#fff}
+.info27-card .info19-more{color:#fff;letter-spacing:.25px}
+.info27-social-row{display:grid;grid-template-columns:34px 1fr;gap:9px 10px;align-items:center;margin-top:18px}
+.info27-social-row span{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--yellow);color:#071827;font-size:11px;font-weight:1000}
+.info27-social-row b{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.info27-number{font-size:54px;line-height:1;color:var(--yellow);font-weight:1000;margin-top:18px}
+.info27-brand-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:17px}
+.info27-brand{height:42px;border-radius:8px;padding:5px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.info27-brand.light{background:#fff}.info27-brand.dark{background:#07131d}
+.info27-brand img{max-width:100%;max-height:100%;object-fit:contain}
+
+.person-grid,.lead-grid,.staffgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:start;align-content:start}
+.person-card,.staffcard,.lead-card{width:100%;min-width:0;height:auto;min-height:0;align-self:start;border:1px solid #315978;border-radius:16px;background:linear-gradient(180deg,#0e3554,#09243b);padding:10px;text-align:center;display:grid;grid-template-rows:auto minmax(48px,auto) minmax(36px,auto);box-shadow:none}
+.person-photo,.staffphoto{width:100%;height:auto;aspect-ratio:4/5;margin:0 0 10px;border-radius:10px;background:radial-gradient(circle at 50% 32%,#1b4d72,#0a2842 72%);display:flex;align-items:center;justify-content:center;color:var(--yellow);font-size:42px;font-weight:1000;overflow:hidden}
+.person-photo img,.staffphoto img{width:100%;height:100%;object-fit:cover;display:block}
+.person-name,.staffname,.lead-name{min-height:48px;margin:0;padding:4px 5px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:950;line-height:1.16;overflow-wrap:anywhere}
+.person-role,.staffrole,.lead-role{min-height:36px;margin:0;padding:3px 5px;display:flex;align-items:flex-start;justify-content:center;color:var(--muted);font-size:12px;line-height:1.25;overflow-wrap:anywhere}
+.lead-area{padding:16px}.lead-area h3{font-size:16px;margin-bottom:14px}
+.collabs{margin-top:16px}.collabs h3{color:var(--yellow);font-size:16px}
+
+.partners27{gap:16px}.partner27-group{border:1px solid var(--line);border-radius:20px;background:rgba(10,41,67,.62);padding:16px}
+.partner27-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.partner27-heading h2{margin:0;color:var(--yellow);font-size:20px}
+.partner27-heading span{width:30px;height:30px;border-radius:50%;background:var(--yellow);color:#071827;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:1000}
+.partner27-card{min-height:252px;padding:14px;display:grid;grid-template-columns:minmax(0,1fr) 104px;grid-template-rows:130px auto;grid-template-areas:'logo qr' 'copy qr';gap:12px 14px;align-items:center;background:linear-gradient(180deg,#0e3554,#09243b)}
+.partner-logo-frame{grid-area:logo;width:100%;height:130px;border-radius:13px;padding:15px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.partner-logo-frame.light{background:#fff}.partner-logo-frame.dark{background:#07131d}
+.partner-card .partner-logo{width:100%;height:100%;object-fit:contain;background:transparent;border-radius:0;padding:0}
+.partner27-copy{grid-area:copy;align-self:start;min-width:0}
+.partner27-name{margin-top:5px;color:#fff;font-size:18px;font-weight:1000;line-height:1.08;overflow-wrap:anywhere}
+.partner-kind{font-size:10px;letter-spacing:.75px}
+.partner-role{font-size:12px;margin-top:6px}
+.partner27-qr{grid-area:qr;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.partner27-qr img{width:104px;height:104px;border-radius:10px;background:#fff;padding:6px}
+.partner27-qr span{font-size:9px;color:var(--muted);font-weight:950;text-align:center;line-height:1.2}
+
+@media(max-width:700px){
+  .info27-hero{grid-template-columns:1fr;min-height:176px}.info27-hero .info19-spikey{display:none}
+  .info27-grid{grid-template-columns:1fr}
+  .person-grid,.lead-grid,.staffgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .person-name,.staffname,.lead-name{font-size:16px;min-height:44px}
+  .person-role,.staffrole,.lead-role{font-size:11px}
+  .partner-grid{grid-template-columns:1fr}
+  .partner27-card{grid-template-columns:minmax(0,1fr) 94px;grid-template-rows:118px auto;min-height:232px}
+  .partner-logo-frame{height:118px;padding:12px}
+  .partner27-qr img{width:94px;height:94px}
 }
 </style>
