@@ -1,4 +1,15 @@
-USSA SMART HUB — V2.4.22
+USSA SMART HUB — V2.4.23
+
+Novità V2.4.23:
+- importati 266 atleti dai tabulati Golee e assegnati alle rispettive squadre;
+- esclusi Andrea Cimbali e Marco Paolini; Ivan Fichera resta solo in Eccellenza Yellow e Roberto Novella solo in Eccellenza Blue;
+- PIN della squadra UNDER 13 A 11 · TEST CSI impostato a 000000;
+- pulsanti squadra della Home riempiti meglio, con icona sportiva più grande e nome sotto più leggibile;
+- proporzioni di ORA IN CAMPO e INFO riequilibrate;
+- allenamenti disposti in due box completi con giorno, orario e impianto centrati;
+- eliminato il riquadro introduttivo vuoto nelle schede squadra;
+- statistiche del dettaglio gara raccolte in una fascia più compatta;
+- testi e comportamento touch dei tastierini PIN rifiniti.
 
 Correzione V2.4.22:
 - pressione prolungata sul logo resa stabile sui touchscreen;
