@@ -1,4 +1,9 @@
-USSA SMART HUB — V2.4.25
+USSA SMART HUB — V2.4.26
+
+Novità V2.4.26:
+- aggiunte alla dashboard 14 amichevoli interne di settembre 2026;
+- squadre indicate sempre per esteso, con denominazioni BLUE e YELLOW;
+- amichevoli mostrate come righe informative non cliccabili, senza dettaglio gara, QR o collegamenti ulteriori.
 
 Correzioni V2.4.25:
 - eliminate le sovrapposizioni tra le figurine con righe indipendenti ad altezza naturale;

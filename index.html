@@ -418,7 +418,7 @@ button.matchcard{width:100%;text-align:left;color:inherit;font:inherit;appearanc
 <section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div class="now-empty-icons" aria-hidden="true"><span>⚽</span><span>🏐</span><span>🏀</span></div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryStatus" class="secretary-status"></div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4.25 · ATHLETE GRID FIX</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.26 · AMICHEVOLI SETTEMBRE</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
@@ -491,7 +491,13 @@ function clock(){
 }
 async function boot(){[teams,hub]=await Promise.all([getJSON('/api/teams'),getJSON('/api/hub')]);renderTeams();await Promise.all([loadSchedule(),loadNow()]);clock();setInterval(clock,1000);resetIdle()}
 function renderTeams(){$('teamGrid').innerHTML=teams.filter(t=>t.visible!==false).slice(0,20).map(t=>`<button class="team ${t.test_only?'test':''}" onclick="openTeam('${t.key}')"><span class="icon">${t.icon||'●'}</span><span class="name">${esc(t.label)}</span></button>`).join('')}
-async function loadSchedule(){let d=await getJSON('/api/home/upcoming'),a=d.items||[];$('schedule').innerHTML=a.length?a.map(x=>{let f=fmtDate(x.date),away=x.home_away==='TRASFERTA';return `<button class="appointment" onclick='openAppointment(${JSON.stringify(x).replace(/'/g,"&#39;")})'><div><div class="a-day">${f.day}</div><div class="a-date">${f.date}</div></div><div class="a-time">${esc(x.time||'--:--')}</div><div><div class="a-kind">${esc(x.meta||x.kind||'APPUNTAMENTO')}${x.competition?' · '+esc(x.competition):''}</div><div class="a-title">${esc(x.title||'')}</div><div class="a-venue">${esc(x.field||'')}</div></div>${x.home_away?`<div class="badge ${away?'awaygame':'homegame'}">${esc(x.home_away)}</div>`:'<div></div>'}<div class="chev">›</div></button>`}).join(''):'<div class="empty">Nessun appuntamento futuro pubblicato.</div>'}
+function scheduleItemHTML(x){
+  const f=fmtDate(x.date),away=x.home_away==='TRASFERTA';
+  const content=`<div><div class="a-day">${f.day}</div><div class="a-date">${f.date}</div></div><div class="a-time">${esc(x.time||'--:--')}</div><div><div class="a-kind">${esc(x.meta||x.kind||'APPUNTAMENTO')}${x.competition?' · '+esc(x.competition):''}</div><div class="a-title">${esc(x.title||'')}</div><div class="a-venue">${esc(x.field||'')}</div></div>${x.home_away?`<div class="badge ${away?'awaygame':'homegame'}">${esc(x.home_away)}</div>`:'<div></div>'}<div class="chev">${x.no_detail?'':'›'}</div>`;
+  if(x.no_detail)return `<div class="appointment static" aria-label="${esc(x.title||'Amichevole')}">${content}</div>`;
+  return `<button class="appointment" onclick='openAppointment(${JSON.stringify(x).replace(/'/g,"&#39;")})'>${content}</button>`
+}
+async function loadSchedule(){let d=await getJSON('/api/home/upcoming'),a=d.items||[];$('schedule').innerHTML=a.length?a.map(scheduleItemHTML).join(''):'<div class="empty">Nessun appuntamento futuro pubblicato.</div>'}
 async function loadNow(){
   const url=isNowPreview?`/api/home/now?weekday=${encodeURIComponent(previewWeekday)}&time=${encodeURIComponent(previewTime)}`:'/api/home/now';
   try{
@@ -1267,5 +1273,9 @@ async function renderVoteScreen(v){
   .screen.team-mode .screenbar{flex-basis:72px}
   .screen.team-mode.athletes-mode .athlete-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .screen.team-mode.athletes-mode .athlete-name{font-size:16px;min-height:44px}
+}
+.appointment.static{
+  cursor:default;
+  user-select:none;
 }
 </style>
