@@ -10,7 +10,8 @@
     "days_label": "Martedì e Venerdì",
     "open": "18:00",
     "close": "19:30",
-    "email": "ussarozzano1982@gmail.com"
+    "email": "ussarozzano1982@gmail.com",
+    "email_subject": "Richiesta informazioni"
   },
   "social": [
     {
@@ -56,6 +57,10 @@
         {
           "name": "Francesco Caciagli",
           "role": "Direttore Sportivo Basket"
+        },
+        {
+          "name": "Riccardo Marsanasco",
+          "role": "Responsabile Progetto Next Gen"
         },
         {
           "name": "Mauro Brambilla",
@@ -193,5 +198,9 @@
       "logo": "/assets/partners/parma-calcio.svg",
       "logo_theme": "light"
     }
-  ]
+  ],
+  "sponsorship": {
+    "email": "ussarozzano1982@gmail.com",
+    "subject": "Richiesta partnership e sponsorizzazione"
+  }
 }

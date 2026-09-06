@@ -116,6 +116,19 @@ def partner_asset(filename: str):
     if filename not in allowed:
         raise HTTPException(status_code=404, detail='Logo non disponibile')
     return FileResponse(ROOT/'assets'/'partners'/filename)
+
+@app.get('/assets/spikey/{filename}')
+def spikey_asset(filename: str):
+    allowed = {
+        'info-welcome.png',
+        'info-secretariat.png',
+        'info-social.png',
+        'info-leadership.png',
+        'info-partners.png',
+    }
+    if filename not in allowed:
+        raise HTTPException(status_code=404, detail='Illustrazione non disponibile')
+    return FileResponse(ROOT/'assets'/'spikey'/filename, media_type='image/png')
 @app.get('/api/teams')
 def api_teams(): return load_json('teams.json',[])
 @app.get('/api/hub')

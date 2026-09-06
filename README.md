@@ -1,4 +1,16 @@
-USSA SMART HUB — V2.4.27
+USSA SMART HUB — V2.4.28
+
+Novità V2.4.28:
+- pagina principale INFO trasformata in cinque bande orizzontali a piena altezza;
+- inserite cinque nuove pose contestuali di Spikey per INFO, Segreteria, Social, Dirigenza e Sponsor & Partner;
+- eliminate dalla pagina principale anteprime, descrizioni e contatori;
+- QR Segreteria aggiornato con oggetto mail “Richiesta informazioni” già compilato;
+- aggiunti LED dinamici per mostrare lo stato della Segreteria;
+- eliminato il Consiglio Direttivo duplicato quando tutti i nominativi compaiono già nelle aree della Dirigenza;
+- card Atleti, Staff e Dirigenza rese uniformi per dimensioni e proporzioni;
+- aggiunto Riccardo Marsanasco come Responsabile Progetto Next Gen nell’Area Sportiva;
+- eliminati i contatori numerici da Sponsor e Partner;
+- aggiunto QR per richiedere informazioni su partnership e sponsorizzazioni.
 
 Novità V2.4.27:
 - pagina INFO riorganizzata con contenuti più ricchi e meglio distribuiti;
