@@ -1,4 +1,10 @@
-USSA SMART HUB — V2.4.30
+USSA SMART HUB — V2.4.31
+
+Novità V2.4.31:
+- le amichevoli inserite nel calendario manuale compaiono anche nella fascia “ORA IN CAMPO”;
+- permanenza impostata a 90 minuti esatti dall’orario di inizio;
+- mantenuto il blocco dell’accesso ai dettagli per le amichevoli contrassegnate come non cliccabili;
+- uniformato il calcolo dell’orario del server al fuso italiano Europe/Rome.
 
 Novità V2.4.30:
 - sostituito l’elenco sintetico della banda INFO con un breve testo introduttivo sui contenuti disponibili;

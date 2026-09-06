@@ -3,6 +3,7 @@ from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, Response, PlainTextResponse
 from pathlib import Path
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from urllib.parse import urljoin, quote, urlparse
 import requests, re, json, io, sqlite3, hashlib, os
 from bs4 import BeautifulSoup
@@ -87,6 +88,7 @@ def fetch(url):
 def soup(url): return BeautifulSoup(fetch(url),'html.parser')
 def iso_dt(d,t='00:00'): return datetime.fromisoformat(f"{d}T{t or '00:00'}")
 def parse_hm(v): h,m=map(int,v.split(':'));return h*60+m
+def local_now(): return datetime.now(ZoneInfo('Europe/Rome')).replace(tzinfo=None)
 
 def fixture_by_id(fid):
     return next((x for x in fixtures() if x.get('id')==fid),None)
@@ -136,7 +138,7 @@ def api_hub(): return load_json('hub.json',{})
 
 @app.get('/api/home/now')
 def home_now(weekday:int|None=None, time:str|None=None):
-    td=teams_dict();now=datetime.now()
+    td=teams_dict();now=local_now()
     # Preview tecnico nascosto: viene usato solo se URL client passa ENTRAMBI i parametri.
     # Senza parametri si torna sempre, automaticamente, a giorno/ora reali.
     if weekday is not None and time:
@@ -153,7 +155,8 @@ def home_now(weekday:int|None=None, time:str|None=None):
                 if int(x.get('weekday',0))==wd and parse_hm(x['start'])<=minute<parse_hm(x['end']):
                     items.append({'kind':'ALLENAMENTO','team_key':t['key'],'title':t['label'],'meta':f"{x['start']}–{x['end']}",'place':x.get('place',''),'icon':t.get('icon','●'),'sport':t.get('sport','')})
             except: pass
-    # Le partite reali in corso vengono considerate soltanto in modalità reale, non nella preview settimanale.
+    # Partite e amichevoli reali in corso vengono considerate soltanto in modalità reale,
+    # non nella preview settimanale.
     if weekday is None or not time:
         for x in fixtures():
             try:
@@ -161,6 +164,22 @@ def home_now(weekday:int|None=None, time:str|None=None):
                 if 0 <= (now-dt).total_seconds() < 120*60:
                     t=td.get(x['team_key'],{})
                     items.append({'kind':'PARTITA','team_key':x['team_key'],'title':t.get('label','PARTITA'),'meta':f"{x['home']} – {x['away']}",'place':x.get('field',''),'icon':t.get('icon','●'),'sport':t.get('sport','')})
+            except: pass
+        for e in load_json('events.json',[]):
+            try:
+                dt=iso_dt(e['date'],e.get('time','00:00'))
+                if 0 <= (now-dt).total_seconds() < 90*60:
+                    t=td.get(e.get('team_key'),{})
+                    end=(dt+timedelta(minutes=90)).strftime('%H:%M')
+                    items.append({
+                        'kind':e.get('kind','EVENTO'),
+                        'team_key':None if e.get('no_detail') else e.get('team_key'),
+                        'title':e.get('title') or t.get('label','EVENTO USSA'),
+                        'meta':f"{e.get('time','')}–{end}",
+                        'place':e.get('field',''),
+                        'icon':t.get('icon','●'),
+                        'sport':t.get('sport','')
+                    })
             except: pass
     return {'items':items,'preview': bool(weekday is not None and time)}
 
@@ -269,7 +288,7 @@ def team_scorers_data(t, competition):
     return rows
 
 def team_matches_data(t, competition):
-    now=datetime.now()
+    now=local_now()
     if competition=='FIGC':
         arr=local_fixture_matches(t['key'],'FIGC')
         played=[x for x in arr if iso_dt(x['date'],x['time'])<now]
@@ -295,7 +314,7 @@ def team_matches_data(t, competition):
 
 @app.get('/api/home/upcoming')
 def home_upcoming():
-    now=datetime.now();items=[]
+    now=local_now();items=[]
     # Single local source for real FIGC fixtures.
     for x in fixtures():
         try:
@@ -611,7 +630,7 @@ def qr_url(url:str=Query(...,min_length=1)):
 def vote_status(fixture_id:str,team_key:str,test:int=0):
     x=vote_fixture(fixture_id)
     if not x or team_key not in teams_dict(): raise HTTPException(404)
-    unlock=vote_unlock_at(x);now=datetime.now();eligible=bool(test) or now>=unlock
+    unlock=vote_unlock_at(x);now=local_now();eligible=bool(test) or now>=unlock
     con=vote_db();row=con.execute('SELECT athlete_id,athlete_name,created_at FROM votes WHERE fixture_id=? AND team_key=?',(fixture_id,team_key)).fetchone();con.close()
     return {'eligible':eligible,'unlock_at':unlock.isoformat(timespec='minutes'),'voted':bool(row),'vote':dict(row) if row else None,'test_mode':bool(test)}
 
@@ -621,7 +640,7 @@ async def unlock_vote(fixture_id:str,team_key:str,request:Request,test:int=0):
     if not x or team_key not in teams_dict(): raise HTTPException(404)
     body=await request.json();pin=str(body.get('pin') or '')
     if not verify_pin(team_key,pin): raise HTTPException(403,'PIN non valido')
-    if not test and datetime.now()<vote_unlock_at(x): raise HTTPException(409,'Votazione non ancora disponibile')
+    if not test and local_now()<vote_unlock_at(x): raise HTTPException(409,'Votazione non ancora disponibile')
     return {'ok':True}
 
 @app.post('/api/vote/{fixture_id}/{team_key}')
@@ -630,12 +649,12 @@ async def cast_vote(fixture_id:str,team_key:str,request:Request,test:int=0):
     if not x or team_key not in teams_dict(): raise HTTPException(404)
     body=await request.json(); pin=str(body.get('pin') or ''); athlete_id=str(body.get('athlete_id') or '')
     if not verify_pin(team_key,pin): raise HTTPException(403,'PIN non valido')
-    if not test and datetime.now()<vote_unlock_at(x): raise HTTPException(409,'Votazione non ancora disponibile')
+    if not test and local_now()<vote_unlock_at(x): raise HTTPException(409,'Votazione non ancora disponibile')
     athletes=load_json('athletes.json',{}).get(team_key,[]);a=next((z for z in athletes if z.get('id')==athlete_id),None)
     if not a: raise HTTPException(400,'Atleta non valido')
     con=vote_db()
     try:
-        con.execute('INSERT INTO votes(fixture_id,team_key,athlete_id,athlete_name,created_at) VALUES(?,?,?,?,?)',(fixture_id,team_key,athlete_id,a.get('name') or 'NOME E COGNOME',datetime.now().isoformat(timespec='seconds')));con.commit()
+        con.execute('INSERT INTO votes(fixture_id,team_key,athlete_id,athlete_name,created_at) VALUES(?,?,?,?,?)',(fixture_id,team_key,athlete_id,a.get('name') or 'NOME E COGNOME',local_now().isoformat(timespec='seconds')));con.commit()
     except sqlite3.IntegrityError:
         con.close();raise HTTPException(409,'Voto già registrato per questa gara')
     con.close();return {'ok':True}
@@ -643,7 +662,7 @@ async def cast_vote(fixture_id:str,team_key:str,request:Request,test:int=0):
 @app.get('/api/backoffice/votes')
 def backoffice_votes(pin:str,month:str|None=None):
     if not verify_pin('',pin,admin=True): raise HTTPException(403,'PIN non valido')
-    month=month or datetime.now().strftime('%Y-%m')
+    month=month or local_now().strftime('%Y-%m')
     con=vote_db();rows=con.execute("SELECT * FROM votes WHERE substr(created_at,1,7)=? ORDER BY created_at DESC",(month,)).fetchall()
     ranking=con.execute("SELECT team_key,athlete_id,athlete_name,COUNT(*) votes FROM votes WHERE substr(created_at,1,7)=? GROUP BY team_key,athlete_id,athlete_name ORDER BY votes DESC,athlete_name",(month,)).fetchall();con.close()
     return {'month':month,'votes':[dict(r) for r in rows],'ranking':[dict(r) for r in ranking]}
