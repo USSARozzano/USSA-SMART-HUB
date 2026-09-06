@@ -9,7 +9,8 @@
     :root{--navy:#061827;--card:#0b2c48;--card2:#0b2e4b;--line:#2c536f;--yellow:#ffca18;--white:#f7f9fb;--muted:#9fb3c5;--red:#ff7272;--green:#42d68b}
     *{box-sizing:border-box}body{margin:0;background:var(--navy);color:var(--white);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{max-width:1100px;margin:auto;padding:24px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}.top h1{margin:0;color:var(--yellow)}.home{border:1px solid var(--line);border-radius:11px;background:var(--card);color:#fff;padding:11px 14px;text-decoration:none;font-weight:900}.login,.panel{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:20px;margin-bottom:16px}.login{text-align:center}.login h2{margin:0;color:var(--yellow);font-size:20px}.login .subtitle{color:var(--muted);font-size:13px;margin-top:7px}.month-wrap{display:flex;justify-content:center;align-items:center;gap:10px;margin:16px 0 12px}.inp{background:#071d31;border:1px solid var(--line);color:#fff;border-radius:10px;padding:11px 12px;font-size:15px}.pin-display{width:270px;max-width:100%;height:52px;border:1px solid var(--line);border-radius:13px;background:#071d31;color:#fff;padding:12px 14px;font-size:16px;font-weight:900;letter-spacing:2px;white-space:nowrap;margin:0 auto 10px;display:flex;align-items:center;justify-content:center}.pin-display.has-value{font-size:23px;letter-spacing:9px}.pin-display.open{color:var(--green);font-size:14px;letter-spacing:0}.keypad{width:270px;max-width:100%;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.key{height:46px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:#fff;font-size:18px;font-weight:950;cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none;box-shadow:none}.key:focus,.key:focus-visible,.key:active{background:var(--card2);outline:none;box-shadow:none}.key.enter,.key.enter:focus,.key.enter:focus-visible,.key.enter:active{background:var(--yellow);color:#071827;font-size:12px}.key.erase{font-size:17px}.bad{min-height:18px;color:var(--red);font-weight:800;font-size:13px;margin-top:9px}.muted{color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{padding:11px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--yellow)}.del{background:transparent;color:var(--red);border:1px solid #7a3842;border-radius:8px;padding:7px 9px;cursor:pointer}.rank{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.card{border:1px solid var(--line);border-radius:13px;padding:14px;background:#09243b}.card strong{display:block;font-size:22px;color:var(--yellow)}
     .pin-display{width:300px;font-size:16px;line-height:1.1;letter-spacing:.4px}.pin-display.has-value{letter-spacing:10px}.key{-webkit-user-select:none;user-select:none;touch-action:manipulation}
-    @media(max-width:700px){.wrap{padding:12px}.top{align-items:flex-start}.top h1{font-size:21px}.home{font-size:11px;padding:9px}.rank{grid-template-columns:1fr}table{font-size:12px}.login{padding:18px 12px}}
+    .sync-head{display:flex;align-items:center;justify-content:space-between;gap:14px}.sync-head h2{margin:0}.sync-btn{border:0;border-radius:11px;background:var(--yellow);color:#071827;padding:11px 14px;font-weight:950;cursor:pointer}.sync-btn:disabled{opacity:.5;cursor:wait}.sync-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}.sync-box{border:1px solid var(--line);border-radius:12px;background:#071d31;padding:12px}.sync-box span{display:block;color:var(--muted);font-size:11px;font-weight:800;margin-bottom:5px}.sync-box strong{font-size:14px}.sync-state{display:inline-flex;align-items:center;gap:8px;margin-top:13px;font-weight:950;color:var(--muted)}.sync-state:before{content:'';width:11px;height:11px;border-radius:50%;background:currentColor;box-shadow:0 0 9px currentColor}.sync-state.ok{color:var(--green)}.sync-state.partial,.sync-state.running{color:var(--yellow)}.sync-state.error{color:var(--red)}.sync-errors{margin-top:10px;color:var(--red);font-size:12px}
+    @media(max-width:700px){.wrap{padding:12px}.top{align-items:flex-start}.top h1{font-size:21px}.home{font-size:11px;padding:9px}.rank,.sync-grid{grid-template-columns:1fr}table{font-size:12px}.login{padding:18px 12px}.sync-head{align-items:flex-start;flex-direction:column}}
   </style>
 </head>
 <body>
@@ -24,6 +25,16 @@
       <div id="msg" class="bad"></div>
     </section>
     <section id="ranking" class="panel" style="display:none"><h2>CLASSIFICA DEL MESE</h2><div id="rankCards" class="rank"></div></section>
+    <section id="syncPanel" class="panel" style="display:none">
+      <div class="sync-head"><h2>AGGIORNAMENTO DATI CSI</h2><button id="syncBtn" class="sync-btn" onclick="runCsiSync()">AGGIORNA ORA</button></div>
+      <div id="syncState" class="sync-state">STATO NON DISPONIBILE</div>
+      <div class="sync-grid">
+        <div class="sync-box"><span>ULTIMO AGGIORNAMENTO RIUSCITO</span><strong id="syncLast">—</strong></div>
+        <div class="sync-box"><span>PROSSIMO AGGIORNAMENTO AUTOMATICO</span><strong id="syncNext">—</strong></div>
+        <div class="sync-box"><span>SQUADRE AGGIORNATE</span><strong id="syncCount">—</strong></div>
+      </div>
+      <div id="syncErrors" class="sync-errors"></div>
+    </section>
     <section id="detail" class="panel" style="display:none"><h2>VOTI REGISTRATI</h2><div style="overflow:auto"><table><thead><tr><th>Data</th><th>Squadra</th><th>Atleta</th><th>Gara</th><th></th></tr></thead><tbody id="votes"></tbody></table></div></section>
   </div>
   <script>
@@ -41,11 +52,21 @@
         const r=await fetch(`/api/backoffice/votes?pin=${encodeURIComponent(activePin)}&month=${encodeURIComponent($('month').value)}`,{cache:'no-store'});
         if(!r.ok)throw new Error('PIN non valido o dati non disponibili');
         const d=await r.json();unlocked=true;$('pinDisplay').textContent='ACCESSO SBLOCCATO';$('pinDisplay').className='pin-display open';$('keypad').style.display='none';
-        $('ranking').style.display='block';$('detail').style.display='block';
+        $('ranking').style.display='block';$('syncPanel').style.display='block';$('detail').style.display='block';
         $('rankCards').innerHTML=(d.ranking||[]).map(x=>`<div class="card"><strong>${x.votes}</strong><div>${x.athlete_name}</div><div class="muted">${x.team_key}</div></div>`).join('')||'<div class="muted">Nessun voto nel mese.</div>';
         $('votes').innerHTML=(d.votes||[]).map(x=>`<tr><td>${x.created_at.replace('T',' ')}</td><td>${x.team_key}</td><td>${x.athlete_name}</td><td>${x.fixture_id}</td><td><button class="del" onclick="delVote(${x.id})">ELIMINA</button></td></tr>`).join('');
-      }catch(e){unlocked=false;activePin='';pinValue='';paintPin();$('keypad').style.display='grid';$('msg').textContent=e.message;$('ranking').style.display='none';$('detail').style.display='none'}
+        loadCsiStatus();
+      }catch(e){unlocked=false;activePin='';pinValue='';paintPin();$('keypad').style.display='grid';$('msg').textContent=e.message;$('ranking').style.display='none';$('syncPanel').style.display='none';$('detail').style.display='none'}
     }
+    function syncDate(v){if(!v)return 'NON ANCORA ESEGUITO';try{return new Date(v).toLocaleString('it-IT',{dateStyle:'short',timeStyle:'short',timeZone:'Europe/Rome'})}catch{return v}}
+    function paintCsiStatus(d){
+      const state=$('syncState'),labels={ok:'AGGIORNAMENTO COMPLETATO',partial:'AGGIORNAMENTO PARZIALE',error:'AGGIORNAMENTO NON RIUSCITO',waiting:'IN ATTESA DEI CALENDARI CSI',never:'NON ANCORA ESEGUITO'};
+      const code=d.running?'running':(d.status||'never');state.className=`sync-state ${code}`;state.textContent=d.running?'AGGIORNAMENTO IN CORSO':(labels[code]||'STATO NON DISPONIBILE');
+      $('syncLast').textContent=syncDate(d.last_success_at);$('syncNext').textContent=syncDate(d.next_run_at);$('syncCount').textContent=`${d.updated_count||0} SU ${d.source_count||0}`;
+      $('syncErrors').textContent=(d.errors||[]).length?`Non aggiornate: ${d.errors.map(x=>x.label||x.team_key).join(', ')}`:'';
+    }
+    async function loadCsiStatus(){try{const r=await fetch(`/api/backoffice/csi-sync?pin=${encodeURIComponent(activePin)}`,{cache:'no-store'});if(!r.ok)throw new Error();paintCsiStatus(await r.json())}catch{$('syncState').className='sync-state error';$('syncState').textContent='STATO NON DISPONIBILE'}}
+    async function runCsiSync(){const b=$('syncBtn');b.disabled=true;b.textContent='AGGIORNAMENTO…';$('syncState').className='sync-state running';$('syncState').textContent='AGGIORNAMENTO IN CORSO';try{const r=await fetch(`/api/backoffice/csi-sync?pin=${encodeURIComponent(activePin)}`,{method:'POST'});if(!r.ok)throw new Error();paintCsiStatus(await r.json())}catch{$('syncState').className='sync-state error';$('syncState').textContent='AGGIORNAMENTO NON RIUSCITO'}finally{b.disabled=false;b.textContent='AGGIORNA ORA'}}
     async function delVote(id){if(!confirm('Eliminare questo voto?'))return;const r=await fetch(`/api/backoffice/votes/${id}?pin=${encodeURIComponent(activePin)}`,{method:'DELETE'});if(r.ok)loadData()}
   </script>
 </body>

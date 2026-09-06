@@ -1,4 +1,13 @@
-USSA SMART HUB — V2.4.31
+USSA SMART HUB — V2.4.32
+
+Novità V2.4.32:
+- aggiornamento automatico giornaliero dei dati CSI alle ore 12:00, secondo il fuso Europe/Rome;
+- aggiornamento di recupero all’avvio del servizio quando quello previsto risulta mancante;
+- cache locale per calendari, risultati, classifiche e marcatori utilizzati dal totem;
+- conservazione dell’ultima copia valida per ogni squadra se CSI non risponde;
+- nuova area nel backoffice con ultimo aggiornamento, prossimo aggiornamento, squadre elaborate ed eventuali errori;
+- pulsante protetto “AGGIORNA ORA” per avviare manualmente la sincronizzazione;
+- la funzione si attiverà automaticamente per ogni squadra quando verrà inserito il relativo collegamento CSI in teams.json.
 
 Novità V2.4.31:
 - le amichevoli inserite nel calendario manuale compaiono anche nella fascia “ORA IN CAMPO”;

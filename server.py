@@ -5,7 +5,7 @@ from pathlib import Path
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from urllib.parse import urljoin, quote, urlparse
-import requests, re, json, io, sqlite3, hashlib, os
+import requests, re, json, io, sqlite3, hashlib, os, threading
 from bs4 import BeautifulSoup
 import qrcode
 import qrcode.image.svg
@@ -15,6 +15,11 @@ app=FastAPI(title="USSA SMART HUB V2")
 CSI_OLD="https://www.csi.milano.it"
 CSI_LIVE="https://live.centrosportivoitaliano.it"
 HEADERS={"User-Agent":"USSA-SMART-HUB/2.1","Accept-Language":"it-IT,it;q=0.9"}
+CSI_CACHE_PATH=Path(os.getenv('CSI_CACHE_PATH') or ROOT/'csi_cache.json')
+CSI_SYNC_HOUR=12
+CSI_RETRY_MINUTES=30
+CSI_SYNC_LOCK=threading.Lock()
+CSI_SCHEDULER_STARTED=False
 
 U13_TEST_STANDINGS=[
  {"position":1,"team":"S.Giuliano Cologno Osgd","points":18,"played":8,"wins":6,"draws":0,"losses":2,"gf":18,"gs":8},
@@ -81,6 +86,7 @@ def load_json(name, default):
     except:return default
 
 def teams_dict(): return {x['key']:x for x in load_json('teams.json',[])}
+def csi_source_teams(): return [t for t in teams_dict().values() if t.get('csi_live_url') and not t.get('test_only')]
 def fixtures(): return load_json('fixtures.json',[])
 def clean(s): return re.sub(r"\s+"," ",s or "").strip()
 def fetch(url):
@@ -88,7 +94,56 @@ def fetch(url):
 def soup(url): return BeautifulSoup(fetch(url),'html.parser')
 def iso_dt(d,t='00:00'): return datetime.fromisoformat(f"{d}T{t or '00:00'}")
 def parse_hm(v): h,m=map(int,v.split(':'));return h*60+m
-def local_now(): return datetime.now(ZoneInfo('Europe/Rome')).replace(tzinfo=None)
+def rome_now(): return datetime.now(ZoneInfo('Europe/Rome'))
+def local_now(): return rome_now().replace(tzinfo=None)
+
+def load_csi_cache():
+    try:
+        data=json.loads(CSI_CACHE_PATH.read_text(encoding='utf-8'))
+        return data if isinstance(data,dict) else {'teams':{},'meta':{}}
+    except:
+        return {'teams':{},'meta':{}}
+
+def save_csi_cache(data):
+    CSI_CACHE_PATH.parent.mkdir(parents=True,exist_ok=True)
+    tmp=CSI_CACHE_PATH.with_suffix(CSI_CACHE_PATH.suffix+'.tmp')
+    tmp.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
+    os.replace(tmp,CSI_CACHE_PATH)
+
+def cached_csi_field(t,field):
+    row=(load_csi_cache().get('teams') or {}).get(t.get('key'))
+    if not isinstance(row,dict) or field not in row:return False,[]
+    value=row.get(field)
+    return True,value if isinstance(value,list) else []
+
+def parse_cache_time(value):
+    try:return datetime.fromisoformat(value)
+    except:return None
+
+def csi_cache_due(now=None):
+    now=now or rome_now();cache=load_csi_cache();meta=cache.get('meta') or {}
+    sources=csi_source_teams()
+    if not sources:return False
+    retry_status=meta.get('status') in {'error','partial'}
+    last_attempt=parse_cache_time(meta.get('last_attempt_at'))
+    if last_attempt:
+        if last_attempt.tzinfo is None:last_attempt=last_attempt.replace(tzinfo=ZoneInfo('Europe/Rome'))
+        if retry_status and now-last_attempt.astimezone(ZoneInfo('Europe/Rome'))<timedelta(minutes=CSI_RETRY_MINUTES):return False
+    if retry_status:return True
+    cached=cache.get('teams') or {}
+    if any(not isinstance(cached.get(t['key']),dict) or cached[t['key']].get('source_url')!=t.get('csi_live_url') for t in sources):return True
+    last=parse_cache_time(meta.get('last_success_at'))
+    if not cache.get('teams'):return True
+    if not last:return True
+    if last.tzinfo is None:last=last.replace(tzinfo=ZoneInfo('Europe/Rome'))
+    last=last.astimezone(ZoneInfo('Europe/Rome'))
+    return now.hour>=CSI_SYNC_HOUR and last.date()<now.date()
+
+def next_csi_sync_at(now=None):
+    now=now or rome_now()
+    target=now.replace(hour=CSI_SYNC_HOUR,minute=0,second=0,microsecond=0)
+    if target<=now:target+=timedelta(days=1)
+    return target
 
 def fixture_by_id(fid):
     return next((x for x in fixtures() if x.get('id')==fid),None)
@@ -183,10 +238,8 @@ def home_now(weekday:int|None=None, time:str|None=None):
             except: pass
     return {'items':items,'preview': bool(weekday is not None and time)}
 
-def live_schedule_for_team(t):
-    url=t.get('csi_live_url')
-    if not url:return []
-    s=soup(url);out=[];seen=set()
+def parse_live_schedule(t,s,url):
+    out=[];seen=set()
     for tr in s.find_all('tr'):
         txt=clean(tr.get_text(' ',strip=True))
         if 'USSA ROZZANO' not in txt.upper():continue
@@ -214,9 +267,15 @@ def live_schedule_for_team(t):
                     'result':sm.group(0) if sm else '', 'detail_url':game_url,'team_key':t['key'],'competition':'CSI'})
     return out
 
-def live_standings(t):
-    if not t.get('csi_live_url'):return []
-    s=soup(t['csi_live_url'])
+def live_schedule_for_team(t,fresh=False):
+    url=t.get('csi_live_url')
+    if not url:return []
+    if not fresh:
+        found,rows=cached_csi_field(t,'schedule')
+        if found:return rows
+    return parse_live_schedule(t,soup(url),url)
+
+def parse_live_standings(s):
     for table in s.find_all('table'):
         rows=table.find_all('tr')
         if not rows:continue
@@ -234,11 +293,16 @@ def live_standings(t):
         if result:return result
     return []
 
-def live_scorers(t):
+def live_standings(t,fresh=False):
     if not t.get('csi_live_url'):return []
+    if not fresh:
+        found,rows=cached_csi_field(t,'standings')
+        if found:return rows
+    return parse_live_standings(soup(t['csi_live_url']))
+
+def parse_live_scorers(s):
     out=[]
     try:
-        s=soup(t['csi_live_url'])
         for table in s.find_all('table'):
             rows=table.find_all('tr');
             if not rows:continue
@@ -255,6 +319,13 @@ def live_scorers(t):
     except:pass
     out.sort(key=lambda x:(-x['goals'],x['name']))
     return out
+
+def live_scorers(t,fresh=False):
+    if not t.get('csi_live_url'):return []
+    if not fresh:
+        found,rows=cached_csi_field(t,'scorers')
+        if found:return rows
+    return parse_live_scorers(soup(t['csi_live_url']))
 
 def old_csi_scorers(t):
     url=t.get('csi_old_url')
@@ -273,6 +344,85 @@ def old_csi_scorers(t):
     out.sort(key=lambda x:(-x['goals'],x['name']))
     return out
 
+def csi_sync_status(cache=None):
+    cache=cache or load_csi_cache();meta=cache.get('meta') or {}
+    source_count=len(csi_source_teams())
+    next_run=next_csi_sync_at()
+    last_attempt=parse_cache_time(meta.get('last_attempt_at'))
+    if meta.get('status') in {'error','partial'} and last_attempt:
+        if last_attempt.tzinfo is None:last_attempt=last_attempt.replace(tzinfo=ZoneInfo('Europe/Rome'))
+        retry_at=last_attempt.astimezone(ZoneInfo('Europe/Rome'))+timedelta(minutes=CSI_RETRY_MINUTES)
+        if retry_at>rome_now() and retry_at<next_run:next_run=retry_at
+    return {
+        'status':meta.get('status','never'),
+        'running':CSI_SYNC_LOCK.locked(),
+        'last_attempt_at':meta.get('last_attempt_at'),
+        'last_success_at':meta.get('last_success_at'),
+        'next_run_at':next_run.isoformat(timespec='minutes'),
+        'source_count':source_count,
+        'updated_count':int(meta.get('updated_count') or 0),
+        'error_count':int(meta.get('error_count') or 0),
+        'errors':meta.get('errors') or [],
+        'cached_teams':len(cache.get('teams') or {})
+    }
+
+def refresh_csi_cache(trigger='scheduled'):
+    if not CSI_SYNC_LOCK.acquire(blocking=False):return csi_sync_status()
+    try:
+        previous=load_csi_cache();cached=dict(previous.get('teams') or {})
+        sources=csi_source_teams()
+        attempted_at=rome_now().isoformat(timespec='seconds');updated=0;errors=[]
+        for t in sources:
+            try:
+                url=t['csi_live_url'];page=soup(url)
+                scorers=parse_live_scorers(page)
+                if not scorers and t.get('csi_old_url'):scorers=old_csi_scorers(t)
+                cached[t['key']]={
+                    'label':t.get('label',t['key']),
+                    'source_url':url,
+                    'fetched_at':attempted_at,
+                    'schedule':parse_live_schedule(t,page,url),
+                    'standings':parse_live_standings(page),
+                    'scorers':scorers
+                }
+                updated+=1
+            except Exception as exc:
+                errors.append({'team_key':t.get('key'),'label':t.get('label',t.get('key','')),'message':clean(str(exc))[:160]})
+        old_meta=previous.get('meta') or {}
+        status='waiting' if not sources else ('ok' if not errors else ('partial' if updated else 'error'))
+        meta={
+            'status':status,
+            'trigger':trigger,
+            'last_attempt_at':attempted_at,
+            'last_success_at':attempted_at if updated else old_meta.get('last_success_at'),
+            'source_count':len(sources),
+            'updated_count':updated,
+            'error_count':len(errors),
+            'errors':errors
+        }
+        data={'teams':cached,'meta':meta};save_csi_cache(data)
+        result=csi_sync_status(data);result['running']=False
+        return result
+    finally:
+        CSI_SYNC_LOCK.release()
+
+def csi_scheduler_loop():
+    try:
+        if csi_cache_due():refresh_csi_cache('startup')
+    except:pass
+    while True:
+        threading.Event().wait(60)
+        try:
+            if csi_cache_due():refresh_csi_cache('scheduled')
+        except:pass
+
+@app.on_event('startup')
+def start_csi_scheduler():
+    global CSI_SCHEDULER_STARTED
+    if CSI_SCHEDULER_STARTED:return
+    CSI_SCHEDULER_STARTED=True
+    threading.Thread(target=csi_scheduler_loop,name='csi-daily-sync',daemon=True).start()
+
 def team_standings_data(t, competition):
     if competition!='CSI': return []
     rows=[]
@@ -283,7 +433,8 @@ def team_standings_data(t, competition):
 
 def team_scorers_data(t, competition):
     if competition!='CSI': return []
-    rows=live_scorers(t) or old_csi_scorers(t)
+    found,rows=cached_csi_field(t,'scorers')
+    if not found:rows=live_scorers(t,fresh=True) or old_csi_scorers(t)
     if t.get('key')=='u13a11_test' and not rows:rows=U13_TEST_SCORERS
     return rows
 
@@ -666,6 +817,16 @@ def backoffice_votes(pin:str,month:str|None=None):
     con=vote_db();rows=con.execute("SELECT * FROM votes WHERE substr(created_at,1,7)=? ORDER BY created_at DESC",(month,)).fetchall()
     ranking=con.execute("SELECT team_key,athlete_id,athlete_name,COUNT(*) votes FROM votes WHERE substr(created_at,1,7)=? GROUP BY team_key,athlete_id,athlete_name ORDER BY votes DESC,athlete_name",(month,)).fetchall();con.close()
     return {'month':month,'votes':[dict(r) for r in rows],'ranking':[dict(r) for r in ranking]}
+
+@app.get('/api/backoffice/csi-sync')
+def backoffice_csi_sync_status(pin:str):
+    if not verify_pin('',pin,admin=True): raise HTTPException(403,'PIN non valido')
+    return csi_sync_status()
+
+@app.post('/api/backoffice/csi-sync')
+def backoffice_csi_sync_run(pin:str):
+    if not verify_pin('',pin,admin=True): raise HTTPException(403,'PIN non valido')
+    return refresh_csi_cache('manual')
 
 @app.delete('/api/backoffice/votes/{vote_id}')
 def delete_vote(vote_id:int,pin:str):
