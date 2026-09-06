@@ -1,4 +1,13 @@
-USSA SMART HUB — V2.4.28
+USSA SMART HUB — V2.4.30
+
+Novità V2.4.30:
+- sostituito l’elenco sintetico della banda INFO con un breve testo introduttivo sui contenuti disponibili;
+- mantenuta separata l’indicazione di toccare una delle sezioni sottostanti.
+
+Novità V2.4.29:
+- completata la banda introduttiva INFO con un riepilogo sintetico dei contenuti disponibili;
+- aggiunta l’indicazione di toccare una delle quattro sezioni sottostanti per approfondire;
+- mantenuta la banda INFO come titolo non cliccabile, senza modificare le altre sezioni.
 
 Novità V2.4.28:
 - pagina principale INFO trasformata in cinque bande orizzontali a piena altezza;
