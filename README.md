@@ -1,4 +1,11 @@
-USSA SMART HUB — V2.4.23
+USSA SMART HUB — V2.4.24
+
+Novità V2.4.24:
+- nella scheda ATLETI restano fissi intestazione, squadra, allenamenti e pulsanti; scorre soltanto la griglia delle figurine;
+- figurine ridisegnate in formato verticale, già predisposto per fotografie a pieno riquadro;
+- icone sportive e nomi delle squadre ulteriormente ingranditi nella Home;
+- eliminata la didascalia sul numero di allenamenti settimanali;
+- nei box allenamento giorno, orario e impianto occupano tre spazi identici.
 
 Novità V2.4.23:
 - importati 266 atleti dai tabulati Golee e assegnati alle rispettive squadre;

@@ -418,7 +418,7 @@ button.matchcard{width:100%;text-align:left;color:inherit;font:inherit;appearanc
 <section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div class="now-empty-icons" aria-hidden="true"><span>⚽</span><span>🏐</span><span>🏀</span></div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryStatus" class="secretary-status"></div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4.23 · ROSTER + UI FIX</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.24 · ATHLETE SCROLL UI</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
@@ -519,8 +519,9 @@ function renderNow(){
   $('nowTitle').textContent=x.title;$('nowMeta').textContent=`${x.kind} · ${x.meta||''}${x.place?' · '+x.place:''}`;
   $('dots').textContent=nowItems.length>1?'• '.repeat(Math.min(nowItems.length,4)):''
 }
-function showOverlay(title,body){$('screenTitle').textContent=title;$('screenBody').innerHTML=body;$('overlay').classList.add('show');document.querySelector('#overlay .screen').scrollTop=0}
-function hideOverlay(){$('overlay').classList.remove('show');$('screenBody').innerHTML='';if(activeMap){try{activeMap.remove()}catch{}activeMap=null}}
+function setAthletesMode(active){document.querySelector('#overlay .screen')?.classList.toggle('athletes-mode',Boolean(active))}
+function showOverlay(title,body){setAthletesMode(false);$('screenTitle').textContent=title;$('screenBody').innerHTML=body;$('overlay').classList.add('show');document.querySelector('#overlay .screen').scrollTop=0}
+function hideOverlay(){setAthletesMode(false);$('overlay').classList.remove('show');$('screenBody').innerHTML='';if(activeMap){try{activeMap.remove()}catch{}activeMap=null}}
 function navigate(view){navStack.push({...currentView});currentView=view;renderCurrent()}
 function replaceView(view){currentView=view;renderCurrent()}
 function goBack(){if(currentView?.returnView){const target={...currentView.returnView};if(navStack.length)navStack.pop();currentView=target;renderCurrent();return}if(navStack.length){currentView=navStack.pop();renderCurrent()}else{goHome()}}
@@ -537,8 +538,8 @@ function adminHoldCancel(){if(adminHoldTimer){clearTimeout(adminHoldTimer);admin
 async function renderCurrent(){if(activeMap){try{activeMap.remove()}catch{}activeMap=null}if(currentView.type==='home'){hideOverlay();return}if(currentView.type==='u14choice'){renderU14Choice();return}if(currentView.type==='team'){await renderTeamView(currentView);return}if(currentView.type==='fixture'){await renderFixtureView(currentView);return}if(currentView.type==='map'){await renderMapView(currentView);return}if(currentView.type==='csi'){await renderCsiView(currentView);return}if(currentView.type==='info'){renderInfoView();return}if(currentView.type==='event'){renderEventView(currentView.item);return}}
 function trainingHTML(t){
   const a=t.training||[];
-  if(!a.length)return `<div class="training-strip"><div class="training-summary"><strong>ALLENAMENTI</strong><span>${esc(t.sport||'SQUADRA')}</span></div><div class="training-empty">Allenamenti non ancora inseriti.</div></div>`;
-  return `<div class="training-strip"><div class="training-summary"><strong>ALLENAMENTI</strong><span>${a.length} APPUNTAMENTI SETTIMANALI</span></div><div class="training-sessions">${a.map(x=>`<div class="training-session"><div class="training-day">${esc(x.day)}</div><div class="training-time">${esc(x.start)}–${esc(x.end)}</div><div class="training-place">${esc(x.place||'SEDE DA DEFINIRE')}</div></div>`).join('')}</div></div>`
+  if(!a.length)return `<div class="training-strip"><div class="training-summary"><strong>ALLENAMENTI</strong></div><div class="training-empty">Allenamenti non ancora inseriti.</div></div>`;
+  return `<div class="training-strip"><div class="training-summary"><strong>ALLENAMENTI</strong></div><div class="training-sessions">${a.map(x=>`<div class="training-session"><div class="training-day">${esc(x.day)}</div><div class="training-time">${esc(x.start)}–${esc(x.end)}</div><div class="training-place">${esc(x.place||'SEDE DA DEFINIRE')}</div></div>`).join('')}</div></div>`
 }
 function initials(n){return n.split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()}
 function staffHTML(t){let a=t.staff||[],coll=t.collaborators||[];let main=a.length?`<div class="staffgrid">${a.map(x=>`<div class="staffcard"><div class="staffphoto">${x.photo?`<img src="${esc(x.photo)}">`:esc(initials(x.name))}</div><div class="staffrole">${esc(x.role)}</div><div class="staffname">${esc(x.name)}</div></div>`).join('')}</div>`:'<div class="empty">Staff non disponibile.</div>';if(coll.length)main+=`<div class="collabs"><h3>COLLABORATORI</h3>${coll.map(x=>`<div class="kvrow"><b>${esc(x.name)}</b><span>${esc(x.role||'Collaboratore')}</span></div>`).join('')}</div>`;return main}
@@ -911,7 +912,7 @@ refreshAvailability=async function(){
   if(secondary.length){const row=document.createElement('div');row.className='action-row action-row-secondary';row.style.gridTemplateColumns=`repeat(${secondary.length},minmax(0,1fr))`;secondary.forEach(x=>row.append(x));actions.append(row)}
 }
 const _selectTeamTab2418=selectTeamTab;
-selectTeamTab=async function(tab,restoring=false){if(tab!=='athletes')return _selectTeamTab2418(tab,restoring);teamTab=tab;currentView={type:'team',key:currentTeam.key,comp:currentCompetition,tab};await refreshAvailability();const box=$('dynamic');loading(true);try{const d=await getJSON(`/api/team/${currentTeam.key}/athletes`);box.innerHTML=`<div class="section"><h3>ATLETI</h3>${athletesHTML(d.athletes||[])}</div>`}catch{box.innerHTML='<div class="section"><div class="empty">Atleti non disponibili.</div></div>'}finally{loading(false)}}
+selectTeamTab=async function(tab,restoring=false){if(tab!=='athletes'){setAthletesMode(false);return _selectTeamTab2418(tab,restoring)}teamTab=tab;currentView={type:'team',key:currentTeam.key,comp:currentCompetition,tab};setAthletesMode(true);await refreshAvailability();const box=$('dynamic');loading(true);try{const d=await getJSON(`/api/team/${currentTeam.key}/athletes`);box.innerHTML=`<div class="section"><h3>ATLETI</h3>${athletesHTML(d.athletes||[])}</div>`}catch{box.innerHTML='<div class="section"><div class="empty">Atleti non disponibili.</div></div>'}finally{loading(false)}}
 function fixtureVoteIdFromUrl(url){const m=String(url||'').match(/\/(P[^/]+)\/?$/);return m?'csi_'+m[1]:null}
 function teamKeyForFixture(x){if(x?.team_key)return x.team_key;if(currentTeam?.key)return currentTeam.key;return null}
 async function attachVotePanel(fixtureId,teamKey){clearInterval(votePoll);if(!fixtureId||!teamKey)return;let host=document.querySelector('#screenBody .fixture-layout2, #screenBody .u13-static-detail, #screenBody .csi-detail');if(!host)return;let panel=document.createElement('section');panel.className='vote-panel';panel.id='votePanel';host.appendChild(panel);async function tickVote(){try{const st=await getJSON(`/api/vote/${encodeURIComponent(fixtureId)}/${encodeURIComponent(teamKey)}/status?test=${voteTestMode?1:0}`);if(st.voted){panel.className='vote-panel show';panel.innerHTML=`<div><strong>MIGLIORE IN CAMPO</strong><span>La votazione per questa gara è stata registrata.</span></div><div class="vote-done">VOTO REGISTRATO</div>`;return}if(st.eligible){panel.className='vote-panel show';panel.innerHTML=`<div><strong>MIGLIORE IN CAMPO</strong><span>Votazione disponibile per il dirigente della squadra.</span></div><button class="vote-btn" id="voteOpenBtn">VOTA MIGLIORE IN CAMPO</button>`;document.getElementById('voteOpenBtn').onclick=()=>navigate({type:'vote',fixtureId,teamKey,returnView:{...currentView}})}else{panel.className='vote-panel';panel.innerHTML=''}}catch{panel.className='vote-panel'}}tickVote();votePoll=setInterval(tickVote,30000)}
@@ -1097,5 +1098,104 @@ async function renderVoteScreen(v){
   .team .name{font-size:14px!important}
   .training-sessions{grid-template-columns:1fr}
   .training-session{grid-template-columns:.75fr .9fr 1.35fr}
+}
+
+/* V2.4.24 - figurine verticali e scorrimento confinato */
+.team{
+  gap:8px!important;
+  padding:8px 10px!important;
+}
+.team .icon{
+  font-size:40px!important;
+}
+.team .name{
+  font-size:17px!important;
+  line-height:1.08!important;
+}
+.training-summary span{
+  display:none!important;
+}
+.training-session{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+.training-session>div{
+  padding-left:7px;
+  padding-right:7px;
+}
+.screen.athletes-mode{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.screen.athletes-mode .screenbar{
+  flex:0 0 76px;
+}
+.screen.athletes-mode #screenBody{
+  flex:1;
+  min-height:0;
+  display:grid;
+  grid-template-rows:auto auto auto minmax(0,1fr);
+  overflow:hidden;
+}
+.screen.athletes-mode .dynamic{
+  min-height:0;
+  height:100%;
+  overflow:hidden;
+  padding:10px;
+}
+.screen.athletes-mode .dynamic>.section{
+  height:100%;
+  min-height:0;
+  margin:0;
+  padding:12px;
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr);
+  overflow:hidden;
+}
+.screen.athletes-mode .athlete-grid{
+  min-height:0;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y;
+  scrollbar-width:thin;
+  padding:2px 6px 12px 2px;
+  align-content:start;
+}
+.athlete-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.athlete-card{
+  aspect-ratio:2.55/3.5;
+  min-height:0;
+  padding:9px;
+  justify-content:stretch;
+  background:linear-gradient(180deg,#0e3554,#09243b);
+  border-color:#315978;
+}
+.athlete-placeholder{
+  flex:1;
+  min-height:0;
+  height:auto;
+  margin-bottom:9px;
+  border-radius:10px;
+}
+.athlete-name{
+  min-height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:15px;
+  line-height:1.12;
+}
+@media(max-width:700px){
+  .team .icon{font-size:36px!important}
+  .team .name{font-size:16px!important}
+  .athlete-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .athlete-card{padding:7px}
+  .athlete-name{min-height:34px;font-size:14px}
+  .screen.athletes-mode .screenbar{flex-basis:72px}
 }
 </style>
