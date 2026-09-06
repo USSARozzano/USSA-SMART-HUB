@@ -418,7 +418,7 @@ button.matchcard{width:100%;text-align:left;color:inherit;font:inherit;appearanc
 <section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div class="now-empty-icons" aria-hidden="true"><span>⚽</span><span>🏐</span><span>🏀</span></div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryStatus" class="secretary-status"></div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4.24 · ATHLETE SCROLL UI</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.25 · ATHLETE GRID FIX</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
@@ -519,9 +519,10 @@ function renderNow(){
   $('nowTitle').textContent=x.title;$('nowMeta').textContent=`${x.kind} · ${x.meta||''}${x.place?' · '+x.place:''}`;
   $('dots').textContent=nowItems.length>1?'• '.repeat(Math.min(nowItems.length,4)):''
 }
+function setTeamMode(active){document.querySelector('#overlay .screen')?.classList.toggle('team-mode',Boolean(active))}
 function setAthletesMode(active){document.querySelector('#overlay .screen')?.classList.toggle('athletes-mode',Boolean(active))}
-function showOverlay(title,body){setAthletesMode(false);$('screenTitle').textContent=title;$('screenBody').innerHTML=body;$('overlay').classList.add('show');document.querySelector('#overlay .screen').scrollTop=0}
-function hideOverlay(){setAthletesMode(false);$('overlay').classList.remove('show');$('screenBody').innerHTML='';if(activeMap){try{activeMap.remove()}catch{}activeMap=null}}
+function showOverlay(title,body){setAthletesMode(false);setTeamMode(false);$('screenTitle').textContent=title;$('screenBody').innerHTML=body;$('overlay').classList.add('show');document.querySelector('#overlay .screen').scrollTop=0}
+function hideOverlay(){setAthletesMode(false);setTeamMode(false);$('overlay').classList.remove('show');$('screenBody').innerHTML='';if(activeMap){try{activeMap.remove()}catch{}activeMap=null}}
 function navigate(view){navStack.push({...currentView});currentView=view;renderCurrent()}
 function replaceView(view){currentView=view;renderCurrent()}
 function goBack(){if(currentView?.returnView){const target={...currentView.returnView};if(navStack.length)navStack.pop();currentView=target;renderCurrent();return}if(navStack.length){currentView=navStack.pop();renderCurrent()}else{goHome()}}
@@ -556,7 +557,7 @@ function openU14Competition(comp){navigate({type:'team',key:'u14',comp,tab:null}
 async function renderTeamView(v){
   currentTeam=teams.find(x=>x.key===v.key);if(!currentTeam)return;currentCompetition=v.comp;teamTab=v.tab;let t=currentTeam;
   let compLabel=t.key==='u14'?` · ${esc(currentCompetition)}`:'';
-  showOverlay(t.label,`<div class="hero"><h1>${esc(t.label)}</h1><p>${esc(t.sport)}${compLabel}${t.test_only?' · SQUADRA TEST CSI':''}</p></div>${trainingHTML(t)}<div id="teamActions" class="actions"></div><div id="dynamic" class="dynamic"></div>`);
+  showOverlay(t.label,`<div class="hero"><h1>${esc(t.label)}</h1><p>${esc(t.sport)}${compLabel}${t.test_only?' · SQUADRA TEST CSI':''}</p></div>${trainingHTML(t)}<div id="teamActions" class="actions"></div><div id="dynamic" class="dynamic"></div>`);setTeamMode(true);
   await refreshAvailability();if(teamTab)await selectTeamTab(teamTab,true);else $('dynamic').innerHTML=''
 }
 function changeCompetition(c){currentCompetition=c;teamTab=null;replaceView({type:'team',key:currentTeam.key,comp:c,tab:null})}
@@ -1197,5 +1198,74 @@ async function renderVoteScreen(v){
   .athlete-card{padding:7px}
   .athlete-name{min-height:34px;font-size:14px}
   .screen.athletes-mode .screenbar{flex-basis:72px}
+}
+
+/* V2.4.25 - correzione sovrapposizioni e stabilità scheda squadra */
+.team .icon{
+  font-size:58px!important;
+}
+.team .name{
+  font-size:20px!important;
+  line-height:1.06!important;
+}
+.screen.team-mode{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.screen.team-mode .screenbar{
+  flex:0 0 76px;
+}
+.screen.team-mode #screenBody{
+  flex:1;
+  min-height:0;
+  display:grid;
+  grid-template-rows:auto auto auto minmax(0,1fr);
+  overflow:hidden;
+}
+.screen.team-mode .dynamic{
+  min-height:0;
+  height:100%;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+.screen.team-mode.athletes-mode .dynamic{
+  overflow:hidden;
+}
+.screen.team-mode.athletes-mode .athlete-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-auto-rows:max-content;
+  align-items:start;
+  align-content:start;
+  gap:12px;
+}
+.screen.team-mode.athletes-mode .athlete-card{
+  aspect-ratio:auto;
+  height:auto;
+  min-height:0;
+  display:grid;
+  grid-template-rows:auto minmax(48px,auto);
+  align-self:start;
+  padding:10px;
+}
+.screen.team-mode.athletes-mode .athlete-placeholder{
+  width:100%;
+  height:auto;
+  min-height:0;
+  aspect-ratio:4/5;
+  margin:0 0 10px;
+}
+.screen.team-mode.athletes-mode .athlete-name{
+  min-height:48px;
+  padding:4px 5px;
+  font-size:18px;
+  line-height:1.16;
+}
+@media(max-width:700px){
+  .team .icon{font-size:50px!important}
+  .team .name{font-size:18px!important}
+  .screen.team-mode .screenbar{flex-basis:72px}
+  .screen.team-mode.athletes-mode .athlete-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .screen.team-mode.athletes-mode .athlete-name{font-size:16px;min-height:44px}
 }
 </style>

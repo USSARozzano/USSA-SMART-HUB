@@ -1,4 +1,10 @@
-USSA SMART HUB — V2.4.24
+USSA SMART HUB — V2.4.25
+
+Correzioni V2.4.25:
+- eliminate le sovrapposizioni tra le figurine con righe indipendenti ad altezza naturale;
+- griglia Atleti riportata a tre colonne, con fotografia verticale e nome più grande;
+- struttura della scheda squadra resa fissa fin dall'apertura, eliminando il movimento quando si preme ATLETI;
+- icona sportiva e nome squadra ulteriormente ingranditi nei pulsanti della Home.
 
 Novità V2.4.24:
 - nella scheda ATLETI restano fissi intestazione, squadra, allenamenti e pulsanti; scorre soltanto la griglia delle figurine;
