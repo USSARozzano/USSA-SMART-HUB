@@ -1,4 +1,11 @@
-USSA SMART HUB — V2.4.32
+USSA SMART HUB — V2.4.33
+
+Novità V2.4.33:
+- aggiornamento automatico quotidiano alle 12:00 (fuso Europe/Rome) da Tuttocampo per Giovanissimi Provinciali U14 Milano, Girone E;
+- calendario, eventuali variazioni di data/orario, risultati e classifica salvati in cache;
+- mantenimento degli ultimi dati validi e del calendario locale se la fonte non risponde o restituisce dati incompleti;
+- controllo dello stato e aggiornamento manuale FIGC aggiunti nel backoffice;
+- stemmi delle avversarie salvati localmente dal girone Tuttocampo; FIVE TO SEVEN conserva il fallback testuale perché la fonte non pubblica uno stemma specifico.
 
 Novità V2.4.32:
 - aggiornamento automatico giornaliero dei dati CSI alle ore 12:00, secondo il fuso Europe/Rome;

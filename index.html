@@ -418,7 +418,7 @@ button.matchcard{width:100%;text-align:left;color:inherit;font:inherit;appearanc
 <section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div class="now-empty-icons" aria-hidden="true"><span>⚽</span><span>🏐</span><span>🏀</span></div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryStatus" class="secretary-status"></div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4.32 · AGGIORNAMENTO CSI</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.33 · AGGIORNAMENTO CSI + FIGC</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
@@ -448,19 +448,19 @@ function hubTime(){
 function hmToMinutes(v){const [h,m]=String(v||'00:00').split(':').map(Number);return h*60+m;}
 const CLUBS={
  'USSA ROZZANO':{logo:'/assets/ussa-logo.png'},
- 'FROG MILANO':{logo:'https://cdn.footballkitarchive.com/2024/11/14/awfvunH2qFLVDEa.jpg',crop:true},
- 'SANGIULIANO CVS':{logo:'https://b2-content.tuttocampo.it/TeamPhotos/Original/1000367.png?v=1'},
- 'SIZIANO LANTERNA':{logo:'https://sizianolanterna.com/ogfile/shop_it.jpg'},
- 'TRIAL ROZZANO':{logo:'https://www.rozzanocalcio.it/wp-content/uploads/2024/10/1202638.png'},
- 'VIGE MILANO':{logo:'https://www.vigemilano.it/images/Logo_colori.png'},
- 'REAL BASIGLIO':{logo:'https://content-s3.tuttocampo.it/Teams/Original/1202331.png?v=1'},
+ 'FROG MILANO':{logo:'/assets/clubs/frog-milano.png'},
+ 'SANGIULIANO CVS':{logo:'/assets/clubs/sangiuliano-cvs.png'},
+ 'SIZIANO LANTERNA':{logo:'/assets/clubs/siziano-lanterna.png'},
+ 'TRIAL ROZZANO':{logo:'/assets/clubs/trial-rozzano.png'},
+ 'VIGE MILANO':{logo:'/assets/clubs/vige-milano.png'},
+ 'REAL BASIGLIO':{logo:'/assets/clubs/real-basiglio-milano-3.png'},
  'FIVE TO SEVEN':{abbr:'5→7'},
- 'AL 2 SPORT':{abbr:'AL2'},
- 'FOOTBALL C. MILANESE':{logo:'https://static.wixstatic.com/media/a8c36c_05df221631734d0c925052d1470a4a7e~mv2.png'},
- 'ZIBIDO S. GIACOMO':{logo:'https://www.asdzibido.it/images/asd_2018_0003_800px.jpg?crc=4156326406'},
- 'FORZA E CORAGGIO':{logo:'https://cdn-eu.wansport.com/forzaecoraggio.wansport.com/d14ccedade3f/azienda/thumb/0a7fd29de302a3f6c218f1bd777ff15dc34f6224.png'},
- 'FATIMATRACCIA':{logo:'https://www.csi.milano.it/media/loghi_societa/02001632.jpg'},
- 'MILANO F. ACADEMY':{abbr:'MFA'},
+ 'AL 2 SPORT':{logo:'/assets/clubs/al-2-sport.png'},
+ 'FOOTBALL C. MILANESE':{logo:'/assets/clubs/fc-milanese-1902.png'},
+ 'ZIBIDO S. GIACOMO':{logo:'/assets/clubs/zibido-san-giacomo.png'},
+ 'FORZA E CORAGGIO':{logo:'/assets/clubs/forza-e-coraggio.png'},
+ 'FATIMATRACCIA':{logo:'/assets/clubs/fatimatraccia.png'},
+ 'MILANO F. ACADEMY':{logo:'/assets/clubs/milano-football-academy.png'},
  'S.GIULIANO COLOGNO OSGD':{logo:'https://b2-content.tuttocampo.it/Teams/Original/1149651.png?v=1'},
  'ASO CERNUSCO 2013 BLU':{logo:'https://www.csi.milano.it/media/loghi_societa/02001107.jpg'},
  'USOM CALCIO':{logo:'https://www.gsmontanaso.it/wp-content/uploads/2018/08/Usom64312.png'},

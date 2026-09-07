@@ -9,6 +9,7 @@ import requests, re, json, io, sqlite3, hashlib, os, threading
 from bs4 import BeautifulSoup
 import qrcode
 import qrcode.image.svg
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 ROOT=Path(__file__).parent
 app=FastAPI(title="USSA SMART HUB V2")
@@ -20,6 +21,33 @@ CSI_SYNC_HOUR=12
 CSI_RETRY_MINUTES=30
 CSI_SYNC_LOCK=threading.Lock()
 CSI_SCHEDULER_STARTED=False
+FIGC_SOURCE_URL='https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Risultati'
+FIGC_CACHE_PATH=Path(os.getenv('FIGC_CACHE_PATH') or ROOT/'figc_cache.json')
+FIGC_SYNC_HOUR=12
+FIGC_RETRY_MINUTES=30
+FIGC_SYNC_LOCK=threading.Lock()
+FIGC_SCHEDULER_STARTED=False
+TUTTOCAMPO_HEADERS={
+    'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/140.0 Safari/537.36',
+    'Accept-Language':'it-IT,it;q=0.9,en;q=0.7',
+    'Referer':FIGC_SOURCE_URL,
+}
+TC_TEAM_ALIASES={
+    'USSA ROZZANO':'USSA Rozzano',
+    'FROG MILANO':'FROG MILANO',
+    'SANGIULIANO CVS':'SANGIULIANO CVS',
+    'SIZIANO LANTERNA':'SIZIANO LANTERNA',
+    'TRIAL ROZZANO':'TRIAL ROZZANO',
+    'VIGE MILANO':'VIGE MILANO',
+    'REAL BASIGLIO MILANO 3':'REAL BASIGLIO',
+    'FIVE TO SEVEN':'FIVE TO SEVEN',
+    'AL 2 SPORT':'AL 2 SPORT',
+    'FC MILANESE 1902':'FOOTBALL C. MILANESE',
+    'ZIBIDO SAN GIACOMO':'ZIBIDO S. GIACOMO',
+    'FORZA E CORAGGIO':'FORZA E CORAGGIO',
+    'FATIMATRACCIA':'FATIMATRACCIA',
+    'MILANO FOOTBALL ACADEMY':'MILANO F. ACADEMY',
+}
 
 U13_TEST_STANDINGS=[
  {"position":1,"team":"S.Giuliano Cologno Osgd","points":18,"played":8,"wins":6,"draws":0,"losses":2,"gf":18,"gs":8},
@@ -87,7 +115,26 @@ def load_json(name, default):
 
 def teams_dict(): return {x['key']:x for x in load_json('teams.json',[])}
 def csi_source_teams(): return [t for t in teams_dict().values() if t.get('csi_live_url') and not t.get('test_only')]
-def fixtures(): return load_json('fixtures.json',[])
+def base_fixtures(): return load_json('fixtures.json',[])
+
+def load_figc_cache():
+    try:
+        data=json.loads(FIGC_CACHE_PATH.read_text(encoding='utf-8'))
+        return data if isinstance(data,dict) else {'fixtures':[],'standings':[],'scorers':[],'meta':{}}
+    except:
+        return {'fixtures':[],'standings':[],'scorers':[],'meta':{}}
+
+def save_figc_cache(data):
+    FIGC_CACHE_PATH.parent.mkdir(parents=True,exist_ok=True)
+    tmp=FIGC_CACHE_PATH.with_suffix(FIGC_CACHE_PATH.suffix+'.tmp')
+    tmp.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
+    os.replace(tmp,FIGC_CACHE_PATH)
+
+def fixtures():
+    local=base_fixtures();cache=load_figc_cache();live=cache.get('fixtures') or []
+    if not isinstance(live,list) or not live:return local
+    live_by_id={x.get('id'):x for x in live if isinstance(x,dict) and x.get('id')}
+    return [{**x,**live_by_id.get(x.get('id'),{})} if x.get('competition')=='FIGC' else x for x in local]
 def clean(s): return re.sub(r"\s+"," ",s or "").strip()
 def fetch(url):
     r=requests.get(url,headers=HEADERS,timeout=20);r.raise_for_status();return r.text
@@ -186,6 +233,18 @@ def spikey_asset(filename: str):
     if filename not in allowed:
         raise HTTPException(status_code=404, detail='Illustrazione non disponibile')
     return FileResponse(ROOT/'assets'/'spikey'/filename, media_type='image/png')
+
+@app.get('/assets/clubs/{filename}')
+def club_asset(filename: str):
+    allowed = {
+        'al-2-sport.png','fatimatraccia.png','fc-milanese-1902.png','forza-e-coraggio.png',
+        'frog-milano.png','milano-football-academy.png','real-basiglio-milano-3.png',
+        'sangiuliano-cvs.png','siziano-lanterna.png','trial-rozzano.png','vige-milano.png',
+        'zibido-san-giacomo.png',
+    }
+    if filename not in allowed:
+        raise HTTPException(status_code=404, detail='Stemma non disponibile')
+    return FileResponse(ROOT/'assets'/'clubs'/filename,media_type='image/png')
 @app.get('/api/teams')
 def api_teams(): return load_json('teams.json',[])
 @app.get('/api/hub')
@@ -416,14 +475,233 @@ def csi_scheduler_loop():
             if csi_cache_due():refresh_csi_cache('scheduled')
         except:pass
 
+TC_MONTHS={
+    'gennaio':1,'febbraio':2,'marzo':3,'aprile':4,'maggio':5,'giugno':6,
+    'luglio':7,'agosto':8,'settembre':9,'ottobre':10,'novembre':11,'dicembre':12,
+}
+
+def tc_team_name(value):
+    value=clean(value)
+    return TC_TEAM_ALIASES.get(value.upper(),value)
+
+def figc_cache_due(now=None):
+    now=now or rome_now();cache=load_figc_cache();meta=cache.get('meta') or {}
+    last_attempt=parse_cache_time(meta.get('last_attempt_at'))
+    if last_attempt:
+        if last_attempt.tzinfo is None:last_attempt=last_attempt.replace(tzinfo=ZoneInfo('Europe/Rome'))
+        if meta.get('status') in {'error','partial'} and now-last_attempt.astimezone(ZoneInfo('Europe/Rome'))<timedelta(minutes=FIGC_RETRY_MINUTES):return False
+    if meta.get('status') in {'error','partial'}:return True
+    if len(cache.get('fixtures') or [])!=26:return True
+    last=parse_cache_time(meta.get('last_success_at'))
+    if not last:return True
+    if last.tzinfo is None:last=last.replace(tzinfo=ZoneInfo('Europe/Rome'))
+    last=last.astimezone(ZoneInfo('Europe/Rome'))
+    return now.hour>=FIGC_SYNC_HOUR and last.date()<now.date()
+
+def next_figc_sync_at(now=None):
+    now=now or rome_now()
+    target=now.replace(hour=FIGC_SYNC_HOUR,minute=0,second=0,microsecond=0)
+    if target<=now:target+=timedelta(days=1)
+    return target
+
+def tc_bootstrap(session):
+    r=session.get(FIGC_SOURCE_URL,headers=TUTTOCAMPO_HEADERS,timeout=25);r.raise_for_status();html=r.text
+    def grab(pattern,label):
+        m=re.search(pattern,html,re.I)
+        if not m:raise ValueError(f'{label} non trovato')
+        return m.group(1)
+    token=grab(r"var\s+tckk='([^']+)'",'token Tuttocampo')
+    round_id=grab(r"var\s+roundID='([^']+)'",'girone Tuttocampo')
+    count=int(grab(r"var\s+matchesNumber='(\d+)'",'numero giornate'))
+    if round_id!='LO.GX.E.MI' or count!=26:raise ValueError('Il girone Tuttocampo non coincide con U14 Milano Girone E')
+    return token,round_id,count,dict(session.cookies)
+
+def tc_post_module(path,token,cookies,data):
+    url=f'https://www.tuttocampo.it/{path}?tckk={quote(token)}'
+    r=requests.post(url,headers=TUTTOCAMPO_HEADERS,cookies=cookies,data=data,timeout=25)
+    r.raise_for_status()
+    if len(r.text)<120 or 'Errore imprevisto' in r.text:raise ValueError('risposta Tuttocampo non valida')
+    return r.text
+
+def tc_date_from_row(label,header_dates):
+    m=re.search(r'\b(\d{1,2})\s+([a-zà]+)',clean(label).lower())
+    if not m:return ''
+    day=int(m.group(1));month=TC_MONTHS.get(m.group(2))
+    if not month:return ''
+    for iso in header_dates:
+        d=datetime.strptime(iso,'%Y-%m-%d')
+        if d.day==day and d.month==month:return iso
+    year=datetime.strptime(header_dates[0],'%Y-%m-%d').year if header_dates else rome_now().year
+    return f'{year:04d}-{month:02d}-{day:02d}'
+
+def parse_tc_day(html,day):
+    page=BeautifulSoup(html,'html.parser')
+    header=clean((page.select_one('#match_date') or page.new_tag('span')).get_text(' ',strip=True))
+    header_dates=[]
+    for d,m,y in re.findall(r'(\d{2})\|(\d{2})\|(\d{4})',header):header_dates.append(f'{y}-{m}-{d}')
+    current_date=''
+    selected=None
+    for tr in page.select('table.table-results tbody tr'):
+        classes=set(tr.get('class') or [])
+        if 'date' in classes:
+            current_date=tc_date_from_row(clean(tr.get_text(' ',strip=True)),header_dates)
+            continue
+        if 'match' not in classes:continue
+        home=clean((tr.select_one('td.team.home a.team-name') or page.new_tag('a')).get_text(' ',strip=True))
+        away=clean((tr.select_one('td.team.away a.team-name') or page.new_tag('a')).get_text(' ',strip=True))
+        if 'USSA ROZZANO' not in {home.upper(),away.upper()}:continue
+        hour=clean((tr.select_one('td.match-time span.hour') or page.new_tag('span')).get_text(' ',strip=True))
+        hm=re.search(r'\b([0-2]\d:[0-5]\d)\b',hour)
+        goals=[]
+        for side in ('home','away'):
+            goal=clean((tr.select_one(f'td.team.{side} span.goal') or page.new_tag('span')).get_text(' ',strip=True))
+            goals.append(int(goal) if re.fullmatch(r'\d+',goal) else None)
+        selected={
+            'date':current_date or (header_dates[0] if header_dates else ''),
+            'time':hm.group(1) if hm else '',
+            'home':tc_team_name(home),'away':tc_team_name(away),
+            'result_home':goals[0],'result_away':goals[1],
+            'result':f'{goals[0]} - {goals[1]}' if None not in goals else '',
+            'external_detail_url':tr.get('data-link') or '',
+        }
+        break
+    if not selected:raise ValueError(f'USSA non trovata nella giornata {day}')
+    return selected
+
+def merge_tc_fixture(day,row):
+    leg='ANDATA' if day<=13 else 'RITORNO';round_no=day if day<=13 else day-13
+    fixture_id=f"u14-figc-{'a' if leg=='ANDATA' else 'r'}-{round_no:02d}"
+    base=next((dict(x) for x in base_fixtures() if x.get('id')==fixture_id),None)
+    if not base:raise ValueError(f'fixture locale {fixture_id} non trovata')
+    expected={clean(base.get('home')).upper(),clean(base.get('away')).upper()}
+    received={clean(row.get('home')).upper(),clean(row.get('away')).upper()}
+    if expected!=received:raise ValueError(f'squadre non coerenti per {fixture_id}')
+    # Alcune giornate di ritorno pubblicate da Tuttocampo riportano ancora, nel
+    # frammento dinamico, l'anno della stagione di andata. Giorno e mese sono
+    # aggiornati, ma l'anno viene vincolato alla stagione 2026/27.
+    if row.get('date'):
+        try:
+            parsed=datetime.strptime(row['date'],'%Y-%m-%d')
+            row['date']=parsed.replace(year=2026 if leg=='ANDATA' else 2027).date().isoformat()
+        except:row['date']=''
+    for key in ('date','time','home','away','external_detail_url'):
+        if row.get(key):base[key]=row[key]
+    if row.get('result'):
+        base['result']=row['result'];base['result_home']=row['result_home'];base['result_away']=row['result_away']
+    else:
+        base.pop('result',None);base.pop('result_home',None);base.pop('result_away',None)
+    base['home_away']='CASA' if 'USSA' in base['home'].upper() else 'TRASFERTA'
+    base['source']='Tuttocampo · U14 Milano Girone E'
+    base['source_url']=f"https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata{day}"
+    return base
+
+def parse_tc_standings(html):
+    page=BeautifulSoup(html,'html.parser');rows=[]
+    for tr in page.select('table.table_ranking tbody tr'):
+        team=clean((tr.select_one('td.team') or page.new_tag('td')).get_text(' ',strip=True))
+        nums=[]
+        for td in tr.find_all('td'):
+            value=clean(td.get_text(' ',strip=True))
+            if re.fullmatch(r'-?\d+',value):nums.append(int(value))
+        if not team or len(nums)<8:continue
+        pt,g,v,n,p,gf,gs,dr=nums[-8:]
+        rows.append({'position':len(rows)+1,'team':tc_team_name(team),'points':pt,'played':g,
+                     'wins':v,'draws':n,'losses':p,'gf':gf,'gs':gs,'ga':gs,'goal_difference':dr})
+    if len(rows)!=14:raise ValueError(f'classifica incompleta: {len(rows)} squadre')
+    return rows
+
+def parse_tc_scorers(html):
+    page=BeautifulSoup(html,'html.parser');out=[]
+    for tr in page.select('table tbody tr'):
+        cells=[clean(td.get_text(' ',strip=True)) for td in tr.find_all(['td','th'])]
+        line=' | '.join(cells)
+        if 'USSA ROZZANO' not in line.upper():continue
+        goal=next((int(x) for x in reversed(cells) if re.fullmatch(r'\d+',x)),0)
+        name=next((x for x in cells if re.search(r'[A-Za-zÀ-ÿ]{2,}\s+[A-Za-zÀ-ÿ]{2,}',x) and 'USSA' not in x.upper()),'')
+        if name and goal:out.append({'name':name,'goals':goal})
+    out.sort(key=lambda x:(-x['goals'],x['name']))
+    return out
+
+def figc_sync_status(cache=None):
+    cache=cache or load_figc_cache();meta=cache.get('meta') or {};next_run=next_figc_sync_at()
+    last_attempt=parse_cache_time(meta.get('last_attempt_at'))
+    if meta.get('status') in {'error','partial'} and last_attempt:
+        if last_attempt.tzinfo is None:last_attempt=last_attempt.replace(tzinfo=ZoneInfo('Europe/Rome'))
+        retry_at=last_attempt.astimezone(ZoneInfo('Europe/Rome'))+timedelta(minutes=FIGC_RETRY_MINUTES)
+        if retry_at>rome_now() and retry_at<next_run:next_run=retry_at
+    return {
+        'status':meta.get('status','never'),'running':FIGC_SYNC_LOCK.locked(),
+        'last_attempt_at':meta.get('last_attempt_at'),'last_success_at':meta.get('last_success_at'),
+        'next_run_at':next_run.isoformat(timespec='minutes'),'source_count':3,
+        'updated_count':int(meta.get('updated_count') or 0),'error_count':int(meta.get('error_count') or 0),
+        'errors':meta.get('errors') or [],'cached_fixtures':len(cache.get('fixtures') or []),
+        'source_url':FIGC_SOURCE_URL,
+    }
+
+def refresh_figc_cache(trigger='scheduled'):
+    if not FIGC_SYNC_LOCK.acquire(blocking=False):return figc_sync_status()
+    try:
+        previous=load_figc_cache();attempted_at=rome_now().isoformat(timespec='seconds');errors=[];updated=0
+        fixtures_live=previous.get('fixtures') or [];standings=previous.get('standings') or [];scorers=previous.get('scorers') or []
+        try:
+            session=requests.Session();token,round_id,count,cookies=tc_bootstrap(session)
+            results={}
+            def one(day):
+                html=tc_post_module('Web/Views/Results/ResultsView.php',token,cookies,{'category_id':round_id,'match_day_id':day})
+                return day,merge_tc_fixture(day,parse_tc_day(html,day))
+            # Due richieste concorrenti mantengono il tempo ragionevole senza
+            # sovraccaricare il servizio sorgente.
+            with ThreadPoolExecutor(max_workers=2) as pool:
+                pending=[pool.submit(one,day) for day in range(1,count+1)]
+                for future in as_completed(pending):
+                    try:
+                        day,row=future.result();results[day]=row
+                    except Exception as exc:errors.append({'dataset':'calendario','message':clean(str(exc))[:180]})
+            if len(results)!=26:raise ValueError(f'calendario incompleto: {len(results)} giornate su 26')
+            fixtures_live=[results[x] for x in sorted(results)];updated+=1
+            try:
+                ranking_html=tc_post_module('Web/Views/Rankings/RankingView.php',token,cookies,{'category_id':round_id,'total':'true','is_ranking_tab':'false'})
+                standings=parse_tc_standings(ranking_html);updated+=1
+            except Exception as exc:errors.append({'dataset':'classifica','message':clean(str(exc))[:180]})
+            try:
+                scorers_html=tc_post_module('Web/Views/Scorers/ScorersView.php',token,cookies,{'category_id':round_id})
+                scorers=parse_tc_scorers(scorers_html);updated+=1
+            except Exception as exc:errors.append({'dataset':'marcatori','message':clean(str(exc))[:180]})
+        except Exception as exc:
+            errors.append({'dataset':'collegamento','message':clean(str(exc))[:180]})
+        old_meta=previous.get('meta') or {}
+        status='ok' if updated==3 and not errors else ('partial' if updated else 'error')
+        meta={'status':status,'trigger':trigger,'last_attempt_at':attempted_at,
+              'last_success_at':attempted_at if updated else old_meta.get('last_success_at'),
+              'updated_count':updated,'error_count':len(errors),'errors':errors}
+        data={'fixtures':fixtures_live,'standings':standings,'scorers':scorers,'meta':meta}
+        save_figc_cache(data);result=figc_sync_status(data);result['running']=False;return result
+    finally:
+        FIGC_SYNC_LOCK.release()
+
+def figc_scheduler_loop():
+    try:
+        if figc_cache_due():refresh_figc_cache('startup')
+    except:pass
+    while True:
+        threading.Event().wait(60)
+        try:
+            if figc_cache_due():refresh_figc_cache('scheduled')
+        except:pass
+
 @app.on_event('startup')
-def start_csi_scheduler():
-    global CSI_SCHEDULER_STARTED
-    if CSI_SCHEDULER_STARTED:return
-    CSI_SCHEDULER_STARTED=True
-    threading.Thread(target=csi_scheduler_loop,name='csi-daily-sync',daemon=True).start()
+def start_data_schedulers():
+    global CSI_SCHEDULER_STARTED,FIGC_SCHEDULER_STARTED
+    if not CSI_SCHEDULER_STARTED:
+        CSI_SCHEDULER_STARTED=True
+        threading.Thread(target=csi_scheduler_loop,name='csi-daily-sync',daemon=True).start()
+    if not FIGC_SCHEDULER_STARTED:
+        FIGC_SCHEDULER_STARTED=True
+        threading.Thread(target=figc_scheduler_loop,name='figc-daily-sync',daemon=True).start()
 
 def team_standings_data(t, competition):
+    if competition=='FIGC' and t.get('key')=='u14':
+        return load_figc_cache().get('standings') or fixture_stats_rows('FIGC')
     if competition!='CSI': return []
     rows=[]
     try:rows=live_standings(t)
@@ -432,6 +710,7 @@ def team_standings_data(t, competition):
     return rows
 
 def team_scorers_data(t, competition):
+    if competition=='FIGC' and t.get('key')=='u14':return load_figc_cache().get('scorers') or []
     if competition!='CSI': return []
     found,rows=cached_csi_field(t,'scorers')
     if not found:rows=live_scorers(t,fresh=True) or old_csi_scorers(t)
@@ -827,6 +1106,16 @@ def backoffice_csi_sync_status(pin:str):
 def backoffice_csi_sync_run(pin:str):
     if not verify_pin('',pin,admin=True): raise HTTPException(403,'PIN non valido')
     return refresh_csi_cache('manual')
+
+@app.get('/api/backoffice/figc-sync')
+def backoffice_figc_sync_status(pin:str):
+    if not verify_pin('',pin,admin=True): raise HTTPException(403,'PIN non valido')
+    return figc_sync_status()
+
+@app.post('/api/backoffice/figc-sync')
+def backoffice_figc_sync_run(pin:str):
+    if not verify_pin('',pin,admin=True): raise HTTPException(403,'PIN non valido')
+    return refresh_figc_cache('manual')
 
 @app.delete('/api/backoffice/votes/{vote_id}')
 def delete_vote(vote_id:int,pin:str):

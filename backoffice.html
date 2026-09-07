@@ -35,6 +35,16 @@
       </div>
       <div id="syncErrors" class="sync-errors"></div>
     </section>
+    <section id="figcSyncPanel" class="panel" style="display:none">
+      <div class="sync-head"><h2>AGGIORNAMENTO UNDER 14 FIGC</h2><button id="figcSyncBtn" class="sync-btn" onclick="runFigcSync()">AGGIORNA ORA</button></div>
+      <div id="figcSyncState" class="sync-state">STATO NON DISPONIBILE</div>
+      <div class="sync-grid">
+        <div class="sync-box"><span>ULTIMO AGGIORNAMENTO RIUSCITO</span><strong id="figcSyncLast">—</strong></div>
+        <div class="sync-box"><span>PROSSIMO AGGIORNAMENTO AUTOMATICO</span><strong id="figcSyncNext">—</strong></div>
+        <div class="sync-box"><span>DATI AGGIORNATI</span><strong id="figcSyncCount">—</strong></div>
+      </div>
+      <div id="figcSyncErrors" class="sync-errors"></div>
+    </section>
     <section id="detail" class="panel" style="display:none"><h2>VOTI REGISTRATI</h2><div style="overflow:auto"><table><thead><tr><th>Data</th><th>Squadra</th><th>Atleta</th><th>Gara</th><th></th></tr></thead><tbody id="votes"></tbody></table></div></section>
   </div>
   <script>
@@ -52,11 +62,11 @@
         const r=await fetch(`/api/backoffice/votes?pin=${encodeURIComponent(activePin)}&month=${encodeURIComponent($('month').value)}`,{cache:'no-store'});
         if(!r.ok)throw new Error('PIN non valido o dati non disponibili');
         const d=await r.json();unlocked=true;$('pinDisplay').textContent='ACCESSO SBLOCCATO';$('pinDisplay').className='pin-display open';$('keypad').style.display='none';
-        $('ranking').style.display='block';$('syncPanel').style.display='block';$('detail').style.display='block';
+        $('ranking').style.display='block';$('syncPanel').style.display='block';$('figcSyncPanel').style.display='block';$('detail').style.display='block';
         $('rankCards').innerHTML=(d.ranking||[]).map(x=>`<div class="card"><strong>${x.votes}</strong><div>${x.athlete_name}</div><div class="muted">${x.team_key}</div></div>`).join('')||'<div class="muted">Nessun voto nel mese.</div>';
         $('votes').innerHTML=(d.votes||[]).map(x=>`<tr><td>${x.created_at.replace('T',' ')}</td><td>${x.team_key}</td><td>${x.athlete_name}</td><td>${x.fixture_id}</td><td><button class="del" onclick="delVote(${x.id})">ELIMINA</button></td></tr>`).join('');
-        loadCsiStatus();
-      }catch(e){unlocked=false;activePin='';pinValue='';paintPin();$('keypad').style.display='grid';$('msg').textContent=e.message;$('ranking').style.display='none';$('syncPanel').style.display='none';$('detail').style.display='none'}
+        loadCsiStatus();loadFigcStatus();
+      }catch(e){unlocked=false;activePin='';pinValue='';paintPin();$('keypad').style.display='grid';$('msg').textContent=e.message;$('ranking').style.display='none';$('syncPanel').style.display='none';$('figcSyncPanel').style.display='none';$('detail').style.display='none'}
     }
     function syncDate(v){if(!v)return 'NON ANCORA ESEGUITO';try{return new Date(v).toLocaleString('it-IT',{dateStyle:'short',timeStyle:'short',timeZone:'Europe/Rome'})}catch{return v}}
     function paintCsiStatus(d){
@@ -67,6 +77,14 @@
     }
     async function loadCsiStatus(){try{const r=await fetch(`/api/backoffice/csi-sync?pin=${encodeURIComponent(activePin)}`,{cache:'no-store'});if(!r.ok)throw new Error();paintCsiStatus(await r.json())}catch{$('syncState').className='sync-state error';$('syncState').textContent='STATO NON DISPONIBILE'}}
     async function runCsiSync(){const b=$('syncBtn');b.disabled=true;b.textContent='AGGIORNAMENTO…';$('syncState').className='sync-state running';$('syncState').textContent='AGGIORNAMENTO IN CORSO';try{const r=await fetch(`/api/backoffice/csi-sync?pin=${encodeURIComponent(activePin)}`,{method:'POST'});if(!r.ok)throw new Error();paintCsiStatus(await r.json())}catch{$('syncState').className='sync-state error';$('syncState').textContent='AGGIORNAMENTO NON RIUSCITO'}finally{b.disabled=false;b.textContent='AGGIORNA ORA'}}
+    function paintFigcStatus(d){
+      const state=$('figcSyncState'),labels={ok:'AGGIORNAMENTO COMPLETATO',partial:'AGGIORNAMENTO PARZIALE',error:'AGGIORNAMENTO NON RIUSCITO',never:'NON ANCORA ESEGUITO'};
+      const code=d.running?'running':(d.status||'never');state.className=`sync-state ${code}`;state.textContent=d.running?'AGGIORNAMENTO IN CORSO':(labels[code]||'STATO NON DISPONIBILE');
+      $('figcSyncLast').textContent=syncDate(d.last_success_at);$('figcSyncNext').textContent=syncDate(d.next_run_at);$('figcSyncCount').textContent=`${d.updated_count||0} SU ${d.source_count||3}`;
+      $('figcSyncErrors').textContent=(d.errors||[]).length?`Problemi: ${d.errors.map(x=>x.dataset||x.message).join(', ')}`:'';
+    }
+    async function loadFigcStatus(){try{const r=await fetch(`/api/backoffice/figc-sync?pin=${encodeURIComponent(activePin)}`,{cache:'no-store'});if(!r.ok)throw new Error();paintFigcStatus(await r.json())}catch{$('figcSyncState').className='sync-state error';$('figcSyncState').textContent='STATO NON DISPONIBILE'}}
+    async function runFigcSync(){const b=$('figcSyncBtn');b.disabled=true;b.textContent='AGGIORNAMENTO…';$('figcSyncState').className='sync-state running';$('figcSyncState').textContent='AGGIORNAMENTO IN CORSO';try{const r=await fetch(`/api/backoffice/figc-sync?pin=${encodeURIComponent(activePin)}`,{method:'POST'});if(!r.ok)throw new Error();paintFigcStatus(await r.json())}catch{$('figcSyncState').className='sync-state error';$('figcSyncState').textContent='AGGIORNAMENTO NON RIUSCITO'}finally{b.disabled=false;b.textContent='AGGIORNA ORA'}}
     async function delVote(id){if(!confirm('Eliminare questo voto?'))return;const r=await fetch(`/api/backoffice/votes/${id}?pin=${encodeURIComponent(activePin)}`,{method:'DELETE'});if(r.ok)loadData()}
   </script>
 </body>
