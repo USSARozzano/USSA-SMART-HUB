@@ -703,18 +703,24 @@ def team_standings_data(t, competition):
     if competition=='FIGC' and t.get('key')=='u14':
         return load_figc_cache().get('standings') or fixture_stats_rows('FIGC')
     if competition!='CSI': return []
+    # U13 TEST: usa subito lo snapshot CSI verificato già incluso nel progetto.
+    # Evita una chiamata remota ad ogni tocco del kiosk (la squadra test_only
+    # non viene inclusa nella sincronizzazione/cache CSI giornaliera).
+    if t.get('key')=='u13a11_test':
+        return U13_TEST_STANDINGS
     rows=[]
     try:rows=live_standings(t)
     except:pass
-    if t.get('key')=='u13a11_test' and not rows:rows=U13_TEST_STANDINGS
     return rows
 
 def team_scorers_data(t, competition):
     if competition=='FIGC' and t.get('key')=='u14':return load_figc_cache().get('scorers') or []
     if competition!='CSI': return []
+    # U13 TEST: stesso criterio della classifica, risposta locale immediata.
+    if t.get('key')=='u13a11_test':
+        return U13_TEST_SCORERS
     found,rows=cached_csi_field(t,'scorers')
     if not found:rows=live_scorers(t,fresh=True) or old_csi_scorers(t)
-    if t.get('key')=='u13a11_test' and not rows:rows=U13_TEST_SCORERS
     return rows
 
 def team_matches_data(t, competition):
