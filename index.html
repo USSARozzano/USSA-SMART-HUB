@@ -1,5 +1,7 @@
 <!doctype html>
 <html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#061827"><title>USSA SMART HUB · V2</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
 <style>
 :root{--navy:#061827;--navy2:#071d31;--card:#0a2943;--card2:#0d3555;--yellow:#ffca18;--white:#f7f9fb;--muted:#9fb3c5;--line:#2c536f;--green:#42d68b;--red:#ff7272;--shadow:0 10px 28px rgba(0,0,0,.18)}
 *{box-sizing:border-box}html,body{margin:0;background:var(--navy);color:var(--white);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}body{height:100vh;overflow:hidden}button{font:inherit}.app{width:min(100vw,1080px);height:100vh;margin:auto;padding:18px;background:linear-gradient(180deg,#071c30,#061827)}
@@ -147,6 +149,15 @@ table{width:100%;border-collapse:collapse;font-size:14px}th{background:#071a2c;c
 .osm-label{position:absolute;transform:translate(10px,-50%);z-index:5;background:#061827e8;color:#fff;border:1px solid #3d617c;border-radius:9px;padding:6px 9px;font-size:10px;font-weight:900;line-height:1.15;max-width:230px;box-shadow:0 3px 10px rgba(0,0,0,.25)}
 .osm-attrib{position:absolute;right:6px;bottom:4px;z-index:6;background:rgba(255,255,255,.88);color:#23323d;border-radius:4px;padding:2px 5px;font-size:8px;line-height:1.1}
 .osm-map-note{position:absolute;left:7px;bottom:5px;z-index:6;background:#061827db;color:#fff;border-radius:6px;padding:4px 7px;font-size:9px;font-weight:900}
+.ofm-map{position:absolute;inset:0;background:#dfe7ec}
+.ofm-map .maplibregl-canvas{outline:none}
+.ofm-map .maplibregl-ctrl-attrib{font-size:8px;line-height:1.15;background:rgba(255,255,255,.88)}
+.ofm-map .maplibregl-ctrl-attrib-button{display:none}
+.ofm-marker-wrap{display:flex;align-items:center;gap:5px;pointer-events:none}
+.ofm-marker-dot{width:20px;height:20px;flex:0 0 20px;border-radius:50%;border:4px solid #061827;box-shadow:0 2px 8px rgba(0,0,0,.32)}
+.ofm-marker-wrap.start .ofm-marker-dot{background:#fff}
+.ofm-marker-wrap.end .ofm-marker-dot{background:var(--yellow)}
+.ofm-marker-label{background:#061827e8;color:#fff;border:1px solid #3d617c;border-radius:9px;padding:6px 9px;font-size:10px;font-weight:900;line-height:1.15;max-width:230px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 3px 10px rgba(0,0,0,.25)}
 @media(max-width:760px){
  .header.universal-header{height:90px!important;flex-basis:90px!important}.universal-header .brand{font-size:26px!important}
  .home-logo-btn{width:82px!important;height:82px!important}.home-logo-btn .logo{width:76px!important;height:76px!important}
@@ -418,7 +429,7 @@ button.matchcard{width:100%;text-align:left;color:inherit;font:inherit;appearanc
 <section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div class="now-empty-icons" aria-hidden="true"><span>⚽</span><span>🏐</span><span>🏀</span></div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryStatus" class="secretary-status"></div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4.33 · AGGIORNAMENTO CSI + FIGC</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.34 · MAPPE OPENFREEMAP</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
@@ -655,18 +666,24 @@ function buildCartographicRouteMap(el,r,x){
   if(!el||!r)return;const g=r.geometry||[];if(g.length<2){el.innerHTML='<div class="map-status">Percorso non predisposto.</div>';return}
   const W=Math.max(320,el.clientWidth||900),H=Math.max(220,el.clientHeight||360),xs=g.map(p=>p[0]),ys=g.map(p=>p[1]);
   const minLon=Math.min(...xs),maxLon=Math.max(...xs),minLat=Math.min(...ys),maxLat=Math.max(...ys);
-  let z=15,chosen=null;
-  for(;z>=9;z--){const a=mercatorWorld(minLon,maxLat,z),b=mercatorWorld(maxLon,minLat,z),bw=Math.abs(b[0]-a[0]),bh=Math.abs(b[1]-a[1]);if(bw<=W*.72&&bh<=H*.68){chosen={z,a,b};break}}
-  if(!chosen){z=9;chosen={z,a:mercatorWorld(minLon,maxLat,z),b:mercatorWorld(maxLon,minLat,z)}}
-  const centerLon=(minLon+maxLon)/2,centerLat=(minLat+maxLat)/2,center=mercatorWorld(centerLon,centerLat,z),left=center[0]-W/2,top=center[1]-H/2;
-  el.innerHTML='<div class="osm-map"><div class="osm-tile-layer"></div><svg class="osm-route-svg"></svg><div class="osm-map-note"></div><div class="osm-attrib">© OpenStreetMap contributors</div></div>';
-  const map=el.querySelector('.osm-map'),layer=map.querySelector('.osm-tile-layer'),svg=map.querySelector('.osm-route-svg'),note=map.querySelector('.osm-map-note');note.textContent=`${r.km} km · circa ${r.minutes} min · percorso indicativo`;
-  const n=Math.pow(2,z),tx0=Math.floor(left/256)-1,tx1=Math.floor((left+W)/256)+1,ty0=Math.floor(top/256)-1,ty1=Math.floor((top+H)/256)+1;
-  for(let tx=tx0;tx<=tx1;tx++)for(let ty=ty0;ty<=ty1;ty++){if(ty<0||ty>=n)continue;const xx=((tx%n)+n)%n,img=document.createElement('img');img.className='osm-tile';img.alt='';img.loading='eager';img.decoding='async';img.referrerPolicy='no-referrer';img.src=`https://tile.openstreetmap.org/${z}/${xx}/${ty}.png`;img.style.left=(tx*256-left)+'px';img.style.top=(ty*256-top)+'px';layer.appendChild(img)}
-  const pts=g.map(p=>{const w=mercatorWorld(p[0],p[1],z);return [w[0]-left,w[1]-top]}),points=pts.map(p=>p.map(v=>v.toFixed(1)).join(',')).join(' ');
-  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML=`<polyline class="osm-route-shadow" points="${points}"></polyline><polyline class="osm-route-line" points="${points}"></polyline>`;
-  const addMarker=(p,label,kind)=>{const m=document.createElement('div');m.className='osm-marker '+kind;m.style.left=p[0]+'px';m.style.top=p[1]+'px';map.appendChild(m);const l=document.createElement('div');l.className='osm-label';l.textContent=label;l.style.left=p[0]+'px';l.style.top=p[1]+'px';map.appendChild(l)};
-  addMarker(pts[0],'USSA Stadium','start');addMarker(pts[pts.length-1],x.field,'end');
+  if(el._ussaMap){try{el._ussaMap.remove()}catch{}el._ussaMap=null}
+  el.innerHTML=`<div class="ofm-map"></div><div class="osm-map-note">${r.km} km · circa ${r.minutes} min · percorso indicativo</div>`;
+  if(typeof maplibregl==='undefined'){el.innerHTML='<div class="map-status">Mappa momentaneamente non disponibile.</div>';return}
+  const mapNode=el.querySelector('.ofm-map');
+  const map=new maplibregl.Map({container:mapNode,style:'https://tiles.openfreemap.org/styles/positron',center:[(minLon+maxLon)/2,(minLat+maxLat)/2],zoom:11,interactive:false,attributionControl:true,fadeDuration:0});
+  el._ussaMap=map;
+  const addMarker=(coords,label,kind)=>{const wrap=document.createElement('div');wrap.className=`ofm-marker-wrap ${kind}`;const dot=document.createElement('span');dot.className='ofm-marker-dot';const txt=document.createElement('span');txt.className='ofm-marker-label';txt.textContent=label;wrap.append(dot,txt);new maplibregl.Marker({element:wrap,anchor:'left',offset:[-10,0]}).setLngLat(coords).addTo(map)};
+  let ready=false;
+  map.on('load',()=>{
+    ready=true;
+    map.addSource('ussa-route',{type:'geojson',data:{type:'Feature',properties:{},geometry:{type:'LineString',coordinates:g}}});
+    map.addLayer({id:'ussa-route-shadow',type:'line',source:'ussa-route',paint:{'line-color':'#061827','line-width':10,'line-opacity':.82},layout:{'line-cap':'round','line-join':'round'}});
+    map.addLayer({id:'ussa-route-line',type:'line',source:'ussa-route',paint:{'line-color':'#ffca18','line-width':6},layout:{'line-cap':'round','line-join':'round'}});
+    addMarker(g[0],'USSA Stadium','start');addMarker(g[g.length-1],x.field,'end');
+    map.fitBounds([[minLon,minLat],[maxLon,maxLat]],{padding:{top:Math.round(H*.14),bottom:Math.round(H*.16),left:Math.round(W*.12),right:Math.round(W*.12)},maxZoom:15,duration:0});
+    requestAnimationFrame(()=>map.resize());
+  });
+  setTimeout(()=>{if(!ready&&el._ussaMap===map){try{map.remove()}catch{}el._ussaMap=null;el.innerHTML='<div class="map-status">Mappa momentaneamente non disponibile.</div>'}},12000);
 }
 function openFixtureMap(id){navigate({type:'map',id})}
 async function renderMapView(v){loading(true);try{let x=await getJSON(`/api/fixture/${v.id}`);if(x.home_away==='CASA'){goBack();return}let r=await getJSON(`/api/static-route/${x.id}`);showOverlay('MAPPA E PERCORSO',`<div class="fullmap-layout2"><div class="fullmap-info2"><h2>${esc(x.field)}</h2><p>${esc(x.address)} · ${r.km} km · circa ${r.minutes} min da USSA Stadium</p></div><div id="fullRouteMap" class="fullroute-map"></div></div>`);requestAnimationFrame(()=>buildCartographicRouteMap($('fullRouteMap'),r,x))}catch{showOverlay('MAPPA E PERCORSO','<div class="section"><div class="empty">Percorso non predisposto.</div></div>')}finally{loading(false)}}
