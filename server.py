@@ -196,7 +196,7 @@ def fixture_by_id(fid):
     return next((x for x in fixtures() if x.get('id')==fid),None)
 
 def local_fixture_matches(team_key, competition=None):
-    a=[x for x in fixtures() if x.get('team_key')==team_key and (not competition or x.get('competition')==competition)]
+    a=[x for x in fixtures() if not x.get('cancelled') and x.get('team_key')==team_key and (not competition or x.get('competition')==competition)]
     return sorted(a,key=lambda x:(x.get('date',''),x.get('time','')))
 
 @app.get('/')
@@ -489,8 +489,8 @@ def figc_cache_due(now=None):
     last_attempt=parse_cache_time(meta.get('last_attempt_at'))
     if last_attempt:
         if last_attempt.tzinfo is None:last_attempt=last_attempt.replace(tzinfo=ZoneInfo('Europe/Rome'))
-        if meta.get('status') in {'error','partial'} and now-last_attempt.astimezone(ZoneInfo('Europe/Rome'))<timedelta(minutes=FIGC_RETRY_MINUTES):return False
-    if meta.get('status') in {'error','partial'}:return True
+        if meta.get('status') in {'error','partial','waiting'} and now-last_attempt.astimezone(ZoneInfo('Europe/Rome'))<timedelta(minutes=FIGC_RETRY_MINUTES):return False
+    if meta.get('status') in {'error','partial','waiting'}:return True
     if len(cache.get('fixtures') or [])!=26:return True
     last=parse_cache_time(meta.get('last_success_at'))
     if not last:return True
@@ -563,9 +563,15 @@ def parse_tc_day(html,day):
             'result_home':goals[0],'result_away':goals[1],
             'result':f'{goals[0]} - {goals[1]}' if None not in goals else '',
             'external_detail_url':tr.get('data-link') or '',
+            'postponed':'rinviat' in clean(tr.get_text(' ',strip=True)).lower(),
         }
         break
-    if not selected:raise ValueError(f'USSA non trovata nella giornata {day}')
+    if not selected:
+        # Dopo un ritiro Tuttocampo non restituisce piu una partita, ma una riga
+        # "Riposa: Ussa Rozzano". E una giornata valida e non deve bloccare il girone.
+        repose=' '.join(clean(x.get_text(' ',strip=True)) for x in page.select('tr.repose'))
+        if 'USSA ROZZANO' in repose.upper():return {'bye':True}
+        raise ValueError(f'USSA non trovata nella giornata {day}')
     return selected
 
 def merge_tc_fixture(day,row):
@@ -573,6 +579,12 @@ def merge_tc_fixture(day,row):
     fixture_id=f"u14-figc-{'a' if leg=='ANDATA' else 'r'}-{round_no:02d}"
     base=next((dict(x) for x in base_fixtures() if x.get('id')==fixture_id),None)
     if not base:raise ValueError(f'fixture locale {fixture_id} non trovata')
+    if row.get('bye'):
+        base['cancelled']=True;base['status']='RIPOSO'
+        base.pop('result',None);base.pop('result_home',None);base.pop('result_away',None)
+        base['source']='Tuttocampo · U14 Milano Girone E'
+        base['source_url']=f"https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata{day}"
+        return base
     expected={clean(base.get('home')).upper(),clean(base.get('away')).upper()}
     received={clean(row.get('home')).upper(),clean(row.get('away')).upper()}
     if expected!=received:raise ValueError(f'squadre non coerenti per {fixture_id}')
@@ -588,8 +600,12 @@ def merge_tc_fixture(day,row):
         if row.get(key):base[key]=row[key]
     if row.get('result'):
         base['result']=row['result'];base['result_home']=row['result_home'];base['result_away']=row['result_away']
+        base['status']='DISPUTATA';base.pop('postponed',None)
     else:
         base.pop('result',None);base.pop('result_home',None);base.pop('result_away',None)
+        if row.get('postponed'):base['status']='RINVIATA';base['postponed']=True
+        else:base['status']='PROGRAMMATA';base.pop('postponed',None)
+    base.pop('cancelled',None)
     base['home_away']='CASA' if 'USSA' in base['home'].upper() else 'TRASFERTA'
     base['source']='Tuttocampo · U14 Milano Girone E'
     base['source_url']=f"https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata{day}"
@@ -607,7 +623,12 @@ def parse_tc_standings(html):
         pt,g,v,n,p,gf,gs,dr=nums[-8:]
         rows.append({'position':len(rows)+1,'team':tc_team_name(team),'points':pt,'played':g,
                      'wins':v,'draws':n,'losses':p,'gf':gf,'gs':gs,'ga':gs,'goal_difference':dr})
-    if len(rows)!=14:raise ValueError(f'classifica incompleta: {len(rows)} squadre')
+    # Il numero di squadre puo diminuire durante la stagione (ritiri). Validiamo
+    # struttura e presenza USSA, non un totale rigido destinato a cambiare.
+    if len(rows)<8 or len({clean(x['team']).upper() for x in rows})!=len(rows):
+        raise ValueError(f'classifica non valida: {len(rows)} squadre')
+    if not any('USSA ROZZANO'==clean(x['team']).upper() for x in rows):
+        raise ValueError('USSA Rozzano assente dalla classifica')
     return rows
 
 def parse_tc_scorers(html):
@@ -625,7 +646,7 @@ def parse_tc_scorers(html):
 def figc_sync_status(cache=None):
     cache=cache or load_figc_cache();meta=cache.get('meta') or {};next_run=next_figc_sync_at()
     last_attempt=parse_cache_time(meta.get('last_attempt_at'))
-    if meta.get('status') in {'error','partial'} and last_attempt:
+    if meta.get('status') in {'error','partial','waiting'} and last_attempt:
         if last_attempt.tzinfo is None:last_attempt=last_attempt.replace(tzinfo=ZoneInfo('Europe/Rome'))
         retry_at=last_attempt.astimezone(ZoneInfo('Europe/Rome'))+timedelta(minutes=FIGC_RETRY_MINUTES)
         if retry_at>rome_now() and retry_at<next_run:next_run=retry_at
@@ -634,31 +655,75 @@ def figc_sync_status(cache=None):
         'last_attempt_at':meta.get('last_attempt_at'),'last_success_at':meta.get('last_success_at'),
         'next_run_at':next_run.isoformat(timespec='minutes'),'source_count':3,
         'updated_count':int(meta.get('updated_count') or 0),'error_count':int(meta.get('error_count') or 0),
-        'errors':meta.get('errors') or [],'cached_fixtures':len(cache.get('fixtures') or []),
+        'errors':meta.get('errors') or [],'warnings':meta.get('warnings') or [],
+        'cached_fixtures':len(cache.get('fixtures') or []),
         'source_url':FIGC_SOURCE_URL,
     }
 
 def refresh_figc_cache(trigger='scheduled'):
     if not FIGC_SYNC_LOCK.acquire(blocking=False):return figc_sync_status()
     try:
-        previous=load_figc_cache();attempted_at=rome_now().isoformat(timespec='seconds');errors=[];updated=0
+        previous=load_figc_cache();attempted_at=rome_now().isoformat(timespec='seconds');errors=[];warnings=[];updated=0
         fixtures_live=previous.get('fixtures') or [];standings=previous.get('standings') or [];scorers=previous.get('scorers') or []
         try:
             session=requests.Session();token,round_id,count,cookies=tc_bootstrap(session)
             results={}
+            # Non interroghiamo inutilmente tutte le 26 giornate a ogni ciclo:
+            # aggiorniamo le gare appena trascorse senza risultato e le cinque
+            # successive. Riduce il carico sulla fonte e rende il sync affidabile.
+            previous_by_id={x.get('id'):x for x in fixtures_live if isinstance(x,dict) and x.get('id')}
+            baseline=[]
+            for base in base_fixtures():
+                if base.get('competition')=='FIGC':baseline.append({**base,**previous_by_id.get(base.get('id'),{})})
+            today=local_now()
+            past_missing=[];past_all=[];future=[]
+            for row in baseline:
+                try:dt=iso_dt(row['date'],row.get('time') or '00:00')
+                except:continue
+                if dt<today and not row.get('cancelled'):
+                    past_all.append((dt,row))
+                    if not row.get('result') and not row.get('postponed'):past_missing.append((dt,row))
+                elif dt>=today and not row.get('cancelled'):future.append((dt,row))
+            targets=[x for _,x in sorted(past_missing,reverse=True)[:3]]
+            targets+=[x for _,x in sorted(past_all,reverse=True)[:1]]
+            targets+=[x for _,x in sorted(future)[:5]]
+            target_days=[]
+            for row in targets:
+                m=re.search(r'-(a|r)-(\d{2})$',row.get('id') or '')
+                if m:
+                    day=int(m.group(2))+(13 if m.group(1)=='r' else 0)
+                    if day not in target_days:target_days.append(day)
             def one(day):
                 html=tc_post_module('Web/Views/Results/ResultsView.php',token,cookies,{'category_id':round_id,'match_day_id':day})
                 return day,merge_tc_fixture(day,parse_tc_day(html,day))
-            # Due richieste concorrenti mantengono il tempo ragionevole senza
-            # sovraccaricare il servizio sorgente.
-            with ThreadPoolExecutor(max_workers=2) as pool:
-                pending=[pool.submit(one,day) for day in range(1,count+1)]
+            # Una richiesta per volta evita i blocchi automatici della fonte.
+            with ThreadPoolExecutor(max_workers=1) as pool:
+                pending=[pool.submit(one,day) for day in target_days]
                 for future in as_completed(pending):
                     try:
                         day,row=future.result();results[day]=row
                     except Exception as exc:errors.append({'dataset':'calendario','message':clean(str(exc))[:180]})
-            if len(results)!=26:raise ValueError(f'calendario incompleto: {len(results)} giornate su 26')
-            fixtures_live=[results[x] for x in sorted(results)];updated+=1
+            # Salviamo sempre le giornate valide. Una gara rinviata o una risposta
+            # temporaneamente assente non deve piu scartare risultato e classifica.
+            for row in results.values():previous_by_id[row['id']]=row
+            fixtures_live=[]
+            for base in base_fixtures():
+                if base.get('competition')!='FIGC':continue
+                fixtures_live.append({**base,**previous_by_id.get(base.get('id'),{})})
+            # Se un avversario risulta ritirato in una delle due gare, anche il
+            # ritorno viene escluso immediatamente dal calendario USSA.
+            withdrawn=set()
+            for row in fixtures_live:
+                if not row.get('cancelled'):continue
+                other=row.get('away') if clean(row.get('home')).upper()=='USSA ROZZANO' else row.get('home')
+                if other:withdrawn.add(clean(other).upper())
+            for row in fixtures_live:
+                names={clean(row.get('home')).upper(),clean(row.get('away')).upper()}
+                if names & withdrawn:
+                    row['cancelled']=True;row['status']='RIPOSO'
+                    row.pop('result',None);row.pop('result_home',None);row.pop('result_away',None)
+            if len(results)==len(target_days):updated+=1
+            else:errors.append({'dataset':'calendario','message':f'aggiornate {len(results)} gare su {len(target_days)} richieste; mantenuti i dati precedenti per le altre'})
             try:
                 ranking_html=tc_post_module('Web/Views/Rankings/RankingView.php',token,cookies,{'category_id':round_id,'total':'true','is_ranking_tab':'false'})
                 standings=parse_tc_standings(ranking_html);updated+=1
@@ -669,11 +734,28 @@ def refresh_figc_cache(trigger='scheduled'):
             except Exception as exc:errors.append({'dataset':'marcatori','message':clean(str(exc))[:180]})
         except Exception as exc:
             errors.append({'dataset':'collegamento','message':clean(str(exc))[:180]})
+        # Coerenza automatica: se la classifica dichiara gare giocate che non sono
+        # ancora presenti nei risultati, il job resta in attesa e riprova ogni 30'.
+        ussa=next((x for x in standings if clean(x.get('team')).upper()=='USSA ROZZANO'),None)
+        known_results=sum(1 for x in fixtures_live if not x.get('cancelled') and x.get('result') and
+                          'USSA ROZZANO' in {clean(x.get('home')).upper(),clean(x.get('away')).upper()})
+        if ussa and known_results<int(ussa.get('played') or 0):
+            warnings.append({'dataset':'coerenza','message':f"classifica: {ussa.get('played')} gare USSA; risultati acquisiti: {known_results}"})
+        now=local_now()
+        overdue=[]
+        for x in fixtures_live:
+            if x.get('cancelled') or x.get('postponed') or x.get('result'):continue
+            try:
+                if iso_dt(x['date'],x.get('time') or '00:00')+timedelta(minutes=120)<now:overdue.append(x.get('id'))
+            except:pass
+        if overdue:warnings.append({'dataset':'risultati','message':f"in attesa del risultato: {', '.join(overdue[:4])}"})
         old_meta=previous.get('meta') or {}
-        status='ok' if updated==3 and not errors else ('partial' if updated else 'error')
+        if errors:status='partial' if updated else 'error'
+        elif warnings:status='waiting'
+        else:status='ok' if updated==3 else ('partial' if updated else 'error')
         meta={'status':status,'trigger':trigger,'last_attempt_at':attempted_at,
-              'last_success_at':attempted_at if updated else old_meta.get('last_success_at'),
-              'updated_count':updated,'error_count':len(errors),'errors':errors}
+              'last_success_at':attempted_at if status=='ok' else old_meta.get('last_success_at'),
+              'updated_count':updated,'error_count':len(errors),'errors':errors,'warnings':warnings}
         data={'fixtures':fixtures_live,'standings':standings,'scorers':scorers,'meta':meta}
         save_figc_cache(data);result=figc_sync_status(data);result['running']=False;return result
     finally:
@@ -689,6 +771,13 @@ def figc_scheduler_loop():
             if figc_cache_due():refresh_figc_cache('scheduled')
         except:pass
 
+def ensure_figc_refresh_if_due():
+    """Fallback non bloccante: anche una normale apertura dell'Hub riattiva il sync."""
+    try:
+        if figc_cache_due() and not FIGC_SYNC_LOCK.locked():
+            threading.Thread(target=refresh_figc_cache,args=('page-request',),name='figc-request-sync',daemon=True).start()
+    except:pass
+
 @app.on_event('startup')
 def start_data_schedulers():
     global CSI_SCHEDULER_STARTED,FIGC_SCHEDULER_STARTED
@@ -701,31 +790,29 @@ def start_data_schedulers():
 
 def team_standings_data(t, competition):
     if competition=='FIGC' and t.get('key')=='u14':
+        ensure_figc_refresh_if_due()
         return load_figc_cache().get('standings') or fixture_stats_rows('FIGC')
     if competition!='CSI': return []
-    # U13 TEST: usa subito lo snapshot CSI verificato già incluso nel progetto.
-    # Evita una chiamata remota ad ogni tocco del kiosk (la squadra test_only
-    # non viene inclusa nella sincronizzazione/cache CSI giornaliera).
-    if t.get('key')=='u13a11_test':
-        return U13_TEST_STANDINGS
     rows=[]
     try:rows=live_standings(t)
     except:pass
+    if t.get('key')=='u13a11_test' and not rows:rows=U13_TEST_STANDINGS
     return rows
 
 def team_scorers_data(t, competition):
-    if competition=='FIGC' and t.get('key')=='u14':return load_figc_cache().get('scorers') or []
+    if competition=='FIGC' and t.get('key')=='u14':
+        ensure_figc_refresh_if_due()
+        return load_figc_cache().get('scorers') or []
     if competition!='CSI': return []
-    # U13 TEST: stesso criterio della classifica, risposta locale immediata.
-    if t.get('key')=='u13a11_test':
-        return U13_TEST_SCORERS
     found,rows=cached_csi_field(t,'scorers')
     if not found:rows=live_scorers(t,fresh=True) or old_csi_scorers(t)
+    if t.get('key')=='u13a11_test' and not rows:rows=U13_TEST_SCORERS
     return rows
 
 def team_matches_data(t, competition):
     now=local_now()
     if competition=='FIGC':
+        ensure_figc_refresh_if_due()
         arr=local_fixture_matches(t['key'],'FIGC')
         played=[x for x in arr if iso_dt(x['date'],x['time'])<now]
         nexts=[x for x in arr if iso_dt(x['date'],x['time'])>=now]
@@ -750,9 +837,11 @@ def team_matches_data(t, competition):
 
 @app.get('/api/home/upcoming')
 def home_upcoming():
+    ensure_figc_refresh_if_due()
     now=local_now();items=[]
     # Single local source for real FIGC fixtures.
     for x in fixtures():
+        if x.get('cancelled'):continue
         try:
             dt=iso_dt(x['date'],x['time'])
             if dt>=now:
@@ -888,7 +977,7 @@ def haversine_km(a,b):
 def fixture_stats_rows(competition='FIGC'):
     clubs={}
     for f in fixtures():
-        if f.get('competition') != competition: continue
+        if f.get('competition') != competition or f.get('cancelled'): continue
         for n in (f.get('home'), f.get('away')):
             if n and n not in clubs:
                 clubs[n]={'team':n,'played':0,'wins':0,'draws':0,'losses':0,'gf':0,'ga':0,'points':0,'form':[]}
@@ -1122,6 +1211,13 @@ def backoffice_figc_sync_status(pin:str):
 def backoffice_figc_sync_run(pin:str):
     if not verify_pin('',pin,admin=True): raise HTTPException(403,'PIN non valido')
     return refresh_figc_cache('manual')
+
+@app.get('/api/data-sync-status')
+def public_data_sync_status():
+    """Stato tecnico consultabile senza esporre PIN o dati riservati."""
+    ensure_figc_refresh_if_due()
+    figc=figc_sync_status()
+    return {'figc':{k:figc.get(k) for k in ('status','running','last_attempt_at','last_success_at','next_run_at','updated_count','error_count','cached_fixtures')}}
 
 @app.delete('/api/backoffice/votes/{vote_id}')
 def delete_vote(vote_id:int,pin:str):
