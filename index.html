@@ -429,7 +429,7 @@ button.matchcard{width:100%;text-align:left;color:inherit;font:inherit;appearanc
 <section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div class="now-empty-icons" aria-hidden="true"><span>⚽</span><span>🏐</span><span>🏀</span></div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryStatus" class="secretary-status"></div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4.35 · FIGC SYNC PROTETTO</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.37 · CALENDARI CSI</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
@@ -568,7 +568,7 @@ function openTeam(key){
 }
 function renderU14Choice(){
   let t=teams.find(x=>x.key==='u14');if(!t)return;
-  showOverlay('UNDER 14',`<div class="hero competition-choice-intro"><h1>UNDER 14</h1><p>CALCIO · SCEGLI LA COMPETIZIONE</p></div><div class="competition-choice"><button class="competition-choice-btn" onclick="openU14Competition('FIGC')"><strong>FIGC</strong><span>Calendario e dati della competizione</span></button><button class="competition-choice-btn" onclick="openU14Competition('CSI')"><strong>CSI</strong><span>Allenamenti e staff</span></button></div>`)
+  showOverlay('UNDER 14',`<div class="hero competition-choice-intro"><h1>UNDER 14</h1><p>CALCIO · SCEGLI LA COMPETIZIONE</p></div><div class="competition-choice"><button class="competition-choice-btn" onclick="openU14Competition('FIGC')"><strong>FIGC</strong><span>Calendario e dati della competizione</span></button><button class="competition-choice-btn" onclick="openU14Competition('CSI')"><strong>CSI</strong><span>Calendario e dati della competizione</span></button></div>`)
 }
 function openU14Competition(comp){navigate({type:'team',key:'u14',comp,tab:null})}
 async function renderTeamView(v){
@@ -581,8 +581,7 @@ function changeCompetition(c){currentCompetition=c;teamTab=null;replaceView({typ
 async function refreshAvailability(){
   let a={};try{a=await getJSON(`/api/team/${currentTeam.key}/availability?competition=${encodeURIComponent(currentCompetition)}`)}catch{}
   let labels={standings:'CLASSIFICA',scorers:'MARCATORI',played:'GARE DISPUTATE',next:'PROSSIME PARTITE'};let order=['standings','scorers','played','next'];
-  /* U14 è l'unica squadra sdoppiata: CSI oggi mostra solo Staff; FIGC espone sempre gare/prossime perché il calendario esiste già. */
-  if(currentTeam.key==='u14'&&currentCompetition==='CSI'){a={staff:true}}
+  /* U14 è l'unica squadra sdoppiata tra FIGC e CSI. */
   if(currentTeam.key==='u14'&&currentCompetition==='FIGC'){a.played=true;a.next=true}
   const actions=$('teamActions');
   actions.innerHTML=`<button class="action ${teamTab==='staff'?'active':''}" data-team-tab="staff">STAFF</button>`+order.filter(k=>a[k]).map(k=>`<button class="action ${teamTab===k?'active':''}" data-team-tab="${k}">${labels[k]}</button>`).join('');
@@ -632,12 +631,27 @@ async function selectTeamTab(tab,restoring=false){
 function matchCard(x,played){
   let title=x.home&&x.away?`${x.home} – ${x.away}`:(x.names?.length?x.names.slice(-2).join(' – '):x.raw||'Partita USSA');
   const attr=x.id?`data-fixture-id="${esc(x.id)}"`:(x.detail_url?`data-csi-detail="${esc(x.detail_url)}"`:``);
-  const score=played&&x.result?`<div class="played-score">${esc(x.result)}</div>`:'';
+  const score=played&&x.result?`<div class="played-score ${resultOutcomeClass(x)}">${esc(x.result)}</div>`:'';
   return `<button type="button" class="matchcard played-card" ${attr}><div class="matchhead"><div class="match-main"><div class="matchdate">${fmtDate(x.date).long.toUpperCase()} · ${esc(x.time||'')}</div><div class="matchtitle">${esc(title)}</div><div class="small">${esc(x.field||x.competition||currentCompetition)}${x.address?' · '+esc(x.address):''}</div></div>${score|| (x.home_away?`<div class="pill">${esc(x.home_away)}</div>`:'')}</div>${attr?`<div class="detailhint">${played?'DETTAGLIO GARA':'INFO PARTITA'} ›</div>`:''}</button>`
 }
-function openAppointment(x){if(x.kind==='EVENTO')navigate({type:'event',item:x});else if(x.id)navigate({type:'fixture',id:x.id})}
+function resultScoreParts(x){
+  const raw=String(x?.result??x?.score??'');let m=raw.match(/(\d+)\s*[-–]\s*(\d+)/);
+  if(m)return [+m[1],+m[2]];
+  if(x?.result_home===null||x?.result_home===undefined||x?.result_away===null||x?.result_away===undefined)return null;
+  const h=Number(x.result_home),a=Number(x.result_away);return Number.isFinite(h)&&Number.isFinite(a)?[h,a]:null;
+}
+function resultOutcomeClass(x){
+  const score=resultScoreParts(x);if(!score)return 'score-draw';
+  const [hs,as]=score;if(hs===as)return 'score-draw';
+  let home=String(x?.home||'').toUpperCase(),away=String(x?.away||'').toUpperCase();
+  if((!home||!away)&&Array.isArray(x?.names)&&x.names.length>=2){home=String(x.names.at(-2)||'').toUpperCase();away=String(x.names.at(-1)||'').toUpperCase()}
+  let ussaHome=home.includes('USSA'),ussaAway=away.includes('USSA');
+  if(!ussaHome&&!ussaAway){ussaHome=String(x?.home_away||'').toUpperCase()==='CASA';ussaAway=!ussaHome}
+  return ((ussaHome&&hs>as)||(ussaAway&&as>hs))?'score-win':'score-loss';
+}
+function openAppointment(x){if(x.kind==='EVENTO')navigate({type:'event',item:x});else if(x.id)navigate({type:'fixture',id:x.id});else if(x.detail_url)openCsiDetail(x.detail_url,x.team_key,'next')}
 function openFixtureDetail(id){navigate({type:'fixture',id})}
-function clubVisual(name){let c=CLUBS[String(name).toUpperCase()]||{};let isUSSA=String(name).toUpperCase().includes('USSA');if(c.logo){let sty=c.crop?'object-fit:cover;object-position:74% 23%;transform:scale(2.55);':'';return `<div class="club-logo-wrap"><img class="club-logo" src="${c.logo}" alt="${esc(name)}" style="${sty}" onerror="this.parentElement.innerHTML='<div class=&quot;club-fallback&quot;>${esc(c.abbr||initials(name))}</div>'"></div>`}return `<div class="club-logo-wrap"><div class="club-fallback">${esc(c.abbr||initials(name))}</div></div>`}
+function clubVisual(name,liveLogo=''){let c=CLUBS[String(name).toUpperCase()]||{};let logo=liveLogo||c.logo||'';if(String(name).toUpperCase().includes('USSA'))logo='/assets/ussa-logo.png';if(logo){let sty=c.crop?'object-fit:cover;object-position:74% 23%;transform:scale(2.55);':'';return `<div class="club-logo-wrap"><img class="club-logo" src="${esc(logo)}" alt="${esc(name)}" style="${sty}" onerror="this.parentElement.innerHTML='<div class=&quot;club-fallback&quot;>${esc(c.abbr||initials(name))}</div>'"></div>`}return `<div class="club-logo-wrap"><div class="club-fallback">${esc(c.abbr||initials(name))}</div></div>`}
 async function fixtureStats(id){try{return await getJSON(`/api/fixture/${id}/stats`)}catch{return null}}
 function statSide(r,side){
   r=r||{};let pos=r.position?`${r.position}ª`:'—',form=(r.form||[]).join(' · ')||'—';
@@ -655,7 +669,8 @@ async function renderFixtureView(v){
       `<section class="fixture-tools home-tools"><div class="qrpanel"><img alt="QR calendario" src="/api/qr/calendar/${x.id}.svg"><div><h3>AGGIUNGI AL CALENDARIO</h3><p>Scansiona per salvare partita, data, ora, campo e indirizzo sul telefono.</p></div></div></section>`:
       `<section class="fixture-tools"><div class="qrpanel"><img alt="QR percorso" src="/api/qr/route/${x.id}.svg"><div><h3>PERCORSO SUL TELEFONO</h3><p>Scansiona per aprire la navigazione reale sul telefono.</p></div></div><div class="qrpanel"><img alt="QR calendario" src="/api/qr/calendar/${x.id}.svg"><div><h3>AGGIUNGI AL CALENDARIO</h3><p>Scansiona per salvare partita, data, ora, campo e indirizzo.</p></div></div></section>`;
     const mapAction=home?'':`<section class="map-action-panel"><div><h3>MAPPA E PERCORSO</h3><p>Ingrandisci la stessa mappa indicativa.</p></div><button class="map-cta" onclick="openFixtureMap('${x.id}')">APRI MAPPA</button></section>`;
-    showOverlay('PARTITA',`<div class="fixture-layout2 ${home?'home-fixture':'away-fixture'}"><section class="fixture-stage"><div class="fixture-stage-top"><span>UNDER 14</span><span>·</span><span>${esc(x.competition)}</span><span>·</span><span>GIORNATA ${x.round}</span></div><div class="fixture-clubs"><div class="club-side ${String(x.home).includes('USSA')?'club-us':''}">${clubVisual(x.home)}<div class="club-name">${esc(x.home)}</div></div><div class="vsmark">VS</div><div class="club-side ${String(x.away).includes('USSA')?'club-us':''}">${clubVisual(x.away)}<div class="club-name">${esc(x.away)}</div></div></div><div class="fixture-when3"><span class="datepart">${f.long}</span><span class="dot"></span><span class="timepart">${esc(x.time)}</span></div></section>${statsHTML(st)}${place}${awayMap}${mapAction}${tools}</div>`);
+    const resultBar=resultScoreParts(x)?`<div class="fixture-when3 fixture-result3 ${resultOutcomeClass(x)}"><span class="result-label">RISULTATO</span><span class="result-score">${esc(x.result||`${x.result_home} - ${x.result_away}`)}</span></div>`:`<div class="fixture-when3"><span class="datepart">${f.long}</span><span class="dot"></span><span class="timepart">${esc(x.time)}</span></div>`;
+    showOverlay('PARTITA',`<div class="fixture-layout2 ${home?'home-fixture':'away-fixture'}"><section class="fixture-stage"><div class="fixture-stage-top"><span>UNDER 14</span><span>·</span><span>${esc(x.competition)}</span><span>·</span><span>GIORNATA ${x.round}</span></div><div class="fixture-clubs"><div class="club-side ${String(x.home).includes('USSA')?'club-us':''}">${clubVisual(x.home)}<div class="club-name">${esc(x.home)}</div></div><div class="vsmark">VS</div><div class="club-side ${String(x.away).includes('USSA')?'club-us':''}">${clubVisual(x.away)}<div class="club-name">${esc(x.away)}</div></div></div>${resultBar}</section>${statsHTML(st)}${place}${awayMap}${mapAction}${tools}</div>`);
     if(!home && route) requestAnimationFrame(()=>buildCartographicRouteMap($('routeMap'),route,x));
   }catch(e){showOverlay('PARTITA','<div class="section"><div class="empty">Partita momentaneamente non disponibile.</div></div>')}finally{loading(false)}
 }
@@ -687,7 +702,7 @@ function buildCartographicRouteMap(el,r,x){
 }
 function openFixtureMap(id){navigate({type:'map',id})}
 async function renderMapView(v){loading(true);try{let x=await getJSON(`/api/fixture/${v.id}`);if(x.home_away==='CASA'){goBack();return}let r=await getJSON(`/api/static-route/${x.id}`);showOverlay('MAPPA E PERCORSO',`<div class="fullmap-layout2"><div class="fullmap-info2"><h2>${esc(x.field)}</h2><p>${esc(x.address)} · ${r.km} km · circa ${r.minutes} min da USSA Stadium</p></div><div id="fullRouteMap" class="fullroute-map"></div></div>`);requestAnimationFrame(()=>buildCartographicRouteMap($('fullRouteMap'),r,x))}catch{showOverlay('MAPPA E PERCORSO','<div class="section"><div class="empty">Percorso non predisposto.</div></div>')}finally{loading(false)}}
-function openCsiDetail(url){const back={type:'team',key:currentTeam?.key||'u13a11_test',comp:currentCompetition||'CSI',tab:'played'};navigate({type:'csi',url,returnView:back})}
+function openCsiDetail(url,teamKey='',tab=''){const key=teamKey||currentTeam?.key||'';const back=key?{type:'team',key,comp:'CSI',tab:tab||teamTab||'played'}:{type:'home'};navigate({type:'csi',url,returnView:back})}
 function csiStatRows(a,b){
   const defs=[['POSIZIONE','position'],['PUNTI','points'],['GIOCATE','played'],['VITTORIE','wins'],['PAREGGI','draws'],['SCONFITTE','losses'],['GOL FATTI','gf'],['GOL SUBITI','gs']];
   return defs.filter(([,k])=>a?.[k]!=null||b?.[k]!=null).map(([label,k])=>`<div class="csi-stat-row"><strong>${esc(a?.[k]??'—')}</strong><span>${label}</span><strong>${esc(b?.[k]??'—')}</strong></div>`).join('')
@@ -737,6 +752,9 @@ function resetIdle(){clearTimeout(idleTimer);$('idle').classList.remove('show');
 .played-card .matchhead{align-items:center}
 .match-main{min-width:0;flex:1}
 .played-score{flex:0 0 auto;min-width:105px;padding:13px 16px;border-radius:14px;background:var(--yellow);color:var(--blue);font-size:27px;line-height:1;font-weight:950;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.16)}
+.played-score.score-win{background:#30c777;color:#062418}
+.played-score.score-loss{background:#e95863;color:#fff}
+.played-score.score-draw{background:#fff;color:#071b2d}
 .csi-detail{display:grid;gap:14px}
 .csi-score-hero{border:1px solid rgba(255,210,0,.28);border-radius:22px;background:linear-gradient(145deg,rgba(20,47,83,.98),rgba(9,25,48,.98));padding:24px;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,.22)}
 .csi-detail-meta{font-size:14px;font-weight:900;color:var(--yellow);letter-spacing:.8px;margin-bottom:8px}
@@ -810,7 +828,7 @@ function resetIdle(){clearTimeout(idleTimer);$('idle').classList.remove('show');
 <script>
 function u13EventHTML(ev){const e=(typeof ev==='string')?{text:ev}:ev||{};const t=String(e.type||'event');const icon=t==='goal'?'⚽':t==='sub'?'↔':t==='card'?'▰':t==='phase'?'◆':'•';const text=String(e.text||e.description||'').trim();if(!text)return '';return `<div class="u13-event ${esc(t)}"><div class="u13-event-time">${esc(e.time||'')}</div><div class="u13-event-icon">${icon}</div><div class="u13-event-text">${esc(text)}</div></div>`}
 async function renderCsiView(v){loading(true);try{const d=await getJSON(`/api/game-detail?url=${encodeURIComponent(v.url)}`);const f=d.date?fmtDate(d.date):null;const ov=d.overview||{},home=ov.home||{},away=ov.away||{};const stats=(Object.keys(home).length||Object.keys(away).length)?`<section class="stats-card"><h3>STATS</h3><div class="csi-stat-head"><div>${esc(d.home||home.team||'CASA')}</div><div>${esc(d.away||away.team||'OSPITI')}</div></div>${csiStatRows(home,away)}</section>`:'';const events=Array.isArray(d.events)?d.events:[];const eventCards=events.map(u13EventHTML).filter(Boolean).join('');const timeline=`<section class="u13-timeline"><h3>CRONOLOGIA GARA</h3>${eventCards?`<div class="u13-events">${eventCards}</div>`:`<div class="u13-noevents">Per questa gara CSI non ha pubblicato una cronologia dettagliata. Il risultato e i dati statistici restano comunque disponibili.</div>`}</section>`;const report=d.report?`<section class="u13-report"><h3>CRONACA</h3><p>${esc(d.report)}</p></section>`:'';const when=f?`<div class="fixture-when3"><span class="datepart">${esc(f.long)}</span>${d.time?`<span class="dot"></span><span class="timepart">${esc(d.time)}</span>`:''}</div>`:'';const placeParts=String(d.field||'').split('·').map(x=>x.trim()).filter(Boolean);const placeTitle=placeParts.shift()||'Campo non indicato';const placeSub=placeParts.join(' · ');const meta=`<div class="u13-meta"><section class="u13-meta-card"><h3>DOVE SI È GIOCATO</h3><div class="u13-place">${esc(placeTitle)}</div>${placeSub?`<div class="u13-sub">${esc(placeSub)}</div>`:''}</section><section class="u13-meta-card"><h3>COMPETIZIONE</h3><div class="u13-place">UNDER 13 A 11</div><div class="u13-sub">CSI · Primaverile · Girone B${d.round?` · Giornata ${esc(d.round)}`:''}</div></section></div>`;showOverlay('DETTAGLIO GARA',`<div class="u13-static-detail"><section class="fixture-stage"><div class="fixture-stage-top">UNDER 13 TEST · CSI${d.round?` · GIORNATA ${esc(d.round)}`:''}</div><div class="fixture-clubs"><div class="club-side ${String(d.home||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.home||'CASA')}<div class="club-name">${esc(d.home||'CASA')}</div></div><div class="u13-scorebox"><div class="u13-score-label">RISULTATO</div><div class="u13-score">${esc(d.score||'—')}</div></div><div class="club-side ${String(d.away||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.away||'OSPITI')}<div class="club-name">${esc(d.away||'OSPITI')}</div></div></div>${when}</section>${stats}${meta}${timeline}${report}</div>`)}catch(e){console.error(e);showOverlay('DETTAGLIO GARA','<div class="section"><div class="empty">Dettaglio gara non disponibile.</div></div>')}finally{loading(false)}}
-function openCsiDetail(url){const back={type:'team',key:'u13a11_test',comp:'CSI',tab:'played'};navigate({type:'csi',url,returnView:back})}
+function openCsiDetail(url,teamKey='',tab=''){const key=teamKey||currentTeam?.key||'';const back=key?{type:'team',key,comp:'CSI',tab:tab||teamTab||'played'}:{type:'home'};navigate({type:'csi',url,returnView:back})}
 </script>
 
 
@@ -828,7 +846,16 @@ function openCsiDetail(url){const back={type:'team',key:'u13a11_test',comp:'CSI'
 .u13-static-detail.v2418 .u13-score.score-win{background:#30c777;color:#062418}
 .u13-static-detail.v2418 .u13-score.score-loss{background:#e95863;color:#fff}
 .u13-static-detail.v2418 .u13-score.score-draw{background:#fff;color:#071b2d}
+.fixture-when3.fixture-result3{min-height:68px;display:flex;align-items:center;justify-content:center;gap:15px;border-color:transparent;background-image:none}
+.fixture-result3 .result-label{font-size:12px;font-weight:950;letter-spacing:1.2px;color:inherit;opacity:.78}
+.fixture-result3 .result-score{font-size:38px;line-height:1;font-weight:1000;color:inherit;white-space:nowrap}
+.fixture-result3.score-win{background:#30c777;color:#062418}
+.fixture-result3.score-loss{background:#e95863;color:#fff}
+.fixture-result3.score-draw{background:#fff;color:#071b2d}
 .u13-static-detail.v2418 .fixture-when3{margin-top:8px;min-height:44px;padding:6px 14px;gap:10px;background:rgba(255,255,255,.025)}
+.u13-static-detail.v2418 .fixture-result3.score-win{background:#30c777;color:#062418}
+.u13-static-detail.v2418 .fixture-result3.score-loss{background:#e95863;color:#fff}
+.u13-static-detail.v2418 .fixture-result3.score-draw{background:#fff;color:#071b2d}
 .u13-static-detail.v2418 .fixture-when3 .datepart{font-size:15px;font-weight:900;color:#dce7ee}
 .u13-static-detail.v2418 .fixture-when3 .timepart{font-size:17px;font-weight:950;color:#fff}
 .u13-static-detail.v2418 .fixture-when3 .dot{width:5px;height:5px;background:var(--yellow)}
@@ -870,10 +897,7 @@ function openCsiDetail(url){const back={type:'team',key:'u13a11_test',comp:'CSI'
 </style>
 <script>
 function u13ResultClass(d){
-  const m=String(d?.score||'').match(/(\d+)\s*[-–]\s*(\d+)/);if(!m)return 'score-draw';
-  const hs=+m[1],as=+m[2],home=String(d?.home||'').toUpperCase().includes('USSA'),away=String(d?.away||'').toUpperCase().includes('USSA');
-  if(hs===as)return 'score-draw';
-  const ussaWon=(home&&hs>as)||(away&&as>hs);return ussaWon?'score-win':'score-loss';
+  return resultOutcomeClass({home:d?.home,away:d?.away,score:d?.score});
 }
 async function renderCsiView(v){
   loading(true);
@@ -881,15 +905,18 @@ async function renderCsiView(v){
     const d=await getJSON(`/api/game-detail?url=${encodeURIComponent(v.url)}`);
     const f=d.date?fmtDate(d.date):null,ov=d.overview||{},home=ov.home||{},away=ov.away||{};
     const stats=(Object.keys(home).length||Object.keys(away).length)?`<section class="stats-card"><h3>STATS</h3><div class="csi-stat-head"><div>${esc(d.home||home.team||'CASA')}</div><div>${esc(d.away||away.team||'OSPITI')}</div></div>${csiStatRows(home,away)}</section>`:'';
-    const events=Array.isArray(d.events)?d.events:[],eventCards=events.map(u13EventHTML).filter(Boolean).join('');
-    const timeline=`<section class="u13-timeline"><h3>CRONOLOGIA GARA</h3>${eventCards?`<div class="u13-events">${eventCards}</div>`:`<div class="u13-noevents">Per questa gara non è disponibile una cronologia dettagliata.</div>`}</section>`;
+    const played=!!resultScoreParts({score:d.score}),events=Array.isArray(d.events)?d.events:[],eventCards=events.map(u13EventHTML).filter(Boolean).join('');
+    const timeline=played?`<section class="u13-timeline"><h3>CRONOLOGIA GARA</h3>${eventCards?`<div class="u13-events">${eventCards}</div>`:`<div class="u13-noevents">Per questa gara non è disponibile una cronologia dettagliata.</div>`}</section>`:'';
     const reportText=String(d.report||'').trim();
     const report=reportText?`<section class="u13-report"><h3>CRONACA</h3><div class="u13-report-scroll"><p>${esc(reportText)}</p></div></section>`:'';
-    const when=f?`<div class="fixture-when3"><span class="datepart">${esc(f.long)}</span>${d.time?`<span class="dot"></span><span class="timepart">${esc(d.time)}</span>`:''}</div>`:'';
-    const pp=String(d.field||'').split('·').map(x=>x.trim()).filter(Boolean),pt=pp.shift()||'Campo non indicato',ps=pp.join(' · ');
-    const meta=`<div class="u13-meta"><section class="u13-meta-card"><h3>DOVE SI È GIOCATO</h3><div class="u13-place">${esc(pt)}</div>${ps?`<div class="u13-sub">${esc(ps)}</div>`:''}</section><section class="u13-meta-card"><h3>COMPETIZIONE</h3><div class="u13-place">UNDER 13 A 11</div><div class="u13-sub">CSI · Primaverile · Girone B${d.round?` · Giornata ${esc(d.round)}`:''}</div></section></div>`;
-    const bottom=`<div class="u13-bottom ${report?'has-report':''}">${timeline}${report}</div>`;
-    showOverlay('DETTAGLIO GARA',`<div class="u13-static-detail v2418"><section class="fixture-stage"><div class="fixture-stage-top">UNDER 13 TEST · CSI${d.round?` · GIORNATA ${esc(d.round)}`:''}</div><div class="fixture-clubs"><div class="club-side ${String(d.home||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.home||'CASA')}<div class="club-name">${esc(d.home||'CASA')}</div></div><div class="u13-scorebox"><div class="u13-score-label">RISULTATO</div><div class="u13-score ${u13ResultClass(d)}">${esc(d.score||'—')}</div></div><div class="club-side ${String(d.away||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.away||'OSPITI')}<div class="club-name">${esc(d.away||'OSPITI')}</div></div></div>${when}</section>${stats}${meta}${bottom}</div>`);
+    const when=played?`<div class="fixture-when3 fixture-result3 ${u13ResultClass(d)}"><span class="result-label">RISULTATO</span><span class="result-score">${esc(d.score)}</span></div>`:(f?`<div class="fixture-when3"><span class="datepart">${esc(f.long)}</span>${d.time?`<span class="dot"></span><span class="timepart">${esc(d.time)}</span>`:''}</div>`:'');
+    const pt=String(d.field||'Campo non indicato'),ps=String(d.address||'');
+    const competition=String(d.competition_label||d.team_label||'CAMPIONATO CSI');
+    const group=d.group?`Girone ${d.group}`:'Girone non indicato';
+    const meta=`<div class="u13-meta"><section class="u13-meta-card"><h3>${played?'DOVE SI È GIOCATO':'DOVE SI GIOCA'}</h3><div class="u13-place">${esc(pt)}</div>${ps?`<div class="u13-sub">${esc(ps)}</div>`:''}</section><section class="u13-meta-card"><h3>COMPETIZIONE</h3><div class="u13-place">${esc(competition)}</div><div class="u13-sub">CSI · ${esc(group)}${d.round?` · Giornata ${esc(d.round)}`:''}</div></section></div>`;
+    const bottom=(timeline||report)?`<div class="u13-bottom ${report?'has-report':''}">${timeline}${report}</div>`:'';
+    const center=played?`<div class="u13-scorebox"><div class="u13-score-label">RISULTATO</div><div class="u13-score ${u13ResultClass(d)}">${esc(d.score)}</div></div>`:`<div class="vsmark">VS</div>`;
+    showOverlay('DETTAGLIO GARA',`<div class="u13-static-detail v2418"><section class="fixture-stage"><div class="fixture-stage-top">${esc(d.team_label||competition)} · CSI${d.round?` · GIORNATA ${esc(d.round)}`:''}</div><div class="fixture-clubs"><div class="club-side ${String(d.home||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.home||'CASA',d.home_logo)}<div class="club-name">${esc(d.home||'CASA')}</div></div>${center}<div class="club-side ${String(d.away||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.away||'OSPITI',d.away_logo)}<div class="club-name">${esc(d.away||'OSPITI')}</div></div></div>${when}</section>${stats}${meta}${bottom}</div>`);
   }catch(e){console.error(e);showOverlay('DETTAGLIO GARA','<div class="section"><div class="empty">Dettaglio gara non disponibile.</div></div>')}
   finally{loading(false)}
 }

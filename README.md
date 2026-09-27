@@ -1,4 +1,36 @@
-USSA SMART HUB — V2.4.33
+USSA SMART HUB — V2.4.37
+
+Novità V2.4.37:
+- collegati e verificati i calendari CSI Live 2026/27 di Eccellenza Yellow, Eccellenza Blue, Under 20, Under 17, Under 15 Yellow, Under 15 Blue, Under 14 CSI, Under 12, Under 11 e Under 10;
+- nuovo lettore compatibile con le card gara del portale CSI Live: importa automaticamente date, orari, squadre, risultati, giornate, casa/trasferta, campi e indirizzi;
+- classifiche collegate ai dieci gironi corretti, senza confondere squadre Blue, Yellow o categorie con denominazioni simili;
+- 53 stemmi ufficiali CSI salvati localmente e associati alle 60 denominazioni avversarie presenti nei calendari;
+- gestione automatica del formato reale degli stemmi CSI (JPEG o SVG), per evitare immagini non visualizzate sul totem;
+- dettaglio gara CSI generalizzato a tutte le squadre, con stemmi, risultato, dati del girone, campo e indirizzo;
+- le partite CSI alimentano anche Prossimi appuntamenti e Ora in campo;
+- sincronizzazione quotidiana alle 12:00 aggiornata con validazione: un calendario vuoto o un girone errato non sovrascrive l’ultima copia valida;
+- homepage aggiornata: rimossi Under 13 Test ed Eccellenza Volley, aggiunta Under 11 Volley;
+- aggiunto il parser HTML robusto necessario per la struttura pubblicata da CSI Live.
+
+Correzioni V2.4.36:
+- risultato nelle card “Gare disputate” colorato in verde per vittoria, rosso per sconfitta e bianco per pareggio;
+- nel dettaglio di una gara disputata il risultato sostituisce data e orario, mantenendo la stessa regola cromatica;
+- logica unica valida per tutte le squadre e per i campionati FIGC e CSI.
+
+Correzioni V2.4.35:
+- corretta la sincronizzazione FIGC in presenza di società ritirate e turni di riposo;
+- calendario, risultati, classifica e marcatori vengono aggiornati indipendentemente: un dato mancante non blocca più gli altri;
+- eliminate automaticamente dal calendario le gare annullate contro una società ritirata;
+- aggiunto un controllo di coerenza tra gare giocate in classifica e risultati acquisiti, con nuovo tentativo automatico ogni 30 minuti;
+- ridotte e serializzate le richieste a Tuttocampo per evitare i blocchi del fornitore;
+- una normale apertura dell'Hub riattiva il controllo se l'aggiornamento previsto non è stato completato;
+- cache iniziale aggiornata con FROG MILANO 8-1 USSA Rozzano e classifica della prima giornata.
+
+Novità V2.4.34:
+- sostituito il caricamento diretto delle tessere di OpenStreetMap, bloccato con errore 403, con OpenFreeMap tramite MapLibre;
+- mantenuti invariati geometria del percorso, linea gialla, indicatori di partenza e arrivo, distanza e tempo stimato;
+- attribuzione cartografica gestita automaticamente dalla mappa;
+- aggiunto un messaggio pulito di indisponibilità se il nuovo sfondo cartografico non viene caricato entro 12 secondi.
 
 Novità V2.4.33:
 - aggiornamento automatico quotidiano alle 12:00 (fuso Europe/Rome) da Tuttocampo per Giovanissimi Provinciali U14 Milano, Girone E;

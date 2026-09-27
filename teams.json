@@ -5,6 +5,10 @@
     "sport": "CALCIO",
     "icon": "⚽",
     "visible": true,
+    "csi_team_name": "Ussa Rozzano Yellow",
+    "csi_competition_label": "OPEN ECCELLENZA A 11",
+    "csi_group": "A",
+    "csi_live_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C105/?j=NEU9REZEJjRGPVBOWSY0Rz1FREkmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
     "training": [
       {
         "day": "Martedì",
@@ -48,6 +52,10 @@
     "sport": "CALCIO",
     "icon": "⚽",
     "visible": true,
+    "csi_team_name": "Ussa Rozzano Blue",
+    "csi_competition_label": "OPEN ECCELLENZA A 11",
+    "csi_group": "B",
+    "csi_live_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C105/?j=NEU9REZEJjRGPVBOWSY0Rz1FREkmNEg9RCY0ST1PJjRMPURGRCY0Mj1l",
     "training": [
       {
         "day": "Mercoledì",
@@ -91,6 +99,10 @@
     "sport": "CALCIO",
     "icon": "⚽",
     "visible": true,
+    "csi_team_name": "Ussa Rozzano",
+    "csi_competition_label": "UNDER 20 A 11",
+    "csi_group": "A",
+    "csi_live_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C782/?j=NEU9REZEJjRGPVBOWSY0Rz1LTEYmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
     "training": [
       {
         "day": "Lunedì",
@@ -134,6 +146,10 @@
     "sport": "CALCIO",
     "icon": "⚽",
     "visible": true,
+    "csi_team_name": "Ussa Rozzano",
+    "csi_competition_label": "UNDER 17 A 11",
+    "csi_group": "C",
+    "csi_live_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C732/?j=NEU9REZEJjRGPVBOWSY0Rz1LR0YmNEg9RCY0ST1QJjRMPURGRCY0Mj1l",
     "training": [
       {
         "day": "Martedì",
@@ -173,6 +189,10 @@
     "sport": "CALCIO",
     "icon": "⚽",
     "visible": true,
+    "csi_team_name": "Ussa Rozzano Yellow",
+    "csi_competition_label": "UNDER 15 A 11",
+    "csi_group": "A",
+    "csi_live_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C772/?j=NEU9REZEJjRGPVBOWSY0Rz1LS0YmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
     "training": [
       {
         "day": "Lunedì",
@@ -216,6 +236,10 @@
     "sport": "CALCIO",
     "icon": "⚽",
     "visible": true,
+    "csi_team_name": "Ussa Rozzano Blue",
+    "csi_competition_label": "UNDER 15 A 11",
+    "csi_group": "C",
+    "csi_live_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C772/?j=NEU9REZEJjRGPVBOWSY0Rz1LS0YmNEg9RCY0ST1QJjRMPURGRCY0Mj1l",
     "training": [
       {
         "day": "Mercoledì",
@@ -259,6 +283,10 @@
     "sport": "CALCIO",
     "icon": "⚽",
     "visible": true,
+    "csi_team_name": "Ussa Rozzano",
+    "csi_competition_label": "UNDER 14 A 11",
+    "csi_group": "B",
+    "csi_live_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C111/?j=NEU9REZEJjRGPVBOWSY0Rz1FRUUmNEg9RCY0ST1PJjRMPURGRCY0Mj1l",
     "competitions": [
       "FIGC",
       "CSI"
@@ -307,6 +335,10 @@
     "sport": "CALCIO",
     "icon": "⚽",
     "visible": true,
+    "csi_team_name": "Ussa Rozzano",
+    "csi_competition_label": "UNDER 12 A 7",
+    "csi_group": "H",
+    "csi_live_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C142/?j=NEU9REZEJjRGPVBOSyY0Rz1FSEYmNEg9RCY0ST1VJjRMPURGRCY0Mj1l",
     "training": [
       {
         "day": "Lunedì",
@@ -350,6 +382,10 @@
     "sport": "CALCIO",
     "icon": "⚽",
     "visible": true,
+    "csi_team_name": "Ussa Rozzano",
+    "csi_competition_label": "UNDER 11 A 7",
+    "csi_group": "A",
+    "csi_live_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C174/?j=NEU9REZEJjRGPVBOSyY0Rz1FS0gmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
     "training": [
       {
         "day": "Lunedì",
@@ -393,6 +429,10 @@
     "sport": "CALCIO",
     "icon": "⚽",
     "visible": true,
+    "csi_team_name": "Ussa Rozzano",
+    "csi_competition_label": "UNDER 10 A 7",
+    "csi_group": "A",
+    "csi_live_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C128/?j=NEU9REZEJjRGPVBOSyY0Rz1FRkwmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
     "training": [
       {
         "day": "Martedì",
@@ -509,7 +549,7 @@
     "label": "OPEN ECCELLENZA",
     "sport": "VOLLEY",
     "icon": "🏐",
-    "visible": true,
+    "visible": false,
     "training": [
       {
         "day": "Martedì",
@@ -638,6 +678,20 @@
     ]
   },
   {
+    "key": "volley_u11",
+    "label": "UNDER 11",
+    "sport": "VOLLEY",
+    "icon": "🏐",
+    "visible": true,
+    "training": [],
+    "staff": [],
+    "planned_features": [
+      "standings",
+      "played",
+      "next"
+    ]
+  },
+  {
     "key": "basket_open_a",
     "label": "OPEN A",
     "sport": "BASKET",
@@ -715,7 +769,7 @@
     "label": "UNDER 13 A 11 · TEST CSI",
     "sport": "CALCIO",
     "icon": "⚽",
-    "visible": true,
+    "visible": false,
     "test_only": true,
     "training": [],
     "staff": [],

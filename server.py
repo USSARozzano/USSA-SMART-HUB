@@ -17,6 +17,7 @@ CSI_OLD="https://www.csi.milano.it"
 CSI_LIVE="https://live.centrosportivoitaliano.it"
 HEADERS={"User-Agent":"USSA-SMART-HUB/2.1","Accept-Language":"it-IT,it;q=0.9"}
 CSI_CACHE_PATH=Path(os.getenv('CSI_CACHE_PATH') or ROOT/'csi_cache.json')
+CSI_LOGO_DIR=ROOT/'assets'/'csi-clubs'
 CSI_SYNC_HOUR=12
 CSI_RETRY_MINUTES=30
 CSI_SYNC_LOCK=threading.Lock()
@@ -138,7 +139,7 @@ def fixtures():
 def clean(s): return re.sub(r"\s+"," ",s or "").strip()
 def fetch(url):
     r=requests.get(url,headers=HEADERS,timeout=20);r.raise_for_status();return r.text
-def soup(url): return BeautifulSoup(fetch(url),'html.parser')
+def soup(url): return BeautifulSoup(fetch(url),'lxml')
 def iso_dt(d,t='00:00'): return datetime.fromisoformat(f"{d}T{t or '00:00'}")
 def parse_hm(v): h,m=map(int,v.split(':'));return h*60+m
 def rome_now(): return datetime.now(ZoneInfo('Europe/Rome'))
@@ -245,6 +246,20 @@ def club_asset(filename: str):
     if filename not in allowed:
         raise HTTPException(status_code=404, detail='Stemma non disponibile')
     return FileResponse(ROOT/'assets'/'clubs'/filename,media_type='image/png')
+
+@app.get('/assets/csi-clubs/{filename}')
+def csi_club_asset(filename: str):
+    if not re.fullmatch(r'[A-Za-z0-9_-]+\.jpg',filename):
+        raise HTTPException(status_code=404,detail='Stemma non disponibile')
+    path=CSI_LOGO_DIR/filename
+    if not path.is_file():raise HTTPException(status_code=404,detail='Stemma non disponibile')
+    # CSI restituisce quasi sempre JPEG, ma alcuni stemmi ufficiali sono SVG
+    # pur mantenendo nell'URL lo stesso identificativo. Serviamo quindi il MIME
+    # reale, evitando immagini rotte nei browser con content sniffing rigido.
+    try:is_svg=path.read_bytes()[:256].lstrip().startswith(b'<svg')
+    except:is_svg=False
+    media_type='image/svg+xml' if is_svg else 'image/jpeg'
+    return FileResponse(path,media_type=media_type,headers={'Cache-Control':'public, max-age=604800'})
 @app.get('/api/teams')
 def api_teams(): return load_json('teams.json',[])
 @app.get('/api/hub')
@@ -279,6 +294,16 @@ def home_now(weekday:int|None=None, time:str|None=None):
                     t=td.get(x['team_key'],{})
                     items.append({'kind':'PARTITA','team_key':x['team_key'],'title':t.get('label','PARTITA'),'meta':f"{x['home']} – {x['away']}",'place':x.get('field',''),'icon':t.get('icon','●'),'sport':t.get('sport','')})
             except: pass
+        for t in td.values():
+            if t.get('visible') is False or not t.get('csi_live_url') or t.get('test_only'):continue
+            try:
+                for x in live_schedule_for_team(t):
+                    dt=iso_dt(x['date'],x.get('time') or '00:00')
+                    if 0 <= (now-dt).total_seconds() < 120*60:
+                        items.append({'kind':'PARTITA','team_key':t['key'],'title':t.get('label','PARTITA'),
+                                      'meta':f"{x.get('home','')} – {x.get('away','')}",'place':x.get('field',''),
+                                      'icon':t.get('icon','●'),'sport':t.get('sport',''),'detail_url':x.get('detail_url','')})
+            except:pass
         for e in load_json('events.json',[]):
             try:
                 dt=iso_dt(e['date'],e.get('time','00:00'))
@@ -297,34 +322,116 @@ def home_now(weekday:int|None=None, time:str|None=None):
             except: pass
     return {'items':items,'preview': bool(weekday is not None and time)}
 
+def csi_name(value):
+    return clean(value).casefold()
+
+def csi_logo_filename(source, code=''):
+    code=clean(code)
+    if not code:
+        code=Path(urlparse(source).path).stem
+    code=re.sub(r'[^A-Za-z0-9_-]','',code)
+    return f'{code}.jpg' if code else ''
+
+def csi_logo_ref(source,code=''):
+    filename=csi_logo_filename(source,code)
+    return f'/assets/csi-clubs/{filename}' if filename else ''
+
+def cache_csi_logo(source, code=''):
+    """Scarica una sola volta lo stemma CSI e restituisce il percorso locale pubblico."""
+    if not source or 'USSA' in clean(code).upper():return ''
+    filename=csi_logo_filename(source,code)
+    if not filename:return ''
+    target=CSI_LOGO_DIR/filename
+    try:
+        if not target.exists() or target.stat().st_size<200:
+            CSI_LOGO_DIR.mkdir(parents=True,exist_ok=True)
+            r=requests.get(source,headers=HEADERS,timeout=10);r.raise_for_status()
+            ctype=(r.headers.get('content-type') or '').lower()
+            if len(r.content)<200 or ('image' not in ctype and not source.lower().endswith(('.jpg','.jpeg','.png','.webp'))):
+                return ''
+            tmp=target.with_suffix(target.suffix+'.tmp');tmp.write_bytes(r.content);os.replace(tmp,target)
+        return f'/assets/csi-clubs/{filename}'
+    except:return ''
+
+def split_csi_venue(value):
+    raw=clean(re.sub(r'\s*\([^()]+\)\s*$','',value or ''))
+    if not raw:return 'Campo non indicato',''
+    # CSI concatena denominazione del campo e indirizzo. La via/piazza segna
+    # l'inizio dell'indirizzo senza affidarsi a una lunghezza fissa.
+    m=re.search(r'\b(Via|Viale|Piazza|Piazzale|P\.?\s*Za|Corso|Largo|Strada|Vicolo|S\.P\.|SP\s*\d)\b',raw,re.I)
+    if not m:return raw,''
+    return clean(raw[:m.start()]),clean(raw[m.start():])
+
+def csi_round_info(anchor):
+    label=anchor.find_previous('div',class_='label-giornata')
+    text=clean(label.get_text(' ',strip=True) if label else '')
+    mr=re.search(r'giornata\s+(\d+)',text,re.I)
+    return (int(mr.group(1)) if mr else None,
+            'RITORNO' if 'RITORNO' in text.upper() else ('ANDATA' if 'ANDATA' in text.upper() else ''))
+
 def parse_live_schedule(t,s,url):
-    out=[];seen=set()
-    for tr in s.find_all('tr'):
-        txt=clean(tr.get_text(' ',strip=True))
-        if 'USSA ROZZANO' not in txt.upper():continue
-        md=re.search(r'\b(\d{2}/\d{2}/\d{2})\b',txt);mt=re.search(r'\b([0-2]\d:[0-5]\d)\b',txt)
+    """Legge le card calendario CSI Live 26/27 e conserva il vecchio markup come fallback."""
+    out=[];seen=set();wanted=csi_name(t.get('csi_team_name') or 'Ussa Rozzano')
+    anchors=s.select('a.btn-gara[href]')
+    for a in anchors:
+        names=[clean(x.get_text(' ',strip=True)) for x in a.select('.nome-squadra')]
+        if len(names)!=2 or wanted not in {csi_name(names[0]),csi_name(names[1])}:continue
+        text=clean(a.get_text(' ',strip=True))
+        md=re.search(r'\b(\d{2}/\d{2}/\d{2})\b',text);mt=re.search(r'\b([0-2]\d:[0-5]\d)\b',text)
         if not md:continue
-        links=tr.find_all('a',href=True);game_url=''
-        for a in links:
-            href=urljoin(url,a['href'])
-            if '/P20' in urlparse(href).path: game_url=href;break
-        cells=[clean(x.get_text(' ',strip=True)) for x in tr.find_all(['td','th'])]
-        names=[]
-        for c in cells:
-            if not c or re.fullmatch(r'\d{2}/\d{2}/\d{2}',c) or re.fullmatch(r'[0-2]\d:[0-5]\d',c):continue
-            if c.upper() in {'ANDATA','RITORNO'}:continue
-            if re.fullmatch(r'\d+',c):continue
-            names.append(c)
         try:dt=datetime.strptime(md.group(1)+(mt.group(1) if mt else '00:00'),'%d/%m/%y%H:%M')
         except:continue
-        # score is intentionally conservative: only a clear x-y token
-        sm=re.search(r'\b(\d+)\s*[-–]\s*(\d+)\b',txt)
-        key=(dt.isoformat(),txt)
-        if key in seen:continue
-        seen.add(key)
-        out.append({'date':dt.date().isoformat(),'time':mt.group(1) if mt else '', 'raw':txt,'names':names,
-                    'result':sm.group(0) if sm else '', 'detail_url':game_url,'team_key':t['key'],'competition':'CSI'})
-    return out
+        href=urljoin(url,a.get('href',''));path=urlparse(href).path
+        if path in seen:continue
+        seen.add(path)
+        direct=[x for x in a.find_all('div',recursive=False) if 'flex-column' in (x.get('class') or [])]
+        score_values=[]
+        if direct:
+            score_values=[clean(x.get_text(' ',strip=True)) for x in direct[-1].find_all('span',recursive=False)]
+        hg=int(score_values[0]) if len(score_values)>=2 and score_values[0].isdigit() else None
+        ag=int(score_values[1]) if len(score_values)>=2 and score_values[1].isdigit() else None
+        images=a.select('.logo-squadra img')
+        logos=[];logo_sources=[];logo_codes=[]
+        for image in images[:2]:
+            src=urljoin(url,image.get('src',''));code=image.get('alt') or Path(urlparse(src).path).stem
+            logo_sources.append(src);logo_codes.append(code)
+            logos.append(csi_logo_ref(src,code) if 'USSA' not in names[len(logos)].upper() else '/assets/ussa-logo.png')
+        while len(logos)<2:
+            logo_sources.append('');logo_codes.append('')
+            logos.append('/assets/ussa-logo.png' if 'USSA' in names[len(logos)].upper() else '')
+        field,address=split_csi_venue(a.get('data-bs-title',''))
+        round_no,leg=csi_round_info(a)
+        result=f'{hg} - {ag}' if hg is not None and ag is not None else ''
+        out.append({
+            'date':dt.date().isoformat(),'time':mt.group(1) if mt else '',
+            'home':names[0],'away':names[1],'names':names,'raw':text,
+            'result':result,'result_home':hg,'result_away':ag,
+            'detail_url':href,'team_key':t['key'],'team_label':t.get('label',t['key']),
+            'competition':'CSI','competition_label':t.get('csi_competition_label',t.get('label','CSI')),
+            'group':t.get('csi_group',''),'round':round_no,'leg':leg,
+            'home_away':'CASA' if csi_name(names[0])==wanted else 'TRASFERTA',
+            'field':field,'address':address,'route_address':clean(f'{field} {address}'),
+            'home_logo':logos[0],'away_logo':logos[1],
+            'home_logo_source':logo_sources[0],'away_logo_source':logo_sources[1],
+            'home_logo_code':logo_codes[0],'away_logo_code':logo_codes[1],
+            'status':'DISPUTATA' if result else 'PROGRAMMATA','source':'CSI LIVE'
+        })
+    if out:return sorted(out,key=lambda x:(x['date'],x.get('time','')))
+    # Compatibilità con eventuali pagine CSI che usano ancora tabelle.
+    for tr in s.find_all('tr'):
+        txt=clean(tr.get_text(' ',strip=True))
+        if (t.get('csi_team_name') or 'USSA ROZZANO').upper() not in txt.upper():continue
+        md=re.search(r'\b(\d{2}/\d{2}/\d{2})\b',txt);mt=re.search(r'\b([0-2]\d:[0-5]\d)\b',txt)
+        if not md:continue
+        try:dt=datetime.strptime(md.group(1)+(mt.group(1) if mt else '00:00'),'%d/%m/%y%H:%M')
+        except:continue
+        game=next((urljoin(url,x['href']) for x in tr.find_all('a',href=True) if '/P20' in urlparse(urljoin(url,x['href'])).path),'')
+        if game and urlparse(game).path in seen:continue
+        seen.add(urlparse(game).path)
+        out.append({'date':dt.date().isoformat(),'time':mt.group(1) if mt else '', 'raw':txt,'names':[],
+                    'result':'','detail_url':game,'team_key':t['key'],'team_label':t.get('label',t['key']),
+                    'competition':'CSI','competition_label':t.get('csi_competition_label',t.get('label','CSI'))})
+    return sorted(out,key=lambda x:(x['date'],x.get('time','')))
 
 def live_schedule_for_team(t,fresh=False):
     url=t.get('csi_live_url')
@@ -347,7 +454,11 @@ def parse_live_standings(s):
                 result.append({'position':int(vals[0]),'team':vals[1],'points':int(vals[2]),'played':int(vals[3]),
                                'wins':int(vals[4]) if len(vals)>4 and vals[4].isdigit() else None,
                                'draws':int(vals[5]) if len(vals)>5 and vals[5].isdigit() else None,
-                               'losses':int(vals[6]) if len(vals)>6 and vals[6].isdigit() else None})
+                               'losses':int(vals[6]) if len(vals)>6 and vals[6].isdigit() else None,
+                               'gf':int(vals[7]) if len(vals)>7 and vals[7].isdigit() else None,
+                               'gs':int(vals[8]) if len(vals)>8 and vals[8].isdigit() else None,
+                               'ga':int(vals[8]) if len(vals)>8 and vals[8].isdigit() else None,
+                               'goal_difference':int(vals[9]) if len(vals)>9 and re.fullmatch(r'-?\d+',vals[9]) else None})
             except:continue
         if result:return result
     return []
@@ -422,7 +533,8 @@ def csi_sync_status(cache=None):
         'updated_count':int(meta.get('updated_count') or 0),
         'error_count':int(meta.get('error_count') or 0),
         'errors':meta.get('errors') or [],
-        'cached_teams':len(cache.get('teams') or {})
+        'cached_teams':len(cache.get('teams') or {}),
+        'logo_count':int(meta.get('logo_count') or 0)
     }
 
 def refresh_csi_cache(trigger='scheduled'):
@@ -430,33 +542,64 @@ def refresh_csi_cache(trigger='scheduled'):
     try:
         previous=load_csi_cache();cached=dict(previous.get('teams') or {})
         sources=csi_source_teams()
-        attempted_at=rome_now().isoformat(timespec='seconds');updated=0;errors=[]
+        attempted_at=rome_now().isoformat(timespec='seconds');updated=0;errors=[];pages={};page_errors={};logos_to_cache=set()
+        urls=list(dict.fromkeys(t['csi_live_url'] for t in sources))
+        def load_page(source_url):
+            last=None
+            for _ in range(2):
+                try:return source_url,soup(source_url)
+                except Exception as exc:last=exc
+            raise last or ValueError('pagina CSI Live non disponibile')
+        with ThreadPoolExecutor(max_workers=min(2,len(urls) or 1)) as pool:
+            pending={pool.submit(load_page,url):url for url in urls}
+            for future in as_completed(pending):
+                source_url=pending[future]
+                try:url,page=future.result();pages[url]=page
+                except Exception as exc:page_errors[source_url]=clean(str(exc))[:140]
         for t in sources:
             try:
-                url=t['csi_live_url'];page=soup(url)
+                url=t['csi_live_url']
+                if url not in pages:raise ValueError(page_errors.get(url) or 'pagina CSI Live non disponibile')
+                page=pages[url]
+                schedule=parse_live_schedule(t,page,url)
+                if not schedule:raise ValueError('calendario pubblicato ma nessuna gara USSA riconosciuta')
+                for match in schedule:
+                    for side in ('home','away'):
+                        if 'USSA' in clean(match.get(side)).upper():continue
+                        source=match.get(f'{side}_logo_source');code=match.get(f'{side}_logo_code')
+                        if source:logos_to_cache.add((source,code or ''))
+                standings=parse_live_standings(page)
+                if not standings:raise ValueError('classifica/girone non riconosciuti nella pagina CSI Live')
                 scorers=parse_live_scorers(page)
                 if not scorers and t.get('csi_old_url'):scorers=old_csi_scorers(t)
                 cached[t['key']]={
                     'label':t.get('label',t['key']),
+                    'team_name':t.get('csi_team_name','Ussa Rozzano'),
+                    'competition_label':t.get('csi_competition_label',t.get('label','CSI')),
+                    'group':t.get('csi_group',''),
                     'source_url':url,
                     'fetched_at':attempted_at,
-                    'schedule':parse_live_schedule(t,page,url),
-                    'standings':parse_live_standings(page),
+                    'schedule':schedule,
+                    'standings':standings,
                     'scorers':scorers
                 }
                 updated+=1
             except Exception as exc:
                 errors.append({'team_key':t.get('key'),'label':t.get('label',t.get('key','')),'message':clean(str(exc))[:160]})
+        if logos_to_cache:
+            with ThreadPoolExecutor(max_workers=6) as pool:
+                list(pool.map(lambda item:cache_csi_logo(item[0],item[1]),logos_to_cache))
         old_meta=previous.get('meta') or {}
         status='waiting' if not sources else ('ok' if not errors else ('partial' if updated else 'error'))
         meta={
             'status':status,
             'trigger':trigger,
             'last_attempt_at':attempted_at,
-            'last_success_at':attempted_at if updated else old_meta.get('last_success_at'),
+            'last_success_at':attempted_at if updated==len(sources) else old_meta.get('last_success_at'),
             'source_count':len(sources),
             'updated_count':updated,
             'error_count':len(errors),
+            'logo_count':len(list(CSI_LOGO_DIR.glob('*.jpg'))) if CSI_LOGO_DIR.exists() else 0,
             'errors':errors
         }
         data={'teams':cached,'meta':meta};save_csi_cache(data)
@@ -912,10 +1055,60 @@ def fixture_detail(fixture_id:str):
     if not x:raise HTTPException(404)
     return x
 
+def cached_csi_match(path):
+    teams=teams_dict();cache=load_csi_cache().get('teams') or {}
+    for key,row in cache.items():
+        if not isinstance(row,dict):continue
+        for match in row.get('schedule') or []:
+            if urlparse(match.get('detail_url','')).path==path:
+                return dict(match),teams.get(key,{}),row
+    return None,None,None
+
+def standings_row(rows,name):
+    wanted=csi_name(name)
+    return next((dict(x) for x in rows or [] if csi_name(x.get('team'))==wanted),None)
+
+def parse_live_game_detail(page,url,base=None):
+    base=dict(base or {});hero=page.select_one('.hero-gara')
+    if not hero:raise ValueError('dettaglio gara CSI non riconosciuto')
+    text=clean(hero.get_text(' ',strip=True))
+    md=re.search(r'\b(\d{2}/\d{2}/\d{4})\b',text);mt=re.search(r'\b([0-2]\d:[0-5]\d)\b',text)
+    teams=[clean(x.get_text(' ',strip=True)) for x in hero.select('h5 a.link-s-to-p')[:2]]
+    if len(teams)!=2:teams=[base.get('home','CASA'),base.get('away','OSPITI')]
+    score='';hg=ag=None
+    for h3 in hero.find_all('h3'):
+        sm=re.search(r'\b(\d+)\s*[-–]\s*(\d+)\b',clean(h3.get_text(' ',strip=True)))
+        if sm:hg,ag=int(sm.group(1)),int(sm.group(2));score=f'{hg} - {ag}';break
+    field_text=''
+    for b in hero.find_all(['b','strong']):
+        if clean(b.get_text(' ',strip=True)).lower().startswith('campo'):
+            parent=b.parent;link=parent.find('a') if parent else None
+            field_text=clean(link.get_text(' ',strip=True) if link else parent.get_text(' ',strip=True).split(':',1)[-1])
+            break
+    field,address=split_csi_venue(field_text or clean(f"{base.get('field','')} {base.get('address','')}"))
+    logos=[]
+    for i,image in enumerate(hero.select('span[class*="logo-squadra"] img')[:2]):
+        src=urljoin(url,image.get('src',''));code=image.get('alt') or Path(urlparse(src).path).stem
+        logos.append('/assets/ussa-logo.png' if 'USSA' in teams[i].upper() else cache_csi_logo(src,code))
+    while len(logos)<2:logos.append(base.get('home_logo' if len(logos)==0 else 'away_logo',''))
+    if md:
+        try:base['date']=datetime.strptime(md.group(1),'%d/%m/%Y').date().isoformat()
+        except:pass
+    if mt:base['time']=mt.group(1)
+    base.update({'url':url,'home':teams[0],'away':teams[1],'score':score or base.get('result',''),
+                 'result':score or base.get('result',''),'result_home':hg if hg is not None else base.get('result_home'),
+                 'result_away':ag if ag is not None else base.get('result_away'),'field':field,'address':address,
+                 'route_address':clean(f'{field} {address}'),'home_logo':logos[0] or base.get('home_logo',''),
+                 'away_logo':logos[1] or base.get('away_logo',''),'competition':'CSI','source_live':True,
+                 'source_snapshot':False,'events':base.get('events') or [],'report':base.get('report') or ''})
+    return base
+
 @app.get('/api/game-detail')
 def game_detail(url:str):
-    if not url.startswith(CSI_LIVE): raise HTTPException(400,'Link gara non valido')
-    path=urlparse(url).path
+    parsed_url=urlparse(url)
+    if parsed_url.scheme!='https' or parsed_url.netloc!='live.centrosportivoitaliano.it':
+        raise HTTPException(400,'Link gara non valido')
+    path=parsed_url.path
     static=next((x for x in U13_TEST_MATCHES if urlparse(x.get('detail_url','')).path==path),None)
     snapshots=load_json('u13_match_details.json',{})
     snap=snapshots.get(path)
@@ -939,6 +1132,22 @@ def game_detail(url:str):
             'events':[],'report':'','source_live':False,'source_snapshot':True,
             'source_url':static.get('detail_url','')
         }
+    cached,t,cache_row=cached_csi_match(path)
+    base=dict(cached or {})
+    if t:
+        base.update({'team_label':t.get('label',t.get('key','')),
+                     'competition_label':t.get('csi_competition_label',t.get('label','CSI')),
+                     'group':t.get('csi_group','')})
+    if cache_row:
+        base['overview']={'home':standings_row(cache_row.get('standings'),base.get('home')),
+                          'away':standings_row(cache_row.get('standings'),base.get('away')),
+                          'mode':'girone_csi'}
+    if base:
+        base.update({'url':url,'score':base.get('result',''),'competition':'CSI','source_live':False,
+                     'source_snapshot':True,'events':base.get('events') or [],'report':base.get('report') or ''})
+        return base
+    try:return parse_live_game_detail(soup(url),url,base)
+    except Exception:pass
     raise HTTPException(404,'Gara CSI non trovata')
 
 
