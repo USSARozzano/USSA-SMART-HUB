@@ -1,4 +1,13 @@
-USSA SMART HUB — V2.4.37
+USSA SMART HUB — V2.4.38
+
+Correzioni V2.4.38:
+- ripristinate nel dettaglio di tutte le gare CSI le sezioni complete dedicate a campo e trasferta;
+- aggiunti mappa cartografica e percorso indicativo dallo USSA Stadium per ogni gara CSI fuori casa;
+- aggiunti distanza, tempo di percorrenza e pulsante per aprire la mappa a schermo intero;
+- aggiunto QR per aprire la navigazione reale sul telefono nelle trasferte;
+- aggiunto QR calendario sia nelle gare interne sia in quelle esterne;
+- generato un identificativo locale stabile per ogni gara CSI, utilizzato da mappe, QR, calendario e votazione;
+- corretta la votazione del migliore in campo: ora usa la squadra CSI reale e non la vecchia Under 13 di test.
 
 Novità V2.4.37:
 - collegati e verificati i calendari CSI Live 2026/27 di Eccellenza Yellow, Eccellenza Blue, Under 20, Under 17, Under 15 Yellow, Under 15 Blue, Under 14 CSI, Under 12, Under 11 e Under 10;

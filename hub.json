@@ -2,7 +2,9 @@
   "stadium": {
     "name": "USSA Stadium",
     "address": "Via Cooperazione, Rozzano",
-    "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI"
+    "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
+    "lat": 45.381,
+    "lon": 9.158
   },
   "secretariat": {
     "days": [

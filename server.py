@@ -22,6 +22,8 @@ CSI_SYNC_HOUR=12
 CSI_RETRY_MINUTES=30
 CSI_SYNC_LOCK=threading.Lock()
 CSI_SCHEDULER_STARTED=False
+GEOCODE_CACHE={}
+ROUTE_RUNTIME_CACHE={}
 FIGC_SOURCE_URL='https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Risultati'
 FIGC_CACHE_PATH=Path(os.getenv('FIGC_CACHE_PATH') or ROOT/'figc_cache.json')
 FIGC_SYNC_HOUR=12
@@ -193,8 +195,26 @@ def next_csi_sync_at(now=None):
     if target<=now:target+=timedelta(days=1)
     return target
 
+def csi_fixture_id(match):
+    """ID locale stabile per usare anche le gare CSI con QR, calendario e mappe."""
+    path=urlparse((match or {}).get('detail_url','')).path.rstrip('/')
+    code=Path(path).name if path else ''
+    code=re.sub(r'[^A-Za-z0-9_-]','',code)
+    if not code:
+        raw='|'.join(str((match or {}).get(k,'') or '') for k in ('team_key','date','time','home','away'))
+        code=hashlib.sha1(raw.encode('utf-8')).hexdigest()[:16]
+    return f'csi_{code}'
+
 def fixture_by_id(fid):
-    return next((x for x in fixtures() if x.get('id')==fid),None)
+    local=next((x for x in fixtures() if x.get('id')==fid),None)
+    if local:return local
+    if not str(fid or '').startswith('csi_'):return None
+    for row in (load_csi_cache().get('teams') or {}).values():
+        for match in row.get('schedule') or []:
+            if csi_fixture_id(match)==fid:
+                out=dict(match);out['id']=fid
+                return out
+    return None
 
 def local_fixture_matches(team_key, competition=None):
     a=[x for x in fixtures() if not x.get('cancelled') and x.get('team_key')==team_key and (not competition or x.get('competition')==competition)]
@@ -1061,7 +1081,8 @@ def cached_csi_match(path):
         if not isinstance(row,dict):continue
         for match in row.get('schedule') or []:
             if urlparse(match.get('detail_url','')).path==path:
-                return dict(match),teams.get(key,{}),row
+                out=dict(match);out['id']=csi_fixture_id(match)
+                return out,teams.get(key,{}),row
     return None,None,None
 
 def standings_row(rows,name):
@@ -1155,6 +1176,7 @@ def geocode(address):
     """Geocoding robusto: Nominatim con query progressive, poi Photon."""
     queries=[]
     raw=str(address or '').strip()
+    if raw in GEOCODE_CACHE:return GEOCODE_CACHE[raw]
     if raw:
         queries += [raw, raw + ', Lombardia, Italia', raw.replace('USSA Stadium, ', '')]
     seen=set()
@@ -1164,13 +1186,15 @@ def geocode(address):
         try:
             r=requests.get('https://nominatim.openstreetmap.org/search',params={'q':q,'format':'json','limit':1,'countrycodes':'it','accept-language':'it'},headers=HEADERS,timeout=8)
             r.raise_for_status();a=r.json()
-            if a:return (float(a[0]['lat']),float(a[0]['lon']))
+            if a:
+                point=(float(a[0]['lat']),float(a[0]['lon']));GEOCODE_CACHE[raw]=point
+                return point
         except Exception: pass
     try:
-        r=requests.get('https://photon.komoot.io/api/',params={'q':raw,'limit':1,'lang':'it'},headers=HEADERS,timeout=8)
+        r=requests.get('https://photon.komoot.io/api/',params={'q':raw,'limit':1},headers=HEADERS,timeout=8)
         r.raise_for_status();features=r.json().get('features') or []
         if features:
-            lon,lat=features[0]['geometry']['coordinates'];return (float(lat),float(lon))
+            lon,lat=features[0]['geometry']['coordinates'];point=(float(lat),float(lon));GEOCODE_CACHE[raw]=point;return point
     except Exception: pass
     return None
 
@@ -1231,12 +1255,18 @@ def static_route(fixture_id:str):
     x=fixture_by_id(fixture_id)
     if not x: raise HTTPException(404)
     if x.get('home_away')=='CASA': raise HTTPException(404,'Percorso non necessario')
+    if fixture_id in ROUTE_RUNTIME_CACHE:return ROUTE_RUNTIME_CACHE[fixture_id]
     routes=load_json('routes.json',{})
     opponent=x.get('home') if 'USSA' in str(x.get('away','')).upper() else x.get('away')
-    r=routes.get(opponent)
-    if not r or r.get('mode') != 'static_osrm_road_route' or len(r.get('geometry') or []) < 3:
-        raise HTTPException(404,'Percorso stradale non predisposto')
-    return r
+    r=routes.get(opponent) or routes.get(x.get('route_address',''))
+    if r and len(r.get('geometry') or []) >= 2:return r
+    # I calendari CSI possono aggiungere o cambiare campi dopo la pubblicazione.
+    # Se il percorso non è ancora nella cache statica, lo calcoliamo al bisogno
+    # usando lo stesso servizio e lo stesso fallback già adottati dal totem.
+    address=x.get('address') or x.get('route_address') or clean(f"{x.get('field','')} {x.get('address','')}")
+    if not address:raise HTTPException(404,'Indirizzo non disponibile')
+    result=route(address);ROUTE_RUNTIME_CACHE[fixture_id]=result
+    return result
 
 @app.get('/api/geocode')
 def geocode_api(address:str):
@@ -1246,8 +1276,10 @@ def geocode_api(address:str):
 
 @app.get('/api/route')
 def route(address:str):
-    hub=load_json('hub.json',{});origin=hub.get('stadium',{}).get('route_address') or hub.get('stadium',{}).get('address')
-    a=geocode(origin);b=geocode(address)
+    hub=load_json('hub.json',{});stadium=hub.get('stadium',{});origin=stadium.get('address') or stadium.get('route_address')
+    try:a=(float(stadium['lat']),float(stadium['lon']))
+    except:a=geocode(origin)
+    b=geocode(address)
     if not a or not b:raise HTTPException(404,'Indirizzo non localizzato')
     lat1,lon1=a;lat2,lon2=b
     try:
@@ -1281,7 +1313,8 @@ def calendar_ics(fixture_id:str):
     start=iso_dt(x['date'],x['time']);end=start+timedelta(minutes=duration)
     stamp=datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
     def fmt(d):return d.strftime('%Y%m%dT%H%M%S')
-    summary=f"UNDER 14 FIGC · {x['home']} - {x['away']}"
+    category=x.get('team_label') or x.get('competition_label') or x.get('competition') or 'USSA ROZZANO'
+    summary=f"{category} · {x['home']} - {x['away']}"
     ics='\r\n'.join(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//USSA Rozzano//Smart Hub//IT','CALSCALE:GREGORIAN','BEGIN:VEVENT',
         f"UID:{x['id']}@ussa-smart-hub",f'DTSTAMP:{stamp}',f'DTSTART:{fmt(start)}',f'DTEND:{fmt(end)}',f'SUMMARY:{ics_escape(summary)}',
         f"LOCATION:{ics_escape(x.get('field','')+' - '+x.get('address',''))}",f"DESCRIPTION:{ics_escape('Gara '+x.get('competition','')+' · '+x.get('home_away',''))}",'END:VEVENT','END:VCALENDAR',''])

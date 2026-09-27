@@ -429,7 +429,7 @@ button.matchcard{width:100%;text-align:left;color:inherit;font:inherit;appearanc
 <section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div class="now-empty-icons" aria-hidden="true"><span>⚽</span><span>🏐</span><span>🏀</span></div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryStatus" class="secretary-status"></div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4.37 · CALENDARI CSI</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.38 · MAPPE CSI</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
@@ -848,6 +848,7 @@ function openCsiDetail(url,teamKey='',tab=''){const key=teamKey||currentTeam?.ke
 .u13-static-detail.v2418 .u13-score.score-draw{background:#fff;color:#071b2d}
 .fixture-when3.fixture-result3{min-height:68px;display:flex;align-items:center;justify-content:center;gap:15px;border-color:transparent;background-image:none}
 .fixture-result3 .result-label{font-size:12px;font-weight:950;letter-spacing:1.2px;color:inherit;opacity:.78}
+.csi-competition-meta{grid-template-columns:1fr!important}
 .fixture-result3 .result-score{font-size:38px;line-height:1;font-weight:1000;color:inherit;white-space:nowrap}
 .fixture-result3.score-win{background:#30c777;color:#062418}
 .fixture-result3.score-loss{background:#e95863;color:#fff}
@@ -913,10 +914,28 @@ async function renderCsiView(v){
     const pt=String(d.field||'Campo non indicato'),ps=String(d.address||'');
     const competition=String(d.competition_label||d.team_label||'CAMPIONATO CSI');
     const group=d.group?`Girone ${d.group}`:'Girone non indicato';
-    const meta=`<div class="u13-meta"><section class="u13-meta-card"><h3>${played?'DOVE SI È GIOCATO':'DOVE SI GIOCA'}</h3><div class="u13-place">${esc(pt)}</div>${ps?`<div class="u13-sub">${esc(ps)}</div>`:''}</section><section class="u13-meta-card"><h3>COMPETIZIONE</h3><div class="u13-place">${esc(competition)}</div><div class="u13-sub">CSI · ${esc(group)}${d.round?` · Giornata ${esc(d.round)}`:''}</div></section></div>`;
+    const isHome=String(d.home_away||'').toUpperCase()==='CASA'||String(d.home||'').toUpperCase().includes('USSA');
+    const place=`<section class="fixture-place ${isHome?'home-only':''}"><div><h3>${played?'DOVE SI È GIOCATO':'DOVE SI GIOCA'}</h3><div class="place-title">${esc(pt)}</div><div class="place-address">${esc(ps)}</div></div>${isHome?'':`<div class="place-route"><div id="csiRouteSummary" class="route-number"><strong>CALCOLO PERCORSO…</strong></div><div class="route-note">da USSA Stadium · indicativo</div></div>`}</section>`;
+    const competitionCard=`<div class="u13-meta csi-competition-meta"><section class="u13-meta-card"><h3>COMPETIZIONE</h3><div class="u13-place">${esc(competition)}</div><div class="u13-sub">CSI · ${esc(group)}${d.round?` · Giornata ${esc(d.round)}`:''}</div></section></div>`;
+    const awayMap=isHome?'':`<section class="route-map-card"><div class="route-map-head"><b>PERCORSO INDICATIVO</b><span>USSA Stadium → ${esc(pt)}</span></div><div id="routeMap" class="route-map"></div></section>`;
+    const mapAction=isHome||!d.id?'':`<section class="map-action-panel"><div><h3>MAPPA E PERCORSO</h3><p>Ingrandisci la stessa mappa indicativa.</p></div><button class="map-cta" onclick="openFixtureMap('${esc(d.id)}')">APRI MAPPA</button></section>`;
+    const tools=!d.id?'':(isHome?
+      `<section class="fixture-tools home-tools"><div class="qrpanel"><img alt="QR calendario" src="/api/qr/calendar/${encodeURIComponent(d.id)}.svg"><div><h3>AGGIUNGI AL CALENDARIO</h3><p>Scansiona per salvare partita, data, ora, campo e indirizzo sul telefono.</p></div></div></section>`:
+      `<section class="fixture-tools"><div class="qrpanel"><img alt="QR percorso" src="/api/qr/route/${encodeURIComponent(d.id)}.svg"><div><h3>PERCORSO SUL TELEFONO</h3><p>Scansiona per aprire la navigazione reale sul telefono.</p></div></div><div class="qrpanel"><img alt="QR calendario" src="/api/qr/calendar/${encodeURIComponent(d.id)}.svg"><div><h3>AGGIUNGI AL CALENDARIO</h3><p>Scansiona per salvare partita, data, ora, campo e indirizzo.</p></div></div></section>`);
     const bottom=(timeline||report)?`<div class="u13-bottom ${report?'has-report':''}">${timeline}${report}</div>`:'';
     const center=played?`<div class="u13-scorebox"><div class="u13-score-label">RISULTATO</div><div class="u13-score ${u13ResultClass(d)}">${esc(d.score)}</div></div>`:`<div class="vsmark">VS</div>`;
-    showOverlay('DETTAGLIO GARA',`<div class="u13-static-detail v2418"><section class="fixture-stage"><div class="fixture-stage-top">${esc(d.team_label||competition)} · CSI${d.round?` · GIORNATA ${esc(d.round)}`:''}</div><div class="fixture-clubs"><div class="club-side ${String(d.home||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.home||'CASA',d.home_logo)}<div class="club-name">${esc(d.home||'CASA')}</div></div>${center}<div class="club-side ${String(d.away||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.away||'OSPITI',d.away_logo)}<div class="club-name">${esc(d.away||'OSPITI')}</div></div></div>${when}</section>${stats}${meta}${bottom}</div>`);
+    showOverlay('DETTAGLIO GARA',`<div class="u13-static-detail v2418 fixture-layout2 ${isHome?'home-fixture':'away-fixture'}"><section class="fixture-stage"><div class="fixture-stage-top">${esc(d.team_label||competition)} · CSI${d.round?` · GIORNATA ${esc(d.round)}`:''}</div><div class="fixture-clubs"><div class="club-side ${String(d.home||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.home||'CASA',d.home_logo)}<div class="club-name">${esc(d.home||'CASA')}</div></div>${center}<div class="club-side ${String(d.away||'').toUpperCase().includes('USSA')?'club-us':''}">${clubVisual(d.away||'OSPITI',d.away_logo)}<div class="club-name">${esc(d.away||'OSPITI')}</div></div></div>${when}</section>${stats}${place}${competitionCard}${awayMap}${mapAction}${tools}${bottom}</div>`);
+    if(!isHome&&d.id)requestAnimationFrame(async()=>{
+      try{
+        const route=await getJSON(`/api/static-route/${encodeURIComponent(d.id)}`),summary=$('csiRouteSummary');
+        if(summary)summary.innerHTML=`<strong>${route.km} km</strong> · ${route.minutes} min`;
+        buildCartographicRouteMap($('routeMap'),route,{field:pt,address:ps});
+      }catch{
+        const summary=$('csiRouteSummary'),map=$('routeMap');
+        if(summary)summary.innerHTML='<strong>PERCORSO NON DISPONIBILE</strong>';
+        if(map)map.innerHTML='<div class="map-status">Mappa momentaneamente non disponibile.</div>';
+      }
+    });
   }catch(e){console.error(e);showOverlay('DETTAGLIO GARA','<div class="section"><div class="empty">Dettaglio gara non disponibile.</div></div>')}
   finally{loading(false)}
 }
@@ -973,7 +992,14 @@ async function attachVotePanel(fixtureId,teamKey){clearInterval(votePoll);if(!fi
 const _renderFixtureView2418=renderFixtureView;
 renderFixtureView=async function(v){await _renderFixtureView2418(v);try{const x=await getJSON(`/api/fixture/${v.id}`);await attachVotePanel(v.id,teamKeyForFixture(x))}catch{}}
 const _renderCsiView2418=renderCsiView;
-renderCsiView=async function(v){await _renderCsiView2418(v);const id=fixtureVoteIdFromUrl(v.url);if(id)await attachVotePanel(id,'u13a11_test')}
+renderCsiView=async function(v){
+  await _renderCsiView2418(v);
+  try{
+    const d=await getJSON(`/api/game-detail?url=${encodeURIComponent(v.url)}`);
+    const id=d.id||fixtureVoteIdFromUrl(v.url),teamKey=d.team_key||v.returnView?.key||currentTeam?.key;
+    if(id&&teamKey)await attachVotePanel(id,teamKey);
+  }catch{}
+}
 async function renderVoteScreen(v){
   const t=teams.find(x=>x.key===v.teamKey),keys=['1','2','3','4','5','6','7','8','9','erase','0','enter'];
   showOverlay('VOTA MIGLIORE IN CAMPO',`<div class="vote-screen"><section class="vote-login"><h3>ACCESSO DIRIGENTE</h3><div class="info19-muted">${esc(t?.label||'SQUADRA')}</div><div id="votePinDisplay" class="vote-pin-display" aria-label="PIN mascherato">INSERISCI PIN</div><div id="voteKeypad" class="vote-keypad">${keys.map(k=>`<button class="vote-key ${k==='erase'?'erase':k==='enter'?'enter':''}" data-key="${k}">${k==='erase'?'⌫':k==='enter'?'ENTRA':k}</button>`).join('')}</div><div id="voteMsg" class="vote-msg"></div></section><section id="voteChoice" class="vote-choice locked"><h3>SCEGLI L'ATLETA</h3><div id="voteAthletes" class="vote-athletes"></div><div class="vote-confirm"><button id="voteConfirm" class="vote-btn" disabled>CONFERMA VOTO</button></div></section></div>`);
