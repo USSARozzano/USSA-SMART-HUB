@@ -495,11 +495,11 @@
     "staff": [
       {
         "role": "Mister / Team Manager",
-        "name": "Novella Roberto"
+        "name": "Fusco Roberto"
       },
       {
         "role": "Vice Mister",
-        "name": "Malpasso Claudio"
+        "name": "Forlano Andrea"
       }
     ],
     "planned_features": [
@@ -537,6 +537,43 @@
       {
         "role": "Vice Mister",
         "name": "Pollio Simone"
+      }
+    ],
+    "planned_features": [
+      "played",
+      "next"
+    ]
+  },
+  {
+    "key": "primi_calci_2",
+    "label": "MINI CALCIO",
+    "sport": "CALCIO",
+    "icon": "⚽",
+    "visible": true,
+    "training": [
+      {
+        "day": "Martedì",
+        "weekday": 2,
+        "start": "17:00",
+        "end": "18:15",
+        "place": "USSA Stadium"
+      },
+      {
+        "day": "Venerdì",
+        "weekday": 5,
+        "start": "17:00",
+        "end": "18:15",
+        "place": "USSA Stadium"
+      }
+    ],
+    "staff": [
+      {
+        "role": "Mister / Team Manager",
+        "name": "Novella Roberto"
+      },
+      {
+        "role": "Vice Mister",
+        "name": "Sciusco Gabriele"
       }
     ],
     "planned_features": [
@@ -781,19 +818,6 @@
     ],
     "csi_live_url": "https://live.centrosportivoitaliano.it/25/Calcio-a-11/Lombardia/Milano/C235/",
     "csi_old_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-calcio-under-13-a-11-primav-4747.html"
-  },
-  {
-    "key": "primi_calci_2",
-    "label": "PRIMI CALCI 2",
-    "sport": "CALCIO",
-    "icon": "⚽",
-    "visible": false,
-    "training": [],
-    "staff": [],
-    "planned_features": [
-      "played",
-      "next"
-    ]
   },
   {
     "key": "volley_u10",
