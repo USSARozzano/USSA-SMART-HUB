@@ -1,4 +1,11 @@
-USSA SMART HUB — V2.4.38
+USSA SMART HUB — V2.4.39
+
+Correzioni V2.4.39:
+- nelle gare già disputate restano risultato, statistiche, campo, competizione ed eventuale cronologia;
+- eliminate dalle gare passate mappa, percorso, distanza, tempo di viaggio, QR navigazione e QR calendario;
+- regola applicata in modo uniforme alle competizioni FIGC, CSI e alle future categorie collegate;
+- le funzioni di viaggio e calendario restano disponibili esclusivamente nelle prossime partite.
+- eliminato dal deploy il ricalcolo preventivo dei percorsi: riduce i tempi di pubblicazione e lascia il calcolo al primo accesso, con successiva cache immediata.
 
 Correzioni V2.4.38:
 - ripristinate nel dettaglio di tutte le gare CSI le sezioni complete dedicate a campo e trasferta;
