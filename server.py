@@ -13,6 +13,18 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 ROOT=Path(__file__).parent
 app=FastAPI(title="USSA SMART HUB V2")
+
+@app.middleware("http")
+async def disable_stale_hub_cache(request: Request, call_next):
+    """Impedisce al browser del totem di conservare interfaccia e dati obsoleti."""
+    response = await call_next(request)
+    path = request.url.path
+    if path in ('/', '/backoffice') or path.startswith('/api/'):
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+    return response
+
 CSI_OLD="https://www.csi.milano.it"
 CSI_LIVE="https://live.centrosportivoitaliano.it"
 HEADERS={"User-Agent":"USSA-SMART-HUB/2.1","Accept-Language":"it-IT,it;q=0.9"}
