@@ -1,4 +1,14 @@
-USSA SMART HUB — V2.4.39
+USSA SMART HUB — V2.4.45
+
+Novità V2.4.45:
+- aggiunti i calendari CSI 2026/27 completi di Volley Under 11, Under 13, Under 14 e Under 19;
+- aggiunto il calendario CSI 2026/27 completo del Basket Open A;
+- importate 74 gare con giornata, andata/ritorno, casa/trasferta, data, ora, campo e indirizzo ufficiale;
+- aggiunti gli stemmi ufficiali disponibili delle società avversarie;
+- classifiche dei cinque gironi collegate al portale CSI Milano;
+- aggiornamento automatico quotidiano alle 12:00 esteso anche alle nuove categorie, con calendario locale di sicurezza;
+- prossime partite, gare disputate, homepage, Ora in campo, mappe e QR collegati alle nuove gare;
+- dettaglio gara reso dinamico: mostra la categoria corretta e non più la dicitura fissa Under 14.
 
 Correzioni V2.4.39:
 - nelle gare già disputate restano risultato, statistiche, campo, competizione ed eventuale cronologia;

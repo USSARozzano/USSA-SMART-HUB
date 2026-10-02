@@ -655,7 +655,13 @@
       "standings",
       "played",
       "next"
-    ]
+    ],
+    "csi_old_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-19-2182.html?v=partite",
+    "csi_team_name": "USSA ROZZANO",
+    "csi_competition_label": "PALLAVOLO UNDER 19",
+    "csi_group": "C",
+    "csi_championship_id": 358,
+    "csi_sport_code": "PV"
   },
   {
     "key": "volley_u14",
@@ -693,7 +699,13 @@
       "standings",
       "played",
       "next"
-    ]
+    ],
+    "csi_old_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-14-2181.html?v=partite",
+    "csi_team_name": "USSA ROZZANO",
+    "csi_competition_label": "PALLAVOLO UNDER 14",
+    "csi_group": "E",
+    "csi_championship_id": 310,
+    "csi_sport_code": "PV"
   },
   {
     "key": "volley_u13",
@@ -712,7 +724,13 @@
       "standings",
       "played",
       "next"
-    ]
+    ],
+    "csi_old_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-13-2486.html?v=partite",
+    "csi_team_name": "USSA ROZZANO",
+    "csi_competition_label": "PALLAVOLO UNDER 13",
+    "csi_group": "A",
+    "csi_championship_id": 332,
+    "csi_sport_code": "PV"
   },
   {
     "key": "volley_u11",
@@ -726,7 +744,13 @@
       "standings",
       "played",
       "next"
-    ]
+    ],
+    "csi_old_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-11-2485.html?v=partite",
+    "csi_team_name": "USSA ROZZANO",
+    "csi_competition_label": "PALLAVOLO UNDER 11",
+    "csi_group": "C",
+    "csi_championship_id": 333,
+    "csi_sport_code": "PV"
   },
   {
     "key": "basket_open_a",
@@ -768,7 +792,13 @@
       "standings",
       "played",
       "next"
-    ]
+    ],
+    "csi_old_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallacanestro-open-a-2180.html?v=partite",
+    "csi_team_name": "USSA ROZZANO",
+    "csi_competition_label": "PALLACANESTRO OPEN A",
+    "csi_group": "A",
+    "csi_championship_id": 502,
+    "csi_sport_code": "PC"
   },
   {
     "key": "baskin",

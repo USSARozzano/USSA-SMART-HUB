@@ -1,0 +1,22 @@
+PATCH V2.4.45 — AGGIORNAMENTO DA V2.4.44
+
+Questa non è la cartella completa del progetto: contiene soltanto i file cambiati.
+Non cancellare gli altri file già presenti nel repository.
+
+PASSAGGIO 1 — CARTELLA PRINCIPALE DEL REPOSITORY
+Caricare e sostituire questi 6 file:
+- server.py
+- index.html
+- teams.json
+- fixtures.json
+- csi_cache.json
+- README.md
+
+PASSAGGIO 2 — CARTELLA DEGLI STEMMI
+Su GitHub aprire la cartella:
+assets/csi-clubs
+
+Caricare al suo interno tutti i 32 file presenti nella cartella omonima di questa patch.
+I loghi già presenti non devono essere cancellati.
+
+Terminati i due caricamenti, attendere il completamento del deploy.

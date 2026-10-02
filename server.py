@@ -117,7 +117,8 @@ def load_json(name, default):
     except:return default
 
 def teams_dict(): return {x['key']:x for x in load_json('teams.json',[])}
-def csi_source_teams(): return [t for t in teams_dict().values() if t.get('csi_live_url') and not t.get('test_only')]
+def csi_source_url(t): return t.get('csi_live_url') or t.get('csi_old_url') or ''
+def csi_source_teams(): return [t for t in teams_dict().values() if csi_source_url(t) and not t.get('test_only')]
 def base_fixtures(): return load_json('fixtures.json',[])
 
 def load_figc_cache():
@@ -135,9 +136,22 @@ def save_figc_cache(data):
 
 def fixtures():
     local=base_fixtures();cache=load_figc_cache();live=cache.get('fixtures') or []
-    if not isinstance(live,list) or not live:return local
-    live_by_id={x.get('id'):x for x in live if isinstance(x,dict) and x.get('id')}
-    return [{**x,**live_by_id.get(x.get('id'),{})} if x.get('competition')=='FIGC' else x for x in local]
+    live_by_id={x.get('id'):x for x in live if isinstance(x,dict) and x.get('id')} if isinstance(live,list) else {}
+    csi_rows=[]
+    for row in (load_csi_cache().get('teams') or {}).values():
+        if not isinstance(row,dict):continue
+        for match in row.get('schedule') or []:
+            if not isinstance(match,dict):continue
+            item=dict(match);item['id']=item.get('id') or csi_fixture_id(item);csi_rows.append(item)
+    csi_by_id={x['id']:x for x in csi_rows if x.get('id')}
+    merged=[];seen=set()
+    for x in local:
+        item=dict(x)
+        if item.get('competition')=='FIGC':item.update(live_by_id.get(item.get('id'),{}))
+        elif item.get('competition')=='CSI':item.update(csi_by_id.get(item.get('id'),{}))
+        merged.append(item);seen.add(item.get('id'))
+    merged.extend(x for x in csi_rows if x.get('id') not in seen)
+    return sorted(merged,key=lambda x:(x.get('date',''),x.get('time',''),x.get('id','')))
 def clean(s): return re.sub(r"\s+"," ",s or "").strip()
 def fetch(url):
     r=requests.get(url,headers=HEADERS,timeout=20);r.raise_for_status();return r.text
@@ -181,7 +195,7 @@ def csi_cache_due(now=None):
         if retry_status and now-last_attempt.astimezone(ZoneInfo('Europe/Rome'))<timedelta(minutes=CSI_RETRY_MINUTES):return False
     if retry_status:return True
     cached=cache.get('teams') or {}
-    if any(not isinstance(cached.get(t['key']),dict) or cached[t['key']].get('source_url')!=t.get('csi_live_url') for t in sources):return True
+    if any(not isinstance(cached.get(t['key']),dict) or cached[t['key']].get('source_url')!=csi_source_url(t) for t in sources):return True
     last=parse_cache_time(meta.get('last_success_at'))
     if not cache.get('teams'):return True
     if not last:return True
@@ -314,16 +328,6 @@ def home_now(weekday:int|None=None, time:str|None=None):
                     t=td.get(x['team_key'],{})
                     items.append({'kind':'PARTITA','team_key':x['team_key'],'title':t.get('label','PARTITA'),'meta':f"{x['home']} – {x['away']}",'place':x.get('field',''),'icon':t.get('icon','●'),'sport':t.get('sport','')})
             except: pass
-        for t in td.values():
-            if t.get('visible') is False or not t.get('csi_live_url') or t.get('test_only'):continue
-            try:
-                for x in live_schedule_for_team(t):
-                    dt=iso_dt(x['date'],x.get('time') or '00:00')
-                    if 0 <= (now-dt).total_seconds() < 120*60:
-                        items.append({'kind':'PARTITA','team_key':t['key'],'title':t.get('label','PARTITA'),
-                                      'meta':f"{x.get('home','')} – {x.get('away','')}",'place':x.get('field',''),
-                                      'icon':t.get('icon','●'),'sport':t.get('sport',''),'detail_url':x.get('detail_url','')})
-            except:pass
         for e in load_json('events.json',[]):
             try:
                 dt=iso_dt(e['date'],e.get('time','00:00'))
@@ -453,13 +457,61 @@ def parse_live_schedule(t,s,url):
                     'competition':'CSI','competition_label':t.get('csi_competition_label',t.get('label','CSI'))})
     return sorted(out,key=lambda x:(x['date'],x.get('time','')))
 
+def parse_old_csi_schedule(t,s,url):
+    """Legge il calendario ufficiale CSI Milano, inclusi campi, codici gara e stemmi."""
+    out=[];leg='';wanted=csi_name(t.get('csi_team_name') or 'USSA ROZZANO')
+    for tr in s.select('table.matches tr'):
+        if 'separator' in (tr.get('class') or []):
+            label=clean(tr.get_text(' ',strip=True)).upper()
+            leg='RITORNO' if 'RITORNO' in label else ('ANDATA' if 'ANDATA' in label else leg)
+            continue
+        cells=tr.find_all('td',recursive=False)
+        if len(cells)<10:continue
+        try:round_no=int(clean(cells[0].get_text(' ',strip=True)))
+        except:continue
+        date_text=clean(cells[1].get_text(' ',strip=True));time_text=clean(cells[2].get_text(' ',strip=True))
+        try:date=datetime.strptime(date_text,'%d/%m/%Y').date().isoformat()
+        except:continue
+        teams=[clean(x.get_text(' ',strip=True)) for x in tr.select('td.squadra')[:2]]
+        if len(teams)!=2 or wanted not in {csi_name(teams[0]),csi_name(teams[1])}:continue
+        venue=clean(cells[3].get_text(' ',strip=True));field,address=split_csi_venue(venue)
+        info=tr.select_one('a.button[href]');detail_url=urljoin(url,info.get('href','')) if info else ''
+        code=Path(urlparse(detail_url).path).stem.rsplit('-',1)[-1] if detail_url else ''
+        result_text=clean(cells[8].get_text(' ',strip=True));score=re.search(r'\b(\d+)\s*[-–]\s*(\d+)\b',result_text)
+        hg=int(score.group(1)) if score else None;ag=int(score.group(2)) if score else None
+        images=tr.select('td.logo-squadra img')[:2];logos=[];logo_sources=[];logo_codes=[]
+        for i,image in enumerate(images):
+            src=urljoin(url,image.get('src',''));logo_code=image.get('alt') or Path(urlparse(src).path).stem
+            logo_sources.append(src);logo_codes.append(logo_code)
+            logos.append('/assets/ussa-logo.png' if 'USSA' in teams[i].upper() else csi_logo_ref(src,logo_code))
+        while len(logos)<2:
+            i=len(logos);logo_sources.append('');logo_codes.append('')
+            logos.append('/assets/ussa-logo.png' if 'USSA' in teams[i].upper() else '')
+        item={
+            'date':date,'time':time_text,'home':teams[0],'away':teams[1],'names':teams,
+            'result':f'{hg} - {ag}' if score else '','result_home':hg,'result_away':ag,
+            'detail_url':detail_url,'team_key':t['key'],'team_label':t.get('label',t['key']),
+            'competition':'CSI','competition_label':t.get('csi_competition_label',t.get('label','CSI')),
+            'group':t.get('csi_group',''),'round':round_no,'leg':leg,
+            'home_away':'CASA' if csi_name(teams[0])==wanted else 'TRASFERTA',
+            'field':field,'address':address,'route_address':clean(f'{field} {address}'),
+            'home_logo':logos[0],'away_logo':logos[1],
+            'home_logo_source':logo_sources[0],'away_logo_source':logo_sources[1],
+            'home_logo_code':logo_codes[0],'away_logo_code':logo_codes[1],
+            'status':'DISPUTATA' if score else 'PROGRAMMATA','source':'CSI MILANO'
+        }
+        item['id']=f'csi_{code}' if code else csi_fixture_id(item)
+        out.append(item)
+    return sorted(out,key=lambda x:(x['date'],x.get('time','')))
+
 def live_schedule_for_team(t,fresh=False):
-    url=t.get('csi_live_url')
+    url=csi_source_url(t)
     if not url:return []
     if not fresh:
         found,rows=cached_csi_field(t,'schedule')
         if found:return rows
-    return parse_live_schedule(t,soup(url),url)
+    page=soup(url)
+    return parse_live_schedule(t,page,url) if 'live.centrosportivoitaliano.it' in url else parse_old_csi_schedule(t,page,url)
 
 def parse_live_standings(s):
     for table in s.find_all('table'):
@@ -484,11 +536,34 @@ def parse_live_standings(s):
     return []
 
 def live_standings(t,fresh=False):
-    if not t.get('csi_live_url'):return []
+    if not csi_source_url(t):return []
     if not fresh:
         found,rows=cached_csi_field(t,'standings')
         if found:return rows
-    return parse_live_standings(soup(t['csi_live_url']))
+    if t.get('csi_live_url'):return parse_live_standings(soup(t['csi_live_url']))
+    return old_csi_standings(t)
+
+def old_csi_standings(t):
+    camp=t.get('csi_championship_id');sport=t.get('csi_sport_code');group=t.get('csi_group','')
+    if not camp or not sport:return []
+    try:
+        r=requests.post(f'{CSI_OLD}/public/ajax/filtri.php',headers=HEADERS,timeout=20,data={
+            'albo':'ok','classifiche':'ok','campionato':str(camp),'squadra':'','sport':sport,'girone':group})
+        r.raise_for_status();page=BeautifulSoup(r.text,'lxml')
+    except:return []
+    out=[]
+    for tr in page.select('table tr'):
+        vals=[clean(x.get_text(' ',strip=True)) for x in tr.find_all(['th','td'],recursive=False)]
+        if len(vals)<8 or not vals[0].isdigit():continue
+        try:
+            # Il secondo campo è la colonna dello stemma e può essere vuoto.
+            offset=2 if len(vals)>2 and not vals[1] else 1
+            team=vals[offset];nums=vals[offset+1:]
+            out.append({'position':int(vals[0]),'team':team,'points':int(nums[0]),'played':int(nums[1]),
+                        'wins':int(nums[2]),'draws':0,'losses':int(nums[3]),
+                        'gf':int(nums[-2]) if len(nums)>=2 else None,'gs':int(nums[-1]) if nums else None})
+        except:continue
+    return out
 
 def parse_live_scorers(s):
     out=[]
@@ -563,7 +638,7 @@ def refresh_csi_cache(trigger='scheduled'):
         previous=load_csi_cache();cached=dict(previous.get('teams') or {})
         sources=csi_source_teams()
         attempted_at=rome_now().isoformat(timespec='seconds');updated=0;errors=[];pages={};page_errors={};logos_to_cache=set()
-        urls=list(dict.fromkeys(t['csi_live_url'] for t in sources))
+        urls=list(dict.fromkeys(csi_source_url(t) for t in sources))
         def load_page(source_url):
             last=None
             for _ in range(2):
@@ -578,17 +653,17 @@ def refresh_csi_cache(trigger='scheduled'):
                 except Exception as exc:page_errors[source_url]=clean(str(exc))[:140]
         for t in sources:
             try:
-                url=t['csi_live_url']
+                url=csi_source_url(t)
                 if url not in pages:raise ValueError(page_errors.get(url) or 'pagina CSI Live non disponibile')
                 page=pages[url]
-                schedule=parse_live_schedule(t,page,url)
+                schedule=parse_live_schedule(t,page,url) if t.get('csi_live_url') else parse_old_csi_schedule(t,page,url)
                 if not schedule:raise ValueError('calendario pubblicato ma nessuna gara USSA riconosciuta')
                 for match in schedule:
                     for side in ('home','away'):
                         if 'USSA' in clean(match.get(side)).upper():continue
                         source=match.get(f'{side}_logo_source');code=match.get(f'{side}_logo_code')
                         if source:logos_to_cache.add((source,code or ''))
-                standings=parse_live_standings(page)
+                standings=parse_live_standings(page) if t.get('csi_live_url') else old_csi_standings(t)
                 if not standings:raise ValueError('classifica/girone non riconosciuti nella pagina CSI Live')
                 scorers=parse_live_scorers(page)
                 if not scorers and t.get('csi_old_url'):scorers=old_csi_scorers(t)
@@ -980,7 +1055,7 @@ def team_matches_data(t, competition):
         played=[x for x in arr if iso_dt(x['date'],x['time'])<now]
         nexts=[x for x in arr if iso_dt(x['date'],x['time'])>=now]
         return played,nexts
-    if competition=='CSI' and t.get('csi_live_url'):
+    if competition=='CSI' and csi_source_url(t):
         # La U13 TEST deve offrire sempre l'esperienza completa anche se CSI LIVE
         # cambia markup o risponde lentamente: il calendario storico verificato resta
         # disponibile localmente, mentre i dettagli continuano ad aprire le pagine CSI.
@@ -989,6 +1064,7 @@ def team_matches_data(t, competition):
         else:
             try:arr=live_schedule_for_team(t)
             except:arr=[]
+        if not arr:arr=local_fixture_matches(t['key'],'CSI')
         played=[];nexts=[]
         for x in arr:
             try:dt=iso_dt(x['date'],x.get('time','00:00'))
@@ -1016,16 +1092,6 @@ def home_upcoming():
         try:
             dt=iso_dt(e['date'],e.get('time','00:00'))
             if dt>=now:items.append({**e,'_sort':dt.isoformat(),'source':'USSA'})
-        except:pass
-    # Live CSI future fixtures automatically appear once mapped/published.
-    for t in teams_dict().values():
-        if t.get('visible') is False or not t.get('csi_live_url') or t.get('test_only'):continue
-        try:
-            for m in live_schedule_for_team(t):
-                dt=iso_dt(m['date'],m.get('time','00:00'))
-                if dt<now or m.get('result'):continue
-                title=' – '.join(m.get('names',[])[-2:]) if m.get('names') else 'Partita USSA'
-                items.append({**m,'kind':'PARTITA','title':title,'meta':t['label'],'sport':t.get('sport',''),'icon':t.get('icon',''),'_sort':dt.isoformat(),'source':'CSI LIVE'})
         except:pass
     items.sort(key=lambda x:x['_sort'])
     for x in items:x.pop('_sort',None)
