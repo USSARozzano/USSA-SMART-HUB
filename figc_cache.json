@@ -15,13 +15,13 @@
       "address": "Via Teresa Noce 5, Milano",
       "route_address": "Via Teresa Noce 5, Milano",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/1.2/frog-milano-ussa-rozzano",
-      "result": "8 - 1",
+      "source": "Sprint e Sport · U14 Milano Girone E",
       "result_home": 8,
       "result_away": 1,
+      "result": "8 - 1",
       "status": "DISPUTATA",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata1"
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2162995",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-a-02",
@@ -38,13 +38,13 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/2.5/ussa-rozzano-sangiuliano-cvs",
-      "result": "2 - 6",
+      "source": "Sprint e Sport · U14 Milano Girone E",
       "result_home": 2,
       "result_away": 6,
+      "result": "2 - 6",
       "status": "DISPUTATA",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata2"
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163005",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-a-03",
@@ -61,10 +61,13 @@
       "address": "Via Manenti 31, Vidigulfo PV",
       "route_address": "Via Manenti 31, Vidigulfo PV",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/3.3/siziano-lanterna-ussa-rozzano",
-      "status": "PROGRAMMATA",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata3"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "result_home": 12,
+      "result_away": 3,
+      "result": "12 - 3",
+      "status": "DISPUTATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163010",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-a-04",
@@ -81,10 +84,10 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/4.4/ussa-rozzano-trial-rozzano",
+      "source": "Sprint e Sport · U14 Milano Girone E",
       "status": "PROGRAMMATA",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata4"
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163018",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-a-05",
@@ -101,10 +104,9 @@
       "address": "Via Sabbiondo 4, Milano",
       "route_address": "Via Sabbiondo 4, Milano",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/5.4/vige-milano-ussa-rozzano",
-      "status": "PROGRAMMATA",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata5"
+      "source": "FIGC - calendario fornito USSA",
+      "cancelled": true,
+      "status": "RIPOSO"
     },
     {
       "id": "u14-figc-a-06",
@@ -121,11 +123,9 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
+      "source": "FIGC - calendario fornito USSA",
       "cancelled": true,
-      "status": "RIPOSO",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/6.3/ussa-rozzano-real-basiglio-milano-3",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata6"
+      "status": "RIPOSO"
     },
     {
       "id": "u14-figc-a-07",
@@ -142,10 +142,10 @@
       "address": "Via dei Missaglia 146, Milano",
       "route_address": "Via dei Missaglia 146, Milano",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/7.5/five-to-seven-ussa-rozzano",
+      "source": "Sprint e Sport · U14 Milano Girone E",
       "status": "PROGRAMMATA",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata7"
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163040",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-a-08",
@@ -162,10 +162,10 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/8.2/ussa-rozzano-al-2-sport",
+      "source": "Sprint e Sport · U14 Milano Girone E",
       "status": "PROGRAMMATA",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata8"
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163044",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-a-09",
@@ -182,9 +182,10 @@
       "address": "Via Maritano, San Donato Milanese MI",
       "route_address": "Via Maritano, San Donato Milanese MI",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/9.6/fc-milanese-1902-ussa-rozzano",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata9"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163055",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-a-10",
@@ -201,9 +202,10 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/10.1/ussa-rozzano-zibido-san-giacomo",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata10"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163057",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-a-11",
@@ -220,9 +222,10 @@
       "address": "Via Gallura 8, Milano",
       "route_address": "Via Gallura 8, Milano",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/11.7/forza-e-coraggio-ussa-rozzano",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata11"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163070",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-a-12",
@@ -239,9 +242,10 @@
       "address": "Via Chopin 81, Milano",
       "route_address": "Via Chopin 81, Milano",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/12.1/fatimatraccia-ussa-rozzano",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata12"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163071",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-a-13",
@@ -258,9 +262,10 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/13.6/ussa-rozzano-milano-football-academy",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata13"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163083",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-r-01",
@@ -277,9 +282,10 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/14.2/ussa-rozzano-frog-milano",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata14"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163086",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-r-02",
@@ -289,16 +295,17 @@
       "round": 2,
       "leg": "RITORNO",
       "date": "2027-01-23",
-      "time": "16:30",
+      "time": "17:30",
       "home": "SANGIULIANO CVS",
       "away": "USSA Rozzano",
       "field": "C.S. Comunale N°2 - Sesto Ulteriano",
       "address": "Via Toscana 1, Sesto Ulteriano, San Giuliano Milanese MI",
       "route_address": "Via Toscana 1, Sesto Ulteriano, San Giuliano Milanese MI",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/15.5/sangiuliano-cvs-ussa-rozzano",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata15"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163096",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-r-03",
@@ -315,9 +322,10 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/16.3/ussa-rozzano-siziano-lanterna",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata16"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163101",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-r-04",
@@ -326,7 +334,7 @@
       "season": "2026/27",
       "round": 4,
       "leg": "RITORNO",
-      "date": "2027-02-07",
+      "date": "2027-02-06",
       "time": "09:30",
       "home": "TRIAL ROZZANO",
       "away": "USSA Rozzano",
@@ -334,9 +342,10 @@
       "address": "Via Monte Amiata 34, Rozzano MI",
       "route_address": "Via Monte Amiata 34, Rozzano MI",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/17.4/trial-rozzano-ussa-rozzano",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata17"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163109",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-r-06",
@@ -353,11 +362,9 @@
       "address": "Via Salvo D'Acquisto 7, Basiglio MI",
       "route_address": "Via Salvo D'Acquisto 7, Basiglio MI",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
+      "source": "FIGC - calendario fornito USSA",
       "cancelled": true,
-      "status": "RIPOSO",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/19.3/real-basiglio-milano-3-ussa-rozzano",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata19"
+      "status": "RIPOSO"
     },
     {
       "id": "u14-figc-r-07",
@@ -374,9 +381,10 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/20.5/ussa-rozzano-five-to-seven",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata20"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163131",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-r-08",
@@ -385,17 +393,18 @@
       "season": "2026/27",
       "round": 8,
       "leg": "RITORNO",
-      "date": "2027-03-06",
-      "time": "16:00",
+      "date": "2027-03-07",
+      "time": "15:00",
       "home": "AL 2 SPORT",
       "away": "USSA Rozzano",
       "field": "C.S. Comunale - Campo N°1 - Assago",
       "address": "Via Di Vittorio 6, Assago MI",
       "route_address": "Via Di Vittorio 6, Assago MI",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/21.2/al-2-sport-ussa-rozzano",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata21"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163135",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-r-09",
@@ -412,9 +421,10 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/22.6/ussa-rozzano-fc-milanese-1902",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata22"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163146",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-r-10",
@@ -431,9 +441,10 @@
       "address": "Via Lenin 3 / ang. Risorgimento, Zibido San Giacomo MI",
       "route_address": "Via Lenin 3 / ang. Risorgimento, Zibido San Giacomo MI",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/23.1/zibido-san-giacomo-ussa-rozzano",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata23"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163148",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-r-11",
@@ -450,9 +461,10 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/24.7/ussa-rozzano-forza-e-coraggio",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata24"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163161",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-r-12",
@@ -469,9 +481,10 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/25.1/ussa-rozzano-fatimatraccia",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata25"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163162",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-r-13",
@@ -488,9 +501,10 @@
       "address": "Via dei Missaglia 146, Milano",
       "route_address": "Via dei Missaglia 146, Milano",
       "home_away": "TRASFERTA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/26.6/milano-football-academy-ussa-rozzano",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata26"
+      "source": "Sprint e Sport · U14 Milano Girone E",
+      "status": "PROGRAMMATA",
+      "external_detail_url": "https://www.sprintesport.it/sezioni/479/partita#!/2163174",
+      "source_url": "https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5"
     },
     {
       "id": "u14-figc-r-05",
@@ -507,27 +521,40 @@
       "address": "Via Cooperazione, Rozzano",
       "route_address": "USSA Stadium, Via della Cooperazione, Rozzano MI",
       "home_away": "CASA",
-      "source": "Tuttocampo · U14 Milano Girone E",
-      "external_detail_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Partita/18.4/ussa-rozzano-vige-milano",
-      "source_url": "https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Giornata18"
+      "source": "FIGC - calendario fornito USSA",
+      "cancelled": true,
+      "status": "RIPOSO"
     }
   ],
   "standings": [
     {
       "position": 1,
       "team": "MILANO F. ACADEMY",
-      "points": 6,
-      "played": 2,
-      "wins": 2,
+      "points": 9,
+      "played": 3,
+      "wins": 3,
       "draws": 0,
       "losses": 0,
-      "gf": 21,
+      "gf": 27,
       "gs": 1,
       "ga": 1,
-      "goal_difference": 20
+      "goal_difference": 26
     },
     {
       "position": 2,
+      "team": "ZIBIDO S. GIACOMO",
+      "points": 9,
+      "played": 3,
+      "wins": 3,
+      "draws": 0,
+      "losses": 0,
+      "gf": 18,
+      "gs": 3,
+      "ga": 3,
+      "goal_difference": 15
+    },
+    {
+      "position": 3,
       "team": "FOOTBALL C. MILANESE",
       "points": 6,
       "played": 2,
@@ -540,33 +567,33 @@
       "goal_difference": 16
     },
     {
-      "position": 3,
-      "team": "ZIBIDO S. GIACOMO",
-      "points": 6,
-      "played": 2,
-      "wins": 2,
-      "draws": 0,
-      "losses": 0,
-      "gf": 13,
-      "gs": 3,
-      "ga": 3,
-      "goal_difference": 10
-    },
-    {
       "position": 4,
       "team": "FROG MILANO",
       "points": 6,
-      "played": 2,
+      "played": 3,
       "wins": 2,
       "draws": 0,
-      "losses": 0,
+      "losses": 1,
       "gf": 11,
-      "gs": 3,
-      "ga": 3,
-      "goal_difference": 8
+      "gs": 9,
+      "ga": 9,
+      "goal_difference": 2
     },
     {
       "position": 5,
+      "team": "SANGIULIANO CVS",
+      "points": 6,
+      "played": 3,
+      "wins": 2,
+      "draws": 0,
+      "losses": 1,
+      "gf": 11,
+      "gs": 10,
+      "ga": 10,
+      "goal_difference": 1
+    },
+    {
+      "position": 6,
       "team": "AL 2 SPORT",
       "points": 3,
       "played": 1,
@@ -579,116 +606,108 @@
       "goal_difference": 7
     },
     {
-      "position": 6,
-      "team": "SANGIULIANO CVS",
-      "points": 3,
-      "played": 2,
-      "wins": 1,
-      "draws": 0,
-      "losses": 1,
-      "gf": 8,
-      "gs": 8,
-      "ga": 8,
-      "goal_difference": 0
-    },
-    {
       "position": 7,
       "team": "FIVE TO SEVEN",
-      "points": 0,
-      "played": 0,
-      "wins": 0,
+      "points": 3,
+      "played": 1,
+      "wins": 1,
       "draws": 0,
       "losses": 0,
-      "gf": 0,
-      "gs": 0,
-      "ga": 0,
-      "goal_difference": 0
+      "gf": 6,
+      "gs": 1,
+      "ga": 1,
+      "goal_difference": 5
     },
     {
       "position": 8,
-      "team": "VIGE MILANO",
-      "points": 0,
-      "played": 0,
-      "wins": 0,
+      "team": "SIZIANO LANTERNA",
+      "points": 3,
+      "played": 3,
+      "wins": 1,
       "draws": 0,
-      "losses": 0,
-      "gf": 0,
-      "gs": 0,
-      "ga": 0,
-      "goal_difference": 0
+      "losses": 2,
+      "gf": 13,
+      "gs": 19,
+      "ga": 19,
+      "goal_difference": -6
     },
     {
       "position": 9,
       "team": "FATIMATRACCIA",
+      "points": 0,
+      "played": 3,
+      "wins": 0,
+      "draws": 0,
+      "losses": 3,
+      "gf": 4,
+      "gs": 14,
+      "ga": 14,
+      "goal_difference": -10
+    },
+    {
+      "position": 10,
+      "team": "FORZA E CORAGGIO",
       "points": 0,
       "played": 2,
       "wins": 0,
       "draws": 0,
       "losses": 2,
       "gf": 2,
-      "gs": 11,
-      "ga": 11,
-      "goal_difference": -9
-    },
-    {
-      "position": 10,
-      "team": "USSA Rozzano",
-      "points": 0,
-      "played": 2,
-      "wins": 0,
-      "draws": 0,
-      "losses": 2,
-      "gf": 3,
-      "gs": 14,
-      "ga": 14,
-      "goal_difference": -11
+      "gs": 19,
+      "ga": 19,
+      "goal_difference": -17
     },
     {
       "position": 11,
-      "team": "FORZA E CORAGGIO",
+      "team": "TRIAL ROZZANO",
       "points": 0,
-      "played": 1,
+      "played": 3,
       "wins": 0,
       "draws": 0,
-      "losses": 1,
+      "losses": 3,
       "gf": 1,
-      "gs": 13,
-      "ga": 13,
-      "goal_difference": -12
+      "gs": 20,
+      "ga": 20,
+      "goal_difference": -19
     },
     {
       "position": 12,
-      "team": "TRIAL ROZZANO",
+      "team": "USSA Rozzano",
       "points": 0,
-      "played": 2,
+      "played": 3,
       "wins": 0,
       "draws": 0,
-      "losses": 2,
-      "gf": 1,
-      "gs": 15,
-      "ga": 15,
-      "goal_difference": -14
-    },
-    {
-      "position": 13,
-      "team": "SIZIANO LANTERNA",
-      "points": 0,
-      "played": 2,
-      "wins": 0,
-      "draws": 0,
-      "losses": 2,
-      "gf": 1,
-      "gs": 16,
-      "ga": 16,
-      "goal_difference": -15
+      "losses": 3,
+      "gf": 6,
+      "gs": 26,
+      "ga": 26,
+      "goal_difference": -20
     }
   ],
-  "scorers": [],
+  "scorers": [
+    {
+      "name": "Brambilla Samuel Walter",
+      "goals": 2
+    },
+    {
+      "name": "Di Toma Samuele",
+      "goals": 2
+    },
+    {
+      "name": "Campanella Jonathan",
+      "goals": 1
+    },
+    {
+      "name": "Laurora Tommaso",
+      "goals": 1
+    }
+  ],
   "meta": {
     "status": "ok",
-    "trigger": "diagnostic-2026-09-27",
-    "last_attempt_at": "2026-09-27T21:26:25+02:00",
-    "last_success_at": "2026-09-27T21:26:25+02:00",
+    "trigger": "release-v2446",
+    "source": "Sprint e Sport JSON",
+    "last_attempt_at": "2026-10-06T11:17:02+02:00",
+    "last_success_at": "2026-10-06T11:17:02+02:00",
     "updated_count": 3,
     "error_count": 0,
     "errors": [],

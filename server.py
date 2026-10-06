@@ -25,6 +25,9 @@ CSI_SCHEDULER_STARTED=False
 GEOCODE_CACHE={}
 ROUTE_RUNTIME_CACHE={}
 FIGC_SOURCE_URL='https://www.tuttocampo.it/Lombardia/GiovanissimiProvincialiU14/GironeEMilano/Risultati'
+FIGC_PRIMARY_SOURCE_URL='https://www.sprintesport.it/sezioni/119/classifiche#!/categoria/26/campionato/174/girone/5'
+FIGC_API_BASE='https://www.sprintesport.it/webservices/sprintsport'
+FIGC_API_PARAMS={'idsport':1,'idcomitato':26,'idcategoria':174,'idgirone':5}
 FIGC_CACHE_PATH=Path(os.getenv('FIGC_CACHE_PATH') or ROOT/'figc_cache.json')
 FIGC_SYNC_HOUR=12
 FIGC_RETRY_MINUTES=30
@@ -201,6 +204,10 @@ def csi_cache_due(now=None):
     if not last:return True
     if last.tzinfo is None:last=last.replace(tzinfo=ZoneInfo('Europe/Rome'))
     last=last.astimezone(ZoneInfo('Europe/Rome'))
+    # Se il servizio Render era sospeso all'orario previsto, recupera subito
+    # qualunque aggiornamento più vecchio di ieri. Per la giornata corrente
+    # resta valido l'orario delle 12:00 Europe/Rome.
+    if last.date()<(now.date()-timedelta(days=1)):return True
     return now.hour>=CSI_SYNC_HOUR and last.date()<now.date()
 
 def next_csi_sync_at(now=None):
@@ -713,6 +720,13 @@ def csi_scheduler_loop():
             if csi_cache_due():refresh_csi_cache('scheduled')
         except:pass
 
+def ensure_csi_refresh_if_due():
+    """Riattiva il recupero CSI quando una richiesta sveglia il servizio."""
+    try:
+        if csi_cache_due() and not CSI_SYNC_LOCK.locked():
+            threading.Thread(target=refresh_csi_cache,args=('page-request',),name='csi-request-sync',daemon=True).start()
+    except:pass
+
 TC_MONTHS={
     'gennaio':1,'febbraio':2,'marzo':3,'aprile':4,'maggio':5,'giugno':6,
     'luglio':7,'agosto':8,'settembre':9,'ottobre':10,'novembre':11,'dicembre':12,
@@ -734,6 +748,7 @@ def figc_cache_due(now=None):
     if not last:return True
     if last.tzinfo is None:last=last.replace(tzinfo=ZoneInfo('Europe/Rome'))
     last=last.astimezone(ZoneInfo('Europe/Rome'))
+    if last.date()<(now.date()-timedelta(days=1)):return True
     return now.hour>=FIGC_SYNC_HOUR and last.date()<now.date()
 
 def next_figc_sync_at(now=None):
@@ -881,6 +896,106 @@ def parse_tc_scorers(html):
     out.sort(key=lambda x:(-x['goals'],x['name']))
     return out
 
+def ss_get(dataset):
+    """Legge il feed JSON pubblico di Sprint e Sport per il girone FIGC U14."""
+    url=f"{FIGC_API_BASE}/{dataset}.jsp"
+    headers={**TUTTOCAMPO_HEADERS,'Referer':FIGC_PRIMARY_SOURCE_URL,'Accept':'application/json'}
+    response=requests.get(url,headers=headers,params=FIGC_API_PARAMS,timeout=40)
+    response.raise_for_status()
+    data=response.json()
+    if not isinstance(data,dict):raise ValueError(f'{dataset}: risposta JSON non valida')
+    return data
+
+def ss_team_name(value):
+    aliases={
+        'MILANO F.A.':'MILANO F. ACADEMY',
+        'FC MILANESE':'FOOTBALL C. MILANESE',
+        'SIZ.LANTERNA':'SIZIANO LANTERNA',
+        'ZIBIDO':'ZIBIDO S. GIACOMO',
+    }
+    value=clean(value)
+    return aliases.get(value.upper(),tc_team_name(value))
+
+def parse_ss_fixtures(payload):
+    rows=payload.get('risultati') or []
+    ussa={}
+    for row in rows:
+        home=clean(row.get('squadraH'));away=clean(row.get('squadraV'))
+        if 'USSA ROZZANO' not in {home.upper(),away.upper()}:continue
+        try:day=int(row.get('giornata'))
+        except:continue
+        if not 1<=day<=26:continue
+        ussa[day]=row
+    if len(ussa)<18:raise ValueError(f'calendario FIGC incompleto: {len(ussa)} gare USSA riconosciute')
+    out=[]
+    withdrawn={'VIGE MILANO','REAL BASIGLIO'}
+    for original in base_fixtures():
+        if original.get('competition')!='FIGC':continue
+        item=dict(original)
+        match=re.search(r'-(a|r)-(\d{2})$',item.get('id') or '')
+        if not match:continue
+        day=int(match.group(2))+(13 if match.group(1)=='r' else 0)
+        row=ussa.get(day)
+        opponents={clean(item.get('home')).upper(),clean(item.get('away')).upper()}-{'USSA ROZZANO'}
+        if not row:
+            if opponents & withdrawn:
+                item['cancelled']=True;item['status']='RIPOSO'
+                for key in ('result','result_home','result_away'):item.pop(key,None)
+            out.append(item);continue
+        home=ss_team_name(row.get('squadraH'));away=ss_team_name(row.get('squadraV'))
+        item.update({'home':home,'away':away,'home_away':'CASA' if home.upper()=='USSA ROZZANO' else 'TRASFERTA'})
+        raw_dt=clean(row.get('dataorap'))
+        try:
+            parsed=datetime.fromisoformat(raw_dt)
+            item['date']=parsed.date().isoformat();item['time']=parsed.strftime('%H:%M')
+        except:
+            if row.get('datag'):item['date']=str(row['datag'])[:10]
+        score=clean(row.get('risultato')).replace('–','-')
+        score_match=re.fullmatch(r'\s*(\d+)\s*-\s*(\d+)\s*',score)
+        if score_match:
+            item['result_home']=int(score_match.group(1));item['result_away']=int(score_match.group(2))
+            item['result']=f"{item['result_home']} - {item['result_away']}";item['status']='DISPUTATA'
+        else:
+            for key in ('result','result_home','result_away'):item.pop(key,None)
+            item['status']='PROGRAMMATA'
+        item.pop('cancelled',None);item.pop('postponed',None)
+        result_id=str(row.get('idrisultato') or '')
+        if result_id:item['external_detail_url']=f'https://www.sprintesport.it/sezioni/479/partita#!/{result_id}'
+        item['source']='Sprint e Sport · U14 Milano Girone E';item['source_url']=FIGC_PRIMARY_SOURCE_URL
+        out.append(item)
+    if len(out)!=26:raise ValueError(f'calendario locale FIGC non coerente: {len(out)} giornate')
+    return out
+
+def parse_ss_standings(payload):
+    source=payload.get('classifica') or payload.get('classifica_v') or []
+    out=[]
+    for row in source:
+        team=ss_team_name(row.get('squadra'))
+        if not team:continue
+        out.append({
+            'position':int(row.get('pos') or len(out)+1),'team':team,
+            'points':int(row.get('punti') or 0),'played':int(row.get('pg') or 0),
+            'wins':int(row.get('pv') or 0),'draws':int(row.get('pn') or 0),'losses':int(row.get('pp') or 0),
+            'gf':int(row.get('rf') or 0),'gs':int(row.get('rs') or 0),'ga':int(row.get('rs') or 0),
+            'goal_difference':int(row.get('dr') or 0),
+        })
+    if len(out)<8 or not any(clean(x['team']).upper()=='USSA ROZZANO' for x in out):
+        raise ValueError(f'classifica FIGC non valida: {len(out)} squadre')
+    return out
+
+def parse_ss_scorers(payload):
+    blocks=payload.get('PlayerStatistics') or []
+    goals=next((x.get('Data') or [] for x in blocks if clean(x.get('Label')).lower()=='gol'),[])
+    out=[]
+    for row in goals:
+        if clean(row.get('squadra')).upper()!='USSA ROZZANO':continue
+        value=row.get('valore_stat')
+        try:value=int(value)
+        except:continue
+        if value>0:out.append({'name':clean(row.get('calciatore')),'goals':value})
+    out.sort(key=lambda x:(-x['goals'],x['name']))
+    return out
+
 def figc_sync_status(cache=None):
     cache=cache or load_figc_cache();meta=cache.get('meta') or {};next_run=next_figc_sync_at()
     last_attempt=parse_cache_time(meta.get('last_attempt_at'))
@@ -895,7 +1010,7 @@ def figc_sync_status(cache=None):
         'updated_count':int(meta.get('updated_count') or 0),'error_count':int(meta.get('error_count') or 0),
         'errors':meta.get('errors') or [],'warnings':meta.get('warnings') or [],
         'cached_fixtures':len(cache.get('fixtures') or []),
-        'source_url':FIGC_SOURCE_URL,
+        'source_url':FIGC_PRIMARY_SOURCE_URL,
     }
 
 def refresh_figc_cache(trigger='scheduled'):
@@ -903,75 +1018,22 @@ def refresh_figc_cache(trigger='scheduled'):
     try:
         previous=load_figc_cache();attempted_at=rome_now().isoformat(timespec='seconds');errors=[];warnings=[];updated=0
         fixtures_live=previous.get('fixtures') or [];standings=previous.get('standings') or [];scorers=previous.get('scorers') or []
-        try:
-            session=requests.Session();token,round_id,count,cookies=tc_bootstrap(session)
-            results={}
-            # Non interroghiamo inutilmente tutte le 26 giornate a ogni ciclo:
-            # aggiorniamo le gare appena trascorse senza risultato e le cinque
-            # successive. Riduce il carico sulla fonte e rende il sync affidabile.
-            previous_by_id={x.get('id'):x for x in fixtures_live if isinstance(x,dict) and x.get('id')}
-            baseline=[]
-            for base in base_fixtures():
-                if base.get('competition')=='FIGC':baseline.append({**base,**previous_by_id.get(base.get('id'),{})})
-            today=local_now()
-            past_missing=[];past_all=[];future=[]
-            for row in baseline:
-                try:dt=iso_dt(row['date'],row.get('time') or '00:00')
-                except:continue
-                if dt<today and not row.get('cancelled'):
-                    past_all.append((dt,row))
-                    if not row.get('result') and not row.get('postponed'):past_missing.append((dt,row))
-                elif dt>=today and not row.get('cancelled'):future.append((dt,row))
-            targets=[x for _,x in sorted(past_missing,reverse=True)[:3]]
-            targets+=[x for _,x in sorted(past_all,reverse=True)[:1]]
-            targets+=[x for _,x in sorted(future)[:5]]
-            target_days=[]
-            for row in targets:
-                m=re.search(r'-(a|r)-(\d{2})$',row.get('id') or '')
-                if m:
-                    day=int(m.group(2))+(13 if m.group(1)=='r' else 0)
-                    if day not in target_days:target_days.append(day)
-            def one(day):
-                html=tc_post_module('Web/Views/Results/ResultsView.php',token,cookies,{'category_id':round_id,'match_day_id':day})
-                return day,merge_tc_fixture(day,parse_tc_day(html,day))
-            # Una richiesta per volta evita i blocchi automatici della fonte.
-            with ThreadPoolExecutor(max_workers=1) as pool:
-                pending=[pool.submit(one,day) for day in target_days]
-                for future in as_completed(pending):
-                    try:
-                        day,row=future.result();results[day]=row
-                    except Exception as exc:errors.append({'dataset':'calendario','message':clean(str(exc))[:180]})
-            # Salviamo sempre le giornate valide. Una gara rinviata o una risposta
-            # temporaneamente assente non deve piu scartare risultato e classifica.
-            for row in results.values():previous_by_id[row['id']]=row
-            fixtures_live=[]
-            for base in base_fixtures():
-                if base.get('competition')!='FIGC':continue
-                fixtures_live.append({**base,**previous_by_id.get(base.get('id'),{})})
-            # Se un avversario risulta ritirato in una delle due gare, anche il
-            # ritorno viene escluso immediatamente dal calendario USSA.
-            withdrawn=set()
-            for row in fixtures_live:
-                if not row.get('cancelled'):continue
-                other=row.get('away') if clean(row.get('home')).upper()=='USSA ROZZANO' else row.get('home')
-                if other:withdrawn.add(clean(other).upper())
-            for row in fixtures_live:
-                names={clean(row.get('home')).upper(),clean(row.get('away')).upper()}
-                if names & withdrawn:
-                    row['cancelled']=True;row['status']='RIPOSO'
-                    row.pop('result',None);row.pop('result_home',None);row.pop('result_away',None)
-            if len(results)==len(target_days):updated+=1
-            else:errors.append({'dataset':'calendario','message':f'aggiornate {len(results)} gare su {len(target_days)} richieste; mantenuti i dati precedenti per le altre'})
-            try:
-                ranking_html=tc_post_module('Web/Views/Rankings/RankingView.php',token,cookies,{'category_id':round_id,'total':'true','is_ranking_tab':'false'})
-                standings=parse_tc_standings(ranking_html);updated+=1
+        datasets={'getResults':'calendario','getRanking':'classifica','getStats':'marcatori'};payloads={}
+        with ThreadPoolExecutor(max_workers=3) as pool:
+            pending={pool.submit(ss_get,name):name for name in datasets}
+            for future in as_completed(pending):
+                name=pending[future]
+                try:payloads[name]=future.result()
+                except Exception as exc:errors.append({'dataset':datasets[name],'message':clean(str(exc))[:180]})
+        if 'getResults' in payloads:
+            try:fixtures_live=parse_ss_fixtures(payloads['getResults']);updated+=1
+            except Exception as exc:errors.append({'dataset':'calendario','message':clean(str(exc))[:180]})
+        if 'getRanking' in payloads:
+            try:standings=parse_ss_standings(payloads['getRanking']);updated+=1
             except Exception as exc:errors.append({'dataset':'classifica','message':clean(str(exc))[:180]})
-            try:
-                scorers_html=tc_post_module('Web/Views/Scorers/ScorersView.php',token,cookies,{'category_id':round_id})
-                scorers=parse_tc_scorers(scorers_html);updated+=1
+        if 'getStats' in payloads:
+            try:scorers=parse_ss_scorers(payloads['getStats']);updated+=1
             except Exception as exc:errors.append({'dataset':'marcatori','message':clean(str(exc))[:180]})
-        except Exception as exc:
-            errors.append({'dataset':'collegamento','message':clean(str(exc))[:180]})
         # Coerenza automatica: se la classifica dichiara gare giocate che non sono
         # ancora presenti nei risultati, il job resta in attesa e riprova ogni 30'.
         ussa=next((x for x in standings if clean(x.get('team')).upper()=='USSA ROZZANO'),None)
@@ -991,7 +1053,7 @@ def refresh_figc_cache(trigger='scheduled'):
         if errors:status='partial' if updated else 'error'
         elif warnings:status='waiting'
         else:status='ok' if updated==3 else ('partial' if updated else 'error')
-        meta={'status':status,'trigger':trigger,'last_attempt_at':attempted_at,
+        meta={'status':status,'trigger':trigger,'source':'Sprint e Sport JSON','last_attempt_at':attempted_at,
               'last_success_at':attempted_at if status=='ok' else old_meta.get('last_success_at'),
               'updated_count':updated,'error_count':len(errors),'errors':errors,'warnings':warnings}
         data={'fixtures':fixtures_live,'standings':standings,'scorers':scorers,'meta':meta}
@@ -1076,6 +1138,7 @@ def team_matches_data(t, competition):
 
 @app.get('/api/home/upcoming')
 def home_upcoming():
+    ensure_csi_refresh_if_due()
     ensure_figc_refresh_if_due()
     now=local_now();items=[]
     # Single local source for real FIGC fixtures.
@@ -1523,9 +1586,23 @@ def backoffice_figc_sync_run(pin:str):
 @app.get('/api/data-sync-status')
 def public_data_sync_status():
     """Stato tecnico consultabile senza esporre PIN o dati riservati."""
+    ensure_csi_refresh_if_due()
     ensure_figc_refresh_if_due()
+    csi=csi_sync_status()
     figc=figc_sync_status()
-    return {'figc':{k:figc.get(k) for k in ('status','running','last_attempt_at','last_success_at','next_run_at','updated_count','error_count','cached_fixtures')}}
+    csi_keys=('status','running','last_attempt_at','last_success_at','next_run_at','source_count','updated_count','error_count','cached_teams')
+    figc_keys=('status','running','last_attempt_at','last_success_at','next_run_at','updated_count','error_count','cached_fixtures','source_url')
+    return {'server_time':rome_now().isoformat(timespec='seconds'),
+            'csi':{k:csi.get(k) for k in csi_keys},
+            'figc':{k:figc.get(k) for k in figc_keys}}
+
+@app.get('/api/cron/daily-sync')
+def cron_daily_sync():
+    """Endpoint idempotente usato dal risveglio GitHub: aggiorna solo dati scaduti."""
+    result={'server_time':rome_now().isoformat(timespec='seconds')}
+    result['csi']=refresh_csi_cache('external-cron') if csi_cache_due() else csi_sync_status()
+    result['figc']=refresh_figc_cache('external-cron') if figc_cache_due() else figc_sync_status()
+    return result
 
 @app.delete('/api/backoffice/votes/{vote_id}')
 def delete_vote(vote_id:int,pin:str):

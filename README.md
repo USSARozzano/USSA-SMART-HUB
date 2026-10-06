@@ -1,4 +1,18 @@
-USSA SMART HUB — V2.4.45
+USSA SMART HUB — V2.4.46
+
+Correzione definitiva aggiornamenti automatici V2.4.46:
+- sostituita per la FIGC Under 14 la connessione Tuttocampo, ora bloccata da protezione automatica, con i feed JSON di Sprint e Sport per Girone E Milano;
+- risultati, variazioni di data/orario, classifica e marcatori FIGC vengono letti separatamente, così un dato momentaneamente assente non blocca gli altri;
+- aggiunto il risultato della terza giornata SIZIANO LANTERNA 12-3 USSA Rozzano;
+- aggiornamento CSI e FIGC richiamato ogni giorno da GitHub anche quando Render è sospeso;
+- doppia finestra compatibile con ora solare e ora legale, più tentativi successivi automatici;
+- recupero immediato all'avvio se l'ultimo aggiornamento riuscito è più vecchio del giorno precedente;
+- `/api/data-sync-status` mostra ora insieme lo stato reale di CSI e FIGC;
+- aggiunto `/api/cron/daily-sync`, idempotente: aggiorna soltanto le fonti scadute e non duplica il lavoro.
+
+IMPORTANTE PER GITHUB:
+- caricare anche la cartella `.github` contenuta nella fix;
+- dopo il primo caricamento verificare che nella scheda Actions del repository compaia “USSA Hub - aggiornamento dati giornaliero”.
 
 Novità V2.4.45:
 - aggiunti i calendari CSI 2026/27 completi di Volley Under 11, Under 13, Under 14 e Under 19;
