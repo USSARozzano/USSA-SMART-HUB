@@ -258,12 +258,12 @@
     ],
     "staff": [
       {
-        "role": "Mister",
-        "name": "Fava Max"
+        "role": "Allenatore",
+        "name": "Nicola Giliberti"
       },
       {
-        "role": "Vice Mister",
-        "name": "Giliberti Nicola"
+        "role": "Vice allenatore",
+        "name": "Massimo Fava"
       },
       {
         "role": "Team Manager",
@@ -570,10 +570,6 @@
       {
         "role": "Mister / Team Manager",
         "name": "Novella Roberto"
-      },
-      {
-        "role": "Vice Mister",
-        "name": "Sciusco Gabriele"
       }
     ],
     "planned_features": [
