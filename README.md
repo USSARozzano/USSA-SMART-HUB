@@ -1,4 +1,19 @@
-USSA SMART HUB — V2.4.46
+USSA SMART HUB — V2.4.48
+
+Aggiornamento V2.4.48:
+- classifica marcatori delle squadre calcio CSI acquisita dall'endpoint ufficiale di csi.milano.it e aggiornata ogni giorno;
+- cronaca e cronologia delle gare disputate acquisite dalle pagine di dettaglio CSI Live e conservate nella cache locale;
+- classifiche calcio completate con gol fatti, gol subiti e differenza reti;
+- classifiche Volley e Basket completate con denominazioni statistiche coerenti con lo sport;
+- dicitura CALCIO, VOLLEY o BASKET aggiunta alle categorie nelle viste gara, calendario, classifica e marcatori;
+- nomi delle società avversarie mostrati con maiuscole e minuscole leggibili, mantenendo la forma USSA Rozzano;
+- sincronizzazione iniziale parallelizzata per ridurre i tempi senza compromettere la cache valida.
+
+Aggiornamento V2.4.47:
+- rose riallineate all'export atleti dell'8 ottobre 2026, escludendo il gruppo Mista;
+- staff MINI CALCIO aggiornato;
+- staff UNDER 15 BLUE aggiornato;
+- RAREDREAMS rimossa dall'area Sponsor & Partner.
 
 Correzione definitiva aggiornamenti automatici V2.4.46:
 - sostituita per la FIGC Under 14 la connessione Tuttocampo, ora bloccata da protezione automatica, con i feed JSON di Sprint e Sport per Girone E Milano;

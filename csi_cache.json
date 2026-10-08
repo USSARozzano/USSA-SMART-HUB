@@ -6,7 +6,7 @@
       "competition_label": "OPEN ECCELLENZA A 11",
       "group": "A",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C105/?j=NEU9REZEJjRGPVBOWSY0Rz1FREkmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-04",
@@ -33,14 +33,122 @@
           "field": "C.S.Fatima",
           "address": "Via Chopin 81 Milano",
           "route_address": "C.S.Fatima Via Chopin 81 Milano",
-          "home_logo": "/assets/csi-clubs/02001632.jpg",
+          "home_logo": "/assets/csi-clubs/02001632_202610070858.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001632.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001632_202610070858.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001632",
           "away_logo_code": "02000229",
           "status": "DISPUTATA",
-          "source": "CSI LIVE"
+          "source": "CSI LIVE",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026105AA0103/?j=NEU9REZEJjRGPVBOWSY0Rz1FREkmNEg9RCY0ST1OICY0Sj1GREZKRURJTk5ERURHJjRMPURGRCY0Mj1j",
+          "score": "1 - 5",
+          "source_live": true,
+          "source_snapshot": false,
+          "events": [
+            {
+              "time": "28'",
+              "type": "card",
+              "text": "Ussa Rozzano Yellow: Sciusco L. (4)"
+            },
+            {
+              "time": "33'",
+              "type": "goal",
+              "text": "Ussa Rozzano Yellow segna: Zahir Z. 0 - 1"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine primo tempo"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "Fatimatraccia: Esce: Agnesi M. (16) Entra: Sicignano L. (19)"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "Ussa Rozzano Yellow: Esce: Sciusco L. (4) Entra: De Michele A. (18)"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "Ussa Rozzano Yellow: Esce: Bassi R. (5) Entra: Pitton F. (8)"
+            },
+            {
+              "time": "7'",
+              "type": "goal",
+              "text": "Ussa Rozzano Yellow segna: Radice M. 0 - 2"
+            },
+            {
+              "time": "10'",
+              "type": "goal",
+              "text": "Fatimatraccia segna: 1 - 2"
+            },
+            {
+              "time": "10'",
+              "type": "sub",
+              "text": "Fatimatraccia: Esce: Meleri D. (7) Entra: Guarinelli A. (17)"
+            },
+            {
+              "time": "13'",
+              "type": "card",
+              "text": "Fatimatraccia: Fumagalli D. (4)"
+            },
+            {
+              "time": "20'",
+              "type": "card",
+              "text": "Ussa Rozzano Yellow: Filippone F. (13)"
+            },
+            {
+              "time": "21'",
+              "type": "sub",
+              "text": "Ussa Rozzano Yellow: Esce: Allegro L. (23) Entra: Curci F. (6)"
+            },
+            {
+              "time": "23'",
+              "type": "goal",
+              "text": "Ussa Rozzano Yellow segna: Zahir Z. 1 - 3"
+            },
+            {
+              "time": "23'",
+              "type": "sub",
+              "text": "Fatimatraccia: Esce: Guerrera G. (10) Entra: Morandi F. (6)"
+            },
+            {
+              "time": "28'",
+              "type": "sub",
+              "text": "Fatimatraccia: Esce: Bramati S. (11) Entra: Zaopo M. (18)"
+            },
+            {
+              "time": "29'",
+              "type": "sub",
+              "text": "Ussa Rozzano Yellow: Esce: Crenna M. (3) Entra: Gorgone M. (22)"
+            },
+            {
+              "time": "29'",
+              "type": "sub",
+              "text": "Ussa Rozzano Yellow: Esce: Donofrio A. (19) Entra: Mazzeo A. (17)"
+            },
+            {
+              "time": "30'",
+              "type": "goal",
+              "text": "Ussa Rozzano Yellow segna: Crispo S. 1 - 4"
+            },
+            {
+              "time": "36'",
+              "type": "goal",
+              "text": "Ussa Rozzano Yellow segna: Crispo S. 1 - 5"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine 1 - 5"
+            }
+          ],
+          "report": "Al Centro Sportivo Fatima di Via Chopin a Milano va in scena una sfida vibrante e ricca di spunti, valida per il girone A del campionato di Calcio a 11 Open Eccellenza organizzato dal CSI di Milano. Nella cornice serale di domenica 4 ottobre 2026, con fischio d’inizio alle 18:30, i padroni di casa del Fatimatraccia affrontano l’insidioso Ussa Rozzano Yellow in un confronto atteso e carico di aspettative.\n\nLa prima frazione si apre su ritmi sostenuti, con le due formazioni abili a fronteggiarsi a viso aperto e con grande rispetto tattico. L’incontro viaggia sul filo dell'equilibrio fino al minuto 28, quando l'arbitro sanziona con un cartellino giallo 🟨 Sciusco L. per gli ospiti. L'episodio scuote la contesa e al 33' arriva il primo squillo del match: manovra corale ben orchestrata e vantaggio per l'Ussa Rozzano Yellow, che piazza il colpo dello 0-1 ⚽! Il Fatimatraccia prova a reagire nei minuti conclusivi, ma dopo un solo minuto di recupero il direttore di gara manda tutti a riposo con gli ospiti avanti di misura.\n\nLa ripresa si apre subito con novità tattiche. Per i padroni di casa esce Agnesi M. ed entra Sicignano L. 🔃, mentre la compagine ospite risponde con un doppio avvicendamento: dentro De Michele A. per Sciusco L. e Pitton F. al posto di Bassi R. 🔃. La ripartenza premia immediatamente i viaggianti che al 7' trovano il raddoppio per lo 0-2 ⚽. La reazione del Fatimatraccia è però veemente e al 10' la gara si riapre: zampata decisiva e rete dell'1-2 ⚽, proprio mentre il tecnico di casa richiama in panchina Meleri D. per gettare nella mischia Guarinelli A. La sfida sale di tono agonistico: al 13' finisce sul taccuino dei cattivi Fumagalli D. con un giallo 🟨 tra le file locali, imitato al 20' da Filippone F. 🟨 tra gli ospiti. Al 21' nuovo cambio per l'Ussa Rozzano Yellow, con Curci F. che rileva Allegro L. Al 23' arriva un momento chiave del secondo tempo: rapida transizione della compagine ospite e gol micidiale che vale l'1-3 ⚽! Subito dopo il Fatimatraccia prova a mescolare le carte inserendo Morandi F. per Guerrera G. 🔃, e successivamente, al 28', Zaopo M. al posto di Bramati S. Gli ospiti replicano al 29' con un doppio innesto: entrano Gorgone M. per Crenna M. e Mazzeo A. per Donofrio A. 🔃. La freschezza delle seconde linee favorisce l'allungo decisivo: al 30' arriva infatti la marcatura dell'1-4 ⚽ e al 36' il sigillo finale con la rete che fissa il risultato sull'1-5 ⚽. Dopo cinque minuti di recupero, il triplice fischio delle 19:56 sancisce il definitivo successo dell'Ussa Rozzano Yellow.\n\nUna prestazione solida e cinica consente agli ospiti di conquistare l'intera posta in palio, mentre il Fatimatraccia paga qualche disattenzione nella seconda parte di gara dopo aver accarezzato la rimonta. Non c'è comunque tempo per recriminare: il Fatimatraccia tornerà in campo giovedì 8 ottobre 2026 nella trasferta contro l'Atletico Zona 9, mentre l'Ussa Rozzano Yellow cercherà conferme lunedì 12 ottobre 2026 tra le mura amiche contro l'Ausonia.\n\n(Aldo Rimessa)",
+          "detail_checked_at": "2026-10-08T17:38:26+02:00"
         },
         {
           "date": "2026-10-12",
@@ -69,8 +177,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000111.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000111.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000111_202610070903.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000111",
           "status": "PROGRAMMATA",
@@ -103,7 +211,7 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000601.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000601.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000601",
@@ -137,8 +245,8 @@
           "route_address": "Afforese Via Assietta 48 Milano",
           "home_logo": "/assets/csi-clubs/02001939.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001939.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001939_202610080928.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001939",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -171,23 +279,23 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000088.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000088.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000088_202610071943.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000088",
           "status": "PROGRAMMATA",
           "source": "CSI LIVE"
         },
         {
-          "date": "2026-11-08",
-          "time": "18:30",
+          "date": "2026-11-10",
+          "time": "21:30",
           "home": "Orpas",
           "away": "Ussa Rozzano Yellow",
           "names": [
             "Orpas",
             "Ussa Rozzano Yellow"
           ],
-          "raw": "08/11/26 18:30 Orpas Ussa Rozzano Yellow - -",
+          "raw": "10/11/26 21:30 Orpas Ussa Rozzano Yellow",
           "result": "",
           "result_home": null,
           "result_away": null,
@@ -200,13 +308,13 @@
           "round": 6,
           "leg": "ANDATA",
           "home_away": "TRASFERTA",
-          "field": "Orpas Stadium",
-          "address": "Via Pasta 43 Milano",
-          "route_address": "Orpas Stadium Via Pasta 43 Milano",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/csi-clubs/02000045.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000045.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000045_202610071047.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000045",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -239,8 +347,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001107.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001107.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001107_202610070952.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001107",
           "status": "PROGRAMMATA",
@@ -273,8 +381,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001632.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001632.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001632_202610070858.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001632",
           "status": "PROGRAMMATA",
@@ -307,8 +415,8 @@
           "route_address": "Oratorio Don Bosco Via Madonna 14 Oreno di Vimercate",
           "home_logo": "/assets/csi-clubs/02000111.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000111.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000111_202610070903.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000111",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -342,7 +450,7 @@
           "home_logo": "/assets/csi-clubs/02000601.jpg",
           "away_logo": "/assets/ussa-logo.png",
           "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000601.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000601",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -375,8 +483,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001939.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001939.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001939_202610080928.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001939",
           "status": "PROGRAMMATA",
@@ -409,23 +517,23 @@
           "route_address": "Comunale Andrea Fortunato Via A.Manzoni Buccinasco",
           "home_logo": "/assets/csi-clubs/02000088.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000088.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000088_202610071943.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000088",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
           "source": "CSI LIVE"
         },
         {
-          "date": "2027-01-25",
-          "time": "21:30",
+          "date": "2027-01-23",
+          "time": "15:30",
           "home": "Ussa Rozzano Yellow",
           "away": "Orpas",
           "names": [
             "Ussa Rozzano Yellow",
             "Orpas"
           ],
-          "raw": "25/01/27 21:30 Ussa Rozzano Yellow Orpas - -",
+          "raw": "23/01/27 15:30 Ussa Rozzano Yellow Orpas",
           "result": "",
           "result_home": null,
           "result_away": null,
@@ -438,13 +546,13 @@
           "round": 6,
           "leg": "RITORNO",
           "home_away": "CASA",
-          "field": "Comunale Ussa Stadium",
-          "address": "Via Della Cooperazione Rozzano",
-          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "field": "Orpas Stadium",
+          "address": "Via Pasta 43 Milano",
+          "route_address": "Orpas Stadium Via Pasta 43 Milano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000045.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000045.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000045_202610071047.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000045",
           "status": "PROGRAMMATA",
@@ -477,8 +585,8 @@
           "route_address": "Oratorio Paolo Vi Via S.Francesco 12 Cernusco S.Naviglio",
           "home_logo": "/assets/csi-clubs/02001107.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001107.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001107_202610070952.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001107",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -591,7 +699,20 @@
           "goal_difference": -4
         }
       ],
-      "scorers": []
+      "scorers": [
+        {
+          "name": "SIMONE CRISPO",
+          "goals": 2
+        },
+        {
+          "name": "ZAKARIA ZAHIR",
+          "goals": 2
+        },
+        {
+          "name": "MATTIA RADICE",
+          "goals": 1
+        }
+      ]
     },
     "ecc_blue": {
       "label": "ECCELLENZA BLUE",
@@ -599,7 +720,7 @@
       "competition_label": "OPEN ECCELLENZA A 11",
       "group": "B",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C105/?j=NEU9REZEJjRGPVBOWSY0Rz1FREkmNEg9RCY0ST1PJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-05",
@@ -610,10 +731,10 @@
             "Ussa Rozzano Blue",
             "Idrostar"
           ],
-          "raw": "05/10/26 21:30 Ussa Rozzano Blue Idrostar 5 0",
-          "result": "5 - 0",
-          "result_home": 5,
-          "result_away": 0,
+          "raw": "05/10/26 21:30 Ussa Rozzano Blue Idrostar N.P.",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
           "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026105BA0101/?j=NEU9REZEJjRGPVBOWSY0Rz1FREkmNEg9RCY0ST1PICY0Sj1GREZKRURJT05ERURFJjRMPURGRCY0Mj1j",
           "team_key": "ecc_blue",
           "team_label": "ECCELLENZA BLUE",
@@ -628,11 +749,11 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000616.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000616.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000616",
-          "status": "DISPUTATA",
+          "status": "PROGRAMMATA",
           "source": "CSI LIVE"
         },
         {
@@ -662,8 +783,8 @@
           "route_address": "C.S. Don Giussani Via Trento 38 Segrate",
           "home_logo": "/assets/csi-clubs/02001082.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001082.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001082_202610071511.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001082",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -696,8 +817,8 @@
           "route_address": "Comunale Via Brodolini 2 Nova Milanese",
           "home_logo": "/assets/csi-clubs/02000349.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000349.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000349_202610070739.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000349",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -730,8 +851,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001307.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001307.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001307_202610070921.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001307",
           "status": "PROGRAMMATA",
@@ -764,8 +885,8 @@
           "route_address": "C.S. Città di Meda Via Icmesa 23/25 Meda",
           "home_logo": "/assets/csi-clubs/02001568.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001568.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001568_202610070840.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001568",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -798,8 +919,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000420.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000420.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000420_202610071640.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000420",
           "status": "PROGRAMMATA",
@@ -832,8 +953,8 @@
           "route_address": "Campo Brera Via Papa G.XXIII 6 Pero",
           "home_logo": "/assets/csi-clubs/02000252.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000252.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000252_202610070831.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000252",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -867,7 +988,7 @@
           "home_logo": "/assets/csi-clubs/02000616.jpg",
           "away_logo": "/assets/ussa-logo.png",
           "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000616.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000616",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -900,8 +1021,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001082.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001082.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001082_202610071511.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001082",
           "status": "PROGRAMMATA",
@@ -934,8 +1055,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000349.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000349.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000349_202610070739.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000349",
           "status": "PROGRAMMATA",
@@ -968,8 +1089,8 @@
           "route_address": "Oratorio S.Luigi Via Manzoni 79 Concorezzo",
           "home_logo": "/assets/csi-clubs/02001307.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001307.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001307_202610070921.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001307",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -1002,8 +1123,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001568.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001568.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001568_202610070840.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001568",
           "status": "PROGRAMMATA",
@@ -1036,8 +1157,8 @@
           "route_address": "Orpas Stadium Via Pasta 43 Milano",
           "home_logo": "/assets/csi-clubs/02000420.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000420.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000420_202610071640.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000420",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -1070,8 +1191,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000252.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000252.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000252_202610070831.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000252",
           "status": "PROGRAMMATA",
@@ -1081,19 +1202,6 @@
       "standings": [
         {
           "position": 1,
-          "team": "Ussa Rozzano Blue",
-          "points": 3,
-          "played": 1,
-          "wins": 1,
-          "draws": 0,
-          "losses": 0,
-          "gf": 5,
-          "gs": 0,
-          "ga": 0,
-          "goal_difference": 5
-        },
-        {
-          "position": 2,
           "team": "Filarete",
           "points": 3,
           "played": 1,
@@ -1106,7 +1214,7 @@
           "goal_difference": 2
         },
         {
-          "position": 3,
+          "position": 2,
           "team": "S.Giorgio Dergano",
           "points": 3,
           "played": 1,
@@ -1119,7 +1227,7 @@
           "goal_difference": 1
         },
         {
-          "position": 4,
+          "position": 3,
           "team": "S.Carlo Nova",
           "points": 1,
           "played": 1,
@@ -1132,7 +1240,7 @@
           "goal_difference": 0
         },
         {
-          "position": 5,
+          "position": 4,
           "team": "Up Settimo",
           "points": 1,
           "played": 1,
@@ -1145,7 +1253,33 @@
           "goal_difference": 0
         },
         {
+          "position": 5,
+          "team": "Idrostar",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
           "position": 6,
+          "team": "Ussa Rozzano Blue",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 7,
           "team": "S.Luigi Concorezzo Omcc",
           "points": 0,
           "played": 1,
@@ -1158,7 +1292,7 @@
           "goal_difference": -1
         },
         {
-          "position": 7,
+          "position": 8,
           "team": "Atletico Meda Sud Ams",
           "points": 0,
           "played": 1,
@@ -1169,22 +1303,22 @@
           "gs": 2,
           "ga": 2,
           "goal_difference": -2
-        },
-        {
-          "position": 8,
-          "team": "Idrostar",
-          "points": 0,
-          "played": 1,
-          "wins": 0,
-          "draws": 0,
-          "losses": 1,
-          "gf": 0,
-          "gs": 5,
-          "ga": 5,
-          "goal_difference": -5
         }
       ],
-      "scorers": []
+      "scorers": [
+        {
+          "name": "MICHELE BRILLANTINO",
+          "goals": 3
+        },
+        {
+          "name": "FRANCESCO SANTORO",
+          "goals": 1
+        },
+        {
+          "name": "MARCO VACCHINI",
+          "goals": 1
+        }
+      ]
     },
     "u20": {
       "label": "UNDER 20",
@@ -1192,7 +1326,7 @@
       "competition_label": "UNDER 20 A 11",
       "group": "A",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C782/?j=NEU9REZEJjRGPVBOWSY0Rz1LTEYmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-03",
@@ -1203,7 +1337,7 @@
             "Ussa Rozzano",
             "Real Affori"
           ],
-          "raw": "03/10/26 18:30 Ussa Rozzano Real Affori - -",
+          "raw": "03/10/26 18:30 Ussa Rozzano Real Affori N.P.",
           "result": "",
           "result_home": null,
           "result_away": null,
@@ -1221,8 +1355,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000065.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000065.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000065_202610071045.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000065",
           "status": "PROGRAMMATA",
@@ -1255,8 +1389,8 @@
           "route_address": "C.S. la Spezia Viale Famagosta 79 Milano",
           "home_logo": "/assets/csi-clubs/02001709.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001709.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001709_202610070928.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001709",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -1289,8 +1423,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000252.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000252.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000252_202610070831.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000252",
           "status": "PROGRAMMATA",
@@ -1323,8 +1457,8 @@
           "route_address": "Parr.Sacra Famiglia Via Cadorna 5 Magenta",
           "home_logo": "/assets/csi-clubs/02001061.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001061.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001061_202610070957.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001061",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -1357,8 +1491,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02002107.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002107.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002107_202610070938.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02002107",
           "status": "PROGRAMMATA",
@@ -1391,8 +1525,8 @@
           "route_address": "Campo Federale Via Dante 87/89 Abbiategrasso",
           "home_logo": "/assets/csi-clubs/02002020.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002020.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002020_202610071536.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02002020",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -1425,8 +1559,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001934.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001934.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001934_202610070754.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001934",
           "status": "PROGRAMMATA",
@@ -1459,8 +1593,8 @@
           "route_address": "C.S.Carraro Via Dei Missaglia 146 Milano",
           "home_logo": "/assets/csi-clubs/02001423.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001423.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001423_202610071106.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001423",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -1493,8 +1627,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000513.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000513.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000513_202610071040.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000513",
           "status": "PROGRAMMATA",
@@ -1527,8 +1661,8 @@
           "route_address": "Clover Sport Village Via Comasina 115 Milano",
           "home_logo": "/assets/csi-clubs/02000065.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000065.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000065_202610071045.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000065",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -1561,8 +1695,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001709.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001709.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001709_202610070928.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001709",
           "status": "PROGRAMMATA",
@@ -1595,8 +1729,8 @@
           "route_address": "Aics Olmi Via Degli Ulivi 8 Milano",
           "home_logo": "/assets/csi-clubs/02000252.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000252.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000252_202610070831.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000252",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -1629,8 +1763,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001061.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001061.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001061_202610070957.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001061",
           "status": "PROGRAMMATA",
@@ -1663,8 +1797,8 @@
           "route_address": "Parrocchiale Via Ugo Foscolo 41 Corsico",
           "home_logo": "/assets/csi-clubs/02002107.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002107.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002107_202610070938.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02002107",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -1697,8 +1831,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02002020.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002020.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002020_202610071536.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02002020",
           "status": "PROGRAMMATA",
@@ -1731,8 +1865,8 @@
           "route_address": "Parrocchiale Via Ugo Foscolo 41 Corsico",
           "home_logo": "/assets/csi-clubs/02001934.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001934.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001934_202610070754.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001934",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -1765,8 +1899,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001423.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001423.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001423_202610071106.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001423",
           "status": "PROGRAMMATA",
@@ -1799,8 +1933,8 @@
           "route_address": "Campo Sportivo Comunale Via Monte Amiata 34 Rozzano",
           "home_logo": "/assets/csi-clubs/02000513.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000513.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000513_202610071040.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000513",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -1947,7 +2081,7 @@
       "competition_label": "UNDER 17 A 11",
       "group": "C",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C732/?j=NEU9REZEJjRGPVBOWSY0Rz1LR0YmNEg9RCY0ST1QJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-04",
@@ -1975,13 +2109,101 @@
           "address": "Via Della Cooperazione Rozzano",
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
-          "away_logo": "/assets/csi-clubs/02001845.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001845.jpg",
+          "away_logo": "/assets/csi-clubs/02001845_202610071524.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001845_202610071524.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001845",
           "status": "DISPUTATA",
-          "source": "CSI LIVE"
+          "source": "CSI LIVE",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026732CA0104/?j=NEU9REZEJjRGPVBOWSY0Rz1LR0YmNEg9RCY0ST1QICY0Sj1GREZKS0dGUE5ERURIJjRMPURGRCY0Mj1j",
+          "score": "4 - 1",
+          "source_live": true,
+          "source_snapshot": false,
+          "events": [
+            {
+              "time": "20'",
+              "type": "sub",
+              "text": "Aics Olmi: Esce: Gadelsayed D. (2) Entra: Abdelhamid K. (15)"
+            },
+            {
+              "time": "22'",
+              "type": "goal",
+              "text": "Aics Olmi segna: 0 - 1"
+            },
+            {
+              "time": "25'",
+              "type": "goal",
+              "text": "Ussa Rozzano segna: 1 - 1"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine primo tempo"
+            },
+            {
+              "time": "2'",
+              "type": "sub",
+              "text": "Ussa Rozzano: Esce: Pollio S. (3) Entra: Pulcini N. (4)"
+            },
+            {
+              "time": "8'",
+              "type": "sub",
+              "text": "Aics Olmi: Esce: Villarusso F. (7) Entra: Iaquinta A. (16)"
+            },
+            {
+              "time": "10'",
+              "type": "goal",
+              "text": "Ussa Rozzano segna: 2 - 1"
+            },
+            {
+              "time": "15'",
+              "type": "sub",
+              "text": "Ussa Rozzano: Esce: Toffanin E. (21) Entra: Marques D. (13)"
+            },
+            {
+              "time": "20'",
+              "type": "goal",
+              "text": "Ussa Rozzano segna: 3 - 1"
+            },
+            {
+              "time": "20'",
+              "type": "sub",
+              "text": "Aics Olmi: Esce: Itri G. (11) Entra: Bicos F. (14)"
+            },
+            {
+              "time": "20'",
+              "type": "sub",
+              "text": "Aics Olmi: Esce: Ronchi L. (4) Entra: Spano S. (20)"
+            },
+            {
+              "time": "23'",
+              "type": "goal",
+              "text": "Ussa Rozzano segna: 4 - 1"
+            },
+            {
+              "time": "25'",
+              "type": "sub",
+              "text": "Ussa Rozzano: Esce: Petagna L. (2) Entra: Ronconi E. (6)"
+            },
+            {
+              "time": "25'",
+              "type": "sub",
+              "text": "Ussa Rozzano: Esce: Rama J. (10) Entra: Varano A. (19)"
+            },
+            {
+              "time": "25'",
+              "type": "sub",
+              "text": "Ussa Rozzano: Esce: Conti L. (18) Entra: Colasuonno E. (7)"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine 4 - 1"
+            }
+          ],
+          "report": "Domenica 4 ottobre 2026, alle ore 15:00, la cornice del Comunale Ussa Stadium di Via Della Cooperazione a Rozzano ha fatto da palcoscenico alla sfida valevole per il Girone C del campionato Under 17 a 11 organizzato dal CSI Milano, con i padroni di casa in divisa blu dell'Ussa Rozzano opposti alla compagine rosso-nera dell'Aics Olmi.\n\nL'incontro entra subito nel vivo grazie all'intraprendenza delle due formazioni, determinate a contendersi ogni pallone con ordine e intensità. Al 20' la panchina ospite effettua la prima rotazione della gara: 🔃 🔃 esce Gadelsayed D. ed entra Abdelhamid K. La fiammata scuote l'Aics Olmi, che al 22' trova lo spunto perfetto per rompere gli indugi: palla in rete e ospiti avanti 0-1 ⚽ ⚽! Lo svantaggio non disunisce i padroni di casa, capaci di imbastire una replica istantanea e carica di determinazione. Trascorrono infatti appena tre minuti e al 25' l'Ussa Rozzano trova la via del pareggio, firmando l'1-1 ⚽ ⚽ tra gli applausi del pubblico. Con il risultato tornato sui binari della parità si chiude la prima frazione.\n\nNella ripresa i blu partono con il piede giusto e operano subito un cambio tattico al 2': 🔃 🔃 dentro Pulcini N. per Pollio S. Risponde l'Aics Olmi all'8', inserendo 🔃 🔃 Iaquinta A. al posto di Villarusso F. Il momento favorevole dei locali si concretizza al 10', quando la formazione di Rozzano trova lo spiraglio giusto per completare il ribaltone con il gol del 2-1 ⚽ ⚽! Girandola di cambi: al 15' tra i padroni di casa 🔃 🔃 Marques Dada A. rileva Toffanin E., mentre al 20' la formazione ospite getta nella mischia forze fresche con un doppio innesto, 🔃 🔃 Bicos F. per Itri G. e 🔃 🔃 Spano S. per Ronchi L. Proprio al 20', però, l'Ussa Rozzano accelera ancora e realizza la rete del 3-1 ⚽ ⚽, mettendo una seria ipoteca sulla sfida. I locali spingono sull'onda dell'entusiasmo e al 23' calano il poker con il sigillo del 4-1 ⚽ ⚽. A risultato ormai acquisito, al 25' la formazione di casa perfeziona un triplo avvicendamento: 🔃 🔃 esce Petagna L. per far spazio a Ronconi E., 🔃 🔃 Varano A. subentra a Rama J. e 🔃 🔃 Colasuonno E. rimpiazza Conti L. Dopo 2 minuti di recupero, alle 16:12 l'arbitro sancisce la fine delle ostilità.\n\nUna prestazione autoritaria per l'Ussa Rozzano, abile a rimontare e a gestire i ritmi della ripresa con lucidità ed efficacia. L'Aics Olmi ha saputo colpire per prima, ma ha dovuto cedere alla distanza di fronte alla progressione avversaria. Nel prossimo turno, l'Aics Olmi tornerà in campo tra le mura amiche il 10 ottobre 2026 per confrontarsi con il Real Affori, mentre l'Ussa Rozzano sarà attesa l'11 ottobre 2026 dalla trasferta contro l'Up Settimo.\n\n(Sergio Parata)",
+          "detail_checked_at": "2026-10-08T17:38:34+02:00"
         },
         {
           "date": "2026-10-11",
@@ -2010,8 +2232,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/csi-clubs/02000252.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000252.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000252_202610070831.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000252",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -2044,8 +2266,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000803.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803_202610070844.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000803",
           "status": "PROGRAMMATA",
@@ -2078,8 +2300,8 @@
           "route_address": "Milano Arena Sport Viale Faenza 7 Milano",
           "home_logo": "/assets/csi-clubs/02000346.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000346.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000346_202610071148.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000346",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -2112,8 +2334,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000660.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000660.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000660_202610070805.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000660",
           "status": "PROGRAMMATA",
@@ -2146,8 +2368,8 @@
           "route_address": "Aics Olmi Via Degli Ulivi 8 Milano",
           "home_logo": "/assets/csi-clubs/02000058.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000058.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000058_202610070007.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000058",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -2180,8 +2402,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02002179.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002179.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002179_202610071055.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02002179",
           "status": "PROGRAMMATA",
@@ -2214,8 +2436,8 @@
           "route_address": "Clover Sport Village Via Comasina 115 Milano",
           "home_logo": "/assets/csi-clubs/02000065.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000065.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000065_202610071045.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000065",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -2248,8 +2470,8 @@
           "route_address": "Muggiano Via Muggiano 14 Milano",
           "home_logo": "/assets/csi-clubs/02001845.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001845.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001845_202610071524.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001845",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -2282,8 +2504,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000252.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000252.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000252_202610070831.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000252",
           "status": "PROGRAMMATA",
@@ -2316,8 +2538,8 @@
           "route_address": "C.S. Cappelli P.Za Caduti Del Lavoro 5 Milano",
           "home_logo": "/assets/csi-clubs/02000803.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803_202610070844.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000803",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -2350,8 +2572,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000346.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000346.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000346_202610071148.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000346",
           "status": "PROGRAMMATA",
@@ -2384,8 +2606,8 @@
           "route_address": "Oratorio S.Luigi Via Mons.Paleari 1 Pogliano Milanese",
           "home_logo": "/assets/csi-clubs/02000660.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000660.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000660_202610070805.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000660",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -2418,8 +2640,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000058.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000058.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000058_202610070007.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000058",
           "status": "PROGRAMMATA",
@@ -2452,8 +2674,8 @@
           "route_address": "C.S. S.Crisostomo Via Palmanova 47 Milano",
           "home_logo": "/assets/csi-clubs/02002179.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002179.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002179_202610071055.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02002179",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -2486,8 +2708,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000065.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000065.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000065_202610071045.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000065",
           "status": "PROGRAMMATA",
@@ -2621,7 +2843,7 @@
       "competition_label": "UNDER 15 A 11",
       "group": "A",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C772/?j=NEU9REZEJjRGPVBOWSY0Rz1LS0YmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-03",
@@ -2648,14 +2870,127 @@
           "field": "C.S. S.Crisostomo",
           "address": "Via Palmanova 47 Milano",
           "route_address": "C.S. S.Crisostomo Via Palmanova 47 Milano",
-          "home_logo": "/assets/csi-clubs/02000505.jpg",
+          "home_logo": "/assets/csi-clubs/02000505_202610071034.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000505.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000505_202610071034.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000505",
           "away_logo_code": "02000229",
           "status": "DISPUTATA",
-          "source": "CSI LIVE"
+          "source": "CSI LIVE",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026772AA0104/?j=NEU9REZEJjRGPVBOWSY0Rz1LS0YmNEg9RCY0ST1OICY0Sj1GREZKS0tGTk5ERURIJjRMPURGRCY0Mj1j",
+          "score": "0 - 6",
+          "source_live": true,
+          "source_snapshot": false,
+          "events": [
+            {
+              "time": "8'",
+              "type": "goal",
+              "text": "Ussa Rozzano Yellow segna: 0 - 1"
+            },
+            {
+              "time": "25'",
+              "type": "goal",
+              "text": "Ussa Rozzano Yellow segna: 0 - 2"
+            },
+            {
+              "time": "29'",
+              "type": "goal",
+              "text": "Ussa Rozzano Yellow segna: 0 - 3"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine primo tempo"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "S.Carlo Casoretto U15: Esce: Cozzi G. (33) Entra: Pozzi F. (12)"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "S.Carlo Casoretto U15: Esce: Cassaro G. (11) Entra: Corsentino F. (24)"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "S.Carlo Casoretto U15: Esce: Palmieri F. (7) Entra: Graziano F. (16)"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "Ussa Rozzano Yellow: Esce: Chierichetti M. (10) Entra: Fasano L. (24)"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "Ussa Rozzano Yellow: Esce: Barbarossa G. (7) Entra: Castelli L. (14)"
+            },
+            {
+              "time": "9'",
+              "type": "sub",
+              "text": "S.Carlo Casoretto U15: Esce: Bonfanti E. (19) Entra: Nasr M. (5)"
+            },
+            {
+              "time": "12'",
+              "type": "sub",
+              "text": "S.Carlo Casoretto U15: Esce: Maragno A. (20) Entra: De Gasperi M. (13)"
+            },
+            {
+              "time": "13'",
+              "type": "sub",
+              "text": "S.Carlo Casoretto U15: Esce: Corsentino F. (24) Entra: Palmieri M. (8)"
+            },
+            {
+              "time": "15'",
+              "type": "sub",
+              "text": "Ussa Rozzano Yellow: Esce: Caso M. (2) Entra: Marchino D. (22)"
+            },
+            {
+              "time": "15'",
+              "type": "sub",
+              "text": "Ussa Rozzano Yellow: Esce: Baione A. (4) Entra: Rubino N. (13)"
+            },
+            {
+              "time": "15'",
+              "type": "sub",
+              "text": "Ussa Rozzano Yellow: Esce: Areniello M. (3) Entra: Fittipaldi L. (5)"
+            },
+            {
+              "time": "21'",
+              "type": "goal",
+              "text": "Ussa Rozzano Yellow segna: 0 - 4"
+            },
+            {
+              "time": "23'",
+              "type": "goal",
+              "text": "Ussa Rozzano Yellow segna: 0 - 5"
+            },
+            {
+              "time": "24'",
+              "type": "sub",
+              "text": "Ussa Rozzano Yellow: Esce: Begeja O. (20) Entra: Casiraghi S. (16)"
+            },
+            {
+              "time": "27'",
+              "type": "card",
+              "text": "Ussa Rozzano Yellow: Livrieri C. (8)"
+            },
+            {
+              "time": "30'",
+              "type": "goal",
+              "text": "Ussa Rozzano Yellow segna: 0 - 6"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine 0 - 6"
+            }
+          ],
+          "report": "Nel pomeriggio di sabato 3 ottobre 2026, il Centro Sportivo S.Crisostomo di via Palmanova 47 a Milano ha fatto da cornice alla sfida valida per il girone A del campionato Under 15 a 11 del CSI di Milano. Sul terreno di gioco si sono affrontati i padroni di casa del S.Carlo Casoretto U15, in divisa bianca e blu, e la formazione ospite dell’Ussa Rozzano Yellow, scesa in campo con la tradizionale tenuta blu.\n\nIl fischio d'inizio delle 16:15 accende una contesa che vede gli ospiti partire con grandissima determinazione. Bastano appena otto minuti alla formazione di Rozzano per sbloccare l'incontro: incursione letale e pallone in fondo al sacco per il vantaggio ospite, 0-1 ⚽! I padroni di casa cercano di riorganizzarsi sul piano tattico, ma i viaggianti mantengono un ritmo sostenuto e al 25' trovano il raddoppio, portandosi sullo 0-2 ⚽. Il S.Carlo Casoretto accusa il colpo e quattro minuti più tardi, al 29', arriva anche il tris per la formazione ospite: 0-3 ⚽! Si va così al riposo con l’Ussa Rozzano Yellow in saldo controllo del punteggio.\n\nLa ripresa si apre subito con una pioggia di cambi su entrambi i fronti. Per i padroni di casa entrano contemporaneamente Pozzi F. per Cozzi G., Corsentino F. per Cassaro G. e Graziano F. per Palmieri F. 🔃, mentre tra gli ospiti fanno il loro ingresso Fasano L. al posto di Chierichetti M. e Castelli L. per Barbarossa G. 🔃. Al 9' nuovo avvicendamento per il S.Carlo Casoretto con Nasr M. che rileva Bonfanti E. 🔃, seguito poco dopo dagli ingressi di De Gasperi M. per Maragno A. al 12' e di Palmieri M. per Corsentino F. al 13' 🔃. Anche la panchina dell’Ussa Rozzano Yellow muove le proprie pedine al 15', inserendo Marchino D. per Caso M., Rubino N. per Baione A. e Fittipaldi L. per Areniello M. 🔃. La pressione della compagine ospite torna a farsi travolgente nella seconda metà della frazione: al 21' arriva il quarto centro di giornata che vale lo 0-4 ⚽, seguito a ruota due minuti dopo, al 23', dalla rete dello 0-5 ⚽. Al 24' ultimo cambio per gli ospiti con Casiraghi S. al posto di Begeja O. 🔃. Al 27' il direttore di gara estrae un cartellino giallo all'indirizzo di Livrieri C. 🟨, ma al 30' arriva la sesta e definitiva marcatura per l’Ussa Rozzano Yellow, che fissa il risultato sul definitivo 0-6 ⚽.\n\nUn successo netto e convincente per i ragazzi in maglia blu, capaci di imporre il proprio gioco per l'intero arco del match. Nel prossimo turno, in programma il 10 ottobre 2026, il S.Carlo Casoretto U15 cercherà il riscatto nella trasferta contro il Nabor; l'Ussa Rozzano Yellow proverà invece a confermare il proprio ottimo momento davanti al pubblico amico l'11 ottobre 2026, quando riceverà la visita del S.Adele.\n\n(Sandro Rigori)",
+          "detail_checked_at": "2026-10-08T17:38:41+02:00"
         },
         {
           "date": "2026-10-11",
@@ -2684,8 +3019,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02002107.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002107.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002107_202610070938.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02002107",
           "status": "PROGRAMMATA",
@@ -2718,8 +3053,8 @@
           "route_address": "Aics Olmi Via Degli Ulivi 8 Milano",
           "home_logo": "/assets/csi-clubs/02000058.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000058.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000058_202610070007.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000058",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -2752,8 +3087,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000803.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803_202610070844.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000803",
           "status": "PROGRAMMATA",
@@ -2761,14 +3096,14 @@
         },
         {
           "date": "2026-11-08",
-          "time": "16:00",
+          "time": "16:30",
           "home": "CEA",
           "away": "Ussa Rozzano Yellow",
           "names": [
             "CEA",
             "Ussa Rozzano Yellow"
           ],
-          "raw": "08/11/26 16:00 CEA Ussa Rozzano Yellow - -",
+          "raw": "08/11/26 16:30 CEA Ussa Rozzano Yellow - -",
           "result": "",
           "result_home": null,
           "result_away": null,
@@ -2786,8 +3121,8 @@
           "route_address": "Calvairate Via Vismara 3 Milano",
           "home_logo": "/assets/csi-clubs/02000185.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000185.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000185_202610070934.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000185",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -2820,7 +3155,7 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02002189.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002189.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02002189",
@@ -2854,8 +3189,8 @@
           "route_address": "Campo Catozzi Via Madruzzo 3 Milano",
           "home_logo": "/assets/csi-clubs/02000401.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000401.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000401_202610062336.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000401",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -2888,8 +3223,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02002179.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002179.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002179_202610071055.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02002179",
           "status": "PROGRAMMATA",
@@ -2922,8 +3257,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000505.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000505.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000505_202610071034.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000505",
           "status": "PROGRAMMATA",
@@ -2956,8 +3291,8 @@
           "route_address": "Parrocchiale Via Ugo Foscolo 41 Corsico",
           "home_logo": "/assets/csi-clubs/02002107.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002107.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002107_202610070938.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02002107",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -2990,8 +3325,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000058.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000058.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000058_202610070007.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000058",
           "status": "PROGRAMMATA",
@@ -3024,8 +3359,8 @@
           "route_address": "C.S. Cappelli P.Za Caduti Del Lavoro 5 Milano",
           "home_logo": "/assets/csi-clubs/02000803.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803_202610070844.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000803",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -3058,8 +3393,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000185.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000185.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000185_202610070934.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000185",
           "status": "PROGRAMMATA",
@@ -3093,7 +3428,7 @@
           "home_logo": "/assets/csi-clubs/02002189.jpg",
           "away_logo": "/assets/ussa-logo.png",
           "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002189.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02002189",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -3126,8 +3461,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000401.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000401.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000401_202610062336.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000401",
           "status": "PROGRAMMATA",
@@ -3160,8 +3495,8 @@
           "route_address": "C.S. S.Crisostomo Via Palmanova 47 Milano",
           "home_logo": "/assets/csi-clubs/02002179.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002179.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002179_202610071055.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02002179",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -3287,7 +3622,24 @@
           "goal_difference": -10
         }
       ],
-      "scorers": []
+      "scorers": [
+        {
+          "name": "SIMONE FERRULLI",
+          "goals": 3
+        },
+        {
+          "name": "ALESSANDRO BAIONE",
+          "goals": 1
+        },
+        {
+          "name": "DANIELE MARCHINO",
+          "goals": 1
+        },
+        {
+          "name": "LORENZO CASTELLI",
+          "goals": 1
+        }
+      ]
     },
     "u15_blue": {
       "label": "UNDER 15 BLUE",
@@ -3295,7 +3647,7 @@
       "competition_label": "UNDER 15 A 11",
       "group": "C",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C772/?j=NEU9REZEJjRGPVBOWSY0Rz1LS0YmNEg9RCY0ST1QJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-04",
@@ -3325,11 +3677,144 @@
           "home_logo": "/assets/csi-clubs/02001886.jpg",
           "away_logo": "/assets/ussa-logo.png",
           "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001886.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001886",
           "away_logo_code": "02000229",
           "status": "DISPUTATA",
-          "source": "CSI LIVE"
+          "source": "CSI LIVE",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026772CA0101/?j=NEU9REZEJjRGPVBOWSY0Rz1LS0YmNEg9RCY0ST1QICY0Sj1GREZKS0tGUE5ERURFJjRMPURGRCY0Mj1j",
+          "score": "0 - 8",
+          "source_live": true,
+          "source_snapshot": false,
+          "events": [
+            {
+              "time": "5'",
+              "type": "goal",
+              "text": "Ussa Rozzano Blue segna: 0 - 1"
+            },
+            {
+              "time": "7'",
+              "type": "goal",
+              "text": "Ussa Rozzano Blue segna: 0 - 2"
+            },
+            {
+              "time": "14'",
+              "type": "goal",
+              "text": "Ussa Rozzano Blue segna: 0 - 3"
+            },
+            {
+              "time": "21'",
+              "type": "goal",
+              "text": "Ussa Rozzano Blue segna: Rigore 0 - 4"
+            },
+            {
+              "time": "27'",
+              "type": "sub",
+              "text": "Osaf Lainate: Esce: Ursano G. (4) Entra: Scaramuzzino L. (20)"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine primo tempo"
+            },
+            {
+              "time": "1'",
+              "type": "goal",
+              "text": "Ussa Rozzano Blue segna: 0 - 5"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "Osaf Lainate: Esce: Nerio J. (1) Entra: Fortini M. (12)"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "Osaf Lainate: Esce: Forgione M. (9) Entra: Dellanoce L. (18)"
+            },
+            {
+              "time": "3'",
+              "type": "sub",
+              "text": "Osaf Lainate: Esce: Genoni F. (7) Entra: Diagne A. (15)"
+            },
+            {
+              "time": "5'",
+              "type": "sub",
+              "text": "Ussa Rozzano Blue: Esce: Zemiti L. (2) Entra: Avellino T. (13)"
+            },
+            {
+              "time": "5'",
+              "type": "sub",
+              "text": "Ussa Rozzano Blue: Esce: Lusiardi T. (11) Entra: Pellegrino E. (23)"
+            },
+            {
+              "time": "8'",
+              "type": "sub",
+              "text": "Osaf Lainate: Esce: Concardi F. (10) Entra: Vurchio M. (13)"
+            },
+            {
+              "time": "8'",
+              "type": "sub",
+              "text": "Osaf Lainate: Esce: Caschetta R. (3) Entra: Oglialoro A. (17)"
+            },
+            {
+              "time": "8'",
+              "type": "sub",
+              "text": "Ussa Rozzano Blue: Esce: Sartor T. (9) Entra: Barone S. (14)"
+            },
+            {
+              "time": "8'",
+              "type": "sub",
+              "text": "Ussa Rozzano Blue: Esce: Gristina G. (5) Entra: Abaraghe I. (17)"
+            },
+            {
+              "time": "11'",
+              "type": "goal",
+              "text": "Ussa Rozzano Blue segna: 0 - 6"
+            },
+            {
+              "time": "17'",
+              "type": "goal",
+              "text": "Ussa Rozzano Blue segna: 0 - 7"
+            },
+            {
+              "time": "21'",
+              "type": "sub",
+              "text": "Ussa Rozzano Blue: Esce: Scoccimarro A. (1) Entra: Cardone C. (12)"
+            },
+            {
+              "time": "21'",
+              "type": "sub",
+              "text": "Ussa Rozzano Blue: Esce: Notari D. (8) Entra: Alvarez F. (15)"
+            },
+            {
+              "time": "21'",
+              "type": "sub",
+              "text": "Ussa Rozzano Blue: Esce: Caroè N. (10) Entra: Bartoli S. (16)"
+            },
+            {
+              "time": "22'",
+              "type": "sub",
+              "text": "Osaf Lainate: Esce: La Barbera K. (5) Entra: Palazzo N. (14)"
+            },
+            {
+              "time": "22'",
+              "type": "sub",
+              "text": "Osaf Lainate: Esce: Botti M. (16) Entra: Diarra M. (19)"
+            },
+            {
+              "time": "33'",
+              "type": "goal",
+              "text": "Ussa Rozzano Blue segna: 0 - 8"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine 0 - 8"
+            }
+          ],
+          "report": "Una splendida mattinata all'Osaf Stadium di via Friuli a Lainate fa da cornice al confronto valido per il Girone C del campionato Under 15 a 11, organizzato dal CSI di Milano. Con il calcio d'inizio fissato alle ore 09:30 di domenica 4 ottobre 2026, i padroni di casa dell'Osaf Lainate ospitano la formazione dell'Ussa Rozzano Blue in una sfida ricca di spunti e ritmi intensi sin dalle battute inaugurali.\n\nL'avvio di gara vede subito gli ospiti prendere in mano le redini del gioco con un approccio determinato e incisivo. Bastano appena cinque giri di lancette per sbloccare il punteggio: al 5' la formazione ospite trova il varco giusto per lo 0-1 ⚽. La reazione dei locali tarda ad arrivare e la compagine rozzanese ne approfitta immediatamente al 7', raddoppiando e portando il parziale sullo 0-2 ⚽. L'Osaf Lainate prova a riorganizzarsi, ma la pressione avversaria è costante e al 14' arriva la terza rete ospite per lo 0-3 ⚽. Al 21' un fallo nell'area di rigore locale concede agli ospiti la chance dal dischetto: trasformazione impeccabile dagli undici metri ed è 0-4 ⚽. Sul finire di tempo la panchina di casa tenta di mescolare le carte con una variazione tattica: al 27' esce Ursano G. ed entra Scaramuzzino L. 🔃. Dopo tre minuti di recupero, l'arbitro manda le due compagini negli spogliatoi sul netto quattro a zero a favore degli ospiti.\n\nLa ripresa si apre con due avvicendamenti per l'Osaf Lainate: lasciano il campo Nerio Janampa D. e Forgione M., rilevati rispettivamente da Fortini M. e Dellanoce L. 🔃. Neanche il tempo di assestarsi che al 1' l'Ussa Rozzano Blue cala subito il pokerissimo firmando lo 0-5 ⚽. Al 3' nuovo cambio per i locali con Diagne A. che rileva Genoni F., mentre al 5' anche la formazione ospite effettua un doppio innesto, inserendo Avellino T. al posto di Zemiti L. e Pellegrino E. per Lusiardi T.. All'8' girandola di cambi su entrambi i fronti 🔃: tra i padroni di casa Vurchio M. rimpiazza Concardi F. e Oglialoro A. subentra a Caschetta R., mentre tra gli ospiti Barone S. entra per Sartor T. e Abaraghe I. per Gristina G.. L'Ussa Rozzano Blue continua a mantenere alta l'intensità e all'11' allunga ulteriormente fissando lo 0-6 ⚽. La formazione ospite non allenta la presa e al 17' trova la via del gol per la settima volta, portando il risultato sullo 0-7 ⚽. Al 21' i viaggianti completano le sostituzioni con gli ingressi di Cardone C., Alvarez Felix R. e Bartoli S. rispettivamente per Scoccimarro A., Notari D. e Caroè N. 🔃. Replica subito dopo la compagine di Lainate al 22', mandando sul terreno di gioco Palazzo N. per La Barbera K. e Diarra M. per Botti M.. Al 33' arriva l'ottavo sigillo ospite che vale il definitivo 0-8 ⚽. Al termine dei cinque minuti di recupero, alle ore 10:48 arriva il triplice fischio di chiusura.\n\nUna prova di grande qualità e cinismo consente all'Ussa Rozzano Blue di conquistare un successo rotondo e convincente. Gli ospiti torneranno in campo tra le mura amiche l'11 ottobre 2026 per affrontare l'Osa. L'Osaf Lainate, chiamata a voltare pagina dopo una mattinata complessa, cercherà il riscatto il prossimo 17 ottobre 2026 nella trasferta contro la medesima compagine dell'Osa.\n\n(Marco Stoppa)",
+          "detail_checked_at": "2026-10-08T17:38:49+02:00"
         },
         {
           "date": "2026-10-11",
@@ -3358,8 +3843,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000421.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000421.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000421_202610070751.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000421",
           "status": "PROGRAMMATA",
@@ -3392,8 +3877,8 @@
           "route_address": "Clover Sport Village Via Comasina 115 Milano",
           "home_logo": "/assets/csi-clubs/02001717.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001717.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001717_202610070744.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001717",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -3426,8 +3911,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001888.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001888.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001888_202610070826.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001888",
           "status": "PROGRAMMATA",
@@ -3461,7 +3946,7 @@
           "home_logo": "/assets/csi-clubs/02090264.jpg",
           "away_logo": "/assets/ussa-logo.png",
           "home_logo_source": "https://cdncsi.csi-net.it/risultati/img_2/csi-shield-b.svg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02090264",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -3494,8 +3979,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000241.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000241.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000241_202610070835.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000241",
           "status": "PROGRAMMATA",
@@ -3528,8 +4013,8 @@
           "route_address": "Comunale Manin Campo \"A\" Via Manin 110 Sesto S.Giovanni",
           "home_logo": "/assets/csi-clubs/02000211.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000211.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000211_202610070640.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000211",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -3562,8 +4047,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000803.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803_202610070844.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000803",
           "status": "PROGRAMMATA",
@@ -3596,7 +4081,7 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001886.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001886.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001886",
@@ -3630,8 +4115,8 @@
           "route_address": "Comunale Manin Campo \"A\" Via Manin 110 Sesto S.Giovanni",
           "home_logo": "/assets/csi-clubs/02000421.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000421.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000421_202610070751.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000421",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -3664,8 +4149,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001717.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001717.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001717_202610070744.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001717",
           "status": "PROGRAMMATA",
@@ -3698,8 +4183,8 @@
           "route_address": "Orpas Stadium Via Pasta 43 Milano",
           "home_logo": "/assets/csi-clubs/02001888.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001888.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001888_202610070826.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001888",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -3732,7 +4217,7 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02090264.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "away_logo_source": "https://cdncsi.csi-net.it/risultati/img_2/csi-shield-b.svg",
           "home_logo_code": "02000229",
           "away_logo_code": "02090264",
@@ -3766,8 +4251,8 @@
           "route_address": "Comunale Via Molinazzo 37 Cormano",
           "home_logo": "/assets/csi-clubs/02000241.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000241.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000241_202610070835.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000241",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -3800,8 +4285,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000211.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000211.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000211_202610070640.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000211",
           "status": "PROGRAMMATA",
@@ -3834,8 +4319,8 @@
           "route_address": "C.S. Cappelli P.Za Caduti Del Lavoro 5 Milano",
           "home_logo": "/assets/csi-clubs/02000803.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803_202610070844.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000803",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -3961,7 +4446,24 @@
           "goal_difference": -8
         }
       ],
-      "scorers": []
+      "scorers": [
+        {
+          "name": "NATHAN CAROÈ",
+          "goals": 5
+        },
+        {
+          "name": "DAVIDE SANTORO",
+          "goals": 1
+        },
+        {
+          "name": "SALVATORE BARTOLI",
+          "goals": 1
+        },
+        {
+          "name": "THOMAS RAFFAELLO LUSIARDI",
+          "goals": 1
+        }
+      ]
     },
     "u14": {
       "label": "UNDER 14",
@@ -3969,7 +4471,7 @@
       "competition_label": "UNDER 14 A 11",
       "group": "B",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C111/?j=NEU9REZEJjRGPVBOWSY0Rz1FRUUmNEg9RCY0ST1PJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-04",
@@ -3996,14 +4498,127 @@
           "field": "C.S. S.Crisostomo",
           "address": "Via Palmanova 47 Milano",
           "route_address": "C.S. S.Crisostomo Via Palmanova 47 Milano",
-          "home_logo": "/assets/csi-clubs/02002179.jpg",
+          "home_logo": "/assets/csi-clubs/02002179_202610071055.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002179.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002179_202610071055.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02002179",
           "away_logo_code": "02000229",
           "status": "DISPUTATA",
-          "source": "CSI LIVE"
+          "source": "CSI LIVE",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026111BA0105/?j=NEU9REZEJjRGPVBOWSY0Rz1FRUUmNEg9RCY0ST1PICY0Sj1GREZKRUVFT05ERURJJjRMPURGRCY0Mj1j",
+          "score": "9 - 1",
+          "source_live": true,
+          "source_snapshot": false,
+          "events": [
+            {
+              "time": "4'",
+              "type": "goal",
+              "text": "Union O.T.G. segna: 1 - 0 Saettone F."
+            },
+            {
+              "time": "9'",
+              "type": "goal",
+              "text": "Ussa Rozzano segna: 1 - 1"
+            },
+            {
+              "time": "20'",
+              "type": "goal",
+              "text": "Union O.T.G. segna: 2 - 1 Galaroza S."
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine primo tempo"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "Union O.T.G.: Esce: Corrias T. (26) Entra: Balaya H. (42)"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "Union O.T.G.: Esce: Clemente M. (13) Entra: Longoni M. (7)"
+            },
+            {
+              "time": "1'",
+              "type": "sub",
+              "text": "Ussa Rozzano: Esce: Pennino L. (13) Entra: Ungureanu L. (25)"
+            },
+            {
+              "time": "2'",
+              "type": "goal",
+              "text": "Union O.T.G. segna: 3 - 1 Vacca F."
+            },
+            {
+              "time": "3'",
+              "type": "goal",
+              "text": "Union O.T.G. segna: 4 - 1 Saettone F."
+            },
+            {
+              "time": "7'",
+              "type": "goal",
+              "text": "Union O.T.G. segna: 5 - 1 Galaroza S."
+            },
+            {
+              "time": "9'",
+              "type": "sub",
+              "text": "Union O.T.G.: Esce: Vacca F. (10) Entra: Caporali L. (41)"
+            },
+            {
+              "time": "11'",
+              "type": "goal",
+              "text": "Union O.T.G. segna: 6 - 1 Galaroza S."
+            },
+            {
+              "time": "17'",
+              "type": "sub",
+              "text": "Ussa Rozzano: Esce: Rancati T. (18) Entra: Rubino G. (26)"
+            },
+            {
+              "time": "18'",
+              "type": "sub",
+              "text": "Union O.T.G.: Esce: Reggio J. (23) Entra: Arena A. (35)"
+            },
+            {
+              "time": "18'",
+              "type": "sub",
+              "text": "Union O.T.G.: Esce: Severino R. (33) Entra: Rocca L. (27)"
+            },
+            {
+              "time": "22'",
+              "type": "goal",
+              "text": "Union O.T.G. segna: 7 - 1 Milione A."
+            },
+            {
+              "time": "22'",
+              "type": "sub",
+              "text": "Ussa Rozzano: Esce: Iorio S. (19) Entra: Reale A. (24)"
+            },
+            {
+              "time": "24'",
+              "type": "sub",
+              "text": "Union O.T.G.: Esce: Saettone F. (28) Entra: Kurukulasuriya F. (29)"
+            },
+            {
+              "time": "29'",
+              "type": "goal",
+              "text": "Union O.T.G. segna: 8 - 1 Caporali L."
+            },
+            {
+              "time": "30'",
+              "type": "goal",
+              "text": "Union O.T.G. segna: 9 - 1 Arena A."
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine 9 - 1"
+            }
+          ],
+          "report": "Sul terreno del Centro Sportivo S.Crisostomo di via Palmanova a Milano va in scena una sfida ricca di emozioni valida per il Girone B del campionato Under 14 a 11 del CSI di Milano. Domenica 4 ottobre 2026 si affrontano a viso aperto l'Union O.T.G. e l'Ussa Rozzano, in un confronto iniziato alle ore 15:00 sotto un clima ideale per giocare a pallone.\n\nLa partenza premia subito i padroni di casa: al 4' del primo tempo arriva il guizzo vincente che vale il vantaggio per l'Union O.T.G., 1-0 ⚽. La reazione degli ospiti non si fa attendere e al 9' l'Ussa Rozzano trova la via della rete, ristabilendo la parità sull'1-1 ⚽. Il ritmo resta gradevole e l'equilibrio dura fino al 20', quando la formazione di casa affonda nuovamente il colpo concretizzando il gol del 2-1 ⚽. Dopo tre minuti di recupero, l'arbitro manda le due formazioni negli spogliatoi per l'intervallo.\n\nAlla ripresa le due panchine muovono le prime pedine 🔃 🔃: tra le fila dell'Union O.T.G. fanno il loro ingresso Balaya Hulanage K. e Longoni M. per Corrias T. e Clemente M., mentre l'Ussa Rozzano inserisce Ungureanu L. al posto di Pennino L. L'avvio di secondo tempo dei padroni di casa è travolgente: passano appena due minuti e l'Union O.T.G. allunga sul 3-1 ⚽, trovando un solo minuto più tardi, al 3', il sigillo del 4-1 ⚽. L'intensità non cala e al 7' arriva anche la marcatura del 5-1 ⚽. Al 9' nuovo innesto per i locali con Caporali L. per Vacca F., e all'11' arriva il sesto centro di giornata che porta il tabellino sul 6-1 ⚽. Al quarto d'ora e oltre c'è spazio per ulteriori avvicendamenti 🔃 🔃: per gli ospiti Rubino G. rileva Rancati T. al 17', mentre al 18' la panchina di casa opera un doppio cambio con gli ingressi di Arena A. e Rocca L. per Reggio J. e Severino R. Al 22' l'Union O.T.G. trova la via del gol per il 7-1 ⚽, contemporaneamente al cambio ospite con Reale A. per Iorio S. Al 24' ultimo cambio casalingo con Kurukulasuriya Fernando R. che rileva Saettone F. Nel finale di gara la squadra di casa colpisce ancora con due reti in rapida successione: all'8-1 siglato al 29' ⚽ segue al 30' la firma del definitivo 9-1 ⚽. Nei tre minuti addizionali la contesa scorre fino al triplice fischio, sancito alle 16:17.\n\nUn successo rotondo per l'Union O.T.G., che guarda già al prossimo impegno in calendario: l'11 ottobre 2026 affronterà in trasferta l'Aics Olmi. L'Ussa Rozzano cercherà invece il pronto riscatto tra le mura amiche il 10 ottobre 2026 nella sfida contro il S.Fermo.\n\n(Carlo Testata)",
+          "detail_checked_at": "2026-10-08T17:38:57+02:00"
         },
         {
           "date": "2026-10-10",
@@ -4032,8 +4647,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001025.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001025.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001025_202610062321.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001025",
           "status": "PROGRAMMATA",
@@ -4066,8 +4681,8 @@
           "route_address": "Muggiano Via Muggiano 14 Milano",
           "home_logo": "/assets/csi-clubs/02001845.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001845.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001845_202610071524.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001845",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -4100,7 +4715,7 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02090257.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "away_logo_source": "https://cdncsi.csi-net.it/risultati/img_2/csi-shield-b.svg",
           "home_logo_code": "02000229",
           "away_logo_code": "02090257",
@@ -4134,8 +4749,8 @@
           "route_address": "Oratorio Sacra Famiglia P.Za Sacra Famiglia 1 Cinisello Balsamo",
           "home_logo": "/assets/csi-clubs/02001239.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001239.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001239_202610070806.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001239",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -4168,8 +4783,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000255.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000255.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000255_202610070929.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000255",
           "status": "PROGRAMMATA",
@@ -4202,8 +4817,8 @@
           "route_address": "G.S. Villa Via Ussi 18 Milano",
           "home_logo": "/assets/csi-clubs/02000150.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000150.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000150_202610070852.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000150",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -4236,8 +4851,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000729.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000729.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000729_202610071016.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000729",
           "status": "PROGRAMMATA",
@@ -4270,8 +4885,8 @@
           "route_address": "Oratorio Paolo Vi Via S.Francesco 12 Cernusco S.Naviglio",
           "home_logo": "/assets/csi-clubs/02001107.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001107.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001107_202610070952.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001107",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -4304,8 +4919,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02002179.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002179.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002179_202610071055.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02002179",
           "status": "PROGRAMMATA",
@@ -4338,8 +4953,8 @@
           "route_address": "Campo Comunale Quinto Stampi Via Franchi Maggi Rozzano",
           "home_logo": "/assets/csi-clubs/02001025.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001025.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001025_202610062321.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001025",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -4372,8 +4987,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001845.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001845.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001845_202610071524.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001845",
           "status": "PROGRAMMATA",
@@ -4407,7 +5022,7 @@
           "home_logo": "/assets/csi-clubs/02090257.jpg",
           "away_logo": "/assets/ussa-logo.png",
           "home_logo_source": "https://cdncsi.csi-net.it/risultati/img_2/csi-shield-b.svg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02090257",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -4440,8 +5055,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001239.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001239.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001239_202610070806.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001239",
           "status": "PROGRAMMATA",
@@ -4474,8 +5089,8 @@
           "route_address": "Centro Facchetti Via Monte Grappa 55 Bareggio",
           "home_logo": "/assets/csi-clubs/02000255.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000255.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000255_202610070929.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000255",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -4508,8 +5123,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000150.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000150.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000150_202610070852.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000150",
           "status": "PROGRAMMATA",
@@ -4542,8 +5157,8 @@
           "route_address": "Oratorio S.Giuliano P.Za S.Matteo 13 Cologno Monzese",
           "home_logo": "/assets/csi-clubs/02000729.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000729.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000729_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000729",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -4576,8 +5191,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001107.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001107.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001107_202610070952.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001107",
           "status": "PROGRAMMATA",
@@ -4724,7 +5339,7 @@
       "competition_label": "UNDER 12 A 7",
       "group": "H",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C142/?j=NEU9REZEJjRGPVBOSyY0Rz1FSEYmNEg9RCY0ST1VJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-03",
@@ -4751,14 +5366,72 @@
           "field": "Comunale Ussa Stadium",
           "address": "Via Della Cooperazione Rozzano",
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
-          "home_logo": "/assets/csi-clubs/02001952.jpg",
+          "home_logo": "/assets/csi-clubs/02001952_202610071615.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001952.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001952_202610071615.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001952",
           "away_logo_code": "02000229",
           "status": "DISPUTATA",
-          "source": "CSI LIVE"
+          "source": "CSI LIVE",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026142HA0101/?j=NEU9REZEJjRGPVBOSyY0Rz1FSEYmNEg9RCY0ST1VICY0Sj1GREZKRUhGVU5ERURFJjRMPURGRCY0Mj1j",
+          "score": "3 - 4",
+          "source_live": true,
+          "source_snapshot": false,
+          "events": [
+            {
+              "time": "4'",
+              "type": "goal",
+              "text": "Ussa Rozzano segna: 0 - 1"
+            },
+            {
+              "time": "6'",
+              "type": "goal",
+              "text": "Ussa Rozzano segna: 0 - 2"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine primo tempo"
+            },
+            {
+              "time": "3'",
+              "type": "goal",
+              "text": "Ussa Rozzano segna: 0 - 3"
+            },
+            {
+              "time": "7'",
+              "type": "goal",
+              "text": "Milano Arena Sport segna: 1 - 3"
+            },
+            {
+              "time": "11'",
+              "type": "goal",
+              "text": "Milano Arena Sport segna: 2 - 3"
+            },
+            {
+              "time": "15'",
+              "type": "goal",
+              "text": "Milano Arena Sport segna: 3 - 3"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine secondo tempo"
+            },
+            {
+              "time": "10'",
+              "type": "goal",
+              "text": "Ussa Rozzano segna: 3 - 4"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine 3 - 4"
+            }
+          ],
+          "report": "",
+          "detail_checked_at": "2026-10-08T17:39:05+02:00"
         },
         {
           "date": "2026-10-11",
@@ -4787,8 +5460,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001025.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001025.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001025_202610062321.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001025",
           "status": "PROGRAMMATA",
@@ -4821,8 +5494,8 @@
           "route_address": "Oratorio Maria Madre Chiesa Via Saponaro 28 Milano",
           "home_logo": "/assets/csi-clubs/02000803.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803_202610070844.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000803",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -4855,8 +5528,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001423.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001423.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001423_202610071106.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001423",
           "status": "PROGRAMMATA",
@@ -4889,8 +5562,8 @@
           "route_address": "Oratorio 4 Evangelisti Via Magliocco 4 Milano",
           "home_logo": "/assets/csi-clubs/02000448.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000448.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000448_202610070847.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000448",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -4923,8 +5596,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000346.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000346.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000346_202610071148.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000346",
           "status": "PROGRAMMATA",
@@ -4957,8 +5630,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001952.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001952.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001952_202610071615.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001952",
           "status": "PROGRAMMATA",
@@ -4991,8 +5664,8 @@
           "route_address": "Oratorio S.Fermo Via Franchi Maggi 94 Rozzano",
           "home_logo": "/assets/csi-clubs/02001025.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001025.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001025_202610062321.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001025",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -5025,8 +5698,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000803.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803_202610070844.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000803",
           "status": "PROGRAMMATA",
@@ -5059,8 +5732,8 @@
           "route_address": "Parrocchiale Samz Via S.Giacomo 9 Milano",
           "home_logo": "/assets/csi-clubs/02001423.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001423.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001423_202610071106.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001423",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -5093,8 +5766,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000448.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000448.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000448_202610070847.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000448",
           "status": "PROGRAMMATA",
@@ -5127,8 +5800,8 @@
           "route_address": "Oratorio Rosario Via Solari 22 Milano",
           "home_logo": "/assets/csi-clubs/02000346.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000346.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000346_202610071148.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000346",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -5228,7 +5901,20 @@
           "goal_difference": -3
         }
       ],
-      "scorers": []
+      "scorers": [
+        {
+          "name": "LORENZO BALBO",
+          "goals": 2
+        },
+        {
+          "name": "LUCA LEGROTTAGLIE",
+          "goals": 1
+        },
+        {
+          "name": "SAMUELE CINQUEPALMI",
+          "goals": 1
+        }
+      ]
     },
     "u11": {
       "label": "UNDER 11",
@@ -5236,7 +5922,7 @@
       "competition_label": "UNDER 11 A 7",
       "group": "A",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C174/?j=NEU9REZEJjRGPVBOSyY0Rz1FS0gmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-11",
@@ -5265,8 +5951,8 @@
           "route_address": "Sporting Murialdo Via Inganni 16 Milano",
           "home_logo": "/assets/csi-clubs/02001653.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001653.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001653_202610071151.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001653",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -5300,7 +5986,7 @@
           "home_logo": "/assets/csi-clubs/02002071.jpg",
           "away_logo": "/assets/ussa-logo.png",
           "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002071.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02002071",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -5333,8 +6019,8 @@
           "route_address": "S.Vito Stadium Via Tito Vignoli 35 Milano",
           "home_logo": "/assets/csi-clubs/02001736.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001736.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001736_202610071823.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001736",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -5367,8 +6053,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02002107.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002107.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002107_202610070938.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02002107",
           "status": "PROGRAMMATA",
@@ -5401,8 +6087,8 @@
           "route_address": "Oratorio S.Barnaba Via Gratosoglio 65 Milano",
           "home_logo": "/assets/csi-clubs/02000511.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000511.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000511_202610070939.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000511",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -5435,8 +6121,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001709.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001709.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001709_202610070928.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001709",
           "status": "PROGRAMMATA",
@@ -5469,8 +6155,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001653.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001653.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001653_202610071151.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001653",
           "status": "PROGRAMMATA",
@@ -5503,7 +6189,7 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02002071.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002071.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02002071",
@@ -5537,8 +6223,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001736.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001736.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001736_202610071823.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001736",
           "status": "PROGRAMMATA",
@@ -5571,8 +6257,8 @@
           "route_address": "Oratorio S.Adele Via Garibaldi 11 Buccinasco",
           "home_logo": "/assets/csi-clubs/02002107.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002107.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002107_202610070938.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02002107",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -5605,8 +6291,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000511.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000511.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000511_202610070939.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000511",
           "status": "PROGRAMMATA",
@@ -5639,8 +6325,8 @@
           "route_address": "Campo Football City P.Za Tirana 17 Milano",
           "home_logo": "/assets/csi-clubs/02001709.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001709.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001709_202610070928.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001709",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -5748,7 +6434,7 @@
       "competition_label": "UNDER 10 A 7",
       "group": "A",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C128/?j=NEU9REZEJjRGPVBOSyY0Rz1FRkwmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-04",
@@ -5776,13 +6462,56 @@
           "address": "Via Della Cooperazione Rozzano",
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
-          "away_logo": "/assets/csi-clubs/02001025.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001025.jpg",
+          "away_logo": "/assets/csi-clubs/02001025_202610062321.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001025_202610062321.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001025",
           "status": "DISPUTATA",
-          "source": "CSI LIVE"
+          "source": "CSI LIVE",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026128AA0103/?j=NEU9REZEJjRGPVBOSyY0Rz1FRkwmNEg9RCY0ST1OICY0Sj1GREZKRUZMTk5ERURHJjRMPURGRCY0Mj1j",
+          "score": "2 - 2",
+          "source_live": true,
+          "source_snapshot": false,
+          "events": [
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine primo tempo"
+            },
+            {
+              "time": "8'",
+              "type": "goal",
+              "text": "Ussa Rozzano segna: 1 - 0"
+            },
+            {
+              "time": "12'",
+              "type": "goal",
+              "text": "S.Fermo segna: 1 - 1"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine secondo tempo"
+            },
+            {
+              "time": "3'",
+              "type": "goal",
+              "text": "S.Fermo segna: 1 - 2"
+            },
+            {
+              "time": "14'",
+              "type": "goal",
+              "text": "Ussa Rozzano segna: 2 - 2"
+            },
+            {
+              "time": "",
+              "type": "phase",
+              "text": "Fine 2 - 2"
+            }
+          ],
+          "report": "",
+          "detail_checked_at": "2026-10-08T17:39:30+02:00"
         },
         {
           "date": "2026-10-10",
@@ -5811,8 +6540,8 @@
           "route_address": "Oratorio 4 Evangelisti Via Magliocco 4 Milano",
           "home_logo": "/assets/csi-clubs/02000448.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000448.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000448_202610070847.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000448",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -5845,8 +6574,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000519.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000519.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000519_202610071455.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000519",
           "status": "PROGRAMMATA",
@@ -5879,8 +6608,8 @@
           "route_address": "Oratorio S.Angelo Via Delle Ginestre Rozzano",
           "home_logo": "/assets/csi-clubs/02000513.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000513.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000513_202610071040.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000513",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -5913,8 +6642,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001423.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001423.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001423_202610071106.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001423",
           "status": "PROGRAMMATA",
@@ -5947,8 +6676,8 @@
           "route_address": "Oratorio Maria Madre Chiesa Via Saponaro 28 Milano",
           "home_logo": "/assets/csi-clubs/02000803.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803_202610070844.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000803",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -5982,7 +6711,7 @@
           "home_logo": "/assets/csi-clubs/02090147.jpg",
           "away_logo": "/assets/ussa-logo.png",
           "home_logo_source": "https://cdncsi.csi-net.it/risultati/img_2/csi-shield-b.svg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02090147",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -6015,8 +6744,8 @@
           "route_address": "Oratorio S.Fermo Via Franchi Maggi 94 Rozzano",
           "home_logo": "/assets/csi-clubs/02001025.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001025.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001025_202610062321.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001025",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -6049,8 +6778,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000448.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000448.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000448_202610070847.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000448",
           "status": "PROGRAMMATA",
@@ -6083,8 +6812,8 @@
           "route_address": "Parrocchiale Via C.A.Dalla Chiesa 2 Assago",
           "home_logo": "/assets/csi-clubs/02000519.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000519.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000519_202610071455.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000519",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -6117,8 +6846,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000513.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000513.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000513_202610071040.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000513",
           "status": "PROGRAMMATA",
@@ -6151,8 +6880,8 @@
           "route_address": "Parrocchiale Samz Via S.Giacomo 9 Milano",
           "home_logo": "/assets/csi-clubs/02001423.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001423.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001423_202610071106.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001423",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
@@ -6185,8 +6914,8 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000803.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000803_202610070844.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000803",
           "status": "PROGRAMMATA",
@@ -6219,7 +6948,7 @@
           "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02090147.jpg",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "away_logo_source": "https://cdncsi.csi-net.it/risultati/img_2/csi-shield-b.svg",
           "home_logo_code": "02000229",
           "away_logo_code": "02090147",
@@ -6341,7 +7070,7 @@
       "competition_label": "PALLAVOLO UNDER 11",
       "group": "C",
       "source_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-11-2485.html?v=partite",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-11",
@@ -6446,8 +7175,8 @@
           "id": "csi_2026333CA0303"
         },
         {
-          "date": "2026-11-01",
-          "time": "15:30",
+          "date": "2026-10-31",
+          "time": "11:30",
           "home": "USSA ROZZANO",
           "away": "GAREGNANO 1976",
           "names": [
@@ -7076,7 +7805,7 @@
       "competition_label": "PALLAVOLO UNDER 13",
       "group": "A",
       "source_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-13-2486.html?v=partite",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-11",
@@ -7653,7 +8382,7 @@
       "competition_label": "PALLAVOLO UNDER 14",
       "group": "E",
       "source_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-14-2181.html?v=partite",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-10",
@@ -8230,7 +8959,7 @@
       "competition_label": "PALLAVOLO UNDER 19",
       "group": "C",
       "source_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-19-2182.html?v=partite",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
           "date": "2026-10-17",
@@ -8301,6 +9030,40 @@
           "id": "csi_2026358CA0301"
         },
         {
+          "date": "2026-10-27",
+          "time": "20:00",
+          "home": "USSB",
+          "away": "USSA ROZZANO",
+          "names": [
+            "USSB",
+            "USSA ROZZANO"
+          ],
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://www.csi.milano.it/albo/partite/pallavolo-under-19-ussb-ussa-rozzano-2026358CA0404.html",
+          "team_key": "volley_u19",
+          "team_label": "UNDER 19",
+          "competition": "CSI",
+          "competition_label": "PALLAVOLO UNDER 19",
+          "group": "C",
+          "round": 4,
+          "leg": "ANDATA",
+          "home_away": "TRASFERTA",
+          "field": "ISTITUTO COMPRENSIVO \"ARCADIA,",
+          "address": "VIA DELL'ARCADIA 24 MILANO MI",
+          "route_address": "ISTITUTO COMPRENSIVO \"ARCADIA, VIA DELL'ARCADIA 24 MILANO MI",
+          "home_logo": "/assets/csi-clubs/USSB.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://www.csi.milano.it/media/loghi_societa/02000511.jpg",
+          "away_logo_source": "https://www.csi.milano.it/media/loghi_societa/02000229.jpg",
+          "home_logo_code": "USSB",
+          "away_logo_code": "USSA ROZZANO",
+          "status": "PROGRAMMATA",
+          "source": "CSI MILANO",
+          "id": "csi_2026358CA0404"
+        },
+        {
           "date": "2026-10-30",
           "time": "21:00",
           "home": "USSA ROZZANO",
@@ -8333,40 +9096,6 @@
           "status": "PROGRAMMATA",
           "source": "CSI MILANO",
           "id": "csi_2026358CA0102"
-        },
-        {
-          "date": "2026-10-31",
-          "time": "18:30",
-          "home": "USSB",
-          "away": "USSA ROZZANO",
-          "names": [
-            "USSB",
-            "USSA ROZZANO"
-          ],
-          "result": "",
-          "result_home": null,
-          "result_away": null,
-          "detail_url": "https://www.csi.milano.it/albo/partite/pallavolo-under-19-ussb-ussa-rozzano-2026358CA0404.html",
-          "team_key": "volley_u19",
-          "team_label": "UNDER 19",
-          "competition": "CSI",
-          "competition_label": "PALLAVOLO UNDER 19",
-          "group": "C",
-          "round": 4,
-          "leg": "ANDATA",
-          "home_away": "TRASFERTA",
-          "field": "ISTITUTO COMPRENSIVO \"ARCADIA,",
-          "address": "VIA DELL'ARCADIA 24 MILANO MI",
-          "route_address": "ISTITUTO COMPRENSIVO \"ARCADIA, VIA DELL'ARCADIA 24 MILANO MI",
-          "home_logo": "/assets/csi-clubs/USSB.jpg",
-          "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://www.csi.milano.it/media/loghi_societa/02000511.jpg",
-          "away_logo_source": "https://www.csi.milano.it/media/loghi_societa/02000229.jpg",
-          "home_logo_code": "USSB",
-          "away_logo_code": "USSA ROZZANO",
-          "status": "PROGRAMMATA",
-          "source": "CSI MILANO",
-          "id": "csi_2026358CA0404"
         },
         {
           "date": "2026-11-08",
@@ -8807,45 +9536,11 @@
       "competition_label": "PALLACANESTRO OPEN A",
       "group": "A",
       "source_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallacanestro-open-a-2180.html?v=partite",
-      "fetched_at": "2026-10-06T11:17:32+02:00",
+      "fetched_at": "2026-10-08T17:37:36+02:00",
       "schedule": [
         {
-          "date": "2026-10-09",
+          "date": "2026-10-16",
           "time": "21:30",
-          "home": "USSA ROZZANO",
-          "away": "ODB RESCALDINA",
-          "names": [
-            "USSA ROZZANO",
-            "ODB RESCALDINA"
-          ],
-          "result": "",
-          "result_home": null,
-          "result_away": null,
-          "detail_url": "https://www.csi.milano.it/albo/partite/pallacanestro-open-a-ussa-rozzano-odb-rescaldina-2026502AA0101.html",
-          "team_key": "basket_open_a",
-          "team_label": "OPEN A",
-          "competition": "CSI",
-          "competition_label": "PALLACANESTRO OPEN A",
-          "group": "A",
-          "round": 1,
-          "leg": "ANDATA",
-          "home_away": "CASA",
-          "field": "SCUOLA MEDIA LUINI,",
-          "address": "VIALE LIGURIA ,9 ROZZANO MI",
-          "route_address": "SCUOLA MEDIA LUINI, VIALE LIGURIA ,9 ROZZANO MI",
-          "home_logo": "/assets/ussa-logo.png",
-          "away_logo": "/assets/csi-clubs/ODBRESCALDINA.jpg",
-          "home_logo_source": "https://www.csi.milano.it/media/loghi_societa/02000229.jpg",
-          "away_logo_source": "https://www.csi.milano.it/media/loghi_societa/02000040.jpg",
-          "home_logo_code": "USSA ROZZANO",
-          "away_logo_code": "ODB RESCALDINA",
-          "status": "PROGRAMMATA",
-          "source": "CSI MILANO",
-          "id": "csi_2026502AA0101"
-        },
-        {
-          "date": "2026-10-17",
-          "time": "19:30",
           "home": "ANNI VERDI 95 CROCODILES",
           "away": "USSA ROZZANO",
           "names": [
@@ -8864,9 +9559,9 @@
           "round": 2,
           "leg": "ANDATA",
           "home_away": "TRASFERTA",
-          "field": "PALADAVINVI,",
-          "address": "VIA LEONARDO DA VINCI NERVIANO MI",
-          "route_address": "PALADAVINVI, VIA LEONARDO DA VINCI NERVIANO MI",
+          "field": "SCUOLA MEDIA LUINI,",
+          "address": "VIALE LIGURIA ,9 ROZZANO MI",
+          "route_address": "SCUOLA MEDIA LUINI, VIALE LIGURIA ,9 ROZZANO MI",
           "home_logo": "/assets/csi-clubs/ANNIVERDI95CROCODILES.jpg",
           "away_logo": "/assets/ussa-logo.png",
           "home_logo_source": "https://www.csi.milano.it/media/loghi_societa/02000400.jpg",
@@ -9082,8 +9777,42 @@
           "id": "csi_2026502AR0101"
         },
         {
-          "date": "2026-12-11",
+          "date": "2026-12-01",
           "time": "21:30",
+          "home": "USSA ROZZANO",
+          "away": "ODB RESCALDINA",
+          "names": [
+            "USSA ROZZANO",
+            "ODB RESCALDINA"
+          ],
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://www.csi.milano.it/albo/partite/pallacanestro-open-a-ussa-rozzano-odb-rescaldina-2026502AA0101.html",
+          "team_key": "basket_open_a",
+          "team_label": "OPEN A",
+          "competition": "CSI",
+          "competition_label": "PALLACANESTRO OPEN A",
+          "group": "A",
+          "round": 1,
+          "leg": "ANDATA",
+          "home_away": "CASA",
+          "field": "SCUOLA MEDIA LUINI,",
+          "address": "VIALE LIGURIA ,9 ROZZANO MI",
+          "route_address": "SCUOLA MEDIA LUINI, VIALE LIGURIA ,9 ROZZANO MI",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/ODBRESCALDINA.jpg",
+          "home_logo_source": "https://www.csi.milano.it/media/loghi_societa/02000229.jpg",
+          "away_logo_source": "https://www.csi.milano.it/media/loghi_societa/02000040.jpg",
+          "home_logo_code": "USSA ROZZANO",
+          "away_logo_code": "ODB RESCALDINA",
+          "status": "PROGRAMMATA",
+          "source": "CSI MILANO",
+          "id": "csi_2026502AA0101"
+        },
+        {
+          "date": "2026-12-12",
+          "time": "19:30",
           "home": "USSA ROZZANO",
           "away": "ANNI VERDI 95 CROCODILES",
           "names": [
@@ -9102,9 +9831,9 @@
           "round": 2,
           "leg": "RITORNO",
           "home_away": "CASA",
-          "field": "SCUOLA MEDIA LUINI,",
-          "address": "VIALE LIGURIA ,9 ROZZANO MI",
-          "route_address": "SCUOLA MEDIA LUINI, VIALE LIGURIA ,9 ROZZANO MI",
+          "field": "PALADAVINVI,",
+          "address": "VIA LEONARDO DA VINCI NERVIANO MI",
+          "route_address": "PALADAVINVI, VIA LEONARDO DA VINCI NERVIANO MI",
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/ANNIVERDI95CROCODILES.jpg",
           "home_logo_source": "https://www.csi.milano.it/media/loghi_societa/02000229.jpg",
@@ -9381,13 +10110,13 @@
   },
   "meta": {
     "status": "ok",
-    "trigger": "release-v2446",
-    "last_attempt_at": "2026-10-06T11:17:32+02:00",
-    "last_success_at": "2026-10-06T11:17:32+02:00",
+    "trigger": "release-v2448",
+    "last_attempt_at": "2026-10-08T17:37:36+02:00",
+    "last_success_at": "2026-10-08T17:37:36+02:00",
     "source_count": 15,
     "updated_count": 15,
     "error_count": 0,
-    "logo_count": 85,
+    "logo_count": 91,
     "errors": []
   }
 }
