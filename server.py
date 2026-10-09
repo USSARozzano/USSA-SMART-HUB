@@ -226,6 +226,27 @@ def csi_fixture_id(match):
         code=hashlib.sha1(raw.encode('utf-8')).hexdigest()[:16]
     return f'csi_{code}'
 
+def has_official_score(match):
+    """Una gara e' disputata soltanto quando la fonte pubblica un risultato numerico."""
+    if not isinstance(match,dict):return False
+    home=match.get('result_home');away=match.get('result_away')
+    if home is not None and away is not None:
+        try:int(home);int(away);return True
+        except (TypeError,ValueError):pass
+    return bool(re.fullmatch(r'\s*\d+\s*[-–]\s*\d+\s*',str(match.get('result') or match.get('score') or '')))
+
+def classify_unplayed(match, now):
+    """Conserva tra le prossime gare gli incontri scaduti ma privi di risultato."""
+    item=dict(match)
+    try:past=iso_dt(item['date'],item.get('time','00:00'))<now
+    except:past=False
+    marker=clean(f"{item.get('raw','')} {item.get('status','')}").upper()
+    if past or item.get('postponed') or re.search(r'\bN\.?\s*P\.?\b|RINVIAT|DA RECUPERARE',marker):
+        item['status']='DA RECUPERARE';item['postponed']=True
+    else:
+        item['status']='PROGRAMMATA';item.pop('postponed',None)
+    return item
+
 def fixture_by_id(fid):
     local=next((x for x in fixtures() if x.get('id')==fid),None)
     if local:return local
@@ -433,6 +454,7 @@ def parse_live_schedule(t,s,url):
         field,address=split_csi_venue(a.get('data-bs-title',''))
         round_no,leg=csi_round_info(a)
         result=f'{hg} - {ag}' if hg is not None and ag is not None else ''
+        postponed=not result and bool(re.search(r'\bN\.?\s*P\.?\b|RINVIAT',text.upper()))
         out.append({
             'date':dt.date().isoformat(),'time':mt.group(1) if mt else '',
             'home':names[0],'away':names[1],'names':names,'raw':text,
@@ -445,7 +467,8 @@ def parse_live_schedule(t,s,url):
             'home_logo':logos[0],'away_logo':logos[1],
             'home_logo_source':logo_sources[0],'away_logo_source':logo_sources[1],
             'home_logo_code':logo_codes[0],'away_logo_code':logo_codes[1],
-            'status':'DISPUTATA' if result else 'PROGRAMMATA','source':'CSI LIVE'
+            'status':'DISPUTATA' if result else ('DA RECUPERARE' if postponed else 'PROGRAMMATA'),
+            'postponed':postponed,'source':'CSI LIVE'
         })
     if out:return sorted(out,key=lambda x:(x['date'],x.get('time','')))
     # Compatibilità con eventuali pagine CSI che usano ancora tabelle.
@@ -494,6 +517,7 @@ def parse_old_csi_schedule(t,s,url):
         while len(logos)<2:
             i=len(logos);logo_sources.append('');logo_codes.append('')
             logos.append('/assets/ussa-logo.png' if 'USSA' in teams[i].upper() else '')
+        postponed=not score and bool(re.search(r'\bN\.?\s*P\.?\b|RINVIAT',result_text.upper()))
         item={
             'date':date,'time':time_text,'home':teams[0],'away':teams[1],'names':teams,
             'result':f'{hg} - {ag}' if score else '','result_home':hg,'result_away':ag,
@@ -505,7 +529,8 @@ def parse_old_csi_schedule(t,s,url):
             'home_logo':logos[0],'away_logo':logos[1],
             'home_logo_source':logo_sources[0],'away_logo_source':logo_sources[1],
             'home_logo_code':logo_codes[0],'away_logo_code':logo_codes[1],
-            'status':'DISPUTATA' if score else 'PROGRAMMATA','source':'CSI MILANO'
+            'status':'DISPUTATA' if score else ('DA RECUPERARE' if postponed else 'PROGRAMMATA'),
+            'postponed':postponed,'source':'CSI MILANO'
         }
         item['id']=f'csi_{code}' if code else csi_fixture_id(item)
         out.append(item)
@@ -703,7 +728,8 @@ def refresh_csi_cache(trigger='scheduled'):
                 previous_team=cached.get(t['key']) if isinstance(cached.get(t['key']),dict) else {}
                 schedule=enrich_csi_schedule_details(schedule,previous_team.get('schedule') or [])
                 standings=parse_live_standings(page) if t.get('csi_live_url') else old_csi_standings(t)
-                if not standings:raise ValueError('classifica/girone non riconosciuti nella pagina CSI Live')
+                if 'standings' in (t.get('planned_features') or []) and not standings:
+                    raise ValueError('classifica/girone non riconosciuti nella pagina CSI Live')
                 scorers=scorers_by_key.get(t['key'],[])
                 cached[t['key']]={
                     'label':t.get('label',t['key']),
@@ -1145,8 +1171,8 @@ def team_matches_data(t, competition):
     if competition=='FIGC':
         ensure_figc_refresh_if_due()
         arr=local_fixture_matches(t['key'],'FIGC')
-        played=[x for x in arr if iso_dt(x['date'],x['time'])<now]
-        nexts=[x for x in arr if iso_dt(x['date'],x['time'])>=now]
+        played=[dict(x) for x in arr if has_official_score(x)]
+        nexts=[classify_unplayed(x,now) for x in arr if not has_official_score(x)]
         return played,nexts
     if competition=='CSI' and csi_source_url(t):
         # La U13 TEST deve offrire sempre l'esperienza completa anche se CSI LIVE
@@ -1160,10 +1186,8 @@ def team_matches_data(t, competition):
         if not arr:arr=local_fixture_matches(t['key'],'CSI')
         played=[];nexts=[]
         for x in arr:
-            try:dt=iso_dt(x['date'],x.get('time','00:00'))
-            except:continue
-            if x.get('result') or dt<now:played.append(x)
-            else:nexts.append(x)
+            if has_official_score(x):played.append(dict(x))
+            else:nexts.append(classify_unplayed(x,now))
         return played,nexts
     return [],[]
 
@@ -1198,7 +1222,12 @@ def availability(key:str, competition:str='CSI'):
     standings=team_standings_data(t,competition)
     scorers=team_scorers_data(t,competition)
     played,nexts=team_matches_data(t,competition)
-    return {'staff':bool(t.get('staff')),'standings':bool(standings),'scorers':bool(scorers),'played':bool(played),'next':bool(nexts),
+    planned=set(t.get('planned_features') or [])
+    return {'staff':bool(t.get('staff')),
+            'standings':bool(standings) and 'standings' in planned,
+            'scorers':bool(scorers) and 'scorers' in planned,
+            'played':bool(played) and 'played' in planned,
+            'next':bool(nexts) and 'next' in planned,
             'competition':competition}
 
 @app.get('/api/team/{key}/standings')

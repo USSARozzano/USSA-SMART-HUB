@@ -648,7 +648,9 @@ function matchCard(x,played){
   let title=x.home&&x.away?`${teamDisplay(x.home)} – ${teamDisplay(x.away)}`:(x.names?.length?x.names.slice(-2).map(teamDisplay).join(' – '):teamDisplay(x.raw||'Partita USSA'));
   const attr=x.id?`data-fixture-id="${esc(x.id)}"`:(x.detail_url?`data-csi-detail="${esc(x.detail_url)}"`:``);
   const score=played&&x.result?`<div class="played-score ${resultOutcomeClass(x)}">${esc(x.result)}</div>`:'';
-  return `<button type="button" class="matchcard played-card" ${attr}><div class="matchhead"><div class="match-main"><div class="matchdate">${fmtDate(x.date).long.toUpperCase()} · ${esc(x.time||'')}</div><div class="matchtitle">${esc(title)}</div><div class="small">${esc(x.field||x.competition||currentCompetition)}${x.address?' · '+esc(x.address):''}</div></div>${score|| (x.home_away?`<div class="pill">${esc(x.home_away)}</div>`:'')}</div>${attr?`<div class="detailhint">${played?'DETTAGLIO GARA':'INFO PARTITA'} ›</div>`:''}</button>`
+  const pending=!played&&(x.postponed||String(x.status||'').toUpperCase()==='DA RECUPERARE');
+  const side=pending?'<div class="pill">DA RECUPERARE</div>':(x.home_away?`<div class="pill">${esc(x.home_away)}</div>`:'');
+  return `<button type="button" class="matchcard played-card" ${attr}><div class="matchhead"><div class="match-main"><div class="matchdate">${fmtDate(x.date).long.toUpperCase()} · ${esc(x.time||'')}</div><div class="matchtitle">${esc(title)}</div><div class="small">${esc(x.field||x.competition||currentCompetition)}${x.address?' · '+esc(x.address):''}</div></div>${score||side}</div>${attr?`<div class="detailhint">${played?'DETTAGLIO GARA':'INFO PARTITA'} ›</div>`:''}</button>`
 }
 function resultScoreParts(x){
   const raw=String(x?.result??x?.score??'');let m=raw.match(/(\d+)\s*[-–]\s*(\d+)/);

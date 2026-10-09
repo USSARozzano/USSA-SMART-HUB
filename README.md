@@ -1,4 +1,13 @@
-USSA SMART HUB — V2.4.48
+USSA SMART HUB — V2.4.49
+
+Correzione V2.4.49:
+- collegati i calendari CSI ufficiali UNDER 9 A 5, Girone A, e PRIMI CALCI, Girone A;
+- importati automaticamente calendario, casa/trasferta, giornate, campi, indirizzi e stemmi disponibili;
+- entrambi i calendari partecipano all'aggiornamento automatico giornaliero e mantengono la cache locale di sicurezza;
+- una gara entra in "Gare disputate" soltanto quando la fonte ufficiale pubblica un risultato numerico;
+- le gare con data trascorsa ma senza risultato restano in "Prossime partite" con la dicitura "DA RECUPERARE";
+- riconosciuti automaticamente gli indicatori CSI "N.P." e "Rinviata";
+- la regola vale per tutte le categorie CSI e FIGC e si riallinea automaticamente quando viene pubblicata la nuova data o il risultato.
 
 Aggiornamento V2.4.48:
 - classifica marcatori delle squadre calcio CSI acquisita dall'endpoint ufficiale di csi.milano.it e aggiornata ogni giorno;

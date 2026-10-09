@@ -6,7 +6,7 @@
       "competition_label": "OPEN ECCELLENZA A 11",
       "group": "A",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C105/?j=NEU9REZEJjRGPVBOWSY0Rz1FREkmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-04",
@@ -40,11 +40,8 @@
           "home_logo_code": "02001632",
           "away_logo_code": "02000229",
           "status": "DISPUTATA",
+          "postponed": false,
           "source": "CSI LIVE",
-          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026105AA0103/?j=NEU9REZEJjRGPVBOWSY0Rz1FREkmNEg9RCY0ST1OICY0Sj1GREZKRURJTk5ERURHJjRMPURGRCY0Mj1j",
-          "score": "1 - 5",
-          "source_live": true,
-          "source_snapshot": false,
           "events": [
             {
               "time": "28'",
@@ -148,7 +145,11 @@
             }
           ],
           "report": "Al Centro Sportivo Fatima di Via Chopin a Milano va in scena una sfida vibrante e ricca di spunti, valida per il girone A del campionato di Calcio a 11 Open Eccellenza organizzato dal CSI di Milano. Nella cornice serale di domenica 4 ottobre 2026, con fischio d’inizio alle 18:30, i padroni di casa del Fatimatraccia affrontano l’insidioso Ussa Rozzano Yellow in un confronto atteso e carico di aspettative.\n\nLa prima frazione si apre su ritmi sostenuti, con le due formazioni abili a fronteggiarsi a viso aperto e con grande rispetto tattico. L’incontro viaggia sul filo dell'equilibrio fino al minuto 28, quando l'arbitro sanziona con un cartellino giallo 🟨 Sciusco L. per gli ospiti. L'episodio scuote la contesa e al 33' arriva il primo squillo del match: manovra corale ben orchestrata e vantaggio per l'Ussa Rozzano Yellow, che piazza il colpo dello 0-1 ⚽! Il Fatimatraccia prova a reagire nei minuti conclusivi, ma dopo un solo minuto di recupero il direttore di gara manda tutti a riposo con gli ospiti avanti di misura.\n\nLa ripresa si apre subito con novità tattiche. Per i padroni di casa esce Agnesi M. ed entra Sicignano L. 🔃, mentre la compagine ospite risponde con un doppio avvicendamento: dentro De Michele A. per Sciusco L. e Pitton F. al posto di Bassi R. 🔃. La ripartenza premia immediatamente i viaggianti che al 7' trovano il raddoppio per lo 0-2 ⚽. La reazione del Fatimatraccia è però veemente e al 10' la gara si riapre: zampata decisiva e rete dell'1-2 ⚽, proprio mentre il tecnico di casa richiama in panchina Meleri D. per gettare nella mischia Guarinelli A. La sfida sale di tono agonistico: al 13' finisce sul taccuino dei cattivi Fumagalli D. con un giallo 🟨 tra le file locali, imitato al 20' da Filippone F. 🟨 tra gli ospiti. Al 21' nuovo cambio per l'Ussa Rozzano Yellow, con Curci F. che rileva Allegro L. Al 23' arriva un momento chiave del secondo tempo: rapida transizione della compagine ospite e gol micidiale che vale l'1-3 ⚽! Subito dopo il Fatimatraccia prova a mescolare le carte inserendo Morandi F. per Guerrera G. 🔃, e successivamente, al 28', Zaopo M. al posto di Bramati S. Gli ospiti replicano al 29' con un doppio innesto: entrano Gorgone M. per Crenna M. e Mazzeo A. per Donofrio A. 🔃. La freschezza delle seconde linee favorisce l'allungo decisivo: al 30' arriva infatti la marcatura dell'1-4 ⚽ e al 36' il sigillo finale con la rete che fissa il risultato sull'1-5 ⚽. Dopo cinque minuti di recupero, il triplice fischio delle 19:56 sancisce il definitivo successo dell'Ussa Rozzano Yellow.\n\nUna prestazione solida e cinica consente agli ospiti di conquistare l'intera posta in palio, mentre il Fatimatraccia paga qualche disattenzione nella seconda parte di gara dopo aver accarezzato la rimonta. Non c'è comunque tempo per recriminare: il Fatimatraccia tornerà in campo giovedì 8 ottobre 2026 nella trasferta contro l'Atletico Zona 9, mentre l'Ussa Rozzano Yellow cercherà conferme lunedì 12 ottobre 2026 tra le mura amiche contro l'Ausonia.\n\n(Aldo Rimessa)",
-          "detail_checked_at": "2026-10-08T17:38:26+02:00"
+          "detail_checked_at": "2026-10-09T16:04:09+02:00",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026105AA0103/?j=NEU9REZEJjRGPVBOWSY0Rz1FREkmNEg9RCY0ST1OICY0Sj1GREZKRURJTk5ERURHJjRMPURGRCY0Mj1j",
+          "score": "1 - 5",
+          "source_live": true,
+          "source_snapshot": false
         },
         {
           "date": "2026-10-12",
@@ -182,6 +183,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000111",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -212,10 +214,11 @@
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000601.jpg",
           "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000601.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000601_202610091551.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000601",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -250,6 +253,7 @@
           "home_logo_code": "02001939",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -284,6 +288,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000088",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -318,6 +323,7 @@
           "home_logo_code": "02000045",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -352,6 +358,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001107",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -386,6 +393,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001632",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -420,6 +428,7 @@
           "home_logo_code": "02000111",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -449,11 +458,12 @@
           "route_address": "C.S. A. Franchi Strada Provinciale 182 Rodano",
           "home_logo": "/assets/csi-clubs/02000601.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000601.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000601_202610091551.jpg",
           "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000601",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -488,6 +498,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001939",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -522,6 +533,7 @@
           "home_logo_code": "02000088",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -556,6 +568,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000045",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -590,12 +603,26 @@
           "home_logo_code": "02001107",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         }
       ],
       "standings": [
         {
           "position": 1,
+          "team": "Atletico Zona 9",
+          "points": 6,
+          "played": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "gf": 7,
+          "gs": 1,
+          "ga": 1,
+          "goal_difference": 6
+        },
+        {
+          "position": 2,
           "team": "Ussa Rozzano Yellow",
           "points": 3,
           "played": 1,
@@ -608,21 +635,8 @@
           "goal_difference": 4
         },
         {
-          "position": 2,
-          "team": "Orpas",
-          "points": 3,
-          "played": 1,
-          "wins": 1,
-          "draws": 0,
-          "losses": 0,
-          "gf": 3,
-          "gs": 0,
-          "ga": 0,
-          "goal_difference": 3
-        },
-        {
           "position": 3,
-          "team": "Atletico Zona 9",
+          "team": "Orpas",
           "points": 3,
           "played": 1,
           "wins": 1,
@@ -689,14 +703,14 @@
           "position": 8,
           "team": "Fatimatraccia",
           "points": 0,
-          "played": 1,
+          "played": 2,
           "wins": 0,
           "draws": 0,
-          "losses": 1,
-          "gf": 1,
-          "gs": 5,
-          "ga": 5,
-          "goal_difference": -4
+          "losses": 2,
+          "gf": 2,
+          "gs": 9,
+          "ga": 9,
+          "goal_difference": -7
         }
       ],
       "scorers": [
@@ -720,7 +734,7 @@
       "competition_label": "OPEN ECCELLENZA A 11",
       "group": "B",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C105/?j=NEU9REZEJjRGPVBOWSY0Rz1FREkmNEg9RCY0ST1PJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-05",
@@ -750,10 +764,11 @@
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02000616.jpg",
           "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000616.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000616_202610091438.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000616",
-          "status": "PROGRAMMATA",
+          "status": "DA RECUPERARE",
+          "postponed": true,
           "source": "CSI LIVE"
         },
         {
@@ -788,6 +803,7 @@
           "home_logo_code": "02001082",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -822,6 +838,7 @@
           "home_logo_code": "02000349",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -856,6 +873,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001307",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -890,6 +908,7 @@
           "home_logo_code": "02001568",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -924,6 +943,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000420",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -958,6 +978,7 @@
           "home_logo_code": "02000252",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -987,11 +1008,12 @@
           "route_address": "C.S. Bruno Cereda Via Vespucci 36/38 Cesano Boscone",
           "home_logo": "/assets/csi-clubs/02000616.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000616.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000616_202610091438.jpg",
           "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02000616",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1026,6 +1048,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001082",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1060,6 +1083,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000349",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1094,6 +1118,7 @@
           "home_logo_code": "02001307",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1128,6 +1153,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001568",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1162,6 +1188,7 @@
           "home_logo_code": "02000420",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1196,6 +1223,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000252",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         }
       ],
@@ -1326,7 +1354,7 @@
       "competition_label": "UNDER 20 A 11",
       "group": "A",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C782/?j=NEU9REZEJjRGPVBOWSY0Rz1LTEYmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-03",
@@ -1359,7 +1387,8 @@
           "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000065_202610071045.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02000065",
-          "status": "PROGRAMMATA",
+          "status": "DA RECUPERARE",
+          "postponed": true,
           "source": "CSI LIVE"
         },
         {
@@ -1394,6 +1423,7 @@
           "home_logo_code": "02001709",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1428,6 +1458,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000252",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1462,6 +1493,7 @@
           "home_logo_code": "02001061",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1496,6 +1528,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02002107",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1530,6 +1563,7 @@
           "home_logo_code": "02002020",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1564,6 +1598,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001934",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1598,6 +1633,7 @@
           "home_logo_code": "02001423",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1632,6 +1668,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000513",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1666,6 +1703,7 @@
           "home_logo_code": "02000065",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1700,6 +1738,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001709",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1734,6 +1773,7 @@
           "home_logo_code": "02000252",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1768,6 +1808,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001061",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1802,6 +1843,7 @@
           "home_logo_code": "02002107",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1836,6 +1878,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02002020",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1870,6 +1913,7 @@
           "home_logo_code": "02001934",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1904,6 +1948,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001423",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -1938,6 +1983,7 @@
           "home_logo_code": "02000513",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         }
       ],
@@ -2081,7 +2127,7 @@
       "competition_label": "UNDER 17 A 11",
       "group": "C",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C732/?j=NEU9REZEJjRGPVBOWSY0Rz1LR0YmNEg9RCY0ST1QJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-04",
@@ -2115,11 +2161,8 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001845",
           "status": "DISPUTATA",
+          "postponed": false,
           "source": "CSI LIVE",
-          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026732CA0104/?j=NEU9REZEJjRGPVBOWSY0Rz1LR0YmNEg9RCY0ST1QICY0Sj1GREZKS0dGUE5ERURIJjRMPURGRCY0Mj1j",
-          "score": "4 - 1",
-          "source_live": true,
-          "source_snapshot": false,
           "events": [
             {
               "time": "20'",
@@ -2203,7 +2246,11 @@
             }
           ],
           "report": "Domenica 4 ottobre 2026, alle ore 15:00, la cornice del Comunale Ussa Stadium di Via Della Cooperazione a Rozzano ha fatto da palcoscenico alla sfida valevole per il Girone C del campionato Under 17 a 11 organizzato dal CSI Milano, con i padroni di casa in divisa blu dell'Ussa Rozzano opposti alla compagine rosso-nera dell'Aics Olmi.\n\nL'incontro entra subito nel vivo grazie all'intraprendenza delle due formazioni, determinate a contendersi ogni pallone con ordine e intensità. Al 20' la panchina ospite effettua la prima rotazione della gara: 🔃 🔃 esce Gadelsayed D. ed entra Abdelhamid K. La fiammata scuote l'Aics Olmi, che al 22' trova lo spunto perfetto per rompere gli indugi: palla in rete e ospiti avanti 0-1 ⚽ ⚽! Lo svantaggio non disunisce i padroni di casa, capaci di imbastire una replica istantanea e carica di determinazione. Trascorrono infatti appena tre minuti e al 25' l'Ussa Rozzano trova la via del pareggio, firmando l'1-1 ⚽ ⚽ tra gli applausi del pubblico. Con il risultato tornato sui binari della parità si chiude la prima frazione.\n\nNella ripresa i blu partono con il piede giusto e operano subito un cambio tattico al 2': 🔃 🔃 dentro Pulcini N. per Pollio S. Risponde l'Aics Olmi all'8', inserendo 🔃 🔃 Iaquinta A. al posto di Villarusso F. Il momento favorevole dei locali si concretizza al 10', quando la formazione di Rozzano trova lo spiraglio giusto per completare il ribaltone con il gol del 2-1 ⚽ ⚽! Girandola di cambi: al 15' tra i padroni di casa 🔃 🔃 Marques Dada A. rileva Toffanin E., mentre al 20' la formazione ospite getta nella mischia forze fresche con un doppio innesto, 🔃 🔃 Bicos F. per Itri G. e 🔃 🔃 Spano S. per Ronchi L. Proprio al 20', però, l'Ussa Rozzano accelera ancora e realizza la rete del 3-1 ⚽ ⚽, mettendo una seria ipoteca sulla sfida. I locali spingono sull'onda dell'entusiasmo e al 23' calano il poker con il sigillo del 4-1 ⚽ ⚽. A risultato ormai acquisito, al 25' la formazione di casa perfeziona un triplo avvicendamento: 🔃 🔃 esce Petagna L. per far spazio a Ronconi E., 🔃 🔃 Varano A. subentra a Rama J. e 🔃 🔃 Colasuonno E. rimpiazza Conti L. Dopo 2 minuti di recupero, alle 16:12 l'arbitro sancisce la fine delle ostilità.\n\nUna prestazione autoritaria per l'Ussa Rozzano, abile a rimontare e a gestire i ritmi della ripresa con lucidità ed efficacia. L'Aics Olmi ha saputo colpire per prima, ma ha dovuto cedere alla distanza di fronte alla progressione avversaria. Nel prossimo turno, l'Aics Olmi tornerà in campo tra le mura amiche il 10 ottobre 2026 per confrontarsi con il Real Affori, mentre l'Ussa Rozzano sarà attesa l'11 ottobre 2026 dalla trasferta contro l'Up Settimo.\n\n(Sergio Parata)",
-          "detail_checked_at": "2026-10-08T17:38:34+02:00"
+          "detail_checked_at": "2026-10-09T16:04:22+02:00",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026732CA0104/?j=NEU9REZEJjRGPVBOWSY0Rz1LR0YmNEg9RCY0ST1QICY0Sj1GREZKS0dGUE5ERURIJjRMPURGRCY0Mj1j",
+          "score": "4 - 1",
+          "source_live": true,
+          "source_snapshot": false
         },
         {
           "date": "2026-10-11",
@@ -2237,6 +2284,7 @@
           "home_logo_code": "02000252",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2271,6 +2319,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000803",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2305,6 +2354,7 @@
           "home_logo_code": "02000346",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2339,6 +2389,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000660",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2373,6 +2424,7 @@
           "home_logo_code": "02000058",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2407,6 +2459,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02002179",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2441,6 +2494,7 @@
           "home_logo_code": "02000065",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2475,6 +2529,7 @@
           "home_logo_code": "02001845",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2509,6 +2564,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000252",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2543,6 +2599,7 @@
           "home_logo_code": "02000803",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2577,6 +2634,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000346",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2611,6 +2669,7 @@
           "home_logo_code": "02000660",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2645,6 +2704,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000058",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2679,6 +2739,7 @@
           "home_logo_code": "02002179",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -2713,6 +2774,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000065",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         }
       ],
@@ -2843,7 +2905,7 @@
       "competition_label": "UNDER 15 A 11",
       "group": "A",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C772/?j=NEU9REZEJjRGPVBOWSY0Rz1LS0YmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-03",
@@ -2877,11 +2939,8 @@
           "home_logo_code": "02000505",
           "away_logo_code": "02000229",
           "status": "DISPUTATA",
+          "postponed": false,
           "source": "CSI LIVE",
-          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026772AA0104/?j=NEU9REZEJjRGPVBOWSY0Rz1LS0YmNEg9RCY0ST1OICY0Sj1GREZKS0tGTk5ERURIJjRMPURGRCY0Mj1j",
-          "score": "0 - 6",
-          "source_live": true,
-          "source_snapshot": false,
           "events": [
             {
               "time": "8'",
@@ -2990,7 +3049,11 @@
             }
           ],
           "report": "Nel pomeriggio di sabato 3 ottobre 2026, il Centro Sportivo S.Crisostomo di via Palmanova 47 a Milano ha fatto da cornice alla sfida valida per il girone A del campionato Under 15 a 11 del CSI di Milano. Sul terreno di gioco si sono affrontati i padroni di casa del S.Carlo Casoretto U15, in divisa bianca e blu, e la formazione ospite dell’Ussa Rozzano Yellow, scesa in campo con la tradizionale tenuta blu.\n\nIl fischio d'inizio delle 16:15 accende una contesa che vede gli ospiti partire con grandissima determinazione. Bastano appena otto minuti alla formazione di Rozzano per sbloccare l'incontro: incursione letale e pallone in fondo al sacco per il vantaggio ospite, 0-1 ⚽! I padroni di casa cercano di riorganizzarsi sul piano tattico, ma i viaggianti mantengono un ritmo sostenuto e al 25' trovano il raddoppio, portandosi sullo 0-2 ⚽. Il S.Carlo Casoretto accusa il colpo e quattro minuti più tardi, al 29', arriva anche il tris per la formazione ospite: 0-3 ⚽! Si va così al riposo con l’Ussa Rozzano Yellow in saldo controllo del punteggio.\n\nLa ripresa si apre subito con una pioggia di cambi su entrambi i fronti. Per i padroni di casa entrano contemporaneamente Pozzi F. per Cozzi G., Corsentino F. per Cassaro G. e Graziano F. per Palmieri F. 🔃, mentre tra gli ospiti fanno il loro ingresso Fasano L. al posto di Chierichetti M. e Castelli L. per Barbarossa G. 🔃. Al 9' nuovo avvicendamento per il S.Carlo Casoretto con Nasr M. che rileva Bonfanti E. 🔃, seguito poco dopo dagli ingressi di De Gasperi M. per Maragno A. al 12' e di Palmieri M. per Corsentino F. al 13' 🔃. Anche la panchina dell’Ussa Rozzano Yellow muove le proprie pedine al 15', inserendo Marchino D. per Caso M., Rubino N. per Baione A. e Fittipaldi L. per Areniello M. 🔃. La pressione della compagine ospite torna a farsi travolgente nella seconda metà della frazione: al 21' arriva il quarto centro di giornata che vale lo 0-4 ⚽, seguito a ruota due minuti dopo, al 23', dalla rete dello 0-5 ⚽. Al 24' ultimo cambio per gli ospiti con Casiraghi S. al posto di Begeja O. 🔃. Al 27' il direttore di gara estrae un cartellino giallo all'indirizzo di Livrieri C. 🟨, ma al 30' arriva la sesta e definitiva marcatura per l’Ussa Rozzano Yellow, che fissa il risultato sul definitivo 0-6 ⚽.\n\nUn successo netto e convincente per i ragazzi in maglia blu, capaci di imporre il proprio gioco per l'intero arco del match. Nel prossimo turno, in programma il 10 ottobre 2026, il S.Carlo Casoretto U15 cercherà il riscatto nella trasferta contro il Nabor; l'Ussa Rozzano Yellow proverà invece a confermare il proprio ottimo momento davanti al pubblico amico l'11 ottobre 2026, quando riceverà la visita del S.Adele.\n\n(Sandro Rigori)",
-          "detail_checked_at": "2026-10-08T17:38:41+02:00"
+          "detail_checked_at": "2026-10-09T16:04:32+02:00",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026772AA0104/?j=NEU9REZEJjRGPVBOWSY0Rz1LS0YmNEg9RCY0ST1OICY0Sj1GREZKS0tGTk5ERURIJjRMPURGRCY0Mj1j",
+          "score": "0 - 6",
+          "source_live": true,
+          "source_snapshot": false
         },
         {
           "date": "2026-10-11",
@@ -3024,6 +3087,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02002107",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3058,6 +3122,7 @@
           "home_logo_code": "02000058",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3092,6 +3157,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000803",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3126,6 +3192,7 @@
           "home_logo_code": "02000185",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3160,6 +3227,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02002189",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3194,6 +3262,7 @@
           "home_logo_code": "02000401",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3228,6 +3297,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02002179",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3262,6 +3332,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000505",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3296,6 +3367,7 @@
           "home_logo_code": "02002107",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3330,6 +3402,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000058",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3364,6 +3437,7 @@
           "home_logo_code": "02000803",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3398,6 +3472,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000185",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3432,6 +3507,7 @@
           "home_logo_code": "02002189",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3466,6 +3542,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000401",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3500,6 +3577,7 @@
           "home_logo_code": "02002179",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         }
       ],
@@ -3647,7 +3725,7 @@
       "competition_label": "UNDER 15 A 11",
       "group": "C",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C772/?j=NEU9REZEJjRGPVBOWSY0Rz1LS0YmNEg9RCY0ST1QJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-04",
@@ -3674,18 +3752,15 @@
           "field": "Osaf Stadium",
           "address": "Via Friuli 20 Lainate",
           "route_address": "Osaf Stadium Via Friuli 20 Lainate",
-          "home_logo": "/assets/csi-clubs/02001886.jpg",
+          "home_logo": "/assets/csi-clubs/02001886_202610081747.jpg",
           "away_logo": "/assets/ussa-logo.png",
-          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001886.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001886_202610081747.jpg",
           "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
           "home_logo_code": "02001886",
           "away_logo_code": "02000229",
           "status": "DISPUTATA",
+          "postponed": false,
           "source": "CSI LIVE",
-          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026772CA0101/?j=NEU9REZEJjRGPVBOWSY0Rz1LS0YmNEg9RCY0ST1QICY0Sj1GREZKS0tGUE5ERURFJjRMPURGRCY0Mj1j",
-          "score": "0 - 8",
-          "source_live": true,
-          "source_snapshot": false,
           "events": [
             {
               "time": "5'",
@@ -3814,7 +3889,11 @@
             }
           ],
           "report": "Una splendida mattinata all'Osaf Stadium di via Friuli a Lainate fa da cornice al confronto valido per il Girone C del campionato Under 15 a 11, organizzato dal CSI di Milano. Con il calcio d'inizio fissato alle ore 09:30 di domenica 4 ottobre 2026, i padroni di casa dell'Osaf Lainate ospitano la formazione dell'Ussa Rozzano Blue in una sfida ricca di spunti e ritmi intensi sin dalle battute inaugurali.\n\nL'avvio di gara vede subito gli ospiti prendere in mano le redini del gioco con un approccio determinato e incisivo. Bastano appena cinque giri di lancette per sbloccare il punteggio: al 5' la formazione ospite trova il varco giusto per lo 0-1 ⚽. La reazione dei locali tarda ad arrivare e la compagine rozzanese ne approfitta immediatamente al 7', raddoppiando e portando il parziale sullo 0-2 ⚽. L'Osaf Lainate prova a riorganizzarsi, ma la pressione avversaria è costante e al 14' arriva la terza rete ospite per lo 0-3 ⚽. Al 21' un fallo nell'area di rigore locale concede agli ospiti la chance dal dischetto: trasformazione impeccabile dagli undici metri ed è 0-4 ⚽. Sul finire di tempo la panchina di casa tenta di mescolare le carte con una variazione tattica: al 27' esce Ursano G. ed entra Scaramuzzino L. 🔃. Dopo tre minuti di recupero, l'arbitro manda le due compagini negli spogliatoi sul netto quattro a zero a favore degli ospiti.\n\nLa ripresa si apre con due avvicendamenti per l'Osaf Lainate: lasciano il campo Nerio Janampa D. e Forgione M., rilevati rispettivamente da Fortini M. e Dellanoce L. 🔃. Neanche il tempo di assestarsi che al 1' l'Ussa Rozzano Blue cala subito il pokerissimo firmando lo 0-5 ⚽. Al 3' nuovo cambio per i locali con Diagne A. che rileva Genoni F., mentre al 5' anche la formazione ospite effettua un doppio innesto, inserendo Avellino T. al posto di Zemiti L. e Pellegrino E. per Lusiardi T.. All'8' girandola di cambi su entrambi i fronti 🔃: tra i padroni di casa Vurchio M. rimpiazza Concardi F. e Oglialoro A. subentra a Caschetta R., mentre tra gli ospiti Barone S. entra per Sartor T. e Abaraghe I. per Gristina G.. L'Ussa Rozzano Blue continua a mantenere alta l'intensità e all'11' allunga ulteriormente fissando lo 0-6 ⚽. La formazione ospite non allenta la presa e al 17' trova la via del gol per la settima volta, portando il risultato sullo 0-7 ⚽. Al 21' i viaggianti completano le sostituzioni con gli ingressi di Cardone C., Alvarez Felix R. e Bartoli S. rispettivamente per Scoccimarro A., Notari D. e Caroè N. 🔃. Replica subito dopo la compagine di Lainate al 22', mandando sul terreno di gioco Palazzo N. per La Barbera K. e Diarra M. per Botti M.. Al 33' arriva l'ottavo sigillo ospite che vale il definitivo 0-8 ⚽. Al termine dei cinque minuti di recupero, alle ore 10:48 arriva il triplice fischio di chiusura.\n\nUna prova di grande qualità e cinismo consente all'Ussa Rozzano Blue di conquistare un successo rotondo e convincente. Gli ospiti torneranno in campo tra le mura amiche l'11 ottobre 2026 per affrontare l'Osa. L'Osaf Lainate, chiamata a voltare pagina dopo una mattinata complessa, cercherà il riscatto il prossimo 17 ottobre 2026 nella trasferta contro la medesima compagine dell'Osa.\n\n(Marco Stoppa)",
-          "detail_checked_at": "2026-10-08T17:38:49+02:00"
+          "detail_checked_at": "2026-10-09T16:04:52+02:00",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026772CA0101/?j=NEU9REZEJjRGPVBOWSY0Rz1LS0YmNEg9RCY0ST1QICY0Sj1GREZKS0tGUE5ERURFJjRMPURGRCY0Mj1j",
+          "score": "0 - 8",
+          "source_live": true,
+          "source_snapshot": false
         },
         {
           "date": "2026-10-11",
@@ -3848,6 +3927,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000421",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3882,6 +3962,7 @@
           "home_logo_code": "02001717",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3916,6 +3997,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001888",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3950,6 +4032,7 @@
           "home_logo_code": "02090264",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -3984,6 +4067,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000241",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4018,6 +4102,7 @@
           "home_logo_code": "02000211",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4052,6 +4137,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000803",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4082,10 +4168,11 @@
           "home_logo": "/assets/ussa-logo.png",
           "away_logo": "/assets/csi-clubs/02001886.jpg",
           "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
-          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001886.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001886_202610081747.jpg",
           "home_logo_code": "02000229",
           "away_logo_code": "02001886",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4120,6 +4207,7 @@
           "home_logo_code": "02000421",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4154,6 +4242,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001717",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4188,6 +4277,7 @@
           "home_logo_code": "02001888",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4222,6 +4312,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02090264",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4256,6 +4347,7 @@
           "home_logo_code": "02000241",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4290,6 +4382,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000211",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4324,6 +4417,7 @@
           "home_logo_code": "02000803",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         }
       ],
@@ -4471,7 +4565,7 @@
       "competition_label": "UNDER 14 A 11",
       "group": "B",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/C111/?j=NEU9REZEJjRGPVBOWSY0Rz1FRUUmNEg9RCY0ST1PJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-04",
@@ -4505,11 +4599,8 @@
           "home_logo_code": "02002179",
           "away_logo_code": "02000229",
           "status": "DISPUTATA",
+          "postponed": false,
           "source": "CSI LIVE",
-          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026111BA0105/?j=NEU9REZEJjRGPVBOWSY0Rz1FRUUmNEg9RCY0ST1PICY0Sj1GREZKRUVFT05ERURJJjRMPURGRCY0Mj1j",
-          "score": "9 - 1",
-          "source_live": true,
-          "source_snapshot": false,
           "events": [
             {
               "time": "4'",
@@ -4618,7 +4709,11 @@
             }
           ],
           "report": "Sul terreno del Centro Sportivo S.Crisostomo di via Palmanova a Milano va in scena una sfida ricca di emozioni valida per il Girone B del campionato Under 14 a 11 del CSI di Milano. Domenica 4 ottobre 2026 si affrontano a viso aperto l'Union O.T.G. e l'Ussa Rozzano, in un confronto iniziato alle ore 15:00 sotto un clima ideale per giocare a pallone.\n\nLa partenza premia subito i padroni di casa: al 4' del primo tempo arriva il guizzo vincente che vale il vantaggio per l'Union O.T.G., 1-0 ⚽. La reazione degli ospiti non si fa attendere e al 9' l'Ussa Rozzano trova la via della rete, ristabilendo la parità sull'1-1 ⚽. Il ritmo resta gradevole e l'equilibrio dura fino al 20', quando la formazione di casa affonda nuovamente il colpo concretizzando il gol del 2-1 ⚽. Dopo tre minuti di recupero, l'arbitro manda le due formazioni negli spogliatoi per l'intervallo.\n\nAlla ripresa le due panchine muovono le prime pedine 🔃 🔃: tra le fila dell'Union O.T.G. fanno il loro ingresso Balaya Hulanage K. e Longoni M. per Corrias T. e Clemente M., mentre l'Ussa Rozzano inserisce Ungureanu L. al posto di Pennino L. L'avvio di secondo tempo dei padroni di casa è travolgente: passano appena due minuti e l'Union O.T.G. allunga sul 3-1 ⚽, trovando un solo minuto più tardi, al 3', il sigillo del 4-1 ⚽. L'intensità non cala e al 7' arriva anche la marcatura del 5-1 ⚽. Al 9' nuovo innesto per i locali con Caporali L. per Vacca F., e all'11' arriva il sesto centro di giornata che porta il tabellino sul 6-1 ⚽. Al quarto d'ora e oltre c'è spazio per ulteriori avvicendamenti 🔃 🔃: per gli ospiti Rubino G. rileva Rancati T. al 17', mentre al 18' la panchina di casa opera un doppio cambio con gli ingressi di Arena A. e Rocca L. per Reggio J. e Severino R. Al 22' l'Union O.T.G. trova la via del gol per il 7-1 ⚽, contemporaneamente al cambio ospite con Reale A. per Iorio S. Al 24' ultimo cambio casalingo con Kurukulasuriya Fernando R. che rileva Saettone F. Nel finale di gara la squadra di casa colpisce ancora con due reti in rapida successione: all'8-1 siglato al 29' ⚽ segue al 30' la firma del definitivo 9-1 ⚽. Nei tre minuti addizionali la contesa scorre fino al triplice fischio, sancito alle 16:17.\n\nUn successo rotondo per l'Union O.T.G., che guarda già al prossimo impegno in calendario: l'11 ottobre 2026 affronterà in trasferta l'Aics Olmi. L'Ussa Rozzano cercherà invece il pronto riscatto tra le mura amiche il 10 ottobre 2026 nella sfida contro il S.Fermo.\n\n(Carlo Testata)",
-          "detail_checked_at": "2026-10-08T17:38:57+02:00"
+          "detail_checked_at": "2026-10-09T16:05:03+02:00",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-11/Lombardia/Milano/P2026111BA0105/?j=NEU9REZEJjRGPVBOWSY0Rz1FRUUmNEg9RCY0ST1PICY0Sj1GREZKRUVFT05ERURJJjRMPURGRCY0Mj1j",
+          "score": "9 - 1",
+          "source_live": true,
+          "source_snapshot": false
         },
         {
           "date": "2026-10-10",
@@ -4652,6 +4747,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001025",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4686,6 +4782,7 @@
           "home_logo_code": "02001845",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4720,6 +4817,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02090257",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4754,6 +4852,7 @@
           "home_logo_code": "02001239",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4788,6 +4887,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000255",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4822,6 +4922,7 @@
           "home_logo_code": "02000150",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4856,6 +4957,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000729",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4890,6 +4992,7 @@
           "home_logo_code": "02001107",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4924,6 +5027,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02002179",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4958,6 +5062,7 @@
           "home_logo_code": "02001025",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -4992,6 +5097,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001845",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5026,6 +5132,7 @@
           "home_logo_code": "02090257",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5060,6 +5167,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001239",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5094,6 +5202,7 @@
           "home_logo_code": "02000255",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5128,6 +5237,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000150",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5162,6 +5272,7 @@
           "home_logo_code": "02000729",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5196,6 +5307,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001107",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         }
       ],
@@ -5339,7 +5451,7 @@
       "competition_label": "UNDER 12 A 7",
       "group": "H",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C142/?j=NEU9REZEJjRGPVBOSyY0Rz1FSEYmNEg9RCY0ST1VJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-03",
@@ -5373,11 +5485,8 @@
           "home_logo_code": "02001952",
           "away_logo_code": "02000229",
           "status": "DISPUTATA",
+          "postponed": false,
           "source": "CSI LIVE",
-          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026142HA0101/?j=NEU9REZEJjRGPVBOSyY0Rz1FSEYmNEg9RCY0ST1VICY0Sj1GREZKRUhGVU5ERURFJjRMPURGRCY0Mj1j",
-          "score": "3 - 4",
-          "source_live": true,
-          "source_snapshot": false,
           "events": [
             {
               "time": "4'",
@@ -5431,7 +5540,11 @@
             }
           ],
           "report": "",
-          "detail_checked_at": "2026-10-08T17:39:05+02:00"
+          "detail_checked_at": "2026-10-09T16:05:14+02:00",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026142HA0101/?j=NEU9REZEJjRGPVBOSyY0Rz1FSEYmNEg9RCY0ST1VICY0Sj1GREZKRUhGVU5ERURFJjRMPURGRCY0Mj1j",
+          "score": "3 - 4",
+          "source_live": true,
+          "source_snapshot": false
         },
         {
           "date": "2026-10-11",
@@ -5465,6 +5578,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001025",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5499,6 +5613,7 @@
           "home_logo_code": "02000803",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5533,6 +5648,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001423",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5567,6 +5683,7 @@
           "home_logo_code": "02000448",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5601,6 +5718,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000346",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5635,6 +5753,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001952",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5669,6 +5788,7 @@
           "home_logo_code": "02001025",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5703,6 +5823,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000803",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5737,6 +5858,7 @@
           "home_logo_code": "02001423",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5771,6 +5893,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000448",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5805,6 +5928,7 @@
           "home_logo_code": "02000346",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         }
       ],
@@ -5922,7 +6046,7 @@
       "competition_label": "UNDER 11 A 7",
       "group": "A",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C174/?j=NEU9REZEJjRGPVBOSyY0Rz1FS0gmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-11",
@@ -5956,6 +6080,7 @@
           "home_logo_code": "02001653",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -5990,6 +6115,7 @@
           "home_logo_code": "02002071",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6024,6 +6150,7 @@
           "home_logo_code": "02001736",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6058,6 +6185,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02002107",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6092,6 +6220,7 @@
           "home_logo_code": "02000511",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6126,6 +6255,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001709",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6160,6 +6290,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001653",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6194,6 +6325,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02002071",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6228,6 +6360,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001736",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6262,6 +6395,7 @@
           "home_logo_code": "02002107",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6296,6 +6430,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000511",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6330,6 +6465,7 @@
           "home_logo_code": "02001709",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         }
       ],
@@ -6434,7 +6570,7 @@
       "competition_label": "UNDER 10 A 7",
       "group": "A",
       "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C128/?j=NEU9REZEJjRGPVBOSyY0Rz1FRkwmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-04",
@@ -6468,11 +6604,8 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001025",
           "status": "DISPUTATA",
+          "postponed": false,
           "source": "CSI LIVE",
-          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026128AA0103/?j=NEU9REZEJjRGPVBOSyY0Rz1FRkwmNEg9RCY0ST1OICY0Sj1GREZKRUZMTk5ERURHJjRMPURGRCY0Mj1j",
-          "score": "2 - 2",
-          "source_live": true,
-          "source_snapshot": false,
           "events": [
             {
               "time": "",
@@ -6511,7 +6644,11 @@
             }
           ],
           "report": "",
-          "detail_checked_at": "2026-10-08T17:39:30+02:00"
+          "detail_checked_at": "2026-10-09T16:05:24+02:00",
+          "url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026128AA0103/?j=NEU9REZEJjRGPVBOSyY0Rz1FRkwmNEg9RCY0ST1OICY0Sj1GREZKRUZMTk5ERURHJjRMPURGRCY0Mj1j",
+          "score": "2 - 2",
+          "source_live": true,
+          "source_snapshot": false
         },
         {
           "date": "2026-10-10",
@@ -6545,6 +6682,7 @@
           "home_logo_code": "02000448",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6579,6 +6717,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000519",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6613,6 +6752,7 @@
           "home_logo_code": "02000513",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6647,6 +6787,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02001423",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6681,6 +6822,7 @@
           "home_logo_code": "02000803",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6715,6 +6857,7 @@
           "home_logo_code": "02090147",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6749,6 +6892,7 @@
           "home_logo_code": "02001025",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6783,6 +6927,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000448",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6817,6 +6962,7 @@
           "home_logo_code": "02000519",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6851,6 +6997,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000513",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6885,6 +7032,7 @@
           "home_logo_code": "02001423",
           "away_logo_code": "02000229",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6919,6 +7067,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02000803",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         },
         {
@@ -6953,6 +7102,7 @@
           "home_logo_code": "02000229",
           "away_logo_code": "02090147",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI LIVE"
         }
       ],
@@ -7070,7 +7220,7 @@
       "competition_label": "PALLAVOLO UNDER 11",
       "group": "C",
       "source_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-11-2485.html?v=partite",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-11",
@@ -7103,6 +7253,7 @@
           "home_logo_code": "GENITORI SCUOLE UNDER 11",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CA0102"
         },
@@ -7137,6 +7288,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "NABOR",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CA0203"
         },
@@ -7171,6 +7323,7 @@
           "home_logo_code": "FORTES",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CA0303"
         },
@@ -7205,6 +7358,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "GAREGNANO 1976",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CA0402"
         },
@@ -7239,6 +7393,7 @@
           "home_logo_code": "VISCONTINI USD",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CA0504"
         },
@@ -7273,6 +7428,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "S.LUIGI S.GIULIANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CA0601"
         },
@@ -7307,6 +7463,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "FIDES SMA",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CA0705"
         },
@@ -7341,6 +7498,7 @@
           "home_logo_code": "S.ENRICO",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CA0801"
         },
@@ -7375,6 +7533,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "ASSISI",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CA0904"
         },
@@ -7409,6 +7568,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "GENITORI SCUOLE UNDER 11",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CR0102"
         },
@@ -7443,6 +7603,7 @@
           "home_logo_code": "NABOR",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CR0203"
         },
@@ -7477,6 +7638,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "FORTES",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CR0303"
         },
@@ -7511,6 +7673,7 @@
           "home_logo_code": "GAREGNANO 1976",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CR0402"
         },
@@ -7545,6 +7708,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "VISCONTINI USD",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CR0504"
         },
@@ -7579,6 +7743,7 @@
           "home_logo_code": "S.LUIGI S.GIULIANO",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CR0601"
         },
@@ -7613,6 +7778,7 @@
           "home_logo_code": "FIDES SMA",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CR0705"
         },
@@ -7647,6 +7813,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "S.ENRICO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CR0801"
         },
@@ -7681,6 +7848,7 @@
           "home_logo_code": "ASSISI",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026333CR0904"
         }
@@ -7805,7 +7973,7 @@
       "competition_label": "PALLAVOLO UNDER 13",
       "group": "A",
       "source_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-13-2486.html?v=partite",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-11",
@@ -7838,6 +8006,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "S.ENRICO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AA0101"
         },
@@ -7872,6 +8041,7 @@
           "home_logo_code": "PALLAVOLO LOCATE",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AA0204"
         },
@@ -7906,6 +8076,7 @@
           "home_logo_code": "S.STEFANO",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AA0301"
         },
@@ -7940,6 +8111,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "APO S.CARLO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AA0403"
         },
@@ -7974,6 +8146,7 @@
           "home_logo_code": "CEA",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AA0502"
         },
@@ -8008,6 +8181,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "DIAVOLI ROSSI",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AA0602"
         },
@@ -8042,6 +8216,7 @@
           "home_logo_code": "PANTIGLIATE POLISPORTIVA",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AA0703"
         },
@@ -8076,6 +8251,7 @@
           "home_logo_code": "S.ENRICO",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AR0101"
         },
@@ -8110,6 +8286,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "PALLAVOLO LOCATE",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AR0204"
         },
@@ -8144,6 +8321,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "S.STEFANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AR0301"
         },
@@ -8178,6 +8356,7 @@
           "home_logo_code": "APO S.CARLO",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AR0403"
         },
@@ -8212,6 +8391,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "CEA",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AR0502"
         },
@@ -8246,6 +8426,7 @@
           "home_logo_code": "DIAVOLI ROSSI",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AR0602"
         },
@@ -8280,6 +8461,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "PANTIGLIATE POLISPORTIVA",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026332AR0703"
         }
@@ -8382,7 +8564,7 @@
       "competition_label": "PALLAVOLO UNDER 14",
       "group": "E",
       "source_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-14-2181.html?v=partite",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-10",
@@ -8415,6 +8597,7 @@
           "home_logo_code": "K2 U14",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310EA0102"
         },
@@ -8449,6 +8632,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "APO S.CARLO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310EA0202"
         },
@@ -8483,6 +8667,7 @@
           "home_logo_code": "PRIMAVERA 2005",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310EA0303"
         },
@@ -8517,6 +8702,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "OMF BLUE PANTHER",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310EA0401"
         },
@@ -8551,6 +8737,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "SAMZ MILANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310EA0504"
         },
@@ -8585,6 +8772,7 @@
           "home_logo_code": "NEW EVERGREEN",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310EA0601"
         },
@@ -8619,6 +8807,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "MI3 VOLLEY U14 ROSSA",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310EA0703"
         },
@@ -8653,6 +8842,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "K2 U14",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310ER0102"
         },
@@ -8687,6 +8877,7 @@
           "home_logo_code": "APO S.CARLO",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310ER0202"
         },
@@ -8721,6 +8912,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "PRIMAVERA 2005",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310ER0303"
         },
@@ -8755,6 +8947,7 @@
           "home_logo_code": "OMF BLUE PANTHER",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310ER0401"
         },
@@ -8789,6 +8982,7 @@
           "home_logo_code": "SAMZ MILANO",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310ER0504"
         },
@@ -8823,6 +9017,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "NEW EVERGREEN",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310ER0601"
         },
@@ -8857,6 +9052,7 @@
           "home_logo_code": "MI3 VOLLEY U14 ROSSA",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026310ER0703"
         }
@@ -8959,7 +9155,7 @@
       "competition_label": "PALLAVOLO UNDER 19",
       "group": "C",
       "source_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallavolo-under-19-2182.html?v=partite",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-17",
@@ -8992,6 +9188,7 @@
           "home_logo_code": "FORTES",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CA0203"
         },
@@ -9026,6 +9223,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "DIAVOLI ROSSI",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CA0301"
         },
@@ -9060,6 +9258,7 @@
           "home_logo_code": "USSB",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CA0404"
         },
@@ -9094,6 +9293,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "N&C ATLETICO BARONA",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CA0102"
         },
@@ -9128,6 +9328,7 @@
           "home_logo_code": "SAMZ MILANO",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CA0501"
         },
@@ -9162,6 +9363,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "GENITORI SCUOLE U19",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CA0603"
         },
@@ -9196,6 +9398,7 @@
           "home_logo_code": "S.R.V. MILANO",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CA0702"
         },
@@ -9230,6 +9433,7 @@
           "home_logo_code": "N&C ATLETICO BARONA",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CR0102"
         },
@@ -9264,6 +9468,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "FORTES",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CR0203"
         },
@@ -9298,6 +9503,7 @@
           "home_logo_code": "DIAVOLI ROSSI",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CR0301"
         },
@@ -9332,6 +9538,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "USSB",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CR0404"
         },
@@ -9366,6 +9573,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "SAMZ MILANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CR0501"
         },
@@ -9400,6 +9608,7 @@
           "home_logo_code": "GENITORI SCUOLE U19",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CR0603"
         },
@@ -9434,6 +9643,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "S.R.V. MILANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026358CR0702"
         }
@@ -9536,7 +9746,7 @@
       "competition_label": "PALLACANESTRO OPEN A",
       "group": "A",
       "source_url": "https://www.csi.milano.it/albo/squadre/ussa-rozzano-pallacanestro-open-a-2180.html?v=partite",
-      "fetched_at": "2026-10-08T17:37:36+02:00",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
       "schedule": [
         {
           "date": "2026-10-16",
@@ -9569,6 +9779,7 @@
           "home_logo_code": "ANNI VERDI 95 CROCODILES",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AA0204"
         },
@@ -9603,6 +9814,7 @@
           "home_logo_code": "RABBITS' SQUAD",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AA0301"
         },
@@ -9637,6 +9849,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "POSCAR BARIANA ASD",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AA0403"
         },
@@ -9671,6 +9884,7 @@
           "home_logo_code": "AGAPE ASD",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AA0502"
         },
@@ -9705,6 +9919,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "S.PAOLO RHO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AA0602"
         },
@@ -9739,6 +9954,7 @@
           "home_logo_code": "FORTES",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AA0703"
         },
@@ -9773,6 +9989,7 @@
           "home_logo_code": "ODB RESCALDINA",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AR0101"
         },
@@ -9807,6 +10024,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "ODB RESCALDINA",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AA0101"
         },
@@ -9841,6 +10059,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "ANNI VERDI 95 CROCODILES",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AR0204"
         },
@@ -9875,6 +10094,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "RABBITS' SQUAD",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AR0301"
         },
@@ -9909,6 +10129,7 @@
           "home_logo_code": "POSCAR BARIANA ASD",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AR0403"
         },
@@ -9943,6 +10164,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "AGAPE ASD",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AR0502"
         },
@@ -9977,6 +10199,7 @@
           "home_logo_code": "S.PAOLO RHO",
           "away_logo_code": "USSA ROZZANO",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AR0602"
         },
@@ -10011,6 +10234,7 @@
           "home_logo_code": "USSA ROZZANO",
           "away_logo_code": "FORTES",
           "status": "PROGRAMMATA",
+          "postponed": false,
           "source": "CSI MILANO",
           "id": "csi_2026502AR0703"
         }
@@ -10106,17 +10330,1148 @@
         }
       ],
       "scorers": []
+    },
+    "u9": {
+      "label": "UNDER 9",
+      "team_name": "Ussa Rozzano",
+      "competition_label": "UNDER 9 A 5",
+      "group": "A",
+      "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C158/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
+      "schedule": [
+        {
+          "date": "2026-10-17",
+          "time": "14:45",
+          "home": "Pol Oratorio Cusago",
+          "away": "Ussa Rozzano",
+          "names": [
+            "Pol Oratorio Cusago",
+            "Ussa Rozzano"
+          ],
+          "raw": "17/10/26 14:45 Pol Oratorio Cusago Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AA0102/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTk5ERURGJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 1,
+          "leg": "ANDATA",
+          "home_away": "TRASFERTA",
+          "field": "Oratorio Cusago",
+          "address": "Piazza Soncino 9 Cusago",
+          "route_address": "Oratorio Cusago Piazza Soncino 9 Cusago",
+          "home_logo": "/assets/csi-clubs/02002071.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002071.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02002071",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2026-10-25",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "Gescal Boys Blu",
+          "names": [
+            "Ussa Rozzano",
+            "Gescal Boys Blu"
+          ],
+          "raw": "25/10/26 11:00 Ussa Rozzano Gescal Boys Blu - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AA0202/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTk5ERkRGJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 2,
+          "leg": "ANDATA",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02002133.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002133_202610071218.jpg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02002133",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2026-10-31",
+          "time": "10:30",
+          "home": "Futsei Milano Fm Cisliano",
+          "away": "Ussa Rozzano",
+          "names": [
+            "Futsei Milano Fm Cisliano",
+            "Ussa Rozzano"
+          ],
+          "raw": "31/10/26 10:30 Futsei Milano Fm Cisliano Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AA0303/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTk5ER0RHJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 3,
+          "leg": "ANDATA",
+          "home_away": "TRASFERTA",
+          "field": "Comunale Gallana",
+          "address": "Via Papa Giovanni XXIII 2 Cisliano",
+          "route_address": "Comunale Gallana Via Papa Giovanni XXIII 2 Cisliano",
+          "home_logo": "/assets/csi-clubs/02001701.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001701_202610080928.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02001701",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2026-11-08",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "Ussb",
+          "names": [
+            "Ussa Rozzano",
+            "Ussb"
+          ],
+          "raw": "08/11/26 11:00 Ussa Rozzano Ussb - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AA0401/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTk5ESERFJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 4,
+          "leg": "ANDATA",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02000511.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000511_202610070939.jpg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02000511",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2026-11-15",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "COC",
+          "names": [
+            "Ussa Rozzano",
+            "COC"
+          ],
+          "raw": "15/11/26 11:00 Ussa Rozzano COC - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AA0504/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTk5ESURIJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 5,
+          "leg": "ANDATA",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02000231.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000231_202610071141.jpg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02000231",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2026-11-21",
+          "time": "16:30",
+          "home": "Fides Sma",
+          "away": "Ussa Rozzano",
+          "names": [
+            "Fides Sma",
+            "Ussa Rozzano"
+          ],
+          "raw": "21/11/26 16:30 Fides Sma Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AA0601/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTk5ESkRFJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 6,
+          "leg": "ANDATA",
+          "home_away": "TRASFERTA",
+          "field": "Oratorio S.Maria Ausiliatrice",
+          "address": "Via Della Ferrera 11 Milano",
+          "route_address": "Oratorio S.Maria Ausiliatrice Via Della Ferrera 11 Milano",
+          "home_logo": "/assets/csi-clubs/02000347.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000347_202610062330.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02000347",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2026-11-29",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "Assisi",
+          "names": [
+            "Ussa Rozzano",
+            "Assisi"
+          ],
+          "raw": "29/11/26 11:00 Ussa Rozzano Assisi - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AA0703/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTk5ES0RHJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 7,
+          "leg": "ANDATA",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02000077.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000077_202610071634.jpg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02000077",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-01-17",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "Pol Oratorio Cusago",
+          "names": [
+            "Ussa Rozzano",
+            "Pol Oratorio Cusago"
+          ],
+          "raw": "17/01/27 11:00 Ussa Rozzano Pol Oratorio Cusago - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AR0102/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTmVERURGJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 1,
+          "leg": "RITORNO",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02002071.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002071.jpg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02002071",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-01-23",
+          "time": "14:30",
+          "home": "Gescal Boys Blu",
+          "away": "Ussa Rozzano",
+          "names": [
+            "Gescal Boys Blu",
+            "Ussa Rozzano"
+          ],
+          "raw": "23/01/27 14:30 Gescal Boys Blu Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AR0202/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTmVERkRGJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 2,
+          "leg": "RITORNO",
+          "home_away": "TRASFERTA",
+          "field": "Gescal Boys",
+          "address": "Via Olivieri 9 Milano",
+          "route_address": "Gescal Boys Via Olivieri 9 Milano",
+          "home_logo": "/assets/csi-clubs/02002133.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002133_202610071218.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02002133",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-01-31",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "Futsei Milano Fm Cisliano",
+          "names": [
+            "Ussa Rozzano",
+            "Futsei Milano Fm Cisliano"
+          ],
+          "raw": "31/01/27 11:00 Ussa Rozzano Futsei Milano Fm Cisliano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AR0303/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTmVER0RHJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 3,
+          "leg": "RITORNO",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02001701.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02001701_202610080928.jpg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02001701",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-02-07",
+          "time": "17:00",
+          "home": "Ussb",
+          "away": "Ussa Rozzano",
+          "names": [
+            "Ussb",
+            "Ussa Rozzano"
+          ],
+          "raw": "07/02/27 17:00 Ussb Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AR0401/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTmVESERFJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 4,
+          "leg": "RITORNO",
+          "home_away": "TRASFERTA",
+          "field": "Oratorio S.Barnaba",
+          "address": "Via Gratosoglio 65 Milano",
+          "route_address": "Oratorio S.Barnaba Via Gratosoglio 65 Milano",
+          "home_logo": "/assets/csi-clubs/02000511.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000511_202610070939.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02000511",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-02-13",
+          "time": "17:30",
+          "home": "COC",
+          "away": "Ussa Rozzano",
+          "names": [
+            "COC",
+            "Ussa Rozzano"
+          ],
+          "raw": "13/02/27 17:30 COC Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AR0504/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTmVESURIJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 5,
+          "leg": "RITORNO",
+          "home_away": "TRASFERTA",
+          "field": "Oratorio Chiaradia",
+          "address": "P.Za Chiaradia 16 Milano",
+          "route_address": "Oratorio Chiaradia P.Za Chiaradia 16 Milano",
+          "home_logo": "/assets/csi-clubs/02000231.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000231_202610071141.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02000231",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-02-21",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "Fides Sma",
+          "names": [
+            "Ussa Rozzano",
+            "Fides Sma"
+          ],
+          "raw": "21/02/27 11:00 Ussa Rozzano Fides Sma - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AR0601/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTmVESkRFJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 6,
+          "leg": "RITORNO",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02000347.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000347_202610062330.jpg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02000347",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-02-28",
+          "time": "11:45",
+          "home": "Assisi",
+          "away": "Ussa Rozzano",
+          "names": [
+            "Assisi",
+            "Ussa Rozzano"
+          ],
+          "raw": "28/02/27 11:45 Assisi Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026158AR0703/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OICY0Sj1GREZKRUlMTmVES0RHJjRMPURGRCY0Mj1j",
+          "team_key": "u9",
+          "team_label": "UNDER 9",
+          "competition": "CSI",
+          "competition_label": "UNDER 9 A 5",
+          "group": "A",
+          "round": 7,
+          "leg": "RITORNO",
+          "home_away": "TRASFERTA",
+          "field": "Assisistadium",
+          "address": "Via Usignolo-Carozzi Milano",
+          "route_address": "Assisistadium Via Usignolo-Carozzi Milano",
+          "home_logo": "/assets/csi-clubs/02000077.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000077_202610071634.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02000077",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        }
+      ],
+      "standings": [
+        {
+          "position": 1,
+          "team": "Ussa Rozzano",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 2,
+          "team": "COC",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 3,
+          "team": "Futsei Milano Fm Cisliano",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 4,
+          "team": "Pol Oratorio Cusago",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 5,
+          "team": "Ussb",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 6,
+          "team": "Assisi",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 7,
+          "team": "Gescal Boys Blu",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 8,
+          "team": "Fides Sma",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        }
+      ],
+      "scorers": []
+    },
+    "primi_calci": {
+      "label": "PRIMI CALCI",
+      "team_name": "Ussa Rozzano",
+      "competition_label": "PRIMI CALCI",
+      "group": "A",
+      "source_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C168/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
+      "fetched_at": "2026-10-09T16:02:50+02:00",
+      "schedule": [
+        {
+          "date": "2026-10-24",
+          "time": "11:00",
+          "home": "Osm Assago",
+          "away": "Ussa Rozzano",
+          "names": [
+            "Osm Assago",
+            "Ussa Rozzano"
+          ],
+          "raw": "24/10/26 11:00 Osm Assago Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026168AA0201/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OICY0Sj1GREZKRUpMTk5ERkRFJjRMPURGRCY0Mj1j",
+          "team_key": "primi_calci",
+          "team_label": "PRIMI CALCI",
+          "competition": "CSI",
+          "competition_label": "PRIMI CALCI",
+          "group": "A",
+          "round": 2,
+          "leg": "ANDATA",
+          "home_away": "TRASFERTA",
+          "field": "Parrocchiale",
+          "address": "Via C.A.Dalla Chiesa 2 Assago",
+          "route_address": "Parrocchiale Via C.A.Dalla Chiesa 2 Assago",
+          "home_logo": "/assets/csi-clubs/02000519.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000519_202610071455.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02000519",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2026-10-31",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "S.Matroniano",
+          "names": [
+            "Ussa Rozzano",
+            "S.Matroniano"
+          ],
+          "raw": "31/10/26 11:00 Ussa Rozzano S.Matroniano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026168AA0303/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OICY0Sj1GREZKRUpMTk5ER0RHJjRMPURGRCY0Mj1j",
+          "team_key": "primi_calci",
+          "team_label": "PRIMI CALCI",
+          "competition": "CSI",
+          "competition_label": "PRIMI CALCI",
+          "group": "A",
+          "round": 3,
+          "leg": "ANDATA",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02000360.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000360_202610070755.jpg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02000360",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2026-11-08",
+          "time": "16:00",
+          "home": "CEA",
+          "away": "Ussa Rozzano",
+          "names": [
+            "CEA",
+            "Ussa Rozzano"
+          ],
+          "raw": "08/11/26 16:00 CEA Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026168AA0402/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OICY0Sj1GREZKRUpMTk5ESERGJjRMPURGRCY0Mj1j",
+          "team_key": "primi_calci",
+          "team_label": "PRIMI CALCI",
+          "competition": "CSI",
+          "competition_label": "PRIMI CALCI",
+          "group": "A",
+          "round": 4,
+          "leg": "ANDATA",
+          "home_away": "TRASFERTA",
+          "field": "Oratorio",
+          "address": "Viale Ungheria 32 Milano",
+          "route_address": "Oratorio Viale Ungheria 32 Milano",
+          "home_logo": "/assets/csi-clubs/02000185.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000185_202610070934.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02000185",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2026-11-14",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "Orpas 2020 Giallo",
+          "names": [
+            "Ussa Rozzano",
+            "Orpas 2020 Giallo"
+          ],
+          "raw": "14/11/26 11:00 Ussa Rozzano Orpas 2020 Giallo - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026168AA0502/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OICY0Sj1GREZKRUpMTk5ESURGJjRMPURGRCY0Mj1j",
+          "team_key": "primi_calci",
+          "team_label": "PRIMI CALCI",
+          "competition": "CSI",
+          "competition_label": "PRIMI CALCI",
+          "group": "A",
+          "round": 5,
+          "leg": "ANDATA",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02000045.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000045_202610071047.jpg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02000045",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2026-11-22",
+          "time": "09:30",
+          "home": "Wemove Ssd Arl",
+          "away": "Ussa Rozzano",
+          "names": [
+            "Wemove Ssd Arl",
+            "Ussa Rozzano"
+          ],
+          "raw": "22/11/26 09:30 Wemove Ssd Arl Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026168AA0603/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OICY0Sj1GREZKRUpMTk5ESkRHJjRMPURGRCY0Mj1j",
+          "team_key": "primi_calci",
+          "team_label": "PRIMI CALCI",
+          "competition": "CSI",
+          "competition_label": "PRIMI CALCI",
+          "group": "A",
+          "round": 6,
+          "leg": "ANDATA",
+          "home_away": "TRASFERTA",
+          "field": "C.S. Cappelli",
+          "address": "P.Za Caduti Del Lavoro 5 Milano",
+          "route_address": "C.S. Cappelli P.Za Caduti Del Lavoro 5 Milano",
+          "home_logo": "/assets/csi-clubs/02002054.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002054_202610071444.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02002054",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2026-11-28",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "Virtus Bascape' Vb",
+          "names": [
+            "Ussa Rozzano",
+            "Virtus Bascape' Vb"
+          ],
+          "raw": "28/11/26 11:00 Ussa Rozzano Virtus Bascape' Vb - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026168AA0701/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OICY0Sj1GREZKRUpMTk5ES0RFJjRMPURGRCY0Mj1j",
+          "team_key": "primi_calci",
+          "team_label": "PRIMI CALCI",
+          "competition": "CSI",
+          "competition_label": "PRIMI CALCI",
+          "group": "A",
+          "round": 7,
+          "leg": "ANDATA",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02090181.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://cdncsi.csi-net.it/risultati/img_2/csi-shield-b.svg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02090181",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-01-23",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "Osm Assago",
+          "names": [
+            "Ussa Rozzano",
+            "Osm Assago"
+          ],
+          "raw": "23/01/27 11:00 Ussa Rozzano Osm Assago - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026168AR0201/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OICY0Sj1GREZKRUpMTmVERkRFJjRMPURGRCY0Mj1j",
+          "team_key": "primi_calci",
+          "team_label": "PRIMI CALCI",
+          "competition": "CSI",
+          "competition_label": "PRIMI CALCI",
+          "group": "A",
+          "round": 2,
+          "leg": "RITORNO",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02000519.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000519_202610071455.jpg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02000519",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-01-30",
+          "time": "15:00",
+          "home": "S.Matroniano",
+          "away": "Ussa Rozzano",
+          "names": [
+            "S.Matroniano",
+            "Ussa Rozzano"
+          ],
+          "raw": "30/01/27 15:00 S.Matroniano Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026168AR0303/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OICY0Sj1GREZKRUpMTmVER0RHJjRMPURGRCY0Mj1j",
+          "team_key": "primi_calci",
+          "team_label": "PRIMI CALCI",
+          "competition": "CSI",
+          "competition_label": "PRIMI CALCI",
+          "group": "A",
+          "round": 3,
+          "leg": "RITORNO",
+          "home_away": "TRASFERTA",
+          "field": "Oratorio",
+          "address": "Via Pellico 2 Sesto Ulteriano",
+          "route_address": "Oratorio Via Pellico 2 Sesto Ulteriano",
+          "home_logo": "/assets/csi-clubs/02000360.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000360_202610070755.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02000360",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-02-06",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "CEA",
+          "names": [
+            "Ussa Rozzano",
+            "CEA"
+          ],
+          "raw": "06/02/27 11:00 Ussa Rozzano CEA - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026168AR0402/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OICY0Sj1GREZKRUpMTmVESERGJjRMPURGRCY0Mj1j",
+          "team_key": "primi_calci",
+          "team_label": "PRIMI CALCI",
+          "competition": "CSI",
+          "competition_label": "PRIMI CALCI",
+          "group": "A",
+          "round": 4,
+          "leg": "RITORNO",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02000185.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000185_202610070934.jpg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02000185",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-02-14",
+          "time": "17:00",
+          "home": "Orpas 2020 Giallo",
+          "away": "Ussa Rozzano",
+          "names": [
+            "Orpas 2020 Giallo",
+            "Ussa Rozzano"
+          ],
+          "raw": "14/02/27 17:00 Orpas 2020 Giallo Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026168AR0502/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OICY0Sj1GREZKRUpMTmVESURGJjRMPURGRCY0Mj1j",
+          "team_key": "primi_calci",
+          "team_label": "PRIMI CALCI",
+          "competition": "CSI",
+          "competition_label": "PRIMI CALCI",
+          "group": "A",
+          "round": 5,
+          "leg": "RITORNO",
+          "home_away": "TRASFERTA",
+          "field": "Or.Pa.S.",
+          "address": "Via Cagliero 26 Milano",
+          "route_address": "Or.Pa.S. Via Cagliero 26 Milano",
+          "home_logo": "/assets/csi-clubs/02000045.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000045_202610071047.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02000045",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-02-20",
+          "time": "11:00",
+          "home": "Ussa Rozzano",
+          "away": "Wemove Ssd Arl",
+          "names": [
+            "Ussa Rozzano",
+            "Wemove Ssd Arl"
+          ],
+          "raw": "20/02/27 11:00 Ussa Rozzano Wemove Ssd Arl - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026168AR0603/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OICY0Sj1GREZKRUpMTmVESkRHJjRMPURGRCY0Mj1j",
+          "team_key": "primi_calci",
+          "team_label": "PRIMI CALCI",
+          "competition": "CSI",
+          "competition_label": "PRIMI CALCI",
+          "group": "A",
+          "round": 6,
+          "leg": "RITORNO",
+          "home_away": "CASA",
+          "field": "Comunale Ussa Stadium",
+          "address": "Via Della Cooperazione Rozzano",
+          "route_address": "Comunale Ussa Stadium Via Della Cooperazione Rozzano",
+          "home_logo": "/assets/ussa-logo.png",
+          "away_logo": "/assets/csi-clubs/02002054.jpg",
+          "home_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02002054_202610071444.jpg",
+          "home_logo_code": "02000229",
+          "away_logo_code": "02002054",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        },
+        {
+          "date": "2027-02-27",
+          "time": "14:30",
+          "home": "Virtus Bascape' Vb",
+          "away": "Ussa Rozzano",
+          "names": [
+            "Virtus Bascape' Vb",
+            "Ussa Rozzano"
+          ],
+          "raw": "27/02/27 14:30 Virtus Bascape' Vb Ussa Rozzano - -",
+          "result": "",
+          "result_home": null,
+          "result_away": null,
+          "detail_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/P2026168AR0701/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OICY0Sj1GREZKRUpMTmVES0RFJjRMPURGRCY0Mj1j",
+          "team_key": "primi_calci",
+          "team_label": "PRIMI CALCI",
+          "competition": "CSI",
+          "competition_label": "PRIMI CALCI",
+          "group": "A",
+          "round": 7,
+          "leg": "RITORNO",
+          "home_away": "TRASFERTA",
+          "field": "Campo Sportivo Comunale",
+          "address": "Via Giretta Bascape",
+          "route_address": "Campo Sportivo Comunale Via Giretta Bascape",
+          "home_logo": "/assets/csi-clubs/02090181.jpg",
+          "away_logo": "/assets/ussa-logo.png",
+          "home_logo_source": "https://cdncsi.csi-net.it/risultati/img_2/csi-shield-b.svg",
+          "away_logo_source": "https://static.centrosportivoitaliano.it/modulistica/logo/02000229_202610071016.jpg",
+          "home_logo_code": "02090181",
+          "away_logo_code": "02000229",
+          "status": "PROGRAMMATA",
+          "postponed": false,
+          "source": "CSI LIVE"
+        }
+      ],
+      "standings": [
+        {
+          "position": 1,
+          "team": "Virtus Bascape' Vb",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 2,
+          "team": "CEA",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 3,
+          "team": "Ussa Rozzano",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 4,
+          "team": "Orpas 2020 Giallo",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 5,
+          "team": "Osm Assago",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 6,
+          "team": "Wemove Ssd Arl",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        },
+        {
+          "position": 7,
+          "team": "S.Matroniano",
+          "points": 0,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "gf": 0,
+          "gs": 0,
+          "ga": 0,
+          "goal_difference": 0
+        }
+      ],
+      "scorers": []
     }
   },
   "meta": {
     "status": "ok",
-    "trigger": "release-v2448",
-    "last_attempt_at": "2026-10-08T17:37:36+02:00",
-    "last_success_at": "2026-10-08T17:37:36+02:00",
-    "source_count": 15,
-    "updated_count": 15,
+    "trigger": "v2.4.49-test",
+    "last_attempt_at": "2026-10-09T16:02:50+02:00",
+    "last_success_at": "2026-10-09T16:02:50+02:00",
+    "source_count": 17,
+    "updated_count": 17,
     "error_count": 0,
-    "logo_count": 91,
+    "logo_count": 96,
     "errors": []
   }
 }

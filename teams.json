@@ -496,6 +496,10 @@
     "sport": "CALCIO",
     "icon": "⚽",
     "visible": true,
+    "csi_team_name": "Ussa Rozzano",
+    "csi_competition_label": "UNDER 9 A 5",
+    "csi_group": "A",
+    "csi_live_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C158/?j=NEU9REZEJjRGPVBOSyY0Rz1FSUwmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
     "training": [
       {
         "day": "Martedì",
@@ -533,6 +537,10 @@
     "sport": "CALCIO",
     "icon": "⚽",
     "visible": true,
+    "csi_team_name": "Ussa Rozzano",
+    "csi_competition_label": "PRIMI CALCI",
+    "csi_group": "A",
+    "csi_live_url": "https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Milano/C168/?j=NEU9REZEJjRGPVBOSyY0Rz1FSkwmNEg9RCY0ST1OJjRMPURGRCY0Mj1l",
     "training": [
       {
         "day": "Martedì",
