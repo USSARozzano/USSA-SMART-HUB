@@ -31,7 +31,8 @@
       "people": [
         {
           "name": "Marco Paolini",
-          "role": "Presidente"
+          "role": "Presidente",
+          "photo": "/assets/people/n-z/paolini-marco.webp"
         },
         {
           "name": "Sergio Ricci",
@@ -39,7 +40,8 @@
         },
         {
           "name": "Vincenzo Novella",
-          "role": "Direttore Generale"
+          "role": "Direttore Generale",
+          "photo": "/assets/people/n-z/novella-vincenzo.webp"
         }
       ]
     },
@@ -64,7 +66,8 @@
         },
         {
           "name": "Mauro Brambilla",
-          "role": "Responsabile tecnico calcio Under 15"
+          "role": "Responsabile tecnico calcio Under 15",
+          "photo": "/assets/people/a-m/brambilla-mauro.webp"
         },
         {
           "name": "Marco Lampugnani",
@@ -77,7 +80,8 @@
       "people": [
         {
           "name": "Vincenzo Novella",
-          "role": "Responsabile Segreteria Sportiva"
+          "role": "Responsabile Segreteria Sportiva",
+          "photo": "/assets/people/n-z/novella-vincenzo.webp"
         },
         {
           "name": "Sergio Ricci",
@@ -102,19 +106,23 @@
         },
         {
           "name": "Raffaele De Benedetto",
-          "role": "Responsabile struttura Campo a 7 Oratorio"
+          "role": "Responsabile struttura Campo a 7 Oratorio",
+          "photo": "/assets/people/a-m/de-benedetto-raffaele.webp"
         },
         {
           "name": "Elena Monticelli",
-          "role": "Responsabile struttura Palestra Oratorio"
+          "role": "Responsabile struttura Palestra Oratorio",
+          "photo": "/assets/people/a-m/monticelli-elena.webp"
         },
         {
           "name": "Nicola Giliberti",
-          "role": "Responsabile Area Hospitality"
+          "role": "Responsabile Area Hospitality",
+          "photo": "/assets/people/a-m/giliberti-nicola.webp"
         },
         {
           "name": "Domenico Santoro",
-          "role": "Responsabile area Legale"
+          "role": "Responsabile area Legale",
+          "photo": "/assets/people/n-z/santoro-domenico.webp"
         }
       ]
     },
@@ -123,11 +131,13 @@
       "people": [
         {
           "name": "Nicola Giliberti",
-          "role": "Responsabile commerciale e p.r."
+          "role": "Responsabile commerciale e p.r.",
+          "photo": "/assets/people/a-m/giliberti-nicola.webp"
         },
         {
           "name": "Roberto Novella",
-          "role": "Responsabile social & web"
+          "role": "Responsabile social & web",
+          "photo": "/assets/people/n-z/novella-roberto.webp"
         },
         {
           "name": "Pierluca Minutoli",

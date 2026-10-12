@@ -38,7 +38,8 @@
     {
       "id": "ecc_yellow_francesco_curci",
       "name": "Francesco Curci",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/curci-francesco.webp"
     },
     {
       "id": "ecc_yellow_francesco_pitton",
@@ -53,7 +54,8 @@
     {
       "id": "ecc_yellow_ivan_fichera",
       "name": "Ivan Fichera",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/fichera-ivan.webp"
     },
     {
       "id": "ecc_yellow_lorenzo_allegro",
@@ -63,12 +65,14 @@
     {
       "id": "ecc_yellow_lorenzo_favalli",
       "name": "Lorenzo Favalli",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/favalli-lorenzo.webp"
     },
     {
       "id": "ecc_yellow_lorenzo_sciusco",
       "name": "Lorenzo Sciusco",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/sciusco-lorenzo.webp"
     },
     {
       "id": "ecc_yellow_luca_giuseppe_toffanin",
@@ -103,7 +107,8 @@
     {
       "id": "ecc_yellow_riccardo_frisenna",
       "name": "Riccardo Frisenna",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/frisenna-riccardo.webp"
     },
     {
       "id": "ecc_yellow_roberto_bassi",
@@ -270,7 +275,8 @@
     {
       "id": "ecc_blue_roberto_novella",
       "name": "Roberto Novella",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/novella-roberto.webp"
     },
     {
       "id": "ecc_blue_samuele_longo",
@@ -287,7 +293,8 @@
     {
       "id": "u20_alessandro_fabrizio_tengattini",
       "name": "Alessandro Fabrizio Tengattini",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/tengattini-alessandro.webp"
     },
     {
       "id": "u20_andrea_gibelli",
@@ -297,12 +304,14 @@
     {
       "id": "u20_christian_pio_de_lucia",
       "name": "Christian Pio De Lucia",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/de-lucia-christian.webp"
     },
     {
       "id": "u20_daniele_manzione",
       "name": "Daniele Manzione",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/manzione-daniele.webp"
     },
     {
       "id": "u20_edoardo_peter_conti",
@@ -322,7 +331,8 @@
     {
       "id": "u20_francesco_cafasso",
       "name": "Francesco Cafasso",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/cafasso-francesco.webp"
     },
     {
       "id": "u20_francesco_evi",
@@ -347,7 +357,8 @@
     {
       "id": "u20_leonardo_veneziani",
       "name": "Leonardo Veneziani",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/veneziani-leonardo.webp"
     },
     {
       "id": "u20_mohamed_awad_abdelsalam_awad_elsayed",
@@ -367,7 +378,8 @@
     {
       "id": "u20_samuele_di_gioia",
       "name": "Samuele Di Gioia",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/di-gioia-samuele.webp"
     },
     {
       "id": "u20_yakin_ben_abed",
@@ -384,7 +396,8 @@
     {
       "id": "u17_alessandro_varano",
       "name": "Alessandro Varano",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/varano-alessandro.webp"
     },
     {
       "id": "u17_alessio_solito",
@@ -424,7 +437,8 @@
     {
       "id": "u17_edoardo_colasuonno",
       "name": "Edoardo Colasuonno",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/colasuonno-edoardo.webp"
     },
     {
       "id": "u17_edoardo_colombo",
@@ -434,7 +448,8 @@
     {
       "id": "u17_elia_toffanin",
       "name": "Elia Toffanin",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/toffanin-elia.webp"
     },
     {
       "id": "u17_enea_pietro_ronconi",
@@ -449,17 +464,20 @@
     {
       "id": "u17_gabriele_di_gioia",
       "name": "Gabriele Di Gioia",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/di-gioia-gabriele.webp"
     },
     {
       "id": "u17_gabriele_james_bellino",
       "name": "Gabriele James Bellino",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/bellino-gabriele.webp"
     },
     {
       "id": "u17_jurgen_rama",
       "name": "Jurgen Rama",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/rama-yurgen.webp"
     },
     {
       "id": "u17_lorenzo_conti",
@@ -474,7 +492,8 @@
     {
       "id": "u17_mirko_di_salvo",
       "name": "Mirko Di Salvo",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/di-salvo-mirko.webp"
     },
     {
       "id": "u17_nicolo_pulcini",
@@ -504,7 +523,8 @@
     {
       "id": "u17_simone_pollio",
       "name": "Simone Pollio",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/pollio-simone.webp"
     },
     {
       "id": "u17_williams_michele_d_agostino",
@@ -516,12 +536,14 @@
     {
       "id": "u15_yellow_alessandro_baione",
       "name": "Alessandro Baione",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/baione-alessandro.webp"
     },
     {
       "id": "u15_yellow_christian_livrieri",
       "name": "Christian Livrieri",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/livrieri-christian.webp"
     },
     {
       "id": "u15_yellow_daniele_marchino",
@@ -576,7 +598,8 @@
     {
       "id": "u15_yellow_mattia_caso",
       "name": "Mattia Caso",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/caso-mattia.webp"
     },
     {
       "id": "u15_yellow_mattia_ciro_areniello",
@@ -586,17 +609,20 @@
     {
       "id": "u15_yellow_mostafa_ayman_mostafa_abouzeid_hassan",
       "name": "Mostafa Ayman Mostafa Abouzeid Hassan",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/hassan-mostafa.webp"
     },
     {
       "id": "u15_yellow_natan_aiello",
       "name": "Natan Aiello",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/aiello-natan.webp"
     },
     {
       "id": "u15_yellow_nicolas_giorgio_rubino",
       "name": "Nicolas Giorgio Rubino",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/rubino-nicolas.webp"
     },
     {
       "id": "u15_yellow_noel_palushi",
@@ -631,7 +657,8 @@
     {
       "id": "u15_yellow_simone_ferrulli",
       "name": "Simone Ferrulli",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/ferrulli-simone.webp"
     }
   ],
   "u15_blue": [
@@ -643,7 +670,8 @@
     {
       "id": "u15_blue_alessandro_scoccimarro",
       "name": "Alessandro Scoccimarro",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/scoccimarro-alessandro.webp"
     },
     {
       "id": "u15_blue_alex_carpineto",
@@ -653,17 +681,20 @@
     {
       "id": "u15_blue_christian_cardone",
       "name": "Christian Cardone",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/cardone-christian.webp"
     },
     {
       "id": "u15_blue_davide_notari",
       "name": "Davide Notari",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/notari-davide.webp"
     },
     {
       "id": "u15_blue_davide_santoro",
       "name": "Davide Santoro",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/santoro-davide.webp"
     },
     {
       "id": "u15_blue_elia_rousseau",
@@ -673,7 +704,8 @@
     {
       "id": "u15_blue_enea_pellegrino",
       "name": "Enea Pellegrino",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/pellegrino-enea.webp"
     },
     {
       "id": "u15_blue_giacomo_de_pasquale",
@@ -683,12 +715,14 @@
     {
       "id": "u15_blue_gianni_piliero",
       "name": "Gianni Piliero",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/piliero-gianni.webp"
     },
     {
       "id": "u15_blue_giuseppe_gristina",
       "name": "Giuseppe Gristina",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/gristina-giuseppe.webp"
     },
     {
       "id": "u15_blue_islam_abaraghe",
@@ -743,12 +777,14 @@
     {
       "id": "u15_blue_thomas_raffaello_lusiardi",
       "name": "Thomas Raffaello Lusiardi",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/lusiardi-thomas.webp"
     },
     {
       "id": "u15_blue_tommaso_avellino",
       "name": "Tommaso Avellino",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/avellino-tommaso.webp"
     },
     {
       "id": "u15_blue_tommaso_sartor",
@@ -760,32 +796,38 @@
     {
       "id": "u14_alessandro_sica",
       "name": "Alessandro Sica",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/sica-alessandro.webp"
     },
     {
       "id": "u14_alessio_livrieri",
       "name": "Alessio Livrieri",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/livrieri-alessio.webp"
     },
     {
       "id": "u14_alexander_reale",
       "name": "Alexander Reale",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/reale-alexander.webp"
     },
     {
       "id": "u14_angelo_caso",
       "name": "Angelo Caso",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/caso-angelo.webp"
     },
     {
       "id": "u14_aurora_callea",
       "name": "Aurora Callea",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/callea-aurora.webp"
     },
     {
       "id": "u14_christian_paganello",
       "name": "Christian Paganello",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/paganello-christian.webp"
     },
     {
       "id": "u14_ciro_marangoni",
@@ -795,12 +837,14 @@
     {
       "id": "u14_edoardo_pellegrino",
       "name": "Edoardo Pellegrino",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/pellegrino-edoardo.webp"
     },
     {
       "id": "u14_edoardo_pollio",
       "name": "Edoardo Pollio",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/pollio-edoardo.webp"
     },
     {
       "id": "u14_elise_abdoul_serafini",
@@ -820,7 +864,8 @@
     {
       "id": "u14_gabriele_cavenaghi",
       "name": "Gabriele Cavenaghi",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/cavenaghi-gabriele.webp"
     },
     {
       "id": "u14_gabriele_rubino",
@@ -830,7 +875,8 @@
     {
       "id": "u14_jonathan_campanella",
       "name": "Jonathan Campanella",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/campanella-jonathan.webp"
     },
     {
       "id": "u14_lapo_fiorito",
@@ -840,57 +886,68 @@
     {
       "id": "u14_leonardo_falappa",
       "name": "Leonardo Falappa",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/falappa-leonardo.webp"
     },
     {
       "id": "u14_leonardo_pennino",
       "name": "Leonardo Pennino",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/pennino-leonardo.webp"
     },
     {
       "id": "u14_lorenzo_constantin_ungureanu",
       "name": "Lorenzo Constantin Ungureanu",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/ungureanu-lorenzo.webp"
     },
     {
       "id": "u14_lorenzo_franco_maida",
       "name": "Lorenzo Franco Maida",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/maida-lorenzo-franco.webp"
     },
     {
       "id": "u14_lorenzo_piliero",
       "name": "Lorenzo Piliero",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/piliero-lorenzo.webp"
     },
     {
       "id": "u14_luca_marinoni",
       "name": "Luca Marinoni",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/marinoni-luca.webp"
     },
     {
       "id": "u14_samuele_di_toma",
       "name": "Samuele Di Toma",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/di-toma-samuele.webp"
     },
     {
       "id": "u14_samuele_walter_brambilla",
       "name": "Samuele Walter Brambilla",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/brambilla-samuele.webp"
     },
     {
       "id": "u14_simone_iorio",
       "name": "Simone Iorio",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/iorio-simone.webp"
     },
     {
       "id": "u14_thomas_rancati",
       "name": "Thomas Rancati",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/rancati-thomas.webp"
     },
     {
       "id": "u14_tommaso_laurora",
       "name": "Tommaso Laurora",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/laurora-tommaso.webp"
     }
   ],
   "u12": [
@@ -912,7 +969,8 @@
     {
       "id": "u12_diego_cisternino",
       "name": "Diego Cisternino",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/cisternino-diego.webp"
     },
     {
       "id": "u12_gonzalo_mattia_cremonesi",
@@ -942,12 +1000,14 @@
     {
       "id": "u12_luca_legrottaglie",
       "name": "Luca Legrottaglie",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/legrottaglie-luca.webp"
     },
     {
       "id": "u12_martino_caraffini",
       "name": "Martino Caraffini",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/caraffini-martino.webp"
     },
     {
       "id": "u12_mathias_davila_lapa",
@@ -982,7 +1042,8 @@
     {
       "id": "u12_samuele_rummo",
       "name": "Samuele Rummo",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/rummo-samuele.webp"
     },
     {
       "id": "u12_thiago_francesco_de_benedetto",
@@ -999,7 +1060,8 @@
     {
       "id": "u11_anastasio_marino",
       "name": "Anastasio Marino",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/marino-anastasio.webp"
     },
     {
       "id": "u11_christian_baione",
@@ -1024,7 +1086,8 @@
     {
       "id": "u11_edoardo_mascia",
       "name": "Edoardo Mascia",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/mascia-edoardo.webp"
     },
     {
       "id": "u11_enrico_filippo_preda",
@@ -1034,7 +1097,8 @@
     {
       "id": "u11_federico_baldacci",
       "name": "Federico Baldacci",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/baldacci-federico.webp"
     },
     {
       "id": "u11_federico_tosoni",
@@ -1044,12 +1108,14 @@
     {
       "id": "u11_hamza_cherkaoui",
       "name": "Hamza Cherkaoui",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/cherkaoui-hamza.webp"
     },
     {
       "id": "u11_hasan_kadri",
       "name": "Hasan Kadri",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/kadri-haan.webp"
     },
     {
       "id": "u11_lucas_daniele_ion",
@@ -1084,7 +1150,8 @@
     {
       "id": "u11_steven_qiu",
       "name": "Steven Qiu",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/qiu-stiven.webp"
     }
   ],
   "u10": [
@@ -1106,12 +1173,14 @@
     {
       "id": "u10_aron_ambrogio",
       "name": "Aron Ambrogio",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/ambrogio-aron.webp"
     },
     {
       "id": "u10_edoardo_fittipaldi",
       "name": "Edoardo Fittipaldi",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/fittipaldi-edoardo.webp"
     },
     {
       "id": "u10_edoardo_pulcini",
@@ -1121,7 +1190,8 @@
     {
       "id": "u10_francesco_portente",
       "name": "Francesco Portente",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/portente-francesco.webp"
     },
     {
       "id": "u10_gabriele_giampietro",
@@ -1151,7 +1221,8 @@
     {
       "id": "u10_massimo_brucia",
       "name": "Massimo Brucia",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/brucia-massimo.webp"
     },
     {
       "id": "u10_mattia_cisternino",
@@ -1171,7 +1242,8 @@
     {
       "id": "u10_thomas_prencipe",
       "name": "Thomas Prencipe",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/prencipe-thomas.webp"
     },
     {
       "id": "u10_tony_cerfeda",
@@ -1265,12 +1337,14 @@
     {
       "id": "primi_calci_andrea_taccardi",
       "name": "Andrea Taccardi",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/taccardi-andrea.webp"
     },
     {
       "id": "primi_calci_damiano_pisano",
       "name": "Damiano Pisano",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/pisano-damiano.webp"
     },
     {
       "id": "primi_calci_daniele_mastrogiacomo",
@@ -1280,17 +1354,20 @@
     {
       "id": "primi_calci_edoardo_tabacchi",
       "name": "Edoardo Tabacchi",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/tabacchi-edoardo.webp"
     },
     {
       "id": "primi_calci_gabriele_de_pietro",
       "name": "Gabriele De Pietro",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/de-pietro-gabriele.webp"
     },
     {
       "id": "primi_calci_giulio_grillo",
       "name": "Giulio Grillo",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/grillo-giulio.webp"
     },
     {
       "id": "primi_calci_leandro_rodrigues",
@@ -1300,17 +1377,20 @@
     {
       "id": "primi_calci_luigi_maisto",
       "name": "Luigi Maisto",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/maisto-luigi.webp"
     },
     {
       "id": "primi_calci_mattia_di_zenzo",
       "name": "Mattia Di Zenzo",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/di-zenzo-mattia.webp"
     },
     {
       "id": "primi_calci_mattia_fichera",
       "name": "Mattia Fichera",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/fichera-mattia.webp"
     },
     {
       "id": "primi_calci_noah_cerfeda",
@@ -1325,12 +1405,14 @@
     {
       "id": "primi_calci_riccardo_novelli",
       "name": "Riccardo Novelli",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/novelli-riccardo.webp"
     },
     {
       "id": "primi_calci_youssef_selloumi",
       "name": "Youssef Selloumi",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/selloumi-youssef.webp"
     }
   ],
   "volley_open_ecc": [
@@ -1481,7 +1563,8 @@
     {
       "id": "volley_u14_gloria_verde",
       "name": "Gloria Verde",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/verde-gloria.webp"
     },
     {
       "id": "volley_u14_greta_assente",
@@ -1511,7 +1594,8 @@
     {
       "id": "volley_u14_sara_fittipaldi",
       "name": "Sara Fittipaldi",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/fittipaldi-sara.webp"
     },
     {
       "id": "volley_u14_segda_turshilla",

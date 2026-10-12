@@ -128,7 +128,8 @@
     "staff": [
       {
         "role": "Mister",
-        "name": "Fittipaldi Marco"
+        "name": "Fittipaldi Marco",
+        "photo": "/assets/people/a-m/fittipaldi-marco.webp"
       },
       {
         "role": "Vice Mister",
@@ -136,7 +137,8 @@
       },
       {
         "role": "Team Manager",
-        "name": "Tengattini Roberto"
+        "name": "Tengattini Roberto",
+        "photo": "/assets/people/n-z/tengattini-roberto.webp"
       }
     ],
     "planned_features": [
@@ -177,11 +179,18 @@
     "staff": [
       {
         "role": "Mister",
-        "name": "Toffanin Paolo"
+        "name": "Toffanin Paolo",
+        "photo": "/assets/people/n-z/toffanin-paolo.webp"
       },
       {
         "role": "Vice Mister / Team Manager",
-        "name": "Favalli Lorenzo"
+        "name": "Favalli Lorenzo",
+        "photo": "/assets/people/a-m/favalli-lorenzo.webp"
+      },
+      {
+        "role": "Dirigente squadra",
+        "name": "Pollio Salvatore",
+        "photo": "/assets/people/n-z/pollio-salvatore.webp"
       }
     ],
     "planned_features": [
@@ -222,7 +231,8 @@
     "staff": [
       {
         "role": "Mister",
-        "name": "Ferulli Dino"
+        "name": "Ferulli Dino",
+        "photo": "/assets/people/a-m/ferrulli-berardino.webp"
       },
       {
         "role": "Vice Mister",
@@ -271,7 +281,8 @@
     "staff": [
       {
         "role": "Allenatore",
-        "name": "Nicola Giliberti"
+        "name": "Nicola Giliberti",
+        "photo": "/assets/people/a-m/giliberti-nicola.webp"
       },
       {
         "role": "Vice allenatore",
@@ -279,7 +290,13 @@
       },
       {
         "role": "Team Manager",
-        "name": "Santoro Domenico"
+        "name": "Santoro Domenico",
+        "photo": "/assets/people/n-z/santoro-domenico.webp"
+      },
+      {
+        "role": "Dirigente squadra",
+        "name": "Scoccimarro Felice",
+        "photo": "/assets/people/n-z/scoccimarro-felice.webp"
       }
     ],
     "planned_features": [
@@ -325,7 +342,8 @@
     "staff": [
       {
         "role": "Mister",
-        "name": "Brambilla Mauro"
+        "name": "Brambilla Mauro",
+        "photo": "/assets/people/a-m/brambilla-mauro.webp"
       },
       {
         "role": "Vice Mister",
@@ -333,7 +351,8 @@
       },
       {
         "role": "Team Manager",
-        "name": "Novella Roberto"
+        "name": "Novella Roberto",
+        "photo": "/assets/people/n-z/novella-roberto.webp"
       }
     ],
     "planned_features": [
@@ -374,7 +393,8 @@
     "staff": [
       {
         "role": "Mister",
-        "name": "De Benedetto Raffaele"
+        "name": "De Benedetto Raffaele",
+        "photo": "/assets/people/a-m/de-benedetto-raffaele.webp"
       },
       {
         "role": "Vice Mister",
@@ -382,7 +402,8 @@
       },
       {
         "role": "Team Manager",
-        "name": "Caraffini Silvio"
+        "name": "Caraffini Silvio",
+        "photo": "/assets/people/a-m/caraffini-silvio.webp"
       }
     ],
     "planned_features": [
@@ -423,11 +444,13 @@
     "staff": [
       {
         "role": "Mister",
-        "name": "Saitta Luca"
+        "name": "Saitta Luca",
+        "photo": "/assets/people/n-z/saitta-luca.webp"
       },
       {
         "role": "Vice Mister",
-        "name": "Preda Roberto"
+        "name": "Preda Roberto",
+        "photo": "/assets/people/n-z/preda-roberto.webp"
       },
       {
         "role": "Team Manager",
@@ -472,15 +495,18 @@
     "staff": [
       {
         "role": "Mister",
-        "name": "Rancati Francisco"
+        "name": "Rancati Francisco",
+        "photo": "/assets/people/n-z/rancati-francisco.webp"
       },
       {
         "role": "Vice Mister",
-        "name": "Marziano Mattia"
+        "name": "Marziano Mattia",
+        "photo": "/assets/people/a-m/marziano-mattia.webp"
       },
       {
         "role": "Team Manager",
-        "name": "Iaccarino Giacomo"
+        "name": "Iaccarino Giacomo",
+        "photo": "/assets/people/a-m/iaccarino-giacomo.webp"
       }
     ],
     "planned_features": [
@@ -560,11 +586,13 @@
     "staff": [
       {
         "role": "Mister / Team Manager",
-        "name": "Fichera Ivan"
+        "name": "Fichera Ivan",
+        "photo": "/assets/people/a-m/fichera-ivan.webp"
       },
       {
         "role": "Vice Mister",
-        "name": "Pollio Simone"
+        "name": "Pollio Simone",
+        "photo": "/assets/people/n-z/pollio-simone.webp"
       }
     ],
     "planned_features": [
@@ -597,7 +625,8 @@
     "staff": [
       {
         "role": "Mister / Team Manager",
-        "name": "Novella Roberto"
+        "name": "Novella Roberto",
+        "photo": "/assets/people/n-z/novella-roberto.webp"
       }
     ],
     "planned_features": [
@@ -712,11 +741,13 @@
     "staff": [
       {
         "role": "Mister",
-        "name": "Elena Monticelli"
+        "name": "Elena Monticelli",
+        "photo": "/assets/people/a-m/monticelli-elena.webp"
       },
       {
-        "role": "Team Manager",
-        "name": "Simona Pajesi"
+        "role": "Vice allenatrice",
+        "name": "Elisabetta Lisi",
+        "photo": "/assets/people/a-m/lisi-elisabetta.webp"
       }
     ],
     "planned_features": [
@@ -741,7 +772,8 @@
     "staff": [
       {
         "role": "Mister",
-        "name": "Alessia Messineo"
+        "name": "Alessia Messineo",
+        "photo": "/assets/people/a-m/messineo-alessia.webp"
       }
     ],
     "planned_features": [

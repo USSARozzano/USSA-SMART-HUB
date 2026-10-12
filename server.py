@@ -18,6 +18,7 @@ CSI_LIVE="https://live.centrosportivoitaliano.it"
 HEADERS={"User-Agent":"USSA-SMART-HUB/2.1","Accept-Language":"it-IT,it;q=0.9"}
 CSI_CACHE_PATH=Path(os.getenv('CSI_CACHE_PATH') or ROOT/'csi_cache.json')
 CSI_LOGO_DIR=ROOT/'assets'/'csi-clubs'
+PEOPLE_DIR=ROOT/'assets'/'people'
 CSI_SYNC_HOUR=12
 CSI_RETRY_MINUTES=30
 CSI_SYNC_LOCK=threading.Lock()
@@ -322,6 +323,16 @@ def csi_club_asset(filename: str):
     except:is_svg=False
     media_type='image/svg+xml' if is_svg else 'image/jpeg'
     return FileResponse(path,media_type=media_type,headers={'Cache-Control':'public, max-age=604800'})
+
+@app.get('/assets/people/{bucket}/{filename}')
+def person_photo_asset(bucket: str, filename: str):
+    if bucket not in {'a-m','n-z'} or not re.fullmatch(r'[a-z0-9-]+\.webp',filename):
+        raise HTTPException(status_code=404,detail='Fotografia non disponibile')
+    path=PEOPLE_DIR/bucket/filename
+    if not path.is_file():
+        raise HTTPException(status_code=404,detail='Fotografia non disponibile')
+    return FileResponse(path,media_type='image/webp',headers={'Cache-Control':'public, max-age=604800'})
+
 @app.get('/api/teams')
 def api_teams(): return load_json('teams.json',[])
 @app.get('/api/hub')

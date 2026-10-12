@@ -1,4 +1,13 @@
-USSA SMART HUB — V2.4.49
+USSA SMART HUB — V2.4.50
+
+Aggiornamento V2.4.50:
+- integrato il primo slot di 105 fotografie di atleti, staff e dirigenza;
+- tutte le 105 fotografie associate con corrispondenza certa a 118 card complessive;
+- le persone presenti in più ruoli condividono correttamente la stessa fotografia;
+- fotografie ottimizzate in WebP per ridurre il traffico dati e i tempi di caricamento;
+- mantenute invariate dimensioni e proporzioni delle card, con ritaglio visivo automatico senza deformazioni;
+- aggiunta una rotta protetta e cache browser di sette giorni per le fotografie;
+- staff aggiornati: Elisabetta Lisi vice allenatrice Volley Under 14 al posto di Simona Pajesi; Salvatore Pollio dirigente Under 17; Felice Scoccimarro dirigente Under 15 Blue.
 
 Correzione V2.4.49:
 - collegati i calendari CSI ufficiali UNDER 9 A 5, Girone A, e PRIMI CALCI, Girone A;
