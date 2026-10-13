@@ -1,4 +1,16 @@
-USSA SMART HUB — V2.4.50
+USSA SMART HUB — V2.4.51
+
+Correzione definitiva fonti CSI V2.4.51:
+- Albo ufficiale CSI Milano impostato come fonte primaria di calendari, risultati e classifiche;
+- CSI Live mantenuto esclusivamente come arricchimento facoltativo per cronologia e cronaca;
+- un blocco HTTP 403 di CSI Live non impedisce più l'aggiornamento dei dati essenziali;
+- collegati e verificati sull'Albo ufficiale tutti i calendari delle 12 squadre calcio CSI;
+- risultato della seconda giornata Under 17 acquisito automaticamente: UP Settimo 0-3 USSA Rozzano;
+- classifica Under 17 verificata: USSA Rozzano prima con 6 punti, 7 gol fatti e 1 subito;
+- corretta la lettura di vittorie, pareggi, sconfitte, gol fatti, gol subiti e differenza reti;
+- mantenuti gli identificativi già utilizzati per votazioni, QR, mappe e calendario;
+- cache locale aggiornata inclusa nella fix, così i nuovi risultati compaiono subito dopo il deploy;
+- sincronizzazione completa verificata su tutte le 17 fonti CSI senza errori.
 
 Aggiornamento V2.4.50:
 - integrato il primo slot di 105 fotografie di atleti, staff e dirigenza;

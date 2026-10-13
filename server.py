@@ -121,7 +121,14 @@ def load_json(name, default):
     except:return default
 
 def teams_dict(): return {x['key']:x for x in load_json('teams.json',[])}
-def csi_source_url(t): return t.get('csi_live_url') or t.get('csi_old_url') or ''
+def csi_source_url(t):
+    """Fonte primaria stabile: Albo CSI Milano, con CSI Live solo come ripiego."""
+    return t.get('csi_old_url') or t.get('csi_live_url') or ''
+
+def csi_enrichment_url(t):
+    """CSI Live resta facoltativo per cronologia e cronaca della singola gara."""
+    primary=csi_source_url(t);live=t.get('csi_live_url') or ''
+    return live if live and live!=primary else ''
 def csi_source_teams(): return [t for t in teams_dict().values() if csi_source_url(t) and not t.get('test_only')]
 def base_fixtures(): return load_json('fixtures.json',[])
 
@@ -226,6 +233,19 @@ def csi_fixture_id(match):
         raw='|'.join(str((match or {}).get(k,'') or '') for k in ('team_key','date','time','home','away'))
         code=hashlib.sha1(raw.encode('utf-8')).hexdigest()[:16]
     return f'csi_{code}'
+
+def csi_game_code(match):
+    """Codice gara comune alle pagine Albo e CSI Live (es. 2026732CA0202)."""
+    value=str((match or {}).get('detail_url') or (match or {}).get('live_detail_url') or '')
+    path=Path(urlparse(value).path.rstrip('/')).stem
+    found=re.search(r'P?(20\d{2}[A-Za-z0-9]+)$',path,re.I)
+    return found.group(1).upper() if found else ''
+
+def csi_match_key(match):
+    code=csi_game_code(match)
+    if code:return f'code:{code}'
+    names=[csi_name((match or {}).get(x)) for x in ('home','away')]
+    return '|'.join(['match',str((match or {}).get('date') or ''),*names])
 
 def has_official_score(match):
     """Una gara e' disputata soltanto quando la fonte pubblica un risultato numerico."""
@@ -522,7 +542,7 @@ def parse_old_csi_schedule(t,s,url):
         hg=int(score.group(1)) if score else None;ag=int(score.group(2)) if score else None
         images=tr.select('td.logo-squadra img')[:2];logos=[];logo_sources=[];logo_codes=[]
         for i,image in enumerate(images):
-            src=urljoin(url,image.get('src',''));logo_code=image.get('alt') or Path(urlparse(src).path).stem
+            src=urljoin(url,image.get('src',''));logo_code=Path(urlparse(src).path).stem or image.get('alt')
             logo_sources.append(src);logo_codes.append(logo_code)
             logos.append('/assets/ussa-logo.png' if 'USSA' in teams[i].upper() else csi_logo_ref(src,logo_code))
         while len(logos)<2:
@@ -543,7 +563,8 @@ def parse_old_csi_schedule(t,s,url):
             'status':'DISPUTATA' if score else ('DA RECUPERARE' if postponed else 'PROGRAMMATA'),
             'postponed':postponed,'source':'CSI MILANO'
         }
-        item['id']=f'csi_{code}' if code else csi_fixture_id(item)
+        # Mantiene lo stesso identificativo già usato da CSI Live e dalle votazioni.
+        item['id']=f'csi_P{code}' if code else csi_fixture_id(item)
         out.append(item)
     return sorted(out,key=lambda x:(x['date'],x.get('time','')))
 
@@ -583,7 +604,8 @@ def live_standings(t,fresh=False):
     if not fresh:
         found,rows=cached_csi_field(t,'standings')
         if found:return rows
-    if t.get('csi_live_url'):return parse_live_standings(soup(t['csi_live_url']))
+    primary=csi_source_url(t)
+    if urlparse(primary).netloc=='live.centrosportivoitaliano.it':return parse_live_standings(soup(primary))
     return old_csi_standings(t)
 
 def old_csi_standings(t):
@@ -602,9 +624,15 @@ def old_csi_standings(t):
             # Il secondo campo è la colonna dello stemma e può essere vuoto.
             offset=2 if len(vals)>2 and not vals[1] else 1
             team=vals[offset];nums=vals[offset+1:]
-            out.append({'position':int(vals[0]),'team':team,'points':int(nums[0]),'played':int(nums[1]),
-                        'wins':int(nums[2]),'draws':0,'losses':int(nums[3]),
-                        'gf':int(nums[-2]) if len(nums)>=2 else None,'gs':int(nums[-1]) if nums else None})
+            if clean(t.get('sport')).upper()=='CALCIO' and len(nums)>=8:
+                points,played,wins,losses,draws=int(nums[0]),int(nums[1]),int(nums[2]),int(nums[3]),int(nums[4])
+            else:
+                points,played,wins,losses=int(nums[0]),int(nums[1]),int(nums[2]),int(nums[3])
+                draws=0
+            gf=int(nums[-2]) if len(nums)>=2 else None;gs=int(nums[-1]) if nums else None
+            out.append({'position':int(vals[0]),'team':team,'points':points,'played':played,
+                        'wins':wins,'draws':draws,'losses':losses,'gf':gf,'gs':gs,
+                        'goal_difference':gf-gs if gf is not None and gs is not None else None})
         except:continue
     return out
 
@@ -667,17 +695,15 @@ def csi_sync_status(cache=None):
 
 def enrich_csi_schedule_details(schedule,previous_schedule=None):
     """Mantiene cronache/eventi in cache e aggiorna le gare disputate recenti."""
-    previous_by_path={
-        urlparse(x.get('detail_url','')).path:x for x in (previous_schedule or [])
-        if isinstance(x,dict) and x.get('detail_url')
-    }
+    previous_by_key={csi_match_key(x):x for x in (previous_schedule or []) if isinstance(x,dict)}
     today=rome_now().date();out=[];jobs=[]
     for match in schedule:
-        item=dict(match);path=urlparse(item.get('detail_url','')).path;old=previous_by_path.get(path,{})
-        for field in ('events','report','detail_checked_at'):
+        item=dict(match);old=previous_by_key.get(csi_match_key(item),{})
+        for field in ('events','report','detail_checked_at','live_detail_url'):
             if field in old:item[field]=old[field]
-        if (not item.get('result') or not item.get('detail_url') or
-                urlparse(item.get('detail_url','')).netloc!='live.centrosportivoitaliano.it'):
+        detail_url=item.get('live_detail_url') or item.get('detail_url') or ''
+        if (not item.get('result') or
+                urlparse(detail_url).netloc!='live.centrosportivoitaliano.it'):
             out.append(item);continue
         try:match_date=datetime.fromisoformat(item.get('date','')).date()
         except:match_date=today
@@ -685,16 +711,31 @@ def enrich_csi_schedule_details(schedule,previous_schedule=None):
         recent=match_date>=today-timedelta(days=14)
         missing_check=not old.get('detail_checked_at')
         index=len(out);out.append(item)
-        if result_changed or recent or missing_check:jobs.append((index,item))
+        if result_changed or recent or missing_check:jobs.append((index,item,detail_url))
     def load_detail(job):
-        index,item=job
-        try:return index,parse_live_game_detail(soup(item['detail_url']),item['detail_url'],item)
+        index,item,detail_url=job
+        try:
+            response=requests.get(detail_url,headers=HEADERS,timeout=8);response.raise_for_status()
+            page=BeautifulSoup(response.text,'lxml')
+            return index,parse_live_game_detail(page,detail_url,item)
         except Exception:
             failed=dict(item);failed['detail_checked_at']=rome_now().isoformat(timespec='seconds')
             return index,failed
     if jobs:
         with ThreadPoolExecutor(max_workers=min(4,len(jobs))) as pool:
             for index,item in pool.map(load_detail,jobs):out[index]=item
+    return out
+
+def attach_live_enrichment(t,primary_schedule):
+    """Prepara il dettaglio CSI Live dal codice gara, senza interrogare la pagina bloccata."""
+    live=csi_enrichment_url(t);parsed=urlparse(live)
+    out=[]
+    for match in primary_schedule:
+        item=dict(match);code=csi_game_code(item)
+        if live and code:
+            path=re.sub(r'/C\d+/?$',f'/P{code}/',parsed.path,flags=re.I)
+            item['live_detail_url']=parsed._replace(path=path,query='',fragment='').geturl()
+        out.append(item)
     return out
 
 def refresh_csi_cache(trigger='scheduled'):
@@ -709,7 +750,7 @@ def refresh_csi_cache(trigger='scheduled'):
             for _ in range(2):
                 try:return source_url,soup(source_url)
                 except Exception as exc:last=exc
-            raise last or ValueError('pagina CSI Live non disponibile')
+            raise last or ValueError('pagina CSI non disponibile')
         with ThreadPoolExecutor(max_workers=min(5,len(urls) or 1)) as pool:
             pending={pool.submit(load_page,url):url for url in urls}
             for future in as_completed(pending):
@@ -724,13 +765,28 @@ def refresh_csi_cache(trigger='scheduled'):
                 for future in as_completed(pending):
                     try:scorers_by_key[pending[future]]=future.result()
                     except:scorers_by_key[pending[future]]=[]
+        standings_by_key={}
+        standings_sources=[t for t in sources if 'standings' in (t.get('planned_features') or [])]
+        def load_standings(t):
+            url=csi_source_url(t)
+            if urlparse(url).netloc=='live.centrosportivoitaliano.it':
+                return parse_live_standings(pages.get(url)) if pages.get(url) else []
+            return old_csi_standings(t)
+        if standings_sources:
+            with ThreadPoolExecutor(max_workers=min(6,len(standings_sources))) as pool:
+                pending={pool.submit(load_standings,t):t['key'] for t in standings_sources}
+                for future in as_completed(pending):
+                    try:standings_by_key[pending[future]]=future.result()
+                    except:standings_by_key[pending[future]]=[]
         for t in sources:
             try:
                 url=csi_source_url(t)
-                if url not in pages:raise ValueError(page_errors.get(url) or 'pagina CSI Live non disponibile')
+                if url not in pages:raise ValueError(page_errors.get(url) or 'pagina CSI non disponibile')
                 page=pages[url]
-                schedule=parse_live_schedule(t,page,url) if t.get('csi_live_url') else parse_old_csi_schedule(t,page,url)
+                is_live=urlparse(url).netloc=='live.centrosportivoitaliano.it'
+                schedule=parse_live_schedule(t,page,url) if is_live else parse_old_csi_schedule(t,page,url)
                 if not schedule:raise ValueError('calendario pubblicato ma nessuna gara USSA riconosciuta')
+                if not is_live:schedule=attach_live_enrichment(t,schedule)
                 for match in schedule:
                     for side in ('home','away'):
                         if 'USSA' in clean(match.get(side)).upper():continue
@@ -738,9 +794,9 @@ def refresh_csi_cache(trigger='scheduled'):
                         if source:logos_to_cache.add((source,code or ''))
                 previous_team=cached.get(t['key']) if isinstance(cached.get(t['key']),dict) else {}
                 schedule=enrich_csi_schedule_details(schedule,previous_team.get('schedule') or [])
-                standings=parse_live_standings(page) if t.get('csi_live_url') else old_csi_standings(t)
+                standings=standings_by_key.get(t['key'],[])
                 if 'standings' in (t.get('planned_features') or []) and not standings:
-                    raise ValueError('classifica/girone non riconosciuti nella pagina CSI Live')
+                    raise ValueError('classifica/girone non riconosciuti nella fonte CSI')
                 scorers=scorers_by_key.get(t['key'],[])
                 cached[t['key']]={
                     'label':t.get('label',t['key']),
@@ -1246,7 +1302,7 @@ def standings(key:str, competition:str='CSI'):
     t=teams_dict().get(key)
     if not t:raise HTTPException(404)
     rows=team_standings_data(t,competition)
-    return {'available':bool(rows),'standings':rows,'source':'CSI LIVE' if competition=='CSI' else competition}
+    return {'available':bool(rows),'standings':rows,'source':'CSI MILANO' if competition=='CSI' else competition}
 
 @app.get('/api/team/{key}/players')
 def players(key:str, competition:str='CSI'):
