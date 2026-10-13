@@ -1,4 +1,11 @@
-USSA SMART HUB — V2.4.51
+USSA SMART HUB — V2.4.52
+
+Aggiornamento classifiche V2.4.52:
+- nuova disposizione uniforme: POS, SQUADRA, PT, G, V, N, P e statistiche realizzative;
+- per il calcio: GF, GS e DR; per il volley: SF, SS e DS; per il basket: PF, PS e DP;
+- rimossi gli stemmi dalla tabella per lasciare più spazio ai dati;
+- riga USSA Rozzano evidenziata in giallo;
+- mantenuto integralmente l'aggiornamento automatico e il sistema di sicurezza dell'Albo CSI introdotti nella V2.4.51.
 
 Correzione definitiva fonti CSI V2.4.51:
 - Albo ufficiale CSI Milano impostato come fonte primaria di calendari, risultati e classifiche;
