@@ -430,7 +430,7 @@ button.matchcard{width:100%;text-align:left;color:inherit;font:inherit;appearanc
 <section class="middle"><button id="now" class="now is-empty" onclick="openNowTeam()"><div class="eyebrow">ORA IN CAMPO</div><div id="nowSport" class="now-sport" style="display:none">⚽</div><div id="nowTitle" class="now-title">Nessuna attività in corso</div><div class="now-empty-icons" aria-hidden="true"><span>⚽</span><span>🏐</span><span>🏀</span></div><div id="nowMeta" class="now-meta"></div><div id="dots" class="dots"></div></button><button class="info" onclick="openInfo()"><div class="info-icon">ⓘ</div><div class="info-label">INFO</div><div id="secretaryStatus" class="secretary-status"></div></button></section>
 <section class="card teams"><div class="head"><h2>LE NOSTRE SQUADRE</h2></div><div id="teamGrid" class="team-grid"></div></section></main></div>
 <div id="overlay" class="overlay"><div class="screen"><div class="screenbar"><button class="backbtn" onclick="goBack()">←</button><div id="screenTitle" class="screentitle"></div><div></div></div><div id="screenBody"></div></div></div>
-<div class="versiontag">V2.4.52 · CLASSIFICHE + ALBO CSI</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
+<div class="versiontag">V2.4.53 · RIPRISTINO HOME DOPO STANDBY</div><div id="loading" class="loading"><div class="spinner"></div><strong>Caricamento dati…</strong></div><div id="idle" class="idle" onclick="wake()"><img src="/assets/ussa-logo.png"><strong>TOCCA LO SCHERMO</strong></div>
 <script>
 const $=id=>document.getElementById(id);
 let teams=[],hub={},nowItems=[],nowIdx=0,nowTimer=null,idleTimer=null;
@@ -766,7 +766,29 @@ async function renderCsiView(v){
 function openNowTeam(){let x=nowItems[nowIdx];if(x?.team_key)openTeam(x.team_key)}
 function openInfo(){navigate({type:'info'})}function renderInfoView(){let sec=hub.secretariat||{};showOverlay('INFO',`<div class="info-menu"><div class="infocard"><h3>SEGRETERIA</h3><div class="kv"><div class="kvrow"><b>Orari</b><span>${esc(sec.label||'')} · ${esc(sec.open||'')}–${esc(sec.close||'')}</span></div></div></div><div class="infocard"><h3>SOCIAL & CONTATTI</h3><div class="empty">Area predisposta per contatti, social e QR.</div></div><div class="infocard"><h3>DIRIGENZA</h3><div class="empty">Area predisposta.</div></div><div class="infocard"><h3>PARTNER & SPONSOR</h3><div class="empty">Area predisposta.</div></div></div>`)}
 function renderEventView(x){showOverlay('EVENTO',`<div class="hero"><h1>${esc(x.title)}</h1><p>${fmtDate(x.date).long} · ${esc(x.time||'')}</p></div><div class="section">${esc(x.description||'Evento USSA')}</div>`)}
-function resetIdle(){clearTimeout(idleTimer);$('idle').classList.remove('show');idleTimer=setTimeout(()=>$('idle').classList.add('show'),(hub.idle_seconds||90)*1000)}function wake(){$('idle').classList.remove('show');resetIdle()}['click','touchstart','mousemove','keydown'].forEach(e=>document.addEventListener(e,resetIdle,{passive:true}));boot().catch(console.error);
+let hiddenAt=null,lastHeartbeat=Date.now(),standbyReloading=false;
+function enterIdle(){goHome();$('idle').classList.add('show')}
+function resetIdle(){clearTimeout(idleTimer);$('idle').classList.remove('show');idleTimer=setTimeout(enterIdle,(hub.idle_seconds||90)*1000)}
+function wake(){goHome();$('idle').classList.remove('show');resetIdle()}
+function reloadHomeAfterStandby(){
+  if(standbyReloading)return;
+  standbyReloading=true;
+  window.location.replace(window.location.pathname+window.location.search);
+}
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){hiddenAt=Date.now();return}
+  if(hiddenAt&&Date.now()-hiddenAt>5000)reloadHomeAfterStandby();
+  hiddenAt=null;
+});
+document.addEventListener('freeze',()=>{hiddenAt=Date.now()});
+document.addEventListener('resume',reloadHomeAfterStandby);
+window.addEventListener('pageshow',e=>{if(e.persisted){goHome();resetIdle()}});
+setInterval(()=>{
+  const now=Date.now();
+  if(now-lastHeartbeat>30000)reloadHomeAfterStandby();
+  lastHeartbeat=now;
+},5000);
+['click','touchstart','mousemove','keydown'].forEach(e=>document.addEventListener(e,resetIdle,{passive:true}));boot().catch(console.error);
 </script>
 <style>
 /* V2.4.13 — U13 TEST CSI: experience completa */

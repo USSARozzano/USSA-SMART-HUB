@@ -1,4 +1,11 @@
-USSA SMART HUB — V2.4.52
+USSA SMART HUB — V2.4.53
+
+Correzione ripresa dopo standby V2.4.53:
+- quando entra la schermata di inattività, l'Hub chiude la sezione aperta e prepara la homepage;
+- al tocco di riattivazione viene sempre mostrata la homepage iniziale;
+- dopo sospensione o standby di Windows la pagina viene ricaricata automaticamente sulla home;
+- gestiti anche ripristino della scheda, congelamento del browser e lunghe sospensioni del processo;
+- mantenute tutte le correzioni V2.4.52 sulle classifiche e V2.4.51 sull'aggiornamento automatico CSI.
 
 Aggiornamento classifiche V2.4.52:
 - nuova disposizione uniforme: POS, SQUADRA, PT, G, V, N, P e statistiche realizzative;
