@@ -1,4 +1,16 @@
-USSA SMART HUB — V2.4.54
+USSA SMART HUB — V2.4.55
+
+Aggiunta fotografie V2.4.55:
+- integrate altre 19 fotografie nelle card già presenti;
+- associazioni verificate: 12 Under 17, 5 Under 15 Blue e 2 Under 15 Yellow;
+- “Dada Alex.JPG” associata correttamente alla card “Alexander Ajodeji Marques Dada”;
+- fotografie uniformate al formato verticale 720 × 1080 e ottimizzate in WebP;
+- la fix è cumulativa e comprende anche le 20 fotografie aggiunte con la V2.4.54.
+
+CARICAMENTO V2.4.55:
+- caricare nel repository tutto il contenuto di questa cartella, conservando la struttura delle sottocartelle;
+- sono 75 file complessivi, quindi il caricamento resta sotto il limite di 100 file di GitHub;
+- non eliminare dal repository le fotografie dei precedenti slot.
 
 Aggiunta fotografie V2.4.54:
 - integrate 20 nuove fotografie nelle card già presenti, senza modificare dimensione o impaginazione delle figurine;

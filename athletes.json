@@ -407,32 +407,38 @@
     {
       "id": "u17_alexander_ajodeji_marques_dada",
       "name": "Alexander Ajodeji Marques Dada",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/marques-dada-alexander-ajodeji.webp"
     },
     {
       "id": "u17_andrea_ceo",
       "name": "Andrea Ceo",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/ceo-andrea.webp"
     },
     {
       "id": "u17_daniele_salvatore_montinaro",
       "name": "Daniele Salvatore Montinaro",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/montinaro-daniele.webp"
     },
     {
       "id": "u17_davide_mastrono",
       "name": "Davide Mastrono",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/mastrono-davide.webp"
     },
     {
       "id": "u17_diego_maria_russo",
       "name": "Diego Maria Russo",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/russo-diego.webp"
     },
     {
       "id": "u17_domenico_monteleone",
       "name": "Domenico Monteleone",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/monteleone-domenico.webp"
     },
     {
       "id": "u17_edoardo_colasuonno",
@@ -454,7 +460,8 @@
     {
       "id": "u17_enea_pietro_ronconi",
       "name": "Enea Pietro Ronconi",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/ronconi-enea.webp"
     },
     {
       "id": "u17_gabriel_moscatiello",
@@ -482,12 +489,14 @@
     {
       "id": "u17_lorenzo_conti",
       "name": "Lorenzo Conti",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/conti-lorenzo.webp"
     },
     {
       "id": "u17_luca_petagna",
       "name": "Luca Petagna",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/petagna-luca.webp"
     },
     {
       "id": "u17_mirko_di_salvo",
@@ -498,12 +507,14 @@
     {
       "id": "u17_nicolo_pulcini",
       "name": "Nicolò Pulcini",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/pulcini-nicolo.webp"
     },
     {
       "id": "u17_riccardo_di_bari",
       "name": "Riccardo Di Bari",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/di-bari-riccardo.webp"
     },
     {
       "id": "u17_samer_abu_markhieh",
@@ -518,7 +529,8 @@
     {
       "id": "u17_samuele_gallina",
       "name": "Samuele Gallina",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/gallina-samuele.webp"
     },
     {
       "id": "u17_simone_pollio",
@@ -549,7 +561,8 @@
     {
       "id": "u15_yellow_daniele_marchino",
       "name": "Daniele Marchino",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/marchino-daniele.webp"
     },
     {
       "id": "u15_yellow_davide_dorian_persegoni",
@@ -638,7 +651,8 @@
     {
       "id": "u15_yellow_olsi_begeja",
       "name": "Olsi Begeja",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/begeja-olsi.webp"
     },
     {
       "id": "u15_yellow_omar_emad_omar_moussad_geaiba",
@@ -711,7 +725,8 @@
     {
       "id": "u15_blue_giacomo_de_pasquale",
       "name": "Giacomo De Pasquale",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/de-pasquale-giacomo.webp"
     },
     {
       "id": "u15_blue_gianni_piliero",
@@ -738,7 +753,8 @@
     {
       "id": "u15_blue_leonardo_simone_zemiti",
       "name": "Leonardo Simone Zemiti",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/zemiti-leonardo-simone.webp"
     },
     {
       "id": "u15_blue_nathan_caroe",
@@ -748,7 +764,8 @@
     {
       "id": "u15_blue_ruben_dario_alvarez_felix",
       "name": "Ruben Dario Alvarez Felix",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/alvarez-felix-ruben-dario.webp"
     },
     {
       "id": "u15_blue_salvatore_bartoli",
@@ -768,7 +785,8 @@
     {
       "id": "u15_blue_simone_turolla",
       "name": "Simone Turolla",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/turolla-simone.webp"
     },
     {
       "id": "u15_blue_stefano_barone",
@@ -790,7 +808,8 @@
     {
       "id": "u15_blue_tommaso_sartor",
       "name": "Tommaso Sartor",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/sartor-tommaso.webp"
     }
   ],
   "u14": [
