@@ -1,4 +1,16 @@
-USSA SMART HUB — V2.4.53
+USSA SMART HUB — V2.4.54
+
+Aggiunta fotografie V2.4.54:
+- integrate 20 nuove fotografie nelle card già presenti, senza modificare dimensione o impaginazione delle figurine;
+- immagini uniformate al formato verticale 720 × 1080 e ottimizzate in WebP;
+- associazioni verificate per Under 17, Under 12, Under 11, Under 9, Mini Calcio e Volley Under 11;
+- mantenute tutte le funzioni e le correzioni della V2.4.53;
+- la fotografia ricevuta come “D'Agostino William” è associata alla card esistente “Williams Michele D'Agostino”.
+
+CARICAMENTO:
+- caricare nel repository tutto il contenuto di questa cartella, conservando la struttura delle sottocartelle;
+- sono 56 file complessivi, quindi il caricamento resta sotto il limite di 100 file di GitHub;
+- non eliminare dal repository le fotografie dei precedenti slot: questa fix aggiunge le nuove immagini e aggiorna athletes.json.
 
 Correzione ripresa dopo standby V2.4.53:
 - quando entra la schermata di inattività, l'Hub chiude la sezione aperta e prepara la homepage;
