@@ -582,32 +582,38 @@
     {
       "id": "u15_yellow_giuseppe_barbarossa",
       "name": "Giuseppe Barbarossa",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/barbarossa-giuseppe.webp"
     },
     {
       "id": "u15_yellow_kevin_prince_d_acunto",
       "name": "Kevin Prince D'Acunto",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/d-acunto-kevin.webp"
     },
     {
       "id": "u15_yellow_leonardo_fittipaldi",
       "name": "Leonardo Fittipaldi",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/fittipaldi-leonardo.webp"
     },
     {
       "id": "u15_yellow_lorenzo_castelli",
       "name": "Lorenzo Castelli",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/castelli-lorenzo.webp"
     },
     {
       "id": "u15_yellow_luigi_fasano",
       "name": "Luigi Fasano",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/fasano-luigi.webp"
     },
     {
       "id": "u15_yellow_matteo_chierichetti",
       "name": "Matteo Chierichetti",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/chierichetti-matteo.webp"
     },
     {
       "id": "u15_yellow_mattia_caso",
@@ -618,7 +624,8 @@
     {
       "id": "u15_yellow_mattia_ciro_areniello",
       "name": "Mattia Ciro Areniello",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/areniello-mattia-ciro.webp"
     },
     {
       "id": "u15_yellow_mostafa_ayman_mostafa_abouzeid_hassan",
@@ -641,12 +648,14 @@
     {
       "id": "u15_yellow_noel_palushi",
       "name": "Noel Palushi",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/n-z/palushi-noel.webp"
     },
     {
       "id": "u15_yellow_nourelddin_elsayed",
       "name": "Nourelddin Elsayed",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/elsayed-nourelddin.webp"
     },
     {
       "id": "u15_yellow_olsi_begeja",
@@ -657,7 +666,8 @@
     {
       "id": "u15_yellow_omar_emad_omar_moussad_geaiba",
       "name": "Omar Emad Omar Moussad Geaiba",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/geaiba-omar-emad-omar-moussad.webp"
     },
     {
       "id": "u15_yellow_seydina_mouhamed_lo",
@@ -667,7 +677,8 @@
     {
       "id": "u15_yellow_simone_casiraghi",
       "name": "Simone Casiraghi",
-      "number": null
+      "number": null,
+      "photo": "/assets/people/a-m/casiraghi-simone.webp"
     },
     {
       "id": "u15_yellow_simone_ferrulli",

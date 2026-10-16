@@ -1,4 +1,17 @@
-USSA SMART HUB — V2.4.55
+USSA SMART HUB — V2.4.56
+
+Aggiunta fotografie V2.4.56:
+- integrate altre 11 fotografie nella rosa Under 15 Yellow;
+- immagini associate alle card esistenti e uniformate al formato 720 × 1080 WebP;
+- controllo generale eseguito sui nominativi presenti contemporaneamente come atleti, staff o dirigenza;
+- confermata la stessa fotografia in tutte le sezioni per Lorenzo Favalli, Roberto Novella, Ivan Fichera e Simone Pollio;
+- Roberto Novella mantiene la fotografia anche nella sezione Dirigenza;
+- la fix è cumulativa e comprende tutte le 50 fotografie aggiunte con le versioni V2.4.54, V2.4.55 e V2.4.56.
+
+CARICAMENTO V2.4.56:
+- caricare nel repository tutto il contenuto di questa cartella, conservando la struttura delle sottocartelle;
+- sono 86 file complessivi, quindi il caricamento resta sotto il limite di 100 file di GitHub;
+- non eliminare dal repository le fotografie dei precedenti slot.
 
 Aggiunta fotografie V2.4.55:
 - integrate altre 19 fotografie nelle card già presenti;
